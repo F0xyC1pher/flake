@@ -98,6 +98,7 @@
 	security = {
 		sudo.wheelNeedsPassword = false;
 		rtkit.enable = true;
+		polkit.enable = true;
 	};
 	
 	# ========== SERVICES ==========
@@ -257,6 +258,7 @@
 		libvdpau-va-gl
 		obs-studio-plugins.obs-vaapi
 		nvidia-vaapi-driver
+		cmd-polkit
 	];
 
 	
