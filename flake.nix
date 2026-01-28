@@ -37,29 +37,40 @@
 
 	};
 
-	outputs = { self, nixpkgs, home-manager, stylix, niri, mango, freesmlauncher, ... }@inputs: {
-		nixosConfigurations.p = nixpkgs.lib.nixosSystem {
-			system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
-			specialArgs = { inherit inputs; };  # Передаём inputs в модули
-			modules = [
-				./configuration.nix  # Основная системная конфигурация
-				./hardware-configuration.nix  # Основная хардваре конфигурация
-
-				stylix.nixosModules.stylix #собственно stylix
-				home-manager.nixosModules.home-manager # home-manager как NixOS модуль
-				{
-					home-manager = {
-						extraSpecialArgs = { inherit inputs; };
-						useGlobalPkgs = true; # Используем глобальные пакеты из системы
-						useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
-						sharedModules = [ stylix.homeModules.default ];
-						backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
-						users.f = import ./home.nix;
-					};
-				}
-				niri.nixosModules.niri # niri как NixOS модуль
-				mango.nixosModules.mango
-			];
+	outputs = { 
+		self,
+		nixpkgs,
+		home-manager,
+		stylix,
+		niri,
+		mango,
+		freesmlauncher,
+		... 
+	}@inputs: {
+		nixosConfigurations = {
+			"p" = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
+				specialArgs = { inherit inputs; };  # Передаём inputs в модули
+				modules = [
+					./configuration.nix  # Основная системная конфигурация
+					./hardware.nix  # Основная хардваре конфигурация
+	
+					stylix.nixosModules.stylix #собственно stylix
+					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
+					niri.nixosModules.niri # niri как NixOS модуль
+					mango.nixosModules.mango
+					{
+						home-manager = {
+							extraSpecialArgs = { inherit inputs; };
+							useGlobalPkgs = true; # Используем глобальные пакеты из системы
+							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
+							sharedModules = [ stylix.homeModules.default ];
+							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
+							users.f = import ./home;
+						};
+					}
+				];
+			};
 		};
 	};
 }

@@ -57,7 +57,13 @@
 	
 
 	# ========== LOCALE ==========
-	console.useXkbConfig = true;
+	console = {
+		font = "${pkgs.terminus_font}/share/consolefonts/ter-v14n.psf.gz";
+		packages = with pkgs; [ terminus_font ];
+		useXkbConfig = true;
+		earlySetup = true;
+		# keyMap = "ru";
+	};
 	i18n.defaultLocale = "ru_RU.UTF-8";
 
 	
@@ -119,6 +125,7 @@
 			videoDrivers = ["nvidia"];
 			xkb.layout = "us,ru";
 			xkb.options = "grp:lalt_lshift_toggle;";
+			xkb.model = "pc86";
 		};
 		greetd = {
 			enable = true;
@@ -211,6 +218,25 @@
 			];
 		};
 
+		firefox = {
+			enable = true;
+			preferences = let ffVersion = config.programs.firefox.package.version; in {
+				"media.ffmpeg.vaapi.enabled" = lib.versionOlder ffVersion "137.0.0";
+				"media.hardware-video-decoding.force-enabled" = lib.versionAtLeast ffVersion "137.0.0";
+				"media.rdd-ffmpeg.enabled" = lib.versionOlder ffVersion "97.0.0";
+
+				"gfx.x11-egl.force-enabled" = true;
+				"widget.dmabuf.force-enabled" = true;
+
+				# Set this to true if your GPU supports AV1.
+				#
+				# This can be determined by reading the output of the
+				# `vainfo` command, after the driver is enabled with
+				# the environment variable.
+				# "media.av1.enabled" = false;
+			};
+		};
+
 		gamemode.enable = true;
 		
 		waybar = {
@@ -255,6 +281,9 @@
 	environment.systemPackages = with pkgs; [
 	    inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
 		ayugram-desktop
+		nixd
+		nil
+		package-version-server
 	    zenity
 		kitty
 		ntfs3g
@@ -264,10 +293,10 @@
 		micro-full
 		sublime4
 		vscodium
+		swww
 		fzf
 		wget
 		btop
-		firefox
 		discord
 		discordo
 		discord-gamesdk
@@ -275,9 +304,10 @@
 		# ripcord
 		# overlayed
 		# goofcord
-		# arrpc
+		arrpc
 		# mpvScripts.mpv-discord
-		# moonlight
+		moonlight
+		vesktop
 		# mprisence
 		# abaddon
 		# legcord
@@ -291,6 +321,7 @@
 	    eza
         bat
         fd
+        zed-editor
         socat
 	    ripgrep-all
 		pavucontrol
@@ -323,6 +354,7 @@
 		cmd-polkit
 		tuigreet
 		niri-unstable
+		helix
 	];
 
 	
