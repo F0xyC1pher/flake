@@ -2,32 +2,151 @@
 let
 	nightdiamondCursors = pkgs.nightdiamond-cursors;
 	rofi-polkit-script = pkgs.fetchurl {
-	    url = "https://raw.githubusercontent.com/czaplicki/rofi-polkit-agent/master/rofi-polkit-agent";
-	    sha256 = "1lv5m291v45akj7kh2z29sjk8hd36bdf5c1h7saxvl8dkr6jm00y";
+		url = "https://raw.githubusercontent.com/czaplicki/rofi-polkit-agent/master/rofi-polkit-agent";
+		sha256 = "1lv5m291v45akj7kh2z29sjk8hd36bdf5c1h7saxvl8dkr6jm00y";
 	};
-	
+		
 	rofi-polkit-agent = pkgs.writeShellScriptBin "rofi-polkit-agent" ''
 	    #!/usr/bin/env bash
 	    ${builtins.readFile rofi-polkit-script}
 	  '';
-	
 in
 {
 	# ========== HOME ==========
 	home.username = "f";
 	home.homeDirectory = "/home/f";
 	home.stateVersion = "25.05";
-
+	
 	home.packages = [
 		rofi-polkit-agent
-		pkgs.cmd-polkit  # ← обязательно!
-		pkgs.jq
+	# 	pkgs.cmd-polkit  # ← обязательно!
+	# 	pkgs.jq
 	];
 	
 	gtk = {
 		enable = true;
 	};
-	
+
+	xdg = {
+		enable = true;
+		configFile = {
+			"MangoHud/MangoHud.conf" = {
+				enable = true;
+				force = true;
+				text = ''
+legacy_layout=false
+fps
+hud_compact
+hud_no_margin
+display_server
+engine_short_names
+toggle_logging=Shift_L+F2
+toggle_hud_position=Shift_R+F11
+log_interval=500
+fps_limit_method=late
+toggle_fps_limit=Shift_L+F1
+vsync=1
+gl_vsync=0
+background_alpha=0.4
+position=top-left
+table_columns=2
+toggle_hud=Shift_R+F12
+font_size=18
+gpu_color=2e9762
+cpu_color=2e97cb
+fps_value=30,60
+fps_color=cc0000,ffaa7f,92e79a
+gpu_load_value=60,90
+gpu_load_color=92e79a,ffaa7f,cc0000
+cpu_load_value=60,90
+cpu_load_color=92e79a,ffaa7f,cc0000
+background_color=000000
+frametime_color=00ff00
+vram_color=ad64c1
+ram_color=c26693
+wine_color=eb5b5b
+engine_color=eb5b5b
+text_color=ffffff
+media_player_color=ffffff
+network_color=e07b85
+battery_color=92e79a
+media_player_format={title};{artist};{album}
+				'';
+			};
+			"xdg-desktop-portal-termfilechooser/config" = {
+				enable = true;
+				force = true;
+				text = ''
+[filechooser]
+cmd=$HOME/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+default_dir=$HOME/Downloads
+env=TERMCMD=kitty
+open_mode=suggested
+save_mode=last
+'';
+};
+			"xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
+				enable = true;
+				force = true;
+				text = ''
+#!/usr/bin/env sh
+# This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
+#
+# For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
+
+set -e
+
+if [ "$6" -ge 4 ]; then
+    set -x
+fi
+
+multiple="$1"
+directory="$2"
+save="$3"
+path="$4"
+out="$5"
+
+cmd="yazi"
+termcmd="kitty"
+
+if [ "$save" = "1" ]; then
+    # save a file
+    set -- --chooser-file="$out" "$path"
+elif [ "$directory" = "1" ]; then
+    # upload files from a directory
+    set -- --chooser-file="$out" --cwd-file="$out"".1" "$path"
+elif [ "$multiple" = "1" ]; then
+    # upload multiple files
+    set -- --chooser-file="$out" "$path"
+else
+    # upload only 1 file
+    set -- --chooser-file="$out" "$path"
+fi
+
+command="$termcmd $cmd"
+for arg in "$@"; do
+    # escape double quotes
+    escaped=$(printf "%s" "$arg" | sed 's/"/\\"/g')
+    # escape special
+    command="$command \"$escaped\""
+done
+
+sh -c "$command"
+
+if [ "$directory" = "1" ]; then
+    if [ ! -s "$out" ] && [ -s "$out"".1" ]; then
+        cat "$out"".1" > "$out"
+        rm "$out"".1"
+    else
+        rm "$out"".1"
+    fi
+fi
+
+'';
+			};
+		};
+	};
+
 	home.pointerCursor = {
 		gtk.enable = true;
 		x11.enable = true;
@@ -37,30 +156,29 @@ in
 	};
 
 
-systemd.user.services.rofi-polkit-agent = {
-    Unit = {
-      Description = "Rofi-based Polkit Authentication Agent";
-      After = [ "graphical-session.target" ];
-      Wants = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      Type = "simple";
-      ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
-      Restart = "on-failure";
-      RestartSec = 3;
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
+	systemd.user.services.rofi-polkit-agent = {
+	    Unit = {
+	      Description = "Rofi-based Polkit Authentication Agent";
+	      After = [ "graphical-session.target" ];
+	      Wants = [ "graphical-session.target" ];
+	    };
+	
+	    Service = {
+	      Type = "simple";
+	      ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
+	      Restart = "on-failure";
+	      RestartSec = 3;
+	    };
+	
+	    Install = {
+	      WantedBy = [ "graphical-session.target" ];
+	    };
+	  };
 	# ========== STYLIX ==========
 	stylix = {
 		enable = true;
 		polarity = "dark";
 		targets.qt.enable = true;
-		targets.qt.platform = "qtct";
 		targets.qt.standardDialogs = "xdgdesktopportal";
 		opacity.terminal = 0.9;
 		fonts = {
@@ -71,8 +189,8 @@ systemd.user.services.rofi-polkit-agent = {
 				name = "FiraCode Nerd Font";
 			};
 			sansSerif = {
-				package = pkgs.nerd-fonts.ubuntu;
-				name = "Ubuntu Nerd Font";
+				package = pkgs.nerd-fonts.fira-code;
+				name = "FiraCode Nerd Font";
 			};
 			serif = config.stylix.fonts.sansSerif;
 			emoji = {
@@ -286,7 +404,7 @@ systemd.user.services.rofi-polkit-agent = {
 				};
 
 				"niri/language" = {
-					format = "{long}";
+					format = "{}";
 					format-en = "🇺🇸 EN";
 					format-ru = "🇷🇺 RU";
 					tooltip = false;
@@ -440,140 +558,141 @@ systemd.user.services.rofi-polkit-agent = {
 				"Ctrl+Alt+Delete" = { action.quit = {}; };
 				"Mod+Shift+P" = { action.power-off-monitors = {}; };
 			};
-			environment = {
-				# Базовые Wayland настройки
-				XDG_SESSION_TYPE = "wayland";
-				XDG_SESSION_DESKTOP = "niri";
-				XDG_CURRENT_DESKTOP = "niri";
-
-				# Терминал и редакторы
-				TERMINAL = "kitty";
-				EDITOR = "micro";
-				SUDO_EDITOR = "micro";
-				VISUAL = "subl";
-
-				# Kitty
-				KITTY_ENABLE_WAYLAND = "1";
-
-				# GTK/ATK
-				NO_AT_BRIDGE = "1";
-
-				# NVIDIA Wayland поддержка
-				GBM_BACKEND = "nvidia-drm";
-				__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
-				# GDK/Clutter
-				GDK_BACKEND = "wayland,x11,*";
-				CLUTTER_BACKEND = "wayland";
-				CLUTTER_DEFAULT_FPS = "60";
-
-				# Qt
-				QT_QPA_PLATFORM = "wayland;xcb";
-				QT_QPA_PLATFORMTHEME = "qt6ct";
-				QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
-
-				# SDL
-				SDL_VIDEODRIVER = "wayland,x11,windows";
-
-				# Java
-				_JAVA_AWT_WM_NONREPARENTING = "1";
-
-				# Electron
-				ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-
-				# NVIDIA кодеков
-				GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
-				GST_VAAPI_ALL_DRIVERS = "1";
-
-				# VA-API/VDPAU
-				LIBVA_DRIVER_NAME = "nvidia";
-				VAAPI_MPEG4_ENABLED = "true";
-				VDPAU_DRIVER = "nvidia";
-
-				# Firefox
-				MOZ_DISABLE_RDD_SANDBOX = "1";
-				MOZ_ENABLE_WAYLAND = "1";
-				MOZ_X11_EGL = "1";
-
-				# NVIDIA Direct Rendering
-				NVD_BACKEND = "direct";
-
-				# OBS Studio
-				OBS_USE_EGL = "1";
-
-				# MangoHud
-				MANGOHUD = "1";
-				MANGOHUD_DLSYM = "1";
-
-				# Wine
-				# //WINEPREFIX = "$HOME/.wine";
-				# //WINEARCH = "win64";
-				STAGING_SHARED_MEMORY = "1";
-
-				# NVIDIA OpenGL оптимизации
-				__GL_SHADER_CACHE = "1";
-				__GL_SHADER_DISK_CACHE = "1";
-				__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
-				__GL_ExperimentalPerfStrategy = "1";
-				__GL_ConformantBlitFramebufferScissor = "1";
-				__GL_MaxFramesAllowed = "1";
-				__GL_SYNC_TO_VBLANK = "0";
-				__GL_YIELD = "NOTHING";
-
-				# Ввод
-				GLFW_IM_MODULE = "none";
-
-				# Синхронизация/VSync
-				mesa_glthread = "true";
-				vblank_mode = "0";
-				gl_vsync = "0";
-				vsync = "1";  # Может конфликтовать с vblank_mode=0
-
-				# Vulkan
-				MESA_VK_WSI_PRESENT_MODE = "immediate";
-
-				# DXVK
-				DXVK_SHADER_OPTIMIZE = "1";
-				DXVK_ENABLE_NVAPI = "1";
-				DXVK_ASYNC = "1";
-				DXVK_FRAME_RATE = "60";
-				DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
-
-				# VkBasalt
-				ENABLE_VKBASALT = "0";
-
-				# Аудио
-				PIPEWIRE_LATENCY = "512/48000";
-				PULSE_LATENCY_MSEC = "60";
-
-				# Proton
-				PROTON_ENABLE_NGX_UPDATER = "1";
-				PROTON_ENABLE_NVAPI = "1";
-				PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
-				PROTON_HIDE_NVIDIA_GPU = "0";
-				PROTON_USE_NTSYNC = "1";
-				# //PROTON_ENABLE_WAYLAND = "1";
-				PROTON_LOG = "1";
-
-				# VKD3D
-				VKD3D_CONFIG = "dxr";
-
-				# Wayland/XWayland
-				vk_xwayland_wait_ready = "false";
-
-				# GTK настройки
-				GTK_USE_IEC_UNITS = "1";
-				GTK_OVERLAY_SCROLLING = "1";
-				GTK_USE_PORTAL = "1";
-				GDK_DEBUG = "portals";
-
-				# NixOS специфичные
-				NIXOS_OZONE_WL = "1";
-
-				# Telegram Desktop
-				# TDESKTOP_USE_GTK_FILE_DIALOG = "1";
-				# TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
-			};
+# 			environment = {
+# 				# Базовые Wayland настройки
+# 				XDG_SESSION_TYPE = "wayland";
+# 				XDG_SESSION_DESKTOP = "niri";
+# 				XDG_CURRENT_DESKTOP = "niri";
+# 
+# 				# Терминал и редакторы
+# 				TERMINAL = "kitty";
+# 				EDITOR = "micro";
+# 				SUDO_EDITOR = "micro";
+# 				VISUAL = "subl";
+# 
+# 				# Kitty
+# 				KITTY_ENABLE_WAYLAND = "1";
+# 
+# 				# GTK/ATK
+# 				NO_AT_BRIDGE = "1";
+# 				GTK_A11Y = "none";
+# 				
+# 				# NVIDIA Wayland поддержка
+# 				GBM_BACKEND = "nvidia-drm";
+# 				__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+# 
+# 				# GDK/Clutter
+# 				GDK_BACKEND = "wayland,x11,*";
+# 				CLUTTER_BACKEND = "wayland";
+# 				CLUTTER_DEFAULT_FPS = "60";
+# 
+# 				# Qt
+# 				QT_QPA_PLATFORM = "wayland;xcb";
+# 				QT_QPA_PLATFORMTHEME = "qt6ct";
+# 				QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+# 
+# 				# SDL
+# 				SDL_VIDEODRIVER = "wayland,x11,windows";
+# 
+# 				# Java
+# 				_JAVA_AWT_WM_NONREPARENTING = "1";
+# 
+# 				# Electron
+# 				ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+# 
+# 				# NVIDIA кодеков
+# 				GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
+# 				GST_VAAPI_ALL_DRIVERS = "1";
+# 
+# 				# VA-API/VDPAU
+# 				LIBVA_DRIVER_NAME = "nvidia";
+# 				VAAPI_MPEG4_ENABLED = "true";
+# 				VDPAU_DRIVER = "nvidia";
+# 
+# 				# Firefox
+# 				MOZ_DISABLE_RDD_SANDBOX = "1";
+# 				MOZ_ENABLE_WAYLAND = "1";
+# 				MOZ_X11_EGL = "1";
+# 
+# 				# NVIDIA Direct Rendering
+# 				NVD_BACKEND = "direct";
+# 
+# 				# OBS Studio
+# 				OBS_USE_EGL = "1";
+# 
+# 				# MangoHud
+# 				MANGOHUD = "1";
+# 				MANGOHUD_DLSYM = "1";
+# 
+# 				# Wine
+# 				# //WINEPREFIX = "$HOME/.wine";
+# 				# //WINEARCH = "win64";
+# 				STAGING_SHARED_MEMORY = "1";
+# 
+# 				# NVIDIA OpenGL оптимизации
+# 				__GL_SHADER_CACHE = "1";
+# 				__GL_SHADER_DISK_CACHE = "1";
+# 				__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
+# 				__GL_ExperimentalPerfStrategy = "1";
+# 				__GL_ConformantBlitFramebufferScissor = "1";
+# 				__GL_MaxFramesAllowed = "1";
+# 				__GL_SYNC_TO_VBLANK = "0";
+# 				__GL_YIELD = "NOTHING";
+# 
+# 				# Ввод
+# 				GLFW_IM_MODULE = "none";
+# 
+# 				# Синхронизация/VSync
+# 				mesa_glthread = "true";
+# 				vblank_mode = "0";
+# 				gl_vsync = "0";
+# 				vsync = "1";  # Может конфликтовать с vblank_mode=0
+# 
+# 				# Vulkan
+# 				MESA_VK_WSI_PRESENT_MODE = "immediate";
+# 
+# 				# DXVK
+# 				DXVK_SHADER_OPTIMIZE = "1";
+# 				DXVK_ENABLE_NVAPI = "1";
+# 				DXVK_ASYNC = "1";
+# 				DXVK_FRAME_RATE = "60";
+# 				DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
+# 
+# 				# VkBasalt
+# 				ENABLE_VKBASALT = "0";
+# 
+# 				# Аудио
+# 				PIPEWIRE_LATENCY = "512/48000";
+# 				PULSE_LATENCY_MSEC = "60";
+# 
+# 				# Proton
+# 				PROTON_ENABLE_NGX_UPDATER = "1";
+# 				PROTON_ENABLE_NVAPI = "1";
+# 				PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
+# 				PROTON_HIDE_NVIDIA_GPU = "0";
+# 				PROTON_USE_NTSYNC = "1";
+# 				# //PROTON_ENABLE_WAYLAND = "1";
+# 				PROTON_LOG = "1";
+# 
+# 				# VKD3D
+# 				VKD3D_CONFIG = "dxr";
+# 
+# 				# Wayland/XWayland
+# 				vk_xwayland_wait_ready = "false";
+# 
+# 				# GTK настройки
+# 				GTK_USE_IEC_UNITS = "1";
+# 				GTK_OVERLAY_SCROLLING = "1";
+# 				GTK_USE_PORTAL = "1";
+# 				GDK_DEBUG = "portals";
+# 
+# 				# NixOS специфичные
+# 				NIXOS_OZONE_WL = "1";
+# 
+# 				# Telegram Desktop
+# 				# TDESKTOP_USE_GTK_FILE_DIALOG = "1";
+# 				# TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
+# 			};
 		};
 	};
 
