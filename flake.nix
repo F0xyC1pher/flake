@@ -66,7 +66,7 @@
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							sharedModules = [ stylix.homeModules.default ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
-							users.f = import ./home;
+							users.f = import ./home; 
 						};
 					}
 				];

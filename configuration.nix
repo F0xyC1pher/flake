@@ -65,7 +65,7 @@
 		# keyMap = "ru";
 	};
 	i18n.defaultLocale = "ru_RU.UTF-8";
-
+	i18n.supportedLocales = ["all"];
 	
 	# ========== NETWORK ==========
 	time.timeZone = "Europe/Moscow";
@@ -154,31 +154,32 @@
 	xdg = {
 		mime.enable = true;
 		mime.defaultApplications = { "inode/directory" = "yazi.desktop"; };
-		portal = {
-			enable = true;
-			wlr.enable = true;
-			xdgOpenUsePortal = true;
-			extraPortals = lib.mkForce [
-				pkgs.xdg-desktop-portal-termfilechooser
-			];
-			config = {
-				common = lib.mkForce {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = "wlr";
-					"org.freedesktop.impl.portal.Screenshot" = "wlr";
-					default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
-				};
-				niri = lib.mkForce {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = "wlr";
-					"org.freedesktop.impl.portal.Screenshot" = "wlr";
-					default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
-				};
-			};			
-			configPackages = lib.mkForce [
-				pkgs.xdg-desktop-portal-termfilechooser
-			];
-		};
+		# portal = {
+		# 	enable = true;
+		# 	wlr.enable = true;
+		# 	xdgOpenUsePortal = true;
+		# 	extraPortals = lib.mkForce [
+		# 		pkgs.xdg-desktop-portal-termfilechooser
+		# 	];
+		# 	config = {
+		# 		common = lib.mkForce {
+		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
+		# 			"org.freedesktop.impl.portal.ScreenCast" = "wlr";
+		# 			"org.freedesktop.impl.portal.Screenshot" = "wlr";
+		# 			default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
+		# 		};
+		# 		niri = lib.mkForce {
+		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
+		# 			"org.freedesktop.impl.portal.ScreenCast" = "wlr";
+		# 			"org.freedesktop.impl.portal.Screenshot" = "wlr";
+		# 			default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
+		# 		};
+		# 	};			
+		# 	configPackages = lib.mkForce [
+		# 		pkgs.xdg-desktop-portal-termfilechooser
+		# 	];
+		# };
+		
 		terminal-exec = {
 			enable = true;
 			settings = {
@@ -218,6 +219,14 @@
 			];
 		};
 
+		neovim = {
+			enable = true;
+			# configure = {
+				# packages.myVimPackage = with pkgs.vimPlugins; {
+				# 	start = [ ctrlp ];
+				# };
+			# };
+		};
 		firefox = {
 			enable = true;
 			preferences = let ffVersion = config.programs.firefox.package.version; in {
@@ -233,7 +242,7 @@
 				# This can be determined by reading the output of the
 				# `vainfo` command, after the driver is enabled with
 				# the environment variable.
-				# "media.av1.enabled" = false;
+				"media.av1.enabled" = true;
 			};
 		};
 
@@ -256,20 +265,20 @@
 		yazi = {
 			enable = true;
 			plugins = {
-			inherit (pkgs.yaziPlugins) sudo;
-			inherit (pkgs.yaziPlugins) glow;
-			inherit (pkgs.yaziPlugins) piper;
-			inherit (pkgs.yaziPlugins) mount;
-			inherit (pkgs.yaziPlugins) gitui;
-			inherit (pkgs.yaziPlugins) chmod;
-			inherit (pkgs.yaziPlugins) miller;
-			inherit (pkgs.yaziPlugins) yatline;
-			inherit (pkgs.yaziPlugins) mime-ext;
-			inherit (pkgs.yaziPlugins) compress;
-			inherit (pkgs.yaziPlugins) mediainfo;
-			inherit (pkgs.yaziPlugins) toggle-pane;
-			inherit (pkgs.yaziPlugins) full-border;
-			# inherit (pkgs.yaziPlugins) ;
+				inherit (pkgs.yaziPlugins) sudo;
+				inherit (pkgs.yaziPlugins) glow;
+				inherit (pkgs.yaziPlugins) piper;
+				inherit (pkgs.yaziPlugins) mount;
+				inherit (pkgs.yaziPlugins) gitui;
+				inherit (pkgs.yaziPlugins) chmod;
+				inherit (pkgs.yaziPlugins) miller;
+				inherit (pkgs.yaziPlugins) yatline;
+				inherit (pkgs.yaziPlugins) mime-ext;
+				inherit (pkgs.yaziPlugins) compress;
+				inherit (pkgs.yaziPlugins) mediainfo;
+				inherit (pkgs.yaziPlugins) toggle-pane;
+				inherit (pkgs.yaziPlugins) full-border;
+				# inherit (pkgs.yaziPlugins) ;
 			};
 		};
 		appimage.enable = true;
@@ -284,7 +293,7 @@
 		nixd
 		nil
 		package-version-server
-	    zenity
+		zenity
 		kitty
 		ntfs3g
 		android-tools
@@ -297,6 +306,7 @@
 		fzf
 		wget
 		btop
+		firefox
 		discord
 		discordo
 		discord-gamesdk
@@ -305,6 +315,7 @@
 		# overlayed
 		# goofcord
 		arrpc
+		nixfmt
 		# mpvScripts.mpv-discord
 		moonlight
 		vesktop
@@ -314,16 +325,17 @@
 		# equicord
 		babelfish
 		ffmpeg-full
-	    imagemagick
-	    pandoc
-	    yt-dlp
-	    mpv
-	    eza
-        bat
-        fd
-        zed-editor
-        socat
-	    ripgrep-all
+		imagemagick
+		pandoc
+		yt-dlp
+		mpv
+		eza
+		bat
+		fd
+		zed-editor
+		lapce
+		socat
+		ripgrep-all
 		pavucontrol
 		fastfetch
 		wl-clipboard
@@ -366,10 +378,10 @@
 		# XDG_CURRENT_DESKTOP = "niri";
 
 		# Терминал и редакторы
-		# TERMINAL = "kitty";
-		# EDITOR = "micro";
-		# SUDO_EDITOR = "micro";
-		# VISUAL = "subl";
+		TERMINAL = "kitty";
+		EDITOR = "micro";
+		SUDO_EDITOR = "micro";
+		VISUAL = "subl";
 
 		# Kitty
 		KITTY_ENABLE_WAYLAND = "1";
