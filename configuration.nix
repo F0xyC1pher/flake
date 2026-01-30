@@ -43,6 +43,30 @@
 			open = false;
 		};
 	};
+	environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
+	    {
+	        "rules": [
+	            {
+	                "pattern": {
+	                    "feature": "procname",
+	                    "matches": "niri"
+	                },
+	                "profile": "Limit Free Buffer Pool On Wayland Compositors"
+	            }
+	        ],
+	        "profiles": [
+	            {
+	                "name": "Limit Free Buffer Pool On Wayland Compositors",
+	                "settings": [
+	                    {
+	                        "key": "GLVidHeapReuseRatio",
+	                        "value": 0
+	                    }
+	                ]
+	            }
+	        ]
+	    }
+	  '';
 	# ========== BOOTLOADER ==========
 	boot = {
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -379,9 +403,10 @@
 
 		# Терминал и редакторы
 		TERMINAL = "kitty";
+		TERMCMD = "kitty";
 		EDITOR = "micro";
 		SUDO_EDITOR = "micro";
-		VISUAL = "subl";
+		VISUAL = "micro";
 
 		# Kitty
 		KITTY_ENABLE_WAYLAND = "1";

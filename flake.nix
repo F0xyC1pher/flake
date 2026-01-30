@@ -64,7 +64,7 @@
 							extraSpecialArgs = { inherit inputs; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
-							sharedModules = [ stylix.homeModules.default ];
+							sharedModules = [ stylix.homeModules.default mango.hmModules.mango ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.f = import ./home; 
 						};
