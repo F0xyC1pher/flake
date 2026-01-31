@@ -1,6 +1,6 @@
 { lib, config, pkgs, inputs, ... }:
 let
-	nightdiamondCursors = pkgs.nightdiamond-cursors;
+	posyCursors = pkgs.posy-cursors;
 	rofi-polkit-script = pkgs.fetchurl {
 		url = "https://raw.githubusercontent.com/czaplicki/rofi-polkit-agent/master/rofi-polkit-agent";
 		sha256 = "1lv5m291v45akj7kh2z29sjk8hd36bdf5c1h7saxvl8dkr6jm00y";
@@ -29,7 +29,7 @@ in
 
 	programs.emacs = {
 	    enable = true;
-	    package = pkgs.emacs-gtk;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
+	    package = pkgs.emacs-gtk;
 	    # extraConfig = ''
 	    #   (setq standard-indent 2)
 	    # '';
@@ -167,8 +167,8 @@ fi
 	home.pointerCursor = {
 		gtk.enable = true;
 		x11.enable = true;
-		package = nightdiamondCursors;
-		name = "NightDiamond-Red";
+		package = posyCursors;
+		name = "Posy_Cursor_Black";
 		size = 32;
 	};
 
@@ -199,7 +199,7 @@ fi
 		targets.qt.standardDialogs = "xdgdesktopportal";
 		opacity.terminal = 0.9;
 		fonts = {
-			sizes.applications = 10;
+			sizes.applications = 12;
 			sizes.desktop = 12;
 			monospace =	{
 				package = pkgs.nerd-fonts.fira-code;
@@ -392,7 +392,7 @@ fi
 
 				"custom/launcher" = {
 					format = "";
-					on-click = "rofi -show drun";
+					on-click = "sh -c rofi -show drun";
 					tooltip = false;
 				};
 
@@ -575,141 +575,6 @@ fi
 				"Ctrl+Alt+Delete" = { action.quit = {}; };
 				"Mod+Shift+P" = { action.power-off-monitors = {}; };
 			};
-# 			environment = {
-# 				# Базовые Wayland настройки
-# 				XDG_SESSION_TYPE = "wayland";
-# 				XDG_SESSION_DESKTOP = "niri";
-# 				XDG_CURRENT_DESKTOP = "niri";
-# 
-# 				# Терминал и редакторы
-# 				TERMINAL = "kitty";
-# 				EDITOR = "micro";
-# 				SUDO_EDITOR = "micro";
-# 				VISUAL = "subl";
-# 
-# 				# Kitty
-# 				KITTY_ENABLE_WAYLAND = "1";
-# 
-# 				# GTK/ATK
-# 				NO_AT_BRIDGE = "1";
-# 				GTK_A11Y = "none";
-# 				
-# 				# NVIDIA Wayland поддержка
-# 				GBM_BACKEND = "nvidia-drm";
-# 				__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-# 
-# 				# GDK/Clutter
-# 				GDK_BACKEND = "wayland,x11,*";
-# 				CLUTTER_BACKEND = "wayland";
-# 				CLUTTER_DEFAULT_FPS = "60";
-# 
-# 				# Qt
-# 				QT_QPA_PLATFORM = "wayland;xcb";
-# 				QT_QPA_PLATFORMTHEME = "qt6ct";
-# 				QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
-# 
-# 				# SDL
-# 				SDL_VIDEODRIVER = "wayland,x11,windows";
-# 
-# 				# Java
-# 				_JAVA_AWT_WM_NONREPARENTING = "1";
-# 
-# 				# Electron
-# 				ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-# 
-# 				# NVIDIA кодеков
-# 				GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
-# 				GST_VAAPI_ALL_DRIVERS = "1";
-# 
-# 				# VA-API/VDPAU
-# 				LIBVA_DRIVER_NAME = "nvidia";
-# 				VAAPI_MPEG4_ENABLED = "true";
-# 				VDPAU_DRIVER = "nvidia";
-# 
-# 				# Firefox
-# 				MOZ_DISABLE_RDD_SANDBOX = "1";
-# 				MOZ_ENABLE_WAYLAND = "1";
-# 				MOZ_X11_EGL = "1";
-# 
-# 				# NVIDIA Direct Rendering
-# 				NVD_BACKEND = "direct";
-# 
-# 				# OBS Studio
-# 				OBS_USE_EGL = "1";
-# 
-# 				# MangoHud
-# 				MANGOHUD = "1";
-# 				MANGOHUD_DLSYM = "1";
-# 
-# 				# Wine
-# 				# //WINEPREFIX = "$HOME/.wine";
-# 				# //WINEARCH = "win64";
-# 				STAGING_SHARED_MEMORY = "1";
-# 
-# 				# NVIDIA OpenGL оптимизации
-# 				__GL_SHADER_CACHE = "1";
-# 				__GL_SHADER_DISK_CACHE = "1";
-# 				__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
-# 				__GL_ExperimentalPerfStrategy = "1";
-# 				__GL_ConformantBlitFramebufferScissor = "1";
-# 				__GL_MaxFramesAllowed = "1";
-# 				__GL_SYNC_TO_VBLANK = "0";
-# 				__GL_YIELD = "NOTHING";
-# 
-# 				# Ввод
-# 				GLFW_IM_MODULE = "none";
-# 
-# 				# Синхронизация/VSync
-# 				mesa_glthread = "true";
-# 				vblank_mode = "0";
-# 				gl_vsync = "0";
-# 				vsync = "1";  # Может конфликтовать с vblank_mode=0
-# 
-# 				# Vulkan
-# 				MESA_VK_WSI_PRESENT_MODE = "immediate";
-# 
-# 				# DXVK
-# 				DXVK_SHADER_OPTIMIZE = "1";
-# 				DXVK_ENABLE_NVAPI = "1";
-# 				DXVK_ASYNC = "1";
-# 				DXVK_FRAME_RATE = "60";
-# 				DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
-# 
-# 				# VkBasalt
-# 				ENABLE_VKBASALT = "0";
-# 
-# 				# Аудио
-# 				PIPEWIRE_LATENCY = "512/48000";
-# 				PULSE_LATENCY_MSEC = "60";
-# 
-# 				# Proton
-# 				PROTON_ENABLE_NGX_UPDATER = "1";
-# 				PROTON_ENABLE_NVAPI = "1";
-# 				PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
-# 				PROTON_HIDE_NVIDIA_GPU = "0";
-# 				PROTON_USE_NTSYNC = "1";
-# 				# //PROTON_ENABLE_WAYLAND = "1";
-# 				PROTON_LOG = "1";
-# 
-# 				# VKD3D
-# 				VKD3D_CONFIG = "dxr";
-# 
-# 				# Wayland/XWayland
-# 				vk_xwayland_wait_ready = "false";
-# 
-# 				# GTK настройки
-# 				GTK_USE_IEC_UNITS = "1";
-# 				GTK_OVERLAY_SCROLLING = "1";
-# 				GTK_USE_PORTAL = "1";
-# 				GDK_DEBUG = "portals";
-# 
-# 				# NixOS специфичные
-# 				NIXOS_OZONE_WL = "1";
-# 
-# 				# Telegram Desktop
-# 				# TDESKTOP_USE_GTK_FILE_DIALOG = "1";
-# 				# TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
-# 			};
 		};
 	};
 
@@ -963,40 +828,71 @@ fi
 		'';
 	};
 	wayland.windowManager.hyprland = {
-		systemd.enable = false;
-		plugins = [
-		      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
+		enable = true;
+		systemd.enable = true;
+		xwayland.enable = true;
+		plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
+		      csgo-vulkan-fix
 		      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.
 		    ];
-		settings = {
-			decoration = {
-				shadow_offset = "0 5";
-				"col.shadow" = "rgba(00000099)";
-			};
-
-			"$mod" = "SUPER";
-
-			bind = [
-				# Execute Rofi with only the SUPER key
-				"$mod, Super_L, exec, pkill rofi || rofi -show drun"
-
-				"$mod, F, exec, librewolf"
-
-				"CONTROL ALT, T, exec, wezterm"
-			];
+ 		settings = {
+# 			decoration = {
+# 				shadow_offset = "0 5";
+# 				"col.shadow" = "rgba(00000099)";
+# 			};
+# 
+ 			"$mod" = "SUPER";
+# 
+ 			bind = [
+ 				# Execute Rofi with only the SUPER key
+ 				"$mod, Super_L, exec, pkill rofi || rofi -show drun"
+ 
+ 				"$mod, left, movefocus, l"
+ 				"$mod, right, movefocus, r"
+ 				"$mod, up, movefocus, u"
+ 				"$mod, down, movefocus, d"
+ 				"$mod, 1, workspace, 1"
+ 				"$mod, 2, workspace, 2"
+ 				"$mod, 3, workspace, 3"
+ 				"$mod, 4, workspace, 4"
+ 				"$mod, 5, workspace, 5"
+ 				"$mod, 6, workspace, 6"
+ 				"$mod, 7, workspace, 7"
+ 				"$mod, 8, workspace, 8"
+ 				"$mod, 9, workspace, 9"
+ 				"$mod, 0, workspace, 10"
+ 				"$mod SHIFT, 1, movetoworkspace, 1"
+ 				"$mod SHIFT, 2, movetoworkspace, 2"
+ 				"$mod SHIFT, 3, movetoworkspace, 3"
+ 				"$mod SHIFT, 4, movetoworkspace, 4"
+ 				"$mod SHIFT, 5, movetoworkspace, 5"
+ 				"$mod SHIFT, 6, movetoworkspace, 6"
+ 				"$mod SHIFT, 7, movetoworkspace, 7"
+ 				"$mod SHIFT, 8, movetoworkspace, 8"
+ 				"$mod SHIFT, 9, movetoworkspace, 9"
+ 				"$mod SHIFT, 0, movetoworkspace, 10"
+ 			
+ 				# ""
+ 				"$mod, space, togglefloating,"
+ 
+ 				"$mod, Q, exec, killactive,"
+ 				"$mod, T, exec, kitty,"
+ 				"$mod, Return, exec, kitty,"
+ 				"CTRL $mod ALT, Q, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
+ 			];
 
 			# Startup Apps
-			exec-once = [
-				"hyprpanel"
-			];
+			# exec-once = [
+				# "waybar"
+			# ];
 
 			bindm = [
 				# mouse movements
 				"$mod, mouse:272, movewindow"
 				"$mod, mouse:273, resizewindow"
-				"$mod ALT, mouse:272, resizewindow"
+				# "$mod ALT, mouse:272, resizewindow"
 			];
-		};
+	 	};
 	};
 	home.activation.reloadNiri = lib.hm.dag.entryAfter ["writeBoundary"] ''
 		if command -v niri >/dev/null 2>&1; then
