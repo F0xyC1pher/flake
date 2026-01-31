@@ -24,6 +24,12 @@
 		      inputs.nixpkgs.follows = "nixpkgs";
 		    };
 
+		hyprland.url = "github:hyprwm/Hyprland";
+		hyprland-plugins = {
+			url = "github:hyprwm/hyprland-plugins";
+			inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
+		};
+		
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +50,8 @@
 		stylix,
 		niri,
 		mango,
+		hyprland,
+		hyprland-plugins,
 		freesmlauncher,
 		... 
 	}@inputs: {

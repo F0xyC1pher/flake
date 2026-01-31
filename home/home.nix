@@ -40,7 +40,7 @@ in
 	  languages.language = [{
 	    name = "nix";
 	    auto-format = true;
-	    formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+	    formatter.command = lib.getExe pkgs.nixfmt;
 	  }];
 	};
 
@@ -752,8 +752,8 @@ fi
             tag_animation_direction=0
             zoom_initial_ratio=0.3
             zoom_end_ratio=0.8
-            fadein_begin_opacity=0.5
-            fadeout_begin_opacity=0.8
+            fadein_begin_opacity=0.8
+            fadeout_begin_opacity=0.5
             animation_duration_move=500
             animation_duration_open=400
             animation_duration_tag=350
@@ -769,12 +769,12 @@ fi
             
             # Scroller Layout Setting
             scroller_structs=20
-            scroller_default_proportion=1.0
+            scroller_default_proportion=0.95
             scroller_focus_center=0
             scroller_prefer_center=1
             edge_scroller_pointer_focus=1
-            scroller_default_proportion_single=1.0
-            scroller_proportion_preset=1.0,0.8,0.5
+            scroller_default_proportion_single=0.95
+            scroller_proportion_preset=0.95,0.5
             
             # Master-Stack Layout Setting
             new_is_master=1
@@ -961,6 +961,42 @@ fi
             layerrule=animation_type_close:zoom,layer_name:rofi
             
 		'';
+	};
+	wayland.windowManager.hyprland = {
+		systemd.enable = false;
+		plugins = [
+		      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
+		      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.
+		    ];
+		settings = {
+			decoration = {
+				shadow_offset = "0 5";
+				"col.shadow" = "rgba(00000099)";
+			};
+
+			"$mod" = "SUPER";
+
+			bind = [
+				# Execute Rofi with only the SUPER key
+				"$mod, Super_L, exec, pkill rofi || rofi -show drun"
+
+				"$mod, F, exec, librewolf"
+
+				"CONTROL ALT, T, exec, wezterm"
+			];
+
+			# Startup Apps
+			exec-once = [
+				"hyprpanel"
+			];
+
+			bindm = [
+				# mouse movements
+				"$mod, mouse:272, movewindow"
+				"$mod, mouse:273, resizewindow"
+				"$mod ALT, mouse:272, resizewindow"
+			];
+		};
 	};
 	home.activation.reloadNiri = lib.hm.dag.entryAfter ["writeBoundary"] ''
 		if command -v niri >/dev/null 2>&1; then

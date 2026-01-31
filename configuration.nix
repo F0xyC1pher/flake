@@ -232,6 +232,14 @@
 			enable = true;
 		};
 
+		hyprland = {
+			enable = true;
+			xwayland.enable = true;
+			withUWSM = true;
+		};
+		
+		uwsm.enable = true;
+		
 		steam = {
 			enable = true;
 			remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
