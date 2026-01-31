@@ -232,6 +232,16 @@
 			enable = true;
 		};
 
+		hyprland = {
+			enable = true;
+			xwayland.enable = true;
+			withUWSM = false;
+			package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+			portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+		};
+		
+		uwsm.enable = true;
+		
 		steam = {
 			enable = true;
 			remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
