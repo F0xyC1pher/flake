@@ -1,6 +1,5 @@
 { lib, config, pkgs, inputs, ... }:
 let
-	posyCursors = pkgs.posy-cursors;
 	rofi-polkit-script = pkgs.fetchurl {
 		url = "https://raw.githubusercontent.com/czaplicki/rofi-polkit-agent/master/rofi-polkit-agent";
 		sha256 = "1lv5m291v45akj7kh2z29sjk8hd36bdf5c1h7saxvl8dkr6jm00y";
@@ -23,9 +22,107 @@ in
 	# 	pkgs.jq
 	];
 	
-	gtk = {
-		enable = true;
+	# gtk = {
+	# 	enable = true;
+	# 	gtk3 = {
+	# 	      extraConfig.gtk-application-prefer-dark-theme = true;
+	# 	    };
+	# };
+
+	# qt = {
+	# 	enable = true;
+	# 	# platformTheme.name = lib.mkForce "qt6ct";
+	# };
+	
+	dconf.settings = {
+		"org/gtk/settings/file-chooser" = {
+	    	sort-directories-first = true;
+		};
 	};
+	
+	home.pointerCursor = {
+		gtk.enable = true;
+		x11.enable = true;
+		package = pkgs.posy-cursors;
+		name = "Posy_Cursor_Black";
+		size = 32;
+	};
+	# ========== STYLIX ==========
+# 	stylix = {
+# 		enable = true;
+# 		polarity = "dark";
+# 		targets = {
+# 			qt ={
+# 				enable = true;
+# 				platform = "qtct";
+# 				standardDialogs = "xdgdesktopportal";
+# 				# style = "kvantum";
+# 			};
+# 		};
+# 		opacity.terminal = 0.8;
+# 		fonts = {
+# 			sizes.applications = 12;
+# 			sizes.desktop = 12;
+# 			sizes.terminal = 12;
+# 			monospace =	{
+# 				package = pkgs.nerd-fonts.fira-code;
+# 				name = "FiraCode Nerd Font";
+# 			};
+# 			sansSerif = {
+# 				package = pkgs.nerd-fonts.fira-code;
+# 				name = "FiraCode Nerd Font";
+# 			};
+# 			serif = config.stylix.fonts.sansSerif;
+# 			emoji = {
+# 				package = pkgs.noto-fonts-color-emoji;
+# 				name = "Noto Color Emoji";
+# 			};
+# 		};
+# 		# Фоны и основные поверхности
+# 		# основной фон (editor, терминал, панели, tmux)
+# 		# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+#  		# фон выделения текста (visual mode, selected text, поиск)
+# 		# Серые тона для текста и неактивных элементов
+# 		# комментарии, невидимые символы, cursorline, неактивные элементы
+# 		# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+# 		# Основной и яркий текст
+# 		# основной цвет текста (обычный код, prompt в терминале)
+# 		# редкий bright foreground / special UI
+# 		# самый яркий белый (контрастный текст, bold/bright)
+# 		# Акцентные цвета — семантика
+# 		# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+# 		# оранжевый — числа, константы, escape-последовательности, пути/URL
+# 		# жёлтый — классы, структуры, background поиска, WARN, иногда bold
+# 		# зелёный — строки, добавленное в diff, успех
+# 		# циан — типы, специальные конструкции, info, escape в строках
+# 		# синий — функции, методы, ссылки, основной акцентный цвет
+# 		# пурпурный — ключевые слова, control flow, операторы, storage
+# 		# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
+# 
+# 		
+# 			# Scheme = "theMe";
+# 			# author = "FoxyChipher";
+# 			# slug = "the-Me";
+# 		base16Scheme = {
+# 			base00 = "#060606";
+# 			base01 = "#363636";
+# 			base02 = "#565656";
+# 			base03 = "#767676";
+# 			base04 = "#a6a6a6";
+# 			base05 = "#d6d6d6";
+# 			base06 = "#f6f6f6";
+# 			base07 = "#f6f6f6";
+# 			base08 = "#d76667";
+# 			base09 = "#ff6d66";
+# 			base0A = "#fed666";
+# 			base0B = "#67b766";
+# 			base0C = "#61d6d6";
+# 			base0D = "#0666ff";
+# 			base0E = "#a666fd";
+# 			base0F = "#fd66a6";
+# 		};
+# 	};
+	stylix.targets.qt.standardDialogs = "xdgdesktopportal";
 
 	programs.emacs = {
 	    enable = true;
@@ -164,13 +261,6 @@ fi
 		};
 	};
 
-	home.pointerCursor = {
-		gtk.enable = true;
-		x11.enable = true;
-		package = posyCursors;
-		name = "Posy_Cursor_Black";
-		size = 32;
-	};
 
 
 	systemd.user.services.rofi-polkit-agent = {
@@ -191,58 +281,7 @@ fi
 	      WantedBy = [ "graphical-session.target" ];
 	    };
 	  };
-	# ========== STYLIX ==========
-	stylix = {
-		enable = true;
-		polarity = "dark";
-		targets.qt.enable = true;
-		targets.qt.standardDialogs = "xdgdesktopportal";
-		opacity.terminal = 0.9;
-		fonts = {
-			sizes.applications = 12;
-			sizes.desktop = 12;
-			monospace =	{
-				package = pkgs.nerd-fonts.fira-code;
-				name = "FiraCode Nerd Font";
-			};
-			sansSerif = {
-				package = pkgs.nerd-fonts.fira-code;
-				name = "FiraCode Nerd Font";
-			};
-			serif = config.stylix.fonts.sansSerif;
-			emoji = {
-				package = pkgs.noto-fonts-color-emoji;
-				name = "Noto Color Emoji";
-			};
-		};
-		base16Scheme = {
-			Scheme = "My Custom Theme";
-			author = "Your Name";
-			slug = "my-custom-theme";
-			
-			# Основные цвета фона и текста
-			base00 = "#0c0c0c";  # Основной фон (background)
-			base01 = "#2f2f2f";  # Более светлый фон
-			base02 = "#535353";  # Фон выделения (selection background)
-			base03 = "#767676";  # Комментарии, второстепенный текст
-			
-			# Цвета текста
-			base04 = "#b9b9b9";  # Неактивный текст
-			base05 = "#cccccc";  # Основной текст (foreground)
-			base06 = "#dfdfdf";  # Акцентный текст
-			base07 = "#f2f2f2";  # Яркий текст на темном фоне
-			
-			# Акцентные цвета
-			base08 = "#e74856";  # Красный (ошибки, удаление)
-			base09 = "#c19c00";  # Оранжевый (предупреждения, числа)
-			base0A = "#f9f1a5";  # Желтый (строки, константы)
-			base0B = "#16c60c";  # Зеленый (успех, функции)
-			base0C = "#61d6d6";  # Голубой (комментарии, тип данных)
-			base0D = "#3b78ff";  # Синий (ключевые слова, ссылки)
-			base0E = "#b4009e";  # Фиолетовый (методы, операторы)
-			base0F = "#13a10e";  # Пурпурный (специальные символы)
-		};
-	};
+
 
 	
 	# ========== WAYBAR ==========
@@ -253,8 +292,8 @@ fi
 			* {
 				border: none;
 				border-radius: 0;
-				font-family: "Source Code Pro", monospace;
-				font-size: 12px;
+				font-family: "FiraCode Nerd Font Mono";
+				font-size: 14px;
 				min-height: 0;
 			}
 
@@ -266,7 +305,7 @@ fi
 			#custom-launcher {
 				padding: 0 10px 0 12px;
 				color: #88C0D0;
-				font-size: 16px;
+				font-size: 20px;
 			}
 
 			#custom-launcher:hover {
@@ -400,9 +439,9 @@ fi
 					format = "{icon}";
 					format-icons = {
 						"focused"= "󰮯";
-						"active"= "󰝦";
+						"active"= "󰮯";
 						"default"= "󰊠";
-						"empty"= "󰊡";
+						"empty"= "󰝦";
 					};
 					disable-click = false;
 					current-only = false;
@@ -467,6 +506,7 @@ fi
 					format = "{:%H:%M:%S}";
 					tooltip-format = "{:%A, %d %B %Y}\n<tt><small>{calendar}</small></tt>";
 					format-alt = "{:%d/%m}";
+					interval = 1;
 				};
 			};
 		};
@@ -506,10 +546,13 @@ fi
 			};
 			
 			binds = {
+				"Mod+Shift+Slash" = { action.show-hotkey-overlay = {}; };
+				
 				"Mod+Q" = { action.close-window = {}; };
 				"Mod+Tab" = { action.toggle-overview = {}; };
 				"Mod+Return" = { action.spawn = [ "kitty" ]; };
 				"Mod+T" = { action.spawn = [ "kitty" ]; };
+				"MOD+Y" = { action.spawn = [ "kitty" "yazi" ]; hotkey-overlay.title = "File Manager: Yazi"; };
 				"Mod+R" = { action.spawn-sh = [ "rofi -show drun" ]; };
 				"Mod+Alt+L" = { action.spawn = [ "swaylock" ]; };
 
@@ -570,8 +613,7 @@ fi
 				"Mod+space" = { action.toggle-window-floating = {}; };
 				"Mod+Shift+space" = { action.switch-focus-between-floating-and-tiling = {}; };
 				"Print" = { action.screenshot = {}; };
-				# // The quit action will show a confirmation dialog to avoid accidental exits.
-				"Mod+Shift+E" = { action.quit = {}; };
+				"Ctrl+Mod+Alt+Q" = { action.quit = {}; };
 				"Ctrl+Alt+Delete" = { action.quit = {}; };
 				"Mod+Shift+P" = { action.power-off-monitors = {}; };
 			};
