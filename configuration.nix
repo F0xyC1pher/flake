@@ -320,227 +320,312 @@
 		
 	};
 	
-	# ========== PACKAGES ==========
-	environment.systemPackages = with pkgs; [
-	    inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
-		ayugram-desktop
-		nixd
-		nil
-		package-version-server
-		zenity
-		kitty
-		ntfs3g
-		android-tools
-		mangohud
-		git
-		micro-full
-		sublime4
-		vscodium
-		swww
-		fzf
-		wget
-		btop
-		firefox
-		discord
-		discordo
-		discord-gamesdk
-		discord-rpc
-		# ripcord
-		# overlayed
-		# goofcord
-		arrpc
-		nixfmt
-		# mpvScripts.mpv-discord
-		moonlight
-		vesktop
-		# mprisence
-		# abaddon
-		# legcord
-		# equicord
-		babelfish
-		ffmpeg-full
-		imagemagick
-		pandoc
-		yt-dlp
-		mpv
-		eza
-		bat
-		fd
-		zed-editor
-		lapce
-		socat
-		ripgrep-all
-		pavucontrol
-		fastfetch
-		wl-clipboard
-		wl-clipboard-x11
-		wl-clip-persist
-		cliphist
-		wayland-utils
-		xwayland-satellite-unstable
-		keepassxc
-		git-credential-keepassxc
-		# xdg-desktop-portal-gtk
-		# xdg-desktop-portal-wlr
-		# xdg-desktop-portal-termfilechooser
-		# rofi-polkit-agent
-		cmd-polkit 
-		jq
-		rofi
-		swaylock
-		swaynotificationcenter
-		mpd
-		mpdris2
-		rmpc
-		obsidian
-		libva-vdpau-driver
-		libvdpau-va-gl
-		obs-studio-plugins.obs-vaapi
-		nvidia-vaapi-driver
-		cmd-polkit
-		tuigreet
-		niri-unstable
-		helix
-	];
+	# ==========	ENVIRONMENT	==========
+	environment = {
+		# ==========	PACKAGES	==========
+		systemPackages = with pkgs; [
+		    inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
+			ayugram-desktop
+			nixd
+			nil
+			package-version-server
+			zenity
+			kitty
+			ntfs3g
+			android-tools
+			mangohud
+			git
+			micro-full
+			sublime4
+			vscodium
+			swww
+			fzf
+			# kdePackages.qt6ct
+			# kdePackages.qtstyleplugin-kvantum
+			wget
+			btop
+			firefox
+			tor-browser
+			discord
+			discordo
+			discord-gamesdk
+			discord-rpc
+			# ripcord
+			# overlayed
+			# goofcord
+			arrpc
+			nixfmt
+			# mpvScripts.mpv-discord
+			moonlight
+			vesktop
+			# mprisence
+			# abaddon
+			# legcord
+			# equicord
+			babelfish
+			ffmpeg-full
+			imagemagick
+			pandoc
+			yt-dlp
+			mpv
+			eza
+			bat
+			fd
+			zed-editor
+			lapce
+			socat
+			ripgrep-all
+			pavucontrol
+			fastfetch
+			wl-clipboard
+			wl-clipboard-x11
+			wl-clip-persist
+			cliphist
+			wayland-utils
+			xwayland-satellite-unstable
+			keepassxc
+			git-credential-keepassxc
+			# xdg-desktop-portal-gtk
+			# xdg-desktop-portal-wlr
+			# xdg-desktop-portal-termfilechooser
+			# rofi-polkit-agent
+			cmd-polkit 
+			jq
+			rofi
+			swaylock
+			swaynotificationcenter
+			mpd
+			mpdris2
+			rmpc
+			obsidian
+			libva-vdpau-driver
+			libvdpau-va-gl
+			obs-studio-plugins.obs-vaapi
+			nvidia-vaapi-driver
+			cmd-polkit
+			tuigreet
+			niri-unstable
+			helix
+		];
 
-	
-	# ========== ENVIRONMENT VARS ==========
-	environment.sessionVariables = lib.mkForce {
-		# Базовые Wayland настройки
-		# XDG_SESSION_TYPE = "wayland";
-		# XDG_SESSION_DESKTOP = "niri";
-		# XDG_CURRENT_DESKTOP = "niri";
-
-		# Терминал и редакторы
-		TERMINAL = "kitty";
-		TERMCMD = "kitty";
-		EDITOR = "micro";
-		SUDO_EDITOR = "micro";
-		VISUAL = "micro";
-
-		# Kitty
-		KITTY_ENABLE_WAYLAND = "1";
-
-		# Qt
-		QT_QPA_PLATFORM = "wayland;xcb";
-		# QT_QPA_PLATFORMTHEME = "qt6ct";
-		# QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
 		
-		# GTK/ATK
-		NO_AT_BRIDGE = "1";
-		GTK_A11Y = "none";
-		
-		# GTK настройки
-		# GTK_USE_IEC_UNITS = "1";
-		# GTK_OVERLAY_SCROLLING = "1";
-		GTK_USE_PORTAL = "1";
-		GDK_DEBUG = "portals";
+		# ==========	VARIABLES	==========
+		variables = lib.mkForce {
+			# Базовые Wayland настройки
+			# XDG_SESSION_TYPE = "wayland";
+			# XDG_SESSION_DESKTOP = "niri";
+			# XDG_CURRENT_DESKTOP = "niri";
 
-		# NVIDIA Wayland поддержка
-		GBM_BACKEND = "nvidia-drm";
-		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+			# Терминал и редакторы
+			TERMINAL = "kitty";
+			TERMCMD = "kitty";
+			EDITOR = "micro";
+			SUDO_EDITOR = "micro";
+			VISUAL = "micro";
 
-		# GDK/Clutter
-		GDK_BACKEND = "wayland,x11,*";
-		CLUTTER_BACKEND = "wayland";
-		CLUTTER_DEFAULT_FPS = "60";
+			# Kitty
+			KITTY_ENABLE_WAYLAND = "1";
 
-		# SDL
-		SDL_VIDEODRIVER = "wayland,x11,windows";
-		SDL_AUDIODRIVER= "pipewire";
-		SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY = "1";
-		SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
-		LD_BIND_NOW = "1";
+			# Qt
+			QT_QPA_PLATFORM = "wayland;xcb";
+			# QT_QPA_PLATFORMTHEME = "qt6ct";
+			# QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+			# QT_STYLE_OVERRIDE = null;
+			
+			# GTK/ATK
+			NO_AT_BRIDGE = "1";
+			GTK_A11Y = "none";
+			
+			# GTK настройки
+			# GTK_USE_IEC_UNITS = "1";
+			# GTK_OVERLAY_SCROLLING = "1";
+			GTK_USE_PORTAL = "1";
+			GDK_DEBUG = "portals";
 
-		# Java
-		_JAVA_AWT_WM_NONREPARENTING = "1";
+			# NVIDIA Wayland поддержка
+			GBM_BACKEND = "nvidia-drm";
+			__GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
-		# Electron
-		ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+			# GDK/Clutter
+			GDK_BACKEND = "wayland,x11,*";
+			CLUTTER_BACKEND = "wayland";
+			CLUTTER_DEFAULT_FPS = "60";
 
-		# NVIDIA кодеков
-		GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
-		GST_VAAPI_ALL_DRIVERS = "1";
+			# SDL
+			SDL_VIDEODRIVER = "wayland,x11,windows";
+			SDL_AUDIODRIVER= "pipewire";
+			SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY = "1";
+			SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+			LD_BIND_NOW = "1";
 
-		# VA-API/VDPAU
-		LIBVA_DRIVER_NAME = "nvidia";
-		VAAPI_MPEG4_ENABLED = "true";
-		VDPAU_DRIVER = "nvidia";
+			# Java
+			_JAVA_AWT_WM_NONREPARENTING = "1";
 
-		# Firefox
-		MOZ_DISABLE_RDD_SANDBOX = "1";
-		MOZ_ENABLE_WAYLAND = "1";
-		# MOZ_X11_EGL = "1";
+			# Electron
+			ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
-		# NVIDIA Direct Rendering
-		NVD_BACKEND = "direct";
+			# NVIDIA кодеков
+			GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
+			GST_VAAPI_ALL_DRIVERS = "1";
 
-		# OBS Studio
-		# OBS_USE_EGL = "1";
+			# VA-API/VDPAU
+			LIBVA_DRIVER_NAME = "nvidia";
+			VAAPI_MPEG4_ENABLED = "true";
+			VDPAU_DRIVER = "nvidia";
 
-		# MangoHud
-		MANGOHUD = "1";
-		MANGOHUD_DLSYM = "1";
+			# Firefox
+			MOZ_DISABLE_RDD_SANDBOX = "1";
+			MOZ_ENABLE_WAYLAND = "1";
+			# MOZ_X11_EGL = "1";
 
-		# Wine
-		# //WINEPREFIX = "$HOME/.wine";
-		# //WINEARCH = "win64";
-		STAGING_SHARED_MEMORY = "1";
+			# NVIDIA Direct Rendering
+			NVD_BACKEND = "direct";
 
-		# NVIDIA OpenGL оптимизации
-		__GL_SHADER_CACHE = "1";
-		__GL_SHADER_DISK_CACHE = "1";
-		__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
-		__GL_ExperimentalPerfStrategy = "1";
-		__GL_ConformantBlitFramebufferScissor = "1";
-		__GL_MaxFramesAllowed = "1";
-		__GL_SYNC_TO_VBLANK = "0";
-		__GL_YIELD = "NOTHING";
+			# OBS Studio
+			# OBS_USE_EGL = "1";
 
-		# Ввод
-		GLFW_IM_MODULE = "none";
+			# MangoHud
+			MANGOHUD = "1";
+			MANGOHUD_DLSYM = "1";
 
-		# Синхронизация/VSync
-		mesa_glthread = "true";
-		vblank_mode = "0";
-		gl_vsync = "0";
-		vsync = "1";
+			# Wine
+			# //WINEPREFIX = "$HOME/.wine";
+			# //WINEARCH = "win64";
+			STAGING_SHARED_MEMORY = "1";
 
-		# Vulkan
-		MESA_VK_WSI_PRESENT_MODE = "immediate";
+			# NVIDIA OpenGL оптимизации
+			__GL_SHADER_CACHE = "1";
+			__GL_SHADER_DISK_CACHE = "1";
+			__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
+			__GL_ExperimentalPerfStrategy = "1";
+			__GL_ConformantBlitFramebufferScissor = "1";
+			__GL_MaxFramesAllowed = "1";
+			__GL_SYNC_TO_VBLANK = "0";
+			__GL_YIELD = "NOTHING";
 
-		# DXVK
-		DXVK_SHADER_OPTIMIZE = "1";
-		DXVK_ENABLE_NVAPI = "1";
-		DXVK_ASYNC = "1";
-		DXVK_FRAME_RATE = "60";
-		DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
+			# Ввод
+			GLFW_IM_MODULE = "none";
 
-		# VkBasalt
-		ENABLE_VKBASALT = "0";
+			# Синхронизация/VSync
+			mesa_glthread = "true";
+			vblank_mode = "0";
+			gl_vsync = "0";
+			vsync = "1";
 
-		# Аудио
-		PIPEWIRE_LATENCY = "512/48000";
-		PULSE_LATENCY_MSEC = "60";
+			# Vulkan
+			MESA_VK_WSI_PRESENT_MODE = "immediate";
 
-		# Proton
-		PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
-		PROTON_HIDE_NVIDIA_GPU = "0";
-		PROTON_USE_NTSYNC = "1";
-		# //PROTON_ENABLE_WAYLAND = "1";
-		PROTON_LOG = "1";
+			# DXVK
+			DXVK_SHADER_OPTIMIZE = "1";
+			DXVK_ENABLE_NVAPI = "1";
+			DXVK_ASYNC = "1";
+			DXVK_FRAME_RATE = "60";
+			DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
 
-		# Wayland/XWayland
-		vk_xwayland_wait_ready = "false";
+			# VkBasalt
+			ENABLE_VKBASALT = "0";
 
-		# NixOS специфичные
-		NIXOS_OZONE_WL = "1";
+			# Аудио
+			PIPEWIRE_LATENCY = "512/48000";
+			PULSE_LATENCY_MSEC = "60";
 
-		# Telegram Desktop
-		TDESKTOP_USE_GTK_FILE_DIALOG = "1";
-		TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
-	};
+			# Proton
+			PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
+			PROTON_HIDE_NVIDIA_GPU = "0";
+			PROTON_USE_NTSYNC = "1";
+			# //PROTON_ENABLE_WAYLAND = "1";
+			PROTON_LOG = "1";
+
+			# Wayland/XWayland
+			vk_xwayland_wait_ready = "false";
+
+			# NixOS специфичные
+			NIXOS_OZONE_WL = "1";
+
+			# Telegram Desktop
+			TDESKTOP_USE_GTK_FILE_DIALOG = "1";
+			TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
+		};
+	};	
+
+	stylix = {
+			enable = true;
+			polarity = "dark";
+			homeManagerIntegration = {
+				autoImport = true;
+				followSystem = true;
+			};
+			targets = {
+				qt ={
+					enable = true;
+					platform = "qtct";
+					# standardDialogs = "xdgdesktopportal";
+					# style = "kvantum";
+				};
+			};
+			opacity.terminal = 0.8;
+			fonts = {
+				sizes.applications = 12;
+				sizes.desktop = 12;
+				sizes.terminal = 12;
+				monospace =	{
+					package = pkgs.nerd-fonts.fira-code;
+					name = "FiraCode Nerd Font";
+				};
+				sansSerif = {
+					package = pkgs.nerd-fonts.fira-code;
+					name = "FiraCode Nerd Font";
+				};
+				serif = config.stylix.fonts.sansSerif;
+				emoji = {
+					package = pkgs.noto-fonts-color-emoji;
+					name = "Noto Color Emoji";
+				};
+			};
+			# Фоны и основные поверхности
+			# основной фон (editor, терминал, панели, tmux)
+			# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+	 		# фон выделения текста (visual mode, selected text, поиск)
+			# Серые тона для текста и неактивных элементов
+			# комментарии, невидимые символы, cursorline, неактивные элементы
+			# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+			# Основной и яркий текст
+			# основной цвет текста (обычный код, prompt в терминале)
+			# редкий bright foreground / special UI
+			# самый яркий белый (контрастный текст, bold/bright)
+			# Акцентные цвета — семантика
+			# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+			# оранжевый — числа, константы, escape-последовательности, пути/URL
+			# жёлтый — классы, структуры, background поиска, WARN, иногда bold
+			# зелёный — строки, добавленное в diff, успех
+			# циан — типы, специальные конструкции, info, escape в строках
+			# синий — функции, методы, ссылки, основной акцентный цвет
+			# пурпурный — ключевые слова, control flow, операторы, storage
+			# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
 	
-
+			
+				# Scheme = "theMe";
+				# author = "FoxyChipher";
+				# slug = "the-Me";
+			base16Scheme = {
+				base00 = "#060606";
+				base01 = "#363636";
+				base02 = "#565656";
+				base03 = "#767676";
+				base04 = "#a6a6a6";
+				base05 = "#d6d6d6";
+				base06 = "#f6f6f6";
+				base07 = "#f6f6f6";
+				base08 = "#d76667";
+				base09 = "#ff6d66";
+				base0A = "#fed666";
+				base0B = "#67b766";
+				base0C = "#61d6d6";
+				base0D = "#0666ff";
+				base0E = "#a666fd";
+				base0F = "#fd66a6";
+			};
+		};
+	
 	system.stateVersion = "25.05";
 }
