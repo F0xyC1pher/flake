@@ -3,29 +3,33 @@
     pkgs,
     ...
 }: {
-    xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-            xdg-desktop-portal-termfilechooser
-            xdg-desktop-portal-gtk
-        ];
+    xdg = {
+		portal = {
+			enable = true;
+			extraPortals = with pkgs; [
+				xdg-desktop-portal-termfilechooser
+				xdg-desktop-portal-luminous
+			];
+			config = {
+				common = {
+					"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+	            	default = ["termfilechooser" "luminous"];
+	        	    };
+				niri = {
+					"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];	
+					default = ["termfilechooser" "luminous"];
+				};
+	        };
+	    };
 
-        config = {
-            common.default = ["gtk" "termfilechooser"];
-            common."org.freedesktop.impl.portal.FileChooser" = ["termfileschooser"];
+	    configFile."xdg-desktop-portal-termfilechooser/config".text = ''
+	        [filechooser]
+	        cmd = ${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+	    '';
 
-            hyprland.default = ["gtk" "termfilechooser"];
-        };
-    };
-
-    xdg.configFile."xdg-desktop-portal-termfilechooser/config".text = ''
-        [filechooser]
-        cmd = ${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-    '';
-
-    xdg.configFile."xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
-        executable = true;
-        text = ''
+	    configFile."xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
+	        executable = true;
+	        text = ''
             #!${pkgs.bash}/bin/bash
             set -eu
 
@@ -50,5 +54,6 @@
                 fi
             fi
         '';
+		};
     };
 }

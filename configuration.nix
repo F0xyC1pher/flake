@@ -42,6 +42,7 @@
 			nvidiaSettings = true;
 			open = false;
 		};
+		bluetooth.enable = true;
 	};
 	environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
 	    {
@@ -134,6 +135,7 @@
 	
 	# ========== SERVICES ==========
 	services = {
+		dbus.enable = true;
 		gnome.gnome-keyring.enable = lib.mkForce false;
 		desktopManager.gnome.enable = lib.mkForce false;
 		pipewire = {
@@ -178,31 +180,33 @@
 	xdg = {
 		mime.enable = true;
 		mime.defaultApplications = { "inode/directory" = "yazi.desktop"; };
-		# portal = {
-		# 	enable = true;
-		# 	wlr.enable = true;
-		# 	xdgOpenUsePortal = true;
-		# 	extraPortals = lib.mkForce [
-		# 		pkgs.xdg-desktop-portal-termfilechooser
-		# 	];
-		# 	config = {
-		# 		common = lib.mkForce {
-		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
-		# 			"org.freedesktop.impl.portal.ScreenCast" = "wlr";
-		# 			"org.freedesktop.impl.portal.Screenshot" = "wlr";
-		# 			default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
-		# 		};
-		# 		niri = lib.mkForce {
-		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];
-		# 			"org.freedesktop.impl.portal.ScreenCast" = "wlr";
-		# 			"org.freedesktop.impl.portal.Screenshot" = "wlr";
-		# 			default = ["termfilechooser" "xdg-desktop-portal-termfilechooser"];	
-		# 		};
-		# 	};			
-		# 	configPackages = lib.mkForce [
-		# 		pkgs.xdg-desktop-portal-termfilechooser
-		# 	];
-		# };
+		portal = {
+			enable = true;
+			wlr.enable = false;
+			xdgOpenUsePortal = true;
+			extraPortals = lib.mkForce [
+				pkgs.xdg-desktop-portal-termfilechooser
+				pkgs.xdg-desktop-portal-luminous
+			];
+			config = {
+				common = lib.mkForce {
+					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+					"org.freedesktop.impl.portal.Screenshot" = "luminous";
+					default = ["termfilechooser" "luminous"];	
+				};
+				niri = lib.mkForce {
+					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+					"org.freedesktop.impl.portal.Screenshot" = "luminous";
+					default = ["termfilechooser" "luminous"];	
+				};
+			};			
+			configPackages = lib.mkForce [
+				pkgs.xdg-desktop-portal-termfilechooser
+				pkgs.xdg-desktop-portal-luminous
+			];
+		};
 		
 		terminal-exec = {
 			enable = true;
@@ -324,7 +328,8 @@
 	environment = {
 		# ==========	PACKAGES	==========
 		systemPackages = with pkgs; [
-		    inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
+		    inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+		    
 			ayugram-desktop
 			nixd
 			nil
@@ -336,7 +341,6 @@
 			mangohud
 			git
 			micro-full
-			sublime4
 			vscodium
 			swww
 			fzf
@@ -344,6 +348,7 @@
 			# kdePackages.qtstyleplugin-kvantum
 			wget
 			btop
+			bluetuith
 			firefox
 			tor-browser
 			discord
