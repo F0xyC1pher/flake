@@ -176,53 +176,6 @@
 		noto-fonts-color-emoji
 	];
 	
-	# ========== XDG PORTAL ==========
-	xdg = {
-		mime.enable = true;
-		mime.defaultApplications = { "inode/directory" = "yazi.desktop"; };
-		# portal = {
-			# enable = true;
-			# wlr.enable = false;
-			# xdgOpenUsePortal = true;
-			# extraPortals = lib.mkForce [
-			# 	pkgs.xdg-desktop-portal-termfilechooser
-			# 	pkgs.xdg-desktop-portal-luminous
-			# ];
-			# config = {
-			# 	common = lib.mkForce {
-			# 		"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-			# 		"org.freedesktop.impl.portal.ScreenCast" = "luminous";
-			# 		"org.freedesktop.impl.portal.Screenshot" = "luminous";
-			# 		default = ["termfilechooser" "luminous"];	
-			# 	};
-			# 	niri = lib.mkForce {
-			# 		"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-			# 		"org.freedesktop.impl.portal.ScreenCast" = "luminous";
-			# 		"org.freedesktop.impl.portal.Screenshot" = "luminous";
-			# 		default = ["termfilechooser" "luminous"];	
-			# 	};
-			# };			
-			# configPackages = lib.mkForce [
-			# 	pkgs.xdg-desktop-portal-termfilechooser
-			# 	pkgs.xdg-desktop-portal-luminous
-			# ];
-		# };
-		
-		terminal-exec = {
-			enable = true;
-			settings = {
-				default = [
-					"kitty.desktop"
-				];
-			};
-		};
-	};
-	# xdg.portal.enable = true;
-	# xdg.portal.extraPortals = [
-	    # pkgs.xdg-desktop-portal-termfilechooser
-	  # ];
-	# xdg.portal.config.common."org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
-	
 	# ========== PROGRAMS ==========
 	programs = {
 		fish.enable = true;
@@ -385,12 +338,10 @@
 			wl-clip-persist
 			cliphist
 			wayland-utils
+			slurp
 			xwayland-satellite-unstable
 			keepassxc
 			git-credential-keepassxc
-			# xdg-desktop-portal-gtk
-			# xdg-desktop-portal-wlr
-			# xdg-desktop-portal-termfilechooser
 			# rofi-polkit-agent
 			cmd-polkit 
 			jq
