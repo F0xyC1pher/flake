@@ -193,23 +193,24 @@ media_player_format={title};{artist};{album}
 # 				force = true;
 # 				text = ''
 # [filechooser]
-# cmd=$HOME/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-# default_dir=$HOME/Downloads
+# cmd=${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+# default_dir=${config.home.homeDirectory}/Downloads
 # env=TERMCMD=kitty
 # open_mode=suggested
 # save_mode=last
 # '';
 # };
-# 			"xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
-# 				enable = true;
-# 				force = true;
-# 				text = ''
-# #!/usr/bin/env sh
-# # This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
-# #
-# # For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
-# 
-# set -e
+			# "xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
+			# 	enable = true;
+			# 	executable = true;
+			# 	force = true;
+			# 	text = ''
+#!${pkgs.bash}/bin/bash
+# This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
+#
+# For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
+
+# set -eu
 # 
 # if [ "$6" -ge 4 ]; then
 #     set -x
@@ -221,9 +222,23 @@ media_player_format={title};{artist};{album}
 # path="$4"
 # out="$5"
 # 
-# cmd="yazi"
-# termcmd="kitty"
+# cmd="${pkgs.yazi}/bin/yazi"
 # 
+# if [ "$save" = "1" ]; then
+#     # save a file
+#     exec "$TERMCMD" "$cmd" --chooser-file="$out" "$path"
+# elif [ "$directory" = "1" ]; then
+#     # upload files from a directory
+#     exec "$TERMCMD" "$cmd" --chooser-file="$out" --cwd-file="$out"".1" "$path"
+# elif [ "$multiple" = "1" ]; then
+#     # upload multiple files
+#     exec "$TERMCMD" "$cmd" --chooser-file="$out" --choose-multiple "$path"
+# else
+#     # upload only 1 file
+#     exec "$TERMCMD" "$cmd" --chooser-file="$out" "$path"
+# fi
+
+
 # if [ "$save" = "1" ]; then
 #     # save a file
 #     set -- --chooser-file="$out" "$path"
@@ -237,17 +252,17 @@ media_player_format={title};{artist};{album}
 #     # upload only 1 file
 #     set -- --chooser-file="$out" "$path"
 # fi
-# 
-# command="$termcmd $cmd"
+
+# command="$TERMCMD $cmd"
 # for arg in "$@"; do
 #     # escape double quotes
 #     escaped=$(printf "%s" "$arg" | sed 's/"/\\"/g')
 #     # escape special
 #     command="$command \"$escaped\""
 # done
-# 
+
 # sh -c "$command"
-# 
+
 # if [ "$directory" = "1" ]; then
 #     if [ ! -s "$out" ] && [ -s "$out"".1" ]; then
 #         cat "$out"".1" > "$out"
@@ -256,7 +271,7 @@ media_player_format={title};{artist};{album}
 #         rm "$out"".1"
 #     fi
 # fi
-# 
+
 # '';
 			# };
 		};
