@@ -6,7 +6,7 @@
 }: {
     imports = [
         ./options.nix
-        # ./xdg.nix
+        ./xdg.nix
         # ./themes
         # ./hyprland
         # ./waybar
