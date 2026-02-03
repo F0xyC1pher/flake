@@ -180,33 +180,33 @@
 	xdg = {
 		mime.enable = true;
 		mime.defaultApplications = { "inode/directory" = "yazi.desktop"; };
-		portal = {
-			enable = true;
-			wlr.enable = false;
-			xdgOpenUsePortal = true;
-			extraPortals = lib.mkForce [
-				pkgs.xdg-desktop-portal-termfilechooser
-				pkgs.xdg-desktop-portal-luminous
-			];
-			config = {
-				common = lib.mkForce {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
-					"org.freedesktop.impl.portal.Screenshot" = "luminous";
-					default = ["termfilechooser" "luminous"];	
-				};
-				niri = lib.mkForce {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
-					"org.freedesktop.impl.portal.Screenshot" = "luminous";
-					default = ["termfilechooser" "luminous"];	
-				};
-			};			
-			configPackages = lib.mkForce [
-				pkgs.xdg-desktop-portal-termfilechooser
-				pkgs.xdg-desktop-portal-luminous
-			];
-		};
+		# portal = {
+			# enable = true;
+			# wlr.enable = false;
+			# xdgOpenUsePortal = true;
+			# extraPortals = lib.mkForce [
+			# 	pkgs.xdg-desktop-portal-termfilechooser
+			# 	pkgs.xdg-desktop-portal-luminous
+			# ];
+			# config = {
+			# 	common = lib.mkForce {
+			# 		"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+			# 		"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+			# 		"org.freedesktop.impl.portal.Screenshot" = "luminous";
+			# 		default = ["termfilechooser" "luminous"];	
+			# 	};
+			# 	niri = lib.mkForce {
+			# 		"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+			# 		"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+			# 		"org.freedesktop.impl.portal.Screenshot" = "luminous";
+			# 		default = ["termfilechooser" "luminous"];	
+			# 	};
+			# };			
+			# configPackages = lib.mkForce [
+			# 	pkgs.xdg-desktop-portal-termfilechooser
+			# 	pkgs.xdg-desktop-portal-luminous
+			# ];
+		# };
 		
 		terminal-exec = {
 			enable = true;
@@ -241,7 +241,6 @@
 			xwayland.enable = true;
 			withUWSM = false;
 			package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-			portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 		};
 		
 		uwsm.enable = true;
@@ -329,7 +328,6 @@
 		# ==========	PACKAGES	==========
 		systemPackages = with pkgs; [
 		    inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-		    
 			ayugram-desktop
 			nixd
 			nil

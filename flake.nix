@@ -60,8 +60,7 @@
 				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
 				specialArgs = { inherit inputs; };  # Передаём inputs в модули
 				modules = [
-					./configuration.nix  # Основная системная конфигурация
-					./hardware.nix  # Основная хардваре конфигурация
+					./system  # Основная системная конфигурация
 	
 					stylix.nixosModules.stylix #собственно stylix
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль

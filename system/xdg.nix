@@ -1,26 +1,36 @@
 {
     config,
     pkgs,
+    lib,
     ...
 }: {
     xdg = {
 		portal = {
 			enable = true;
-			extraPortals = with pkgs; [
-				xdg-desktop-portal-termfilechooser
-				xdg-desktop-portal-luminous
+			xdgOpenUsePortal = true;
+			extraPortals = lib.mkForce [
+				pkgs.xdg-desktop-portal-termfilechooser
+				pkgs.xdg-desktop-portal-luminous
 			];
 			config = {
-				common = {
-					"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
-	            	default = ["termfilechooser" "luminous"];
-	        	    };
-				niri = {
-					"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];	
-					default = ["termfilechooser" "luminous"];
+				common = lib.mkForce {
+					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+					"org.freedesktop.impl.portal.Screenshot" = "luminous";
+					default = ["termfilechooser" "luminous"];	
+			};
+				niri = lib.mkForce {
+					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+					"org.freedesktop.impl.portal.ScreenCast" = "luminous";
+					"org.freedesktop.impl.portal.Screenshot" = "luminous";
+					default = ["termfilechooser" "luminous"];	
 				};
-	        };
-	    };
+			};			
+			configPackages = lib.mkForce [
+				pkgs.xdg-desktop-portal-termfilechooser
+				pkgs.xdg-desktop-portal-luminous
+			];
+		};
 
 	    configFile."xdg-desktop-portal-termfilechooser/config".text = ''
 	        [filechooser]
