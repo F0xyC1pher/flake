@@ -4,6 +4,9 @@
     lib,
     ...
 }:
+let
+  username = "f";
+in
 {
     xdg = {
     	mime.enable = true;
@@ -73,5 +76,25 @@ else
     fi
 fi
         '';
+	};
+
+	home-manager.users.${username} = { config, pkgs, lib, ... }: {
+		xdg = {
+			portal = {
+				enable = true;
+				xdgOpenUsePortal = true;
+
+				config = {
+					common = lib.mkForce {
+						"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+						"org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
+						"org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
+						"org.freedesktop.impl.portal.Settings"    = [ "gtk" ];
+						default = [ "termfilechooser" "wlr" "gtk" ];
+					};
+				};
+			};
+		};
+    home.stateVersion = "25.05";   # ← подставь свою версию
 	};
 }
