@@ -4,21 +4,30 @@
     lib,
     ...
 }: {
-    xdg = {
-		portal = {
-			# enable = true;
-			# xdgOpenUsePortal = true;
-			config = {
-				common = lib.mkForce {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = "wlr";
-					"org.freedesktop.impl.portal.Screenshot" = "wlr";
-					"org.freedesktop.impl.portal.Settings" = "gtk";
-					default = ["termfilechooser" "wlr" "gtk"];	
-				};
-			};			
-		};
-    };
+
+  # xdg.mimeApps и portal — лучше оставить на уровне системы
+  xdg = {
+    enable = true;
+    # mimeApps.defaultApplications — можно оставить, если нужны пользовательские переопределения
+  };
+
+
+    # xdg = {
+    	
+		# portal = {
+		# 	# enable = true;
+		# 	# xdgOpenUsePortal = true;
+		# 	config = {
+		# 		common = lib.mkForce {
+		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+		# 			"org.freedesktop.impl.portal.ScreenCast" = "wlr";
+		# 			"org.freedesktop.impl.portal.Screenshot" = "wlr";
+		# 			"org.freedesktop.impl.portal.Settings" = "gtk";
+		# 			default = ["termfilechooser" "wlr" "gtk"];	
+		# 		};
+		# 	};			
+		# };
+    # };
 # xdg.configFile."${config.home.homeDirectory}/.config/xdg-desktop-portal-luminous/config.toml" = {
 # 	enable = true;
 # 	force = true;

@@ -7,11 +7,17 @@
 {
     xdg = {
     	mime.enable = true;
-    	mime.defaultApplications = { "inode/directory" = "yazi.desktop"; };
+    	mime.defaultApplications = {
+    		"inode/directory" = [ "yazi.desktop" ];
+    	};
+    	
     	terminal-exec = {
     		enable = true;
-    		settings = {default = ["kitty.desktop"];};
+    		settings = {
+    			default = ["kitty.desktop"];
+    		};
     	};
+    	
 		portal = {
 			enable = true;
 			xdgOpenUsePortal = true;
@@ -20,6 +26,17 @@
 				pkgs.xdg-desktop-portal-wlr
 				pkgs.xdg-desktop-portal-gtk
 			];
+			config = {
+				common = lib.mkForce {
+					"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+					"org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
+					"org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
+					"org.freedesktop.impl.portal.Settings"    = [ "gtk" ];
+
+					# запасной вариант на случай, если конкретный интерфейс не найден
+					default = [ "termfilechooser" "wlr" "gtk" ];
+				};
+			};
 		};
     };
     

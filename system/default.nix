@@ -8,6 +8,7 @@
         ./configuration.nix
         ./hardware.nix
         ./xdg.nix
+		./apps.nix
         # ./development
         # ./gaming
     ];
