@@ -6,17 +6,17 @@
 }: {
 
   # xdg.mimeApps и portal — лучше оставить на уровне системы
-  xdg = {
-    enable = true;
+  # xdg = {
+    # enable = true;
     # mimeApps.defaultApplications — можно оставить, если нужны пользовательские переопределения
-  };
+  # };
 
 
-    # xdg = {
-    	
+  #   xdg = {
+  #   	
 		# portal = {
-		# 	# enable = true;
-		# 	# xdgOpenUsePortal = true;
+		# 	enable = true;
+		# 	xdgOpenUsePortal = true;
 		# 	config = {
 		# 		common = lib.mkForce {
 		# 			"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
@@ -27,7 +27,7 @@
 		# 		};
 		# 	};			
 		# };
-    # };
+  #   };
 # xdg.configFile."${config.home.homeDirectory}/.config/xdg-desktop-portal-luminous/config.toml" = {
 # 	enable = true;
 # 	force = true;
