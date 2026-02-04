@@ -2,25 +2,23 @@
     config,
     pkgs,
     lib,
+    vars,
     ...
 }:
-let
-  username = "f";
-in
 {
-    xdg = {
-    	mime.enable = true;
-    	mime.defaultApplications = {
-    		"inode/directory" = [ "yazi.desktop" ];
-    	};
-    	
-    	terminal-exec = {
-    		enable = true;
-    		settings = {
-    			default = ["kitty.desktop"];
-    		};
-    	};
-    	
+	xdg = {
+		mime.enable = true;
+		mime.defaultApplications = {
+			"inode/directory" = [ "yazi.desktop" ];
+		};
+		
+		terminal-exec = {
+			enable = true;
+			settings = {
+			default = ["kitty.desktop"];
+			};
+		};
+		
 		portal = {
 			enable = true;
 			xdgOpenUsePortal = true;
@@ -35,19 +33,19 @@ in
 					"org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
 					"org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
 					"org.freedesktop.impl.portal.Settings"    = [ "gtk" ];
-
+					
 					# запасной вариант на случай, если конкретный интерфейс не найден
 					default = [ "termfilechooser" "wlr" "gtk" ];
 				};
 			};
 		};
-    };
-    
+	};
+	
 	environment.etc."xdg/xdg-desktop-portal-termfilechooser/config" = {
 		text = ''
 [filechooser]
 cmd = /etc/xdg/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-		'';
+'';
 	};
 	environment.etc."xdg/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
 		mode = "0755";
@@ -55,7 +53,7 @@ cmd = /etc/xdg/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
 #!${pkgs.bash}/bin/bash
 set -eu
 
-TERMCMD="${pkgs.kitty}/bin/kitty --config /home/f/.config/kitty/kitty.conf"
+TERMCMD="${pkgs.${vars.terminal}}/bin/${vars.terminal}"
 multiple="$1"
 directory="$2"
 save="$3"
@@ -75,15 +73,15 @@ else
         exec "$TERMCMD" "$cmd" --chooser-file="$out" "$path"
     fi
 fi
-        '';
+'';
 	};
-
-	home-manager.users.${username} = { config, pkgs, lib, ... }: {
+	
+	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
 		xdg = {
 			portal = {
 				enable = true;
 				xdgOpenUsePortal = true;
-
+				
 				config = {
 					common = lib.mkForce {
 						"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
@@ -95,6 +93,7 @@ fi
 				};
 			};
 		};
-    home.stateVersion = "25.05";   # ← подставь свою версию
+		
+		home.stateVersion = "25.05";
 	};
 }

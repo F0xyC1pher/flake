@@ -11,11 +11,7 @@ let
 	  '';
 in
 {
-	# ========== HOME ==========
-	home.username = "f";
-	home.homeDirectory = "/home/f";
-	home.stateVersion = "25.05";
-	
+	# ========== HOME ==========	
 	home.packages = [
 		rofi-polkit-agent
 		pkgs.sublime4

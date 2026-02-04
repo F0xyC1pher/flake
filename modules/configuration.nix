@@ -1,4 +1,4 @@
-{ stdenv, config, pkgs, lib, inputs, ... }:
+{ stdenv, config, pkgs, lib, inputs, vars, ... }:
 {
 	# ========== NIXPKGS ==========
 	nixpkgs = {
@@ -16,7 +16,7 @@
 		package = pkgs.lix;
 		settings = {
 			experimental-features = [ "nix-command" "flakes" ];
-
+				
 			substituters = [
 				"https://cache.nixos.org/"
 				# "https://cache.garnix.io"
@@ -29,57 +29,57 @@
 	};
 	
 	# ========== NVIDIA ==========
-	hardware = {
-		graphics = {
-			enable = true;
-			enable32Bit = true;
-		};
-		nvidia = {
-			package = config.boot.kernelPackages.nvidiaPackages.stable;
-			powerManagement.finegrained = false;
-			powerManagement.enable = false;
-			modesetting.enable = true;
-			nvidiaSettings = true;
-			open = false;
-		};
-		bluetooth = {
-			enable = true;
-			powerOnBoot = true;
-			settings = {
-				General = {
-					Experimental = true;
-					FastConnectable = true;	
-				};
-				Policy = {
-					AutoEnable = true;
-				};
-			};
-		};
-	};
-	environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
-	    {
-	        "rules": [
-	            {
-	                "pattern": {
-	                    "feature": "procname",
-	                    "matches": "niri"
-	                },
-	                "profile": "Limit Free Buffer Pool On Wayland Compositors"
-	            }
-	        ],
-	        "profiles": [
-	            {
-	                "name": "Limit Free Buffer Pool On Wayland Compositors",
-	                "settings": [
-	                    {
-	                        "key": "GLVidHeapReuseRatio",
-	                        "value": 0
-	                    }
-	                ]
-	            }
-	        ]
-	    }
-	  '';
+	# hardware = {
+	# 	graphics = {
+	# 		enable = true;
+	# 		enable32Bit = true;
+	# 	};
+	# 	nvidia = {
+	# 		package = config.boot.kernelPackages.nvidiaPackages.stable;
+	# 		powerManagement.finegrained = false;
+	# 		powerManagement.enable = false;
+	# 		modesetting.enable = true;
+	# 		nvidiaSettings = true;
+	# 		open = false;
+	# 	};
+	# 	bluetooth = {
+	# 		enable = true;
+	# 		powerOnBoot = true;
+	# 		settings = {
+	# 			General = {
+	# 				Experimental = true;
+	# 				FastConnectable = true;	
+	# 			};
+	# 			Policy = {
+	# 				AutoEnable = true;
+	# 			};
+	# 		};
+	# 	};
+	# };
+	# environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
+	#     {
+	#         "rules": [
+	#             {
+	#                 "pattern": {
+	#                     "feature": "procname",
+	#                     "matches": "niri"
+	#                 },
+	#                 "profile": "Limit Free Buffer Pool On Wayland Compositors"
+	#             }
+	#         ],
+	#         "profiles": [
+	#             {
+	#                 "name": "Limit Free Buffer Pool On Wayland Compositors",
+	#                 "settings": [
+	#                     {
+	#                         "key": "GLVidHeapReuseRatio",
+	#                         "value": 0
+	#                     }
+	#                 ]
+	#             }
+	#         ]
+	#     }
+	#   '';
 	# ========== BOOTLOADER ==========
 	boot = {
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -107,13 +107,13 @@
 	# ========== NETWORK ==========
 	time.timeZone = "Europe/Moscow";
 	networking = {
-		hostName = "p";
+		hostName = "{$vars.hostName}";
 		networkmanager = {
 			enable = true;
 			dns = "none";
 		};
 		useDHCP = false;
-	    firewall.enable = false;
+		firewall.enable = false;
 		nameservers = [
 			"1.1.1.1"
 			"1.0.0.1"
@@ -124,10 +124,10 @@
 	};
 	
 	# ========== USER ==========
-	users.users.f = {
+	users.users.{$vars.userName} = {
 		isNormalUser = true;
 		description = "Foxy_Chipher";
-		home = "/home/f";
+		home = "/home/{$vars.userName}";
 		shell = pkgs.fish;
 		extraGroups = [
 			"networkmanager"
@@ -176,7 +176,7 @@
 			};
 		};
 	};
-
+	
 	
 	
 	# systemd.user.services.niri-flake-polkit.enable = false;
@@ -192,15 +192,16 @@
 	programs = {
 		fish.enable = true;
 		bash.enable = true;
-
+		
 		niri = {
 			enable = true;
 			package = pkgs.niri-unstable;
 		};
+		
 		mango = {
 			enable = true;
 		};
-
+		
 		hyprland = {
 			enable = true;
 			xwayland.enable = true;
@@ -220,7 +221,7 @@
 				gamemode
 			];
 		};
-
+		
 		neovim = {
 			enable = true;
 			# configure = {
@@ -229,16 +230,17 @@
 				# };
 			# };
 		};
+		
 		firefox = {
 			enable = true;
 			preferences = let ffVersion = config.programs.firefox.package.version; in {
 				"media.ffmpeg.vaapi.enabled" = true;
 				"media.hardware-video-decoding.force-enabled" = true;
 				"media.rdd-ffmpeg.enabled" = lib.versionOlder ffVersion "97.0.0";
-
+				
 				"gfx.x11-egl.force-enabled" = true;
 				"widget.dmabuf.force-enabled" = true;
-
+				
 				# Set this to true if your GPU supports AV1.
 				#
 				# This can be determined by reading the output of the
@@ -247,7 +249,7 @@
 				"media.av1.enabled" = true;
 			};
 		};
-
+		
 		gamemode.enable = true;
 		
 		waybar = {
@@ -258,7 +260,7 @@
 			enable = true;
 			tunMode.enable = true;
 		};
-
+		
 		obs-studio = {
 			enable = true;
 			enableVirtualCamera = true;
@@ -373,7 +375,7 @@
 		# 	niri-unstable
 		# 	helix
 		# ];
-
+		
 		
 		# ==========	VARIABLES	==========
 		variables = lib.mkForce {
@@ -381,17 +383,17 @@
 			# XDG_SESSION_TYPE = "wayland";
 			# XDG_SESSION_DESKTOP = "niri";
 			# XDG_CURRENT_DESKTOP = "niri";
-
+			
 			# Терминал и редакторы
 			TERMINAL = "kitty";
 			TERMCMD = "kitty";
 			EDITOR = "micro";
 			SUDO_EDITOR = "micro";
 			VISUAL = "micro";
-
+			
 			# Kitty
 			KITTY_ENABLE_WAYLAND = "1";
-
+			
 			# Qt
 			QT_QPA_PLATFORM = "wayland;xcb";
 			# QT_QPA_PLATFORMTHEME = "qt6ct";
@@ -407,58 +409,58 @@
 			# GTK_OVERLAY_SCROLLING = "1";
 			GTK_USE_PORTAL = "1";
 			GDK_DEBUG = "portals";
-
+			
 			# NVIDIA Wayland поддержка
 			GBM_BACKEND = "nvidia-drm";
 			__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
+			
 			# GDK/Clutter
 			GDK_BACKEND = "wayland,x11,*";
 			CLUTTER_BACKEND = "wayland";
 			CLUTTER_DEFAULT_FPS = "60";
-
+			
 			# SDL
 			SDL_VIDEODRIVER = "wayland,x11,windows";
 			SDL_AUDIODRIVER= "pipewire";
 			SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY = "1";
 			SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
 			LD_BIND_NOW = "1";
-
+			
 			# Java
 			_JAVA_AWT_WM_NONREPARENTING = "1";
-
+			
 			# Electron
 			ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-
+			
 			# NVIDIA кодеков
 			GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
 			GST_VAAPI_ALL_DRIVERS = "1";
-
+			
 			# VA-API/VDPAU
 			LIBVA_DRIVER_NAME = "nvidia";
 			VAAPI_MPEG4_ENABLED = "true";
 			VDPAU_DRIVER = "nvidia";
-
+			
 			# Firefox
 			MOZ_DISABLE_RDD_SANDBOX = "1";
 			MOZ_ENABLE_WAYLAND = "1";
 			# MOZ_X11_EGL = "1";
-
+			
 			# NVIDIA Direct Rendering
 			NVD_BACKEND = "direct";
-
+			
 			# OBS Studio
 			# OBS_USE_EGL = "1";
-
+			
 			# MangoHud
 			MANGOHUD = "1";
 			MANGOHUD_DLSYM = "1";
-
+			
 			# Wine
 			# //WINEPREFIX = "$HOME/.wine";
 			# //WINEARCH = "win64";
 			STAGING_SHARED_MEMORY = "1";
-
+			
 			# NVIDIA OpenGL оптимизации
 			__GL_SHADER_CACHE = "1";
 			__GL_SHADER_DISK_CACHE = "1";
@@ -468,59 +470,62 @@
 			__GL_MaxFramesAllowed = "1";
 			__GL_SYNC_TO_VBLANK = "0";
 			__GL_YIELD = "NOTHING";
-
+			
 			# Ввод
 			GLFW_IM_MODULE = "none";
-
+			
 			# Синхронизация/VSync
 			mesa_glthread = "true";
 			vblank_mode = "0";
 			gl_vsync = "0";
 			vsync = "1";
-
+			
 			# Vulkan
 			MESA_VK_WSI_PRESENT_MODE = "immediate";
-
+			
 			# DXVK
 			DXVK_SHADER_OPTIMIZE = "1";
 			DXVK_ENABLE_NVAPI = "1";
 			DXVK_ASYNC = "1";
 			DXVK_FRAME_RATE = "60";
 			DXVK_CONFIG = "dxgi.syncInterval=0; d3d9.presentInterval=0";
-
+			
 			# VkBasalt
 			ENABLE_VKBASALT = "0";
-
+			
 			# Аудио
 			PIPEWIRE_LATENCY = "512/48000";
 			PULSE_LATENCY_MSEC = "60";
-
+			
 			# Proton
 			PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
 			PROTON_HIDE_NVIDIA_GPU = "0";
 			PROTON_USE_NTSYNC = "1";
 			# //PROTON_ENABLE_WAYLAND = "1";
 			PROTON_LOG = "1";
-
+			
 			# Wayland/XWayland
 			vk_xwayland_wait_ready = "false";
-
+			
 			# NixOS специфичные
 			NIXOS_OZONE_WL = "1";
-
+			
 			# Telegram Desktop
 			TDESKTOP_USE_GTK_FILE_DIALOG = "1";
 			TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
 		};
-	};	
-
+	};
+	
 	stylix = {
 			enable = true;
+			
 			polarity = "dark";
+			
 			homeManagerIntegration = {
 				autoImport = true;
 				followSystem = true;
 			};
+			
 			targets = {
 				qt ={
 					enable = true;
@@ -529,12 +534,14 @@
 					# style = "kvantum";
 				};
 			};
+			
 			opacity.terminal = 0.8;
+			
 			fonts = {
 				sizes.applications = 12;
 				sizes.desktop = 12;
 				sizes.terminal = 12;
-				monospace =	{
+				monospace = {
 					package = pkgs.nerd-fonts.fira-code;
 					name = "FiraCode Nerd Font";
 				};
@@ -548,10 +555,11 @@
 					name = "Noto Color Emoji";
 				};
 			};
+			
 			# Фоны и основные поверхности
 			# основной фон (editor, терминал, панели, tmux)
 			# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-	 		# фон выделения текста (visual mode, selected text, поиск)
+			# фон выделения текста (visual mode, selected text, поиск)
 			# Серые тона для текста и неактивных элементов
 			# комментарии, невидимые символы, cursorline, неактивные элементы
 			# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
@@ -568,30 +576,30 @@
 			# синий — функции, методы, ссылки, основной акцентный цвет
 			# пурпурный — ключевые слова, control flow, операторы, storage
 			# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
-	
 			
-				# Scheme = "theMe";
-				# author = "FoxyChipher";
-				# slug = "the-Me";
-			base16Scheme = {
-				base00 = "#060606";
-				base01 = "#363636";
-				base02 = "#565656";
-				base03 = "#767676";
-				base04 = "#a6a6a6";
-				base05 = "#d6d6d6";
-				base06 = "#f6f6f6";
-				base07 = "#f6f6f6";
-				base08 = "#d76667";
-				base09 = "#ff6d66";
-				base0A = "#fed666";
-				base0B = "#67b766";
-				base0C = "#61d6d6";
-				base0D = "#0666ff";
-				base0E = "#a666fd";
-				base0F = "#fd66a6";
-			};
+			
+			# Scheme = "theMe";
+			# author = "FoxyChipher";
+			# slug = "the-Me";
+		base16Scheme = {
+			base00 = "#060606";
+			base01 = "#363636";
+			base02 = "#565656";
+			base03 = "#767676";
+			base04 = "#a6a6a6";
+			base05 = "#d6d6d6";
+			base06 = "#f6f6f6";
+			base07 = "#f6f6f6";
+			base08 = "#d76667";
+			base09 = "#ff6d66";
+			base0A = "#fed666";
+			base0B = "#67b766";
+			base0C = "#61d6d6";
+			base0D = "#0666ff";
+			base0E = "#a666fd";
+			base0F = "#fd66a6";
 		};
+	};
 	
 	system.stateVersion = "25.05";
 }
