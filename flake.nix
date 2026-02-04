@@ -60,7 +60,7 @@
 	
 	in	{
 		nixosConfigurations = {
-			"{$vars.hostName}" = nixpkgs.lib.nixosSystem {
+			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
 				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
 				modules = [
@@ -78,7 +78,7 @@
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							sharedModules = [ mango.hmModules.mango ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
-							users.{$vars.userName} = import ./home; 
+							users.${vars.userName} = import ./home; 
 						};
 					}
 				];

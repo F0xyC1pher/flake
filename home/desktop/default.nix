@@ -5,7 +5,7 @@
 	...
 }: {
 	imports = [
-		./options.nix
+		# ./options.nix
 		./apps.nix
 		# ./themes
 		# ./hyprland

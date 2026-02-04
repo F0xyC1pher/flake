@@ -107,7 +107,7 @@
 	# ========== NETWORK ==========
 	time.timeZone = "Europe/Moscow";
 	networking = {
-		hostName = "{$vars.hostName}";
+		hostName = "${vars.hostName}";
 		networkmanager = {
 			enable = true;
 			dns = "none";
@@ -124,10 +124,10 @@
 	};
 	
 	# ========== USER ==========
-	users.users.{$vars.userName} = {
+	users.users.${vars.userName} = {
 		isNormalUser = true;
 		description = "Foxy_Chipher";
-		home = "/home/{$vars.userName}";
+		home = "/home/${vars.userName}";
 		shell = pkgs.fish;
 		extraGroups = [
 			"networkmanager"
