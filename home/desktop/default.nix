@@ -7,6 +7,7 @@
     imports = [
         ./options.nix
         ./xdg.nix
+	./apps.nix
         # ./themes
         # ./hyprland
         # ./waybar
