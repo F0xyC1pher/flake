@@ -1,21 +1,20 @@
 {
-    config,
-    pkgs,
-    inputs,
-    ...
+	config,
+	pkgs,
+	inputs,
+	...
 }: {
-    imports = [
-        ./options.nix
-        ./xdg.nix
-	./apps.nix
-        # ./themes
-        # ./hyprland
-        # ./waybar
-        # ./walker
-        # ./rofi
-    ];
+	imports = [
+		./options.nix
+		./apps.nix
+		# ./themes
+		# ./hyprland
+		# ./waybar
+		# ./walker
+		# ./rofi
+	];
 
-    # home.file."${config.wallpapersDir}" = {
-    #     source = ./wallpapers;
-    # };
+	# home.file."${config.wallpapersDir}" = {
+	#     source = ./wallpapers;
+	# };
 }

@@ -2,6 +2,7 @@
     config,
     pkgs,
     inputs,
+    vars,
     ...
 }: {
     imports = [
@@ -12,6 +13,7 @@
         # ./gaming
     ];
 
-    # home.username = "f";
-    # home.stateVersion = "25.05";
+    home.username = "{$vars.userName}";
+    home.homeDirectory = "/home/{$vars.userName}";
+    home.stateVersion = "25.05";
 }

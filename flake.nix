@@ -54,26 +54,31 @@
 		hyprland-plugins,
 		freesmlauncher,
 		... 
-	}@inputs: {
-		nixosConfigurations = {
-			"p" = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
-				specialArgs = { inherit inputs; };  # Передаём inputs в модули
-				modules = [
-					./system  # Основная системная конфигурация
+	}@inputs: let
 	
+	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+	
+	in	{
+		nixosConfigurations = {
+			"{$vars.hostName}" = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
+				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
+				modules = [
+					./modules  # Модульная системная конфигурация
+					./hardware-configuration.nix # Основная хардваре конфигурация (автогенерация)
+					
 					stylix.nixosModules.stylix #собственно stylix
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
 					niri.nixosModules.niri # niri как NixOS модуль
 					mango.nixosModules.mango
 					{
 						home-manager = {
-							extraSpecialArgs = { inherit inputs; };
+							extraSpecialArgs = { inherit inputs vars; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							sharedModules = [ mango.hmModules.mango ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
-							users.f = import ./home; 
+							users.{$vars.userName} = import ./home; 
 						};
 					}
 				];

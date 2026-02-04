@@ -1,13 +1,13 @@
 {
 	inputs,
-    # config,
-    pkgs,
-    ...
+	# config,
+	pkgs,
+	...
 }:
 {
 	environment.systemPackages = with pkgs; [
-	    yazi
-	    inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+		yazi
+		inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 		ayugram-desktop
 		nixd
 		nil
