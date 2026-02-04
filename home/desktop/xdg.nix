@@ -8,11 +8,6 @@
 		portal = {
 			# enable = true;
 			# xdgOpenUsePortal = true;
-			# extraPortals = lib.mkForce [
-				# pkgs.xdg-desktop-portal-termfilechooser
-				# pkgs.xdg-desktop-portal-wlr
-				# pkgs.xdg-desktop-portal-gtk
-			# ];
 			config = {
 				common = lib.mkForce {
 					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
@@ -21,21 +16,10 @@
 					"org.freedesktop.impl.portal.Settings" = "gtk";
 					default = ["termfilechooser" "wlr" "gtk"];	
 				};
-				# niri = lib.mkForce {
-				# 	"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-				# 	"org.freedesktop.impl.portal.ScreenCast" = "luminous";
-				# 	"org.freedesktop.impl.portal.Screenshot" = "luminous";
-				# 	"org.freedesktop.impl.portal.Settings" = "luminous";
-				# 	"org.freedesktop.portal.Inhibit" = "none";
-				# 	default = ["luminous"];	
-				# };
 			};			
-			# configPackages = lib.mkForce [
-			# 	pkgs.xdg-desktop-portal-termfilechooser
-			# 	pkgs.xdg-desktop-portal-wlr
-			# ];
 		};
-# configFile."${config.home.homeDirectory}/.config/xdg-desktop-portal-luminous/config.toml" = {
+    };
+# xdg.configFile."${config.home.homeDirectory}/.config/xdg-desktop-portal-luminous/config.toml" = {
 # 	enable = true;
 # 	force = true;
 # 	text = ''
@@ -43,7 +27,7 @@
 # accent_color = "#d76667"
 # 	'';
 # };
-# 	    configFile."xdg-desktop-portal-termfilechooser/config" = {
+# 	    xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
 # 			enable = true;
 # 			force = true;
 # 		    text = ''
@@ -86,5 +70,4 @@
 # fi
 #         '';
 # 		};
-    };
 }

@@ -42,7 +42,19 @@
 			nvidiaSettings = true;
 			open = false;
 		};
-		bluetooth.enable = true;
+		bluetooth = {
+			enable = true;
+			powerOnBoot = true;
+			settings = {
+				General = {
+					Experimental = true;
+					FastConnectable = true;	
+				};
+				Policy = {
+					AutoEnable = true;
+				};
+			};
+		};
 	};
 	environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
 	    {
@@ -220,8 +232,8 @@
 		firefox = {
 			enable = true;
 			preferences = let ffVersion = config.programs.firefox.package.version; in {
-				"media.ffmpeg.vaapi.enabled" = lib.versionOlder ffVersion "137.0.0";
-				"media.hardware-video-decoding.force-enabled" = lib.versionAtLeast ffVersion "137.0.0";
+				"media.ffmpeg.vaapi.enabled" = true;
+				"media.hardware-video-decoding.force-enabled" = true;
 				"media.rdd-ffmpeg.enabled" = lib.versionOlder ffVersion "97.0.0";
 
 				"gfx.x11-egl.force-enabled" = true;
