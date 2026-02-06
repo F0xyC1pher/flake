@@ -7,7 +7,7 @@
 }: {
     imports = [
         # ./general
-        ./desktop
+        # ./desktop
         ./home.nix
         # ./development
         # ./gaming
