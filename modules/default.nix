@@ -1,6 +1,7 @@
 {
 	config,
 	pkgs,
+	lib,
 	inputs,
 	vars,
 	...
@@ -19,11 +20,11 @@
 		extraSpecialArgs = { inherit inputs vars; };
 		users.${vars.userName} = { ... }: {
 			imports = [
-				./home.nix
+				./home
 			];
-		};
 		home.username = "${vars.userName}";
 		home.homeDirectory = "/home/${vars.userName}";
 		home.stateVersion = "25.05";
+		};
 	};
 }

@@ -269,341 +269,341 @@
 	};
 	
 #	==========WAYBAR==========
-	programs.waybar = {
-		enable = true;
-		systemd.enable = true;
-		style = ''
-			* {
-				border: none;
-				border-radius: 0;
-				font-family: "FiraCode Nerd Font Mono";
-				font-weight: bold;
-				font-size: 14px;
-				min-height: 0;
-			}
-			
-			window#waybar {
-				background: #060606;
-				color: #f6f6f6;
-			}
-			
-			#custom-launcher {
-				padding: 0 10px 0 12px;
-				color: #61d6d6;
-				font-size: 20px;
-			}
-			
-			#custom-launcher:hover {
-				background: #363636;
-			}
-			
-			#workspaces button {
-				padding: 0 8px;
-				color: #d6d6d6;
-				background: transparent;
-			}
-			
-			#workspaces button:hover {
-				background: #363636;
-			}
-			
-			#workspaces button.active {
-				color: #88C0D0;
-				background: #363636;
-			}
-			
-			#workspaces button.focused {
-				color: #d76667;
-				background: #363636;
-				font-weight: bold;
-			}
-			
-			#workspaces button.empty {
-				color: #767676;
-			}
-			
-			#workspaces button.current_output {
-				opacity: 1;
-			}
-			
-			#workspaces button:not(.current_output) {
-				opacity: 0.6;
-			}
-			
-			#window {
-				padding: 0 15px;
-				color: #88C0D0;
-				font-weight: bold;
-				font-style: italic;
-			}
-			
-			window#waybar.empty #window {
-				background-color: transparent;
-				color: #767676;
-				font-style: normal;
-			}
-			
-			window#waybar.solo #window {
-				color: #A3BE8C;
-			}
-			
-			#tray, #language, #pulseaudio, #network, #cpu, #memory, #clock {
-				padding: 0 10px;
-			}
-			
-			#language {
-				color: #B48EAD;
-				background: #2E3440;
-			}
-			
-			#language:hover {
-				background: #3B4252;
-			}
-			
-			#pulseaudio {
-				color: #EBCB8B;
-			}
-			
-			#pulseaudio.muted {
-				color: #4C566A;
-			}
-			
-			#network {
-				color: #81A1C1;
-			}
-			
-			#network.disconnected {
-				color: #BF616A;
-			}
-			
-			#cpu {
-				color: #D08770;
-			}
-			
-			#memory {
-				color: #A3BE8C;
-			}
-			
-			#clock {
-				color: #88C0D0;
-				font-weight: bold;
-			}
-			
-			#tray {
-				color: #5E81AC;
-			}
-			
-			#tray > .passive {
-				-gtk-icon-effect: dim;
-			}
-			
-			#tray > .needs-attention {
-				-gtk-icon-effect: highlight;
-				color: #BF616A;
-			}
-		'';
-		
-		settings = {
-			mainBar = {
-				layer = "top";
-				position = "top";
-				height = 30;
-				spacing = 4;
-				
-				modules-left = [ "custom/launcher" "niri/workspaces" ];
-				modules-center = [ "niri/window" ];
-				modules-right = [ "tray" "niri/language" "pulseaudio" "network" "cpu" "memory" "clock" ];
-				
-				"custom/launcher" = {
-					format = "";
-					on-click = "sh -c rofi -show drun";
-					tooltip = false;
-				};
-				
-				"niri/workspaces" = {
-					format = "{icon}";
-					format-icons = {
-						"focused"= "󰮯";
-						"active"= "󰮯";
-						"default"= "󰊠";
-						"empty"= "󰝦";
-					};
-					disable-click = false;
-					current-only = false;
-					all-outputs = false;
-				};
-				
-				"niri/window" = {
-					format = "{title}";
-					rewrite = {
-						"(.*) - Mozilla Firefox"= "🌎 $1";
-						"(.*) - Kitty"= " $1";
-						"kitty"= " Terminal";
-					};
-					separate-outputs = false;
-					icon = false;
-				};
-				
-				"niri/language" = {
-					format = "{}";
-					format-en = "🇺🇸 EN";
-					format-ru = "🇷🇺 RU";
-					tooltip = false;
-				};
-				
-				"tray" = {
-					icon-size = 16;
-					spacing = 8;
-				};
-				
-				"pulseaudio" = {
-					format = "{volume}% {icon}";
-					format-bluetooth = "{volume}% {icon}";
-					format-bluetooth-muted = "󰸈 {icon}";
-					format-muted = "󰸈";
-					format-icons = {
-						default = [ "󰕿" "󰖀" "󰕾" ];
-					};
-					on-click = "pavucontrol";
-					tooltip-format = "{desc}";
-				};
-				
-				"network" = {
-					format-wifi = "{essid} 󰖩";
-					format-ethernet = "󰈀";
-					format-disconnected = "󰖪";
-					tooltip-format = "{ifname}: {ipaddr}/{cidr}";
-					tooltip-format-wifi = "{essid} ({signalStrength}%) 󰖩";
-				};
-				
-				"cpu" = {
-					format = "󰍛 {usage}%";
-					interval = 2;
-					tooltip = false;
-				};
-				
-				"memory" = {
-					format = "󰍛 {}%";
-					interval = 2;
-				};
-				
-				"clock" = {
-					format = "{:%H:%M:%S}";
-					tooltip-format = "{:%A, %d %B %Y}\n<tt><small>{calendar}</small></tt>";
-					format-alt = "{:%d/%m}";
-					interval = 1;
-				};
-			};
-		};
-	};
+	# programs.waybar = {
+	# 	enable = true;
+	# 	systemd.enable = true;
+	# 	style = ''
+	# 		* {
+	# 			border: none;
+	# 			border-radius: 0;
+	# 			font-family: "FiraCode Nerd Font Mono";
+	# 			font-weight: bold;
+	# 			font-size: 14px;
+	# 			min-height: 0;
+	# 		}
+	# 		
+	# 		window#waybar {
+	# 			background: #060606;
+	# 			color: #f6f6f6;
+	# 		}
+	# 		
+	# 		#custom-launcher {
+	# 			padding: 0 10px 0 12px;
+	# 			color: #61d6d6;
+	# 			font-size: 20px;
+	# 		}
+	# 		
+	# 		#custom-launcher:hover {
+	# 			background: #363636;
+	# 		}
+	# 		
+	# 		#workspaces button {
+	# 			padding: 0 8px;
+	# 			color: #d6d6d6;
+	# 			background: transparent;
+	# 		}
+	# 		
+	# 		#workspaces button:hover {
+	# 			background: #363636;
+	# 		}
+	# 		
+	# 		#workspaces button.active {
+	# 			color: #88C0D0;
+	# 			background: #363636;
+	# 		}
+	# 		
+	# 		#workspaces button.focused {
+	# 			color: #d76667;
+	# 			background: #363636;
+	# 			font-weight: bold;
+	# 		}
+	# 		
+	# 		#workspaces button.empty {
+	# 			color: #767676;
+	# 		}
+	# 		
+	# 		#workspaces button.current_output {
+	# 			opacity: 1;
+	# 		}
+	# 		
+	# 		#workspaces button:not(.current_output) {
+	# 			opacity: 0.6;
+	# 		}
+	# 		
+	# 		#window {
+	# 			padding: 0 15px;
+	# 			color: #88C0D0;
+	# 			font-weight: bold;
+	# 			font-style: italic;
+	# 		}
+	# 		
+	# 		window#waybar.empty #window {
+	# 			background-color: transparent;
+	# 			color: #767676;
+	# 			font-style: normal;
+	# 		}
+	# 		
+	# 		window#waybar.solo #window {
+	# 			color: #A3BE8C;
+	# 		}
+	# 		
+	# 		#tray, #language, #pulseaudio, #network, #cpu, #memory, #clock {
+	# 			padding: 0 10px;
+	# 		}
+	# 		
+	# 		#language {
+	# 			color: #B48EAD;
+	# 			background: #2E3440;
+	# 		}
+	# 		
+	# 		#language:hover {
+	# 			background: #3B4252;
+	# 		}
+	# 		
+	# 		#pulseaudio {
+	# 			color: #EBCB8B;
+	# 		}
+	# 		
+	# 		#pulseaudio.muted {
+	# 			color: #4C566A;
+	# 		}
+	# 		
+	# 		#network {
+	# 			color: #81A1C1;
+	# 		}
+	# 		
+	# 		#network.disconnected {
+	# 			color: #BF616A;
+	# 		}
+	# 		
+	# 		#cpu {
+	# 			color: #D08770;
+	# 		}
+	# 		
+	# 		#memory {
+	# 			color: #A3BE8C;
+	# 		}
+	# 		
+	# 		#clock {
+	# 			color: #88C0D0;
+	# 			font-weight: bold;
+	# 		}
+	# 		
+	# 		#tray {
+	# 			color: #5E81AC;
+	# 		}
+	# 		
+	# 		#tray > .passive {
+	# 			-gtk-icon-effect: dim;
+	# 		}
+	# 		
+	# 		#tray > .needs-attention {
+	# 			-gtk-icon-effect: highlight;
+	# 			color: #BF616A;
+	# 		}
+	# 	'';
+	# 	
+	# 	settings = {
+	# 		mainBar = {
+	# 			layer = "top";
+	# 			position = "top";
+	# 			height = 30;
+	# 			spacing = 4;
+	# 			
+	# 			modules-left = [ "custom/launcher" "niri/workspaces" ];
+	# 			modules-center = [ "niri/window" ];
+	# 			modules-right = [ "tray" "niri/language" "pulseaudio" "network" "cpu" "memory" "clock" ];
+	# 			
+	# 			"custom/launcher" = {
+	# 				format = "";
+	# 				on-click = "sh -c rofi -show drun";
+	# 				tooltip = false;
+	# 			};
+	# 			
+	# 			"niri/workspaces" = {
+	# 				format = "{icon}";
+	# 				format-icons = {
+	# 					"focused"= "󰮯";
+	# 					"active"= "󰮯";
+	# 					"default"= "󰊠";
+	# 					"empty"= "󰝦";
+	# 				};
+	# 				disable-click = false;
+	# 				current-only = false;
+	# 				all-outputs = false;
+	# 			};
+	# 			
+	# 			"niri/window" = {
+	# 				format = "{title}";
+	# 				rewrite = {
+	# 					"(.*) - Mozilla Firefox"= "🌎 $1";
+	# 					"(.*) - Kitty"= " $1";
+	# 					"kitty"= " Terminal";
+	# 				};
+	# 				separate-outputs = false;
+	# 				icon = false;
+	# 			};
+	# 			
+	# 			"niri/language" = {
+	# 				format = "{}";
+	# 				format-en = "🇺🇸 EN";
+	# 				format-ru = "🇷🇺 RU";
+	# 				tooltip = false;
+	# 			};
+	# 			
+	# 			"tray" = {
+	# 				icon-size = 16;
+	# 				spacing = 8;
+	# 			};
+	# 			
+	# 			"pulseaudio" = {
+	# 				format = "{volume}% {icon}";
+	# 				format-bluetooth = "{volume}% {icon}";
+	# 				format-bluetooth-muted = "󰸈 {icon}";
+	# 				format-muted = "󰸈";
+	# 				format-icons = {
+	# 					default = [ "󰕿" "󰖀" "󰕾" ];
+	# 				};
+	# 				on-click = "pavucontrol";
+	# 				tooltip-format = "{desc}";
+	# 			};
+	# 			
+	# 			"network" = {
+	# 				format-wifi = "{essid} 󰖩";
+	# 				format-ethernet = "󰈀";
+	# 				format-disconnected = "󰖪";
+	# 				tooltip-format = "{ifname}: {ipaddr}/{cidr}";
+	# 				tooltip-format-wifi = "{essid} ({signalStrength}%) 󰖩";
+	# 			};
+	# 			
+	# 			"cpu" = {
+	# 				format = "󰍛 {usage}%";
+	# 				interval = 2;
+	# 				tooltip = false;
+	# 			};
+	# 			
+	# 			"memory" = {
+	# 				format = "󰍛 {}%";
+	# 				interval = 2;
+	# 			};
+	# 			
+	# 			"clock" = {
+	# 				format = "{:%H:%M:%S}";
+	# 				tooltip-format = "{:%A, %d %B %Y}\n<tt><small>{calendar}</small></tt>";
+	# 				format-alt = "{:%d/%m}";
+	# 				interval = 1;
+	# 			};
+	# 		};
+	# 	};
+	# };
 	
 	# ========== NIRI ==========
-	programs.niri = {
-		settings = {
-			clipboard.disable-primary = false;
-			screenshot-path = "~/CoolStuff/Pictures/Screenshots/%Y-%m-%d %H:%M:%S.png";
-			input = {
-				focus-follows-mouse.enable = true;
-				mod-key = "Super";
-				keyboard.repeat-delay = 450;
-				keyboard.repeat-rate = 30;
-				keyboard.xkb = {
-					layout = "us,ru";
-					options = "grp:alt_shift_toggle";
-				};
-			};
-			
-			layout = {
-				focus-ring.enable = false;
-				border = {
-					enable = true;
-					width = 4;
-					active.color = "#d76667";
-					inactive.color = "#363636";
-				};
-				gaps = 30;
-				struts = {
-					left = 10;
-					top = -10;
-					right = 10;
-					bottom = -10;
-				};
-			};
-			
-			binds = {
-				"Mod+Shift+Slash" = { action.show-hotkey-overlay = {}; };
-				
-				"Mod+Q" = { action.close-window = {}; };
-				"Mod+Tab" = { action.toggle-overview = {}; };
-				"Mod+Return" = { action.spawn = [ "kitty" ]; };
-				"Mod+T" = { action.spawn = [ "kitty" ]; };
-				"MOD+Y" = { action.spawn = [ "kitty" "yazi" ]; hotkey-overlay.title = "File Manager: Yazi"; };
-				"Mod+R" = { action.spawn-sh = [ "rofi -show drun" ]; };
-				"Mod+Alt+L" = { action.spawn = [ "swaylock" ]; };
-				
-				"Mod+1" = { action.focus-workspace = 1; };
-				"Mod+2" = { action.focus-workspace = 2; };
-				"Mod+3" = { action.focus-workspace = 3; };
-				"Mod+4" = { action.focus-workspace = 4; };
-				"Mod+5" = { action.focus-workspace = 5; };
-				"Mod+6" = { action.focus-workspace = 6; };
-				"Mod+7" = { action.focus-workspace = 7; };
-				"Mod+8" = { action.focus-workspace = 8; };
-				"Mod+9" = { action.focus-workspace = 9; };
-				
-				"Mod+Shift+1" = { action.move-column-to-workspace = 1; };
-				"Mod+Shift+2" = { action.move-column-to-workspace = 2; };
-				"Mod+Shift+3" = { action.move-column-to-workspace = 3; };
-				"Mod+Shift+4" = { action.move-column-to-workspace = 4; };
-				"Mod+Shift+5" = { action.move-column-to-workspace = 5; };
-				"Mod+Shift+6" = { action.move-column-to-workspace = 6; };
-				"Mod+Shift+7" = { action.move-column-to-workspace = 7; };
-				"Mod+Shift+8" = { action.move-column-to-workspace = 8; };
-				"Mod+Shift+9" = { action.move-column-to-workspace = 9; };
-				
-				"Mod+Up" = { action.focus-window-or-workspace-up = {}; };
-				"Mod+Down" = { action.focus-window-or-workspace-down = {}; };
-				"Mod+Left" = { action.focus-column-left = {}; };
-				"Mod+Right" = { action.focus-column-right = {}; };
-				"Mod+Shift+Up" = { action.move-window-up-or-to-workspace-up = {}; };
-				"Mod+Shift+Down" = { action.move-window-down-or-to-workspace-down = {}; };
-				"Mod+Shift+Left" = { action.move-column-left = {}; };
-				"Mod+Shift+Right" = { action.move-column-right = {}; };
-				
-				"Mod+Home" = { action.focus-column-first = {}; };
-				"Mod+End" = { action.focus-column-last = {}; };
-				"Mod+Ctrl+Home" = { action.move-column-to-first = {}; };
-				"Mod+Ctrl+End" = { action.move-column-to-last = {}; };
-				
-				"Mod+Page_Down" = { action.focus-workspace-down = {}; };
-				"Mod+Page_Up" = { action.focus-workspace-up = {}; };
-				"Mod+Shift+Page_Down" = { action.move-window-to-workspace-down = {}; };
-				"Mod+Shift+Page_Up" = { action.move-window-to-workspace-up = {}; };
-				
-				"Mod+Ctrl+Page_Down" = { action.move-workspace-down = {}; };
-				"Mod+Ctrl+Page_Up" = { action.move-workspace-up = {}; };
-				
-				"Mod+WheelScrollRight" = { action.focus-column-right = {}; };
-				"Mod+WheelScrollLeft" = { action.focus-column-left = {}; };
-				"Mod+Ctrl+WheelScrollRight" = { action.move-column-right = {}; };
-				"Mod+Ctrl+WheelScrollLeft" = { action.move-column-left = {}; };
-				
-				"Mod+Shift+WheelScrollDown" = { action.focus-column-right = {}; };
-				"Mod+Shift+WheelScrollUp" = { action.focus-column-left = {}; };
-				"Mod+Ctrl+Shift+WheelScrollDown" = { action.move-column-right = {}; };
-				"Mod+Ctrl+Shift+WheelScrollUp" = { action.move-column-left = {}; };
-				
-				"Mod+F" = { action.maximize-column = {}; };
-				"Mod+Shift+F" = { action.fullscreen-window = {}; };
-				"Mod+space" = { action.toggle-window-floating = {}; };
-				"Mod+Shift+space" = { action.switch-focus-between-floating-and-tiling = {}; };
-				"Print" = { action.screenshot = {}; };
-				"Ctrl+Mod+Alt+Q" = { action.quit = {}; };
-				"Ctrl+Alt+Delete" = { action.quit = {}; };
-				"Mod+Shift+P" = { action.power-off-monitors = {}; };
-			};
-		};
-	};
+	# programs.niri = {
+	# 	settings = {
+	# 		clipboard.disable-primary = false;
+	# 		screenshot-path = "~/CoolStuff/Pictures/Screenshots/%Y-%m-%d %H:%M:%S.png";
+	# 		input = {
+	# 			focus-follows-mouse.enable = true;
+	# 			mod-key = "Super";
+	# 			keyboard.repeat-delay = 450;
+	# 			keyboard.repeat-rate = 30;
+	# 			keyboard.xkb = {
+	# 				layout = "us,ru";
+	# 				options = "grp:alt_shift_toggle";
+	# 			};
+	# 		};
+	# 		
+	# 		layout = {
+	# 			focus-ring.enable = false;
+	# 			border = {
+	# 				enable = true;
+	# 				width = 4;
+	# 				active.color = "#d76667";
+	# 				inactive.color = "#363636";
+	# 			};
+	# 			gaps = 30;
+	# 			struts = {
+	# 				left = 10;
+	# 				top = -10;
+	# 				right = 10;
+	# 				bottom = -10;
+	# 			};
+	# 		};
+	# 		
+	# 		binds = {
+	# 			"Mod+Shift+Slash" = { action.show-hotkey-overlay = {}; };
+	# 			
+	# 			"Mod+Q" = { action.close-window = {}; };
+	# 			"Mod+Tab" = { action.toggle-overview = {}; };
+	# 			"Mod+Return" = { action.spawn = [ "kitty" ]; };
+	# 			"Mod+T" = { action.spawn = [ "kitty" ]; };
+	# 			"MOD+Y" = { action.spawn = [ "kitty" "yazi" ]; hotkey-overlay.title = "File Manager: Yazi"; };
+	# 			"Mod+R" = { action.spawn-sh = [ "rofi -show drun" ]; };
+	# 			"Mod+Alt+L" = { action.spawn = [ "swaylock" ]; };
+	# 			
+	# 			"Mod+1" = { action.focus-workspace = 1; };
+	# 			"Mod+2" = { action.focus-workspace = 2; };
+	# 			"Mod+3" = { action.focus-workspace = 3; };
+	# 			"Mod+4" = { action.focus-workspace = 4; };
+	# 			"Mod+5" = { action.focus-workspace = 5; };
+	# 			"Mod+6" = { action.focus-workspace = 6; };
+	# 			"Mod+7" = { action.focus-workspace = 7; };
+	# 			"Mod+8" = { action.focus-workspace = 8; };
+	# 			"Mod+9" = { action.focus-workspace = 9; };
+	# 			
+	# 			"Mod+Shift+1" = { action.move-column-to-workspace = 1; };
+	# 			"Mod+Shift+2" = { action.move-column-to-workspace = 2; };
+	# 			"Mod+Shift+3" = { action.move-column-to-workspace = 3; };
+	# 			"Mod+Shift+4" = { action.move-column-to-workspace = 4; };
+	# 			"Mod+Shift+5" = { action.move-column-to-workspace = 5; };
+	# 			"Mod+Shift+6" = { action.move-column-to-workspace = 6; };
+	# 			"Mod+Shift+7" = { action.move-column-to-workspace = 7; };
+	# 			"Mod+Shift+8" = { action.move-column-to-workspace = 8; };
+	# 			"Mod+Shift+9" = { action.move-column-to-workspace = 9; };
+	# 			
+	# 			"Mod+Up" = { action.focus-window-or-workspace-up = {}; };
+	# 			"Mod+Down" = { action.focus-window-or-workspace-down = {}; };
+	# 			"Mod+Left" = { action.focus-column-left = {}; };
+	# 			"Mod+Right" = { action.focus-column-right = {}; };
+	# 			"Mod+Shift+Up" = { action.move-window-up-or-to-workspace-up = {}; };
+	# 			"Mod+Shift+Down" = { action.move-window-down-or-to-workspace-down = {}; };
+	# 			"Mod+Shift+Left" = { action.move-column-left = {}; };
+	# 			"Mod+Shift+Right" = { action.move-column-right = {}; };
+	# 			
+	# 			"Mod+Home" = { action.focus-column-first = {}; };
+	# 			"Mod+End" = { action.focus-column-last = {}; };
+	# 			"Mod+Ctrl+Home" = { action.move-column-to-first = {}; };
+	# 			"Mod+Ctrl+End" = { action.move-column-to-last = {}; };
+	# 			
+	# 			"Mod+Page_Down" = { action.focus-workspace-down = {}; };
+	# 			"Mod+Page_Up" = { action.focus-workspace-up = {}; };
+	# 			"Mod+Shift+Page_Down" = { action.move-window-to-workspace-down = {}; };
+	# 			"Mod+Shift+Page_Up" = { action.move-window-to-workspace-up = {}; };
+	# 			
+	# 			"Mod+Ctrl+Page_Down" = { action.move-workspace-down = {}; };
+	# 			"Mod+Ctrl+Page_Up" = { action.move-workspace-up = {}; };
+	# 			
+	# 			"Mod+WheelScrollRight" = { action.focus-column-right = {}; };
+	# 			"Mod+WheelScrollLeft" = { action.focus-column-left = {}; };
+	# 			"Mod+Ctrl+WheelScrollRight" = { action.move-column-right = {}; };
+	# 			"Mod+Ctrl+WheelScrollLeft" = { action.move-column-left = {}; };
+	# 			
+	# 			"Mod+Shift+WheelScrollDown" = { action.focus-column-right = {}; };
+	# 			"Mod+Shift+WheelScrollUp" = { action.focus-column-left = {}; };
+	# 			"Mod+Ctrl+Shift+WheelScrollDown" = { action.move-column-right = {}; };
+	# 			"Mod+Ctrl+Shift+WheelScrollUp" = { action.move-column-left = {}; };
+	# 			
+	# 			"Mod+F" = { action.maximize-column = {}; };
+	# 			"Mod+Shift+F" = { action.fullscreen-window = {}; };
+	# 			"Mod+space" = { action.toggle-window-floating = {}; };
+	# 			"Mod+Shift+space" = { action.switch-focus-between-floating-and-tiling = {}; };
+	# 			"Print" = { action.screenshot = {}; };
+	# 			"Ctrl+Mod+Alt+Q" = { action.quit = {}; };
+	# 			"Ctrl+Alt+Delete" = { action.quit = {}; };
+	# 			"Mod+Shift+P" = { action.power-off-monitors = {}; };
+	# 		};
+	# 	};
+	# };
 
 	wayland.windowManager.mango = {
 		enable = true;
