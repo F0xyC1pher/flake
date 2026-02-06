@@ -3,7 +3,7 @@
 	userLongName = "Foxy_Chipher";
 	hostName = "p";
 	fontName = "FiraCode Nerd Font Mono";
-	fontSize = 14;
+	fontSize = 12;
 	bluetooth = true;
 	nvidia = true;
 	terminal = "kitty";
