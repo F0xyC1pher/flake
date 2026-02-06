@@ -92,7 +92,6 @@
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.${vars.userName} = { ... }: {
 								imports = [
-									./home
 									inputs.zarumet.homeModules.default
 									mango.hmModules.mango
 								];

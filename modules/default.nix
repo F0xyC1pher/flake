@@ -6,13 +6,20 @@
 }: {
 	imports = [
 		./environment
-		./bluetooth.nix
+		./theming
+		./hardware
+		./xdg
 		./configuration.nix
-		./nvidia.nix
-		./stylix.nix
-		./xdg.nix
-		./zram.nix
 		# ./development
 		# ./gaming
 	];
+	
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
+			imports = [
+				./home.nix
+			];
+		};
+	};
 }

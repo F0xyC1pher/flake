@@ -27,53 +27,53 @@
 		size = 32;
 	};
 	
-	services.mopidy = {
-		enable = true;
-		
-		extensionPackages = with pkgs; [
-			mopidy-mpd        # ← MPD протокол (ncmpcpp, rmpc и т.д. будут работать)
-			mopidy-local      # локальная музыка
-			mopidy-youtube    # YouTube поиск/плейлисты/каналы
-			mopidy-iris       # веб-интерфейс[](http://localhost:6680/iris)
-		#	mopidy-spotify    # кал
-		];
-		
-		settings = {
-			core = {
-				cache_dir = "/home/${vars.userName}/.cache/mopidy";
-				config_dir = "/home/${vars.userName}/.config/mopidy";
-				data_dir   = "/home/${vars.userName}/.local/share/mopidy";
-			};
-			
-			audio = {
-				output = "pipewiresink client-name=mopidy";
-			#	Опционально: уменьшить задержку (latency в микросекундах)
-			#	buffer_time = 200000;  # 200 мс
-			#	latency = 60000;       # 60 мс
-			};
-			
-			local = {
-				enabled = true;
-				media_dir = [ "/home/${vars.userName}/CoolStuff/Music" ];
-				# follow_symlinks = true;
-			#	excluded_file_extensions = ".jpg .png .txt";
-			};
-			
-			mpd = {
-				enabled = true;
-				hostname = "127.0.0.1";
-				port = 6600;
-			};
-			
-			youtube = {
-				enabled = true;
-#				youtube_api_key = "твой_ключ_из_google_console";  # если нужно больше результатов
-#				search_results = 20;
-#				autoplay_enabled = false;
-#				video_codec_priority = "vp9,h264";
-			};
-		};
-	};
+# 	services.mopidy = {
+# 		enable = true;
+# 		
+# 		extensionPackages = with pkgs; [
+# 			mopidy-mpd        # ← MPD протокол (ncmpcpp, rmpc и т.д. будут работать)
+# 			mopidy-local      # локальная музыка
+# 			mopidy-youtube    # YouTube поиск/плейлисты/каналы
+# 			mopidy-iris       # веб-интерфейс[](http://localhost:6680/iris)
+# 		#	mopidy-spotify    # кал
+# 		];
+# 		
+# 		settings = {
+# 			core = {
+# 				cache_dir = "/home/${vars.userName}/.cache/mopidy";
+# 				config_dir = "/home/${vars.userName}/.config/mopidy";
+# 				data_dir   = "/home/${vars.userName}/.local/share/mopidy";
+# 			};
+# 			
+# 			audio = {
+# 				output = "pipewiresink client-name=mopidy";
+# 			#	Опционально: уменьшить задержку (latency в микросекундах)
+# 			#	buffer_time = 200000;  # 200 мс
+# 			#	latency = 60000;       # 60 мс
+# 			};
+# 			
+# 			local = {
+# 				enabled = true;
+# 				media_dir = [ "/home/${vars.userName}/CoolStuff/Music" ];
+# 				# follow_symlinks = true;
+# 			#	excluded_file_extensions = ".jpg .png .txt";
+# 			};
+# 			
+# 			mpd = {
+# 				enabled = true;
+# 				hostname = "127.0.0.1";
+# 				port = 6600;
+# 			};
+# 			
+# 			youtube = {
+# 				enabled = true;
+# 				youtube_api_key = "твой_ключ_из_google_console";  # если нужно больше результатов
+# 				search_results = 20;
+# 				autoplay_enabled = false;
+# 				video_codec_priority = "vp9,h264";
+# 			};
+# 		};
+# 	};
 	
 	programs.zarumet = {
 		enable = true;
