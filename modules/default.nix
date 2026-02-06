@@ -11,6 +11,7 @@
 		./nvidia.nix
 		./stylix.nix
 		./xdg.nix
+		./zram.nix
 		# ./development
 		# ./gaming
 	];
