@@ -1,29 +1,30 @@
 {
 	description = "foxyflake";
-
+	
 	inputs = {
+		
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";  # Актуальная unstable ветка
-
+		
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs для совместимости
 		};
-
+		
 		stylix = {
 			url = "github:nix-community/stylix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		
 		niri = {
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs
 		};
-
+		
 		mango = {
-		      url = "github:DreamMaoMao/mango";
-		      inputs.nixpkgs.follows = "nixpkgs";
-		    };
-
+			url = "github:DreamMaoMao/mango";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		
 		hyprland.url = "github:hyprwm/Hyprland";
 		hyprland-plugins = {
 			url = "github:hyprwm/hyprland-plugins";
@@ -34,15 +35,24 @@
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		
+		rmpc = {
+			url = "github:mierak/rmpc";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		
+		zarumet = {
+			url = "github:Immelancholy/zarumet";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	# ayugram-desktop = {
 	# 	type = "git";
 	# 	submodules = true;
 	# 	url = "https://github.com/ndfined-crp/ayugram-desktop/";
 	# };
-
+	
 	};
-
+	
 	outputs = { 
 		self,
 		nixpkgs,
@@ -53,6 +63,8 @@
 		hyprland,
 		hyprland-plugins,
 		freesmlauncher,
+		zarumet,
+		rmpc,
 		... 
 	}@inputs: let
 	
@@ -76,7 +88,7 @@
 							extraSpecialArgs = { inherit inputs vars; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
-							sharedModules = [ mango.hmModules.mango ];
+							sharedModules = [ mango.hmModules.mango zarumet.homeModules.default ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.${vars.userName} = import ./home; 
 						};

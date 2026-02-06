@@ -5,11 +5,12 @@
 	...
 }: {
 	imports = [
-		./configuration.nix
-		./xdg.nix
 		./apps.nix
-		./nvidia.nix
 		./bluetooth.nix
+		./configuration.nix
+		./nvidia.nix
+		./stylix.nix
+		./xdg.nix
 		# ./development
 		# ./gaming
 	];
