@@ -5,7 +5,7 @@
 	...
 }: {
 	imports = [
-		./apps.nix
+		./environment
 		./bluetooth.nix
 		./configuration.nix
 		./nvidia.nix
