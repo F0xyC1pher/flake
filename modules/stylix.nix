@@ -27,9 +27,11 @@
 		opacity.terminal = 0.8;
 		
 		fonts = {
-			sizes.applications = 11;
-			sizes.desktop = 11;
-			sizes.terminal = 11;
+			sizes = {
+				applications = ${vars.fontSize};
+				desktop = ${vars.fontSize};
+				terminal = ${vars.fontSize};	
+			};
 			serif.name = "${vars.fontName}";
 			monospace = config.stylix.fonts.serif;
 			sansSerif = config.stylix.fonts.serif;
