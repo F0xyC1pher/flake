@@ -28,58 +28,6 @@
 		};
 	};
 	
-	# ========== NVIDIA ==========
-	# hardware = {
-	# 	graphics = {
-	# 		enable = true;
-	# 		enable32Bit = true;
-	# 	};
-	# 	nvidia = {
-	# 		package = config.boot.kernelPackages.nvidiaPackages.stable;
-	# 		powerManagement.finegrained = false;
-	# 		powerManagement.enable = false;
-	# 		modesetting.enable = true;
-	# 		nvidiaSettings = true;
-	# 		open = false;
-	# 	};
-	# 	bluetooth = {
-	# 		enable = true;
-	# 		powerOnBoot = true;
-	# 		settings = {
-	# 			General = {
-	# 				Experimental = true;
-	# 				FastConnectable = true;	
-	# 			};
-	# 			Policy = {
-	# 				AutoEnable = true;
-	# 			};
-	# 		};
-	# 	};
-	# };
-	# environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json".text = ''
-	#     {
-	#         "rules": [
-	#             {
-	#                 "pattern": {
-	#                     "feature": "procname",
-	#                     "matches": "niri"
-	#                 },
-	#                 "profile": "Limit Free Buffer Pool On Wayland Compositors"
-	#             }
-	#         ],
-	#         "profiles": [
-	#             {
-	#                 "name": "Limit Free Buffer Pool On Wayland Compositors",
-	#                 "settings": [
-	#                     {
-	#                         "key": "GLVidHeapReuseRatio",
-	#                         "value": 0
-	#                     }
-	#                 ]
-	#             }
-	#         ]
-	#     }
-	#   '';
 	# ========== BOOTLOADER ==========
 	boot = {
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -126,7 +74,7 @@
 	# ========== USER ==========
 	users.users.${vars.userName} = {
 		isNormalUser = true;
-		description = "Foxy_Chipher";
+		description = "${vars.userLongName}";
 		home = "/home/${vars.userName}";
 		shell = pkgs.fish;
 		extraGroups = [
@@ -150,6 +98,7 @@
 		dbus.enable = true;
 		gnome.gnome-keyring.enable = lib.mkForce false;
 		desktopManager.gnome.enable = lib.mkForce false;
+		
 		pipewire = {
 			enable = true;
 			alsa.enable = true;
@@ -158,6 +107,7 @@
 			jack.enable = true;
 			wireplumber.enable = true;
 		};
+		
 		xserver = {
 			enable = true;
 			videoDrivers = ["nvidia"];
@@ -165,6 +115,36 @@
 			xkb.options = "grp:lalt_lshift_toggle;";
 			xkb.model = "pc86";
 		};
+		
+		# mpd = {
+		# 	enable = true;
+		# 	musicDirectory = "/home/${vars.userName}/CoolStuff/Music";
+		# 	user = "${vars.userName}";
+		# 	settings = {
+		# 		# Вот как теперь задаётся audio_output (это список, можно несколько блоков)
+		# 		audio_output = [
+		# 			{
+		# 				type = "pipewire";
+		# 				name = "My PipeWire Output";
+		# 				# Дополнительные параметры, если нужно (опционально):
+		# 				# format = "44100:16:2";      # пример
+		# 				# mixer_type = "software";
+		# 				# auto_resample = "no";
+		# 			}
+		# 		];
+		# 		# Если нужны другие простые параметры (не блоки), пиши их прямо здесь:
+		# 		# restore_paused = "yes";
+		# 		# max_playlist_length = "16384";
+		# 	};
+		# 	# network = {
+		# 	#     listenAddress = "any";          # если хочешь разрешить подключения не только с localhost
+		# 	#     startWhenNeeded = true;         # systemd socket activation — очень удобно
+		# 	#   };
+		# 	# Optional:
+		# #	network.listenAddress = "any"; # if you want to allow non-localhost connections
+		# 	startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
+		# };
+		
 		greetd = {
 			enable = true;
 			useTextGreeter = true;
@@ -177,16 +157,56 @@
 		};
 	};
 	
+	# Важно: Mopidy как system service → PipeWire как user service
+	# Даём доступ к PipeWire сокету (uid 1000 = обычно первый юзер)
+	# systemd.services.mopidy = {
+	# 	environment = {
+	# 		XDG_RUNTIME_DIR = "/run/user/1000";  # ← подставь правильный uid (id -u ${vars.userName})
+	# 		PULSE_RUNTIME_PATH = "/run/user/1000/pulse";
+	# 	};
+	# 	serviceConfig = {
+	# 		# Дополнительно: если не поможет, добавь
+	# 		# SupplementaryGroups = [ "audio" "pipewire" ];  # иногда нужно
+	# 		Restart = "always";
+	# 	};
+	# };
 	
+	# systemd.services.mpd.environment = {
+	# 	# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+	# 	XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+	# };
 	
 	# systemd.user.services.niri-flake-polkit.enable = false;
 	# ========== FONTS ==========
-	fonts.packages = with pkgs; [
-		nerd-fonts.fira-code
-		font-awesome
-		noto-fonts
-		noto-fonts-color-emoji
-	];
+	fonts = {
+		packages = with pkgs; [
+			monocraft
+			minecraftia
+			nerd-fonts.departure-mono
+			nerd-fonts.fira-code
+			fira-code-symbols
+			font-awesome
+			noto-fonts
+			noto-fonts-color-emoji
+		];
+		
+		fontconfig = {
+			enable = true;
+			cache32Bit = true;
+			antialias = true;
+			allowBitmaps = true;
+			useEmbeddedBitmaps = true;
+			subpixel = {
+				rgba = "rgb";
+				lcdfilter = "default";	
+			};
+			hinting = {
+				enable = true;
+				style = "slight";
+				autohint = false;
+			};
+		};
+	};
 	
 	# ========== PROGRAMS ==========
 	programs = {
@@ -293,88 +313,7 @@
 	# ==========	ENVIRONMENT	==========
 	environment = {
 		# ==========	PACKAGES	==========
-		# systemPackages = with pkgs; [
-		#     inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-		# 	ayugram-desktop
-		# 	nixd
-		# 	nil
-		# 	package-version-server
-		# 	zenity
-		# 	kitty
-		# 	ntfs3g
-		# 	android-tools
-		# 	mangohud
-		# 	git
-		# 	micro-full
-		# 	vscodium
-		# 	swww
-		# 	fzf
-		# 	# kdePackages.qt6ct
-		# 	# kdePackages.qtstyleplugin-kvantum
-		# 	wget
-		# 	btop
-		# 	bluetuith
-		# 	firefox
-		# 	tor-browser
-		# 	discord
-		# 	discordo
-		# 	discord-gamesdk
-		# 	discord-rpc
-		# 	# ripcord
-		# 	# overlayed
-		# 	# goofcord
-		# 	arrpc
-		# 	nixfmt
-		# 	# mpvScripts.mpv-discord
-		# 	moonlight
-		# 	vesktop
-		# 	# mprisence
-		# 	# abaddon
-		# 	# legcord
-		# 	# equicord
-		# 	babelfish
-		# 	ffmpeg-full
-		# 	imagemagick
-		# 	pandoc
-		# 	yt-dlp
-		# 	mpv
-		# 	eza
-		# 	bat
-		# 	fd
-		# 	zed-editor
-		# 	lapce
-		# 	socat
-		# 	ripgrep-all
-		# 	pavucontrol
-		# 	fastfetch
-		# 	wl-clipboard
-		# 	wl-clipboard-x11
-		# 	wl-clip-persist
-		# 	cliphist
-		# 	wayland-utils
-		# 	slurp
-		# 	xwayland-satellite-unstable
-		# 	keepassxc
-		# 	git-credential-keepassxc
-		# 	# rofi-polkit-agent
-		# 	cmd-polkit 
-		# 	jq
-		# 	rofi
-		# 	swaylock
-		# 	swaynotificationcenter
-		# 	mpd
-		# 	mpdris2
-		# 	rmpc
-		# 	obsidian
-		# 	libva-vdpau-driver
-		# 	libvdpau-va-gl
-		# 	obs-studio-plugins.obs-vaapi
-		# 	nvidia-vaapi-driver
-		# 	cmd-polkit
-		# 	tuigreet
-		# 	niri-unstable
-		# 	helix
-		# ];
+
 		
 		
 		# ==========	VARIABLES	==========
@@ -516,90 +455,67 @@
 		};
 	};
 	
-	stylix = {
-			enable = true;
-			
-			polarity = "dark";
-			
-			homeManagerIntegration = {
-				autoImport = true;
-				followSystem = true;
-			};
-			
-			targets = {
-				qt ={
-					enable = true;
-					platform = "qtct";
-					# standardDialogs = "xdgdesktopportal";
-					# style = "kvantum";
-				};
-			};
-			
-			opacity.terminal = 0.8;
-			
-			fonts = {
-				sizes.applications = 12;
-				sizes.desktop = 12;
-				sizes.terminal = 12;
-				monospace = {
-					package = pkgs.nerd-fonts.fira-code;
-					name = "FiraCode Nerd Font";
-				};
-				sansSerif = {
-					package = pkgs.nerd-fonts.fira-code;
-					name = "FiraCode Nerd Font";
-				};
-				serif = config.stylix.fonts.sansSerif;
-				emoji = {
-					package = pkgs.noto-fonts-color-emoji;
-					name = "Noto Color Emoji";
-				};
-			};
-			
-			# Фоны и основные поверхности
-			# основной фон (editor, терминал, панели, tmux)
-			# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-			# фон выделения текста (visual mode, selected text, поиск)
-			# Серые тона для текста и неактивных элементов
-			# комментарии, невидимые символы, cursorline, неактивные элементы
-			# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
-			# Основной и яркий текст
-			# основной цвет текста (обычный код, prompt в терминале)
-			# редкий bright foreground / special UI
-			# самый яркий белый (контрастный текст, bold/bright)
-			# Акцентные цвета — семантика
-			# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-			# оранжевый — числа, константы, escape-последовательности, пути/URL
-			# жёлтый — классы, структуры, background поиска, WARN, иногда bold
-			# зелёный — строки, добавленное в diff, успех
-			# циан — типы, специальные конструкции, info, escape в строках
-			# синий — функции, методы, ссылки, основной акцентный цвет
-			# пурпурный — ключевые слова, control flow, операторы, storage
-			# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
-			
-			
-			# Scheme = "theMe";
-			# author = "FoxyChipher";
-			# slug = "the-Me";
-		base16Scheme = {
-			base00 = "#060606";
-			base01 = "#363636";
-			base02 = "#565656";
-			base03 = "#767676";
-			base04 = "#a6a6a6";
-			base05 = "#d6d6d6";
-			base06 = "#f6f6f6";
-			base07 = "#f6f6f6";
-			base08 = "#d76667";
-			base09 = "#ff6d66";
-			base0A = "#fed666";
-			base0B = "#67b766";
-			base0C = "#61d6d6";
-			base0D = "#0666ff";
-			base0E = "#a666fd";
-			base0F = "#fd66a6";
-		};
-	};
+	# stylix = {
+	# 	enable = true;
+	# 	
+	# 	polarity = "dark";
+	# 	
+	# 	homeManagerIntegration = {
+	# 		autoImport = true;
+	# 		followSystem = true;
+	# 	};
+	# 	
+	# 	targets = {
+	# 		qt ={
+	# 			enable = true;
+	# 			platform = "qtct";
+	# 			# standardDialogs = "xdgdesktopportal";
+	# 			# style = "kvantum";
+	# 		};
+	# 	};
+	# 	
+	# 	opacity.terminal = 0.8;
+	# 	
+	# 	fonts = {
+	# 		sizes.applications = 11;
+	# 		sizes.desktop = 11;
+	# 		sizes.terminal = 11;
+	# 		serif.name = "FiraCode Nerd Font Mono";
+	# 		monospace = config.stylix.fonts.serif;
+	# 		sansSerif = config.stylix.fonts.serif;
+	# 		emoji.name = "Noto Color Emoji";
+	# 	};
+	# 	
+	# 	base16Scheme = {
+	# 		# Фоны и основные поверхности
+	# 		base00	=	"#060606";	# основной фон (editor, терминал, панели, tmux)
+	# 		base01	=	"#363636";	# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+	# 		base02	=	"#565656";	# фон выделения текста (visual mode, selected text, поиск)
+	# 		
+	# 		# Серые тона для текста и неактивных элементов
+	# 		base03	=	"#767676";	# комментарии, невидимые символы, cursorline, неактивные элементы
+	# 		base04	=	"#a6a6a6";	# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+	# 		
+	# 		# Основной и яркий текст
+	# 		base05	=	"#d6d6d6";	# основной цвет текста (обычный код, prompt в терминале)
+	# 		base06	=	"#f6f6f6";	# bright foreground / special UI
+	# 		base07	=	"#f6f6f6";	# самый яркий белый (контрастный текст, bold/bright)
+	# 		
+	# 		# Акцентные цвета — семантика
+	# 		base08	=	"#d76667";	# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+	# 		base09	=	"#ff6d66";	# оранжевый — числа, константы, escape-последовательности, пути/URL
+	# 		base0A	=	"#fed666";	# жёлтый — классы, структуры, background поиска, WARN, иногда bold
+	# 		base0B	=	"#67b766";	# зелёный — строки, добавленное в diff, успех
+	# 		base0C	=	"#61d6d6";	# циан — типы, специальные конструкции, info, escape в строках
+	# 		base0D	=	"#0666ff";	# синий — функции, методы, ссылки, основной акцентный цвет
+	# 		base0E	=	"#a666fd";	# фиолетовый — ключевые слова, control flow, операторы, storage
+	# 		base0F	=	"#fd66a6";	# пурпурный — deprecated, теги, вставки другого языка, спец-символы
+	# 		
+	# 		Scheme	=	"the-Me";
+	# 		slug	=	"the-Me";
+	# 		author	=	"FoxyChipher";
+	# 	};
+	# };
 	
 	system.stateVersion = "25.05";
 }

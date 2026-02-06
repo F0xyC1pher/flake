@@ -1,24 +1,6 @@
-{ lib, config, pkgs, inputs, ... }:
-let
-	rofi-polkit-script = pkgs.fetchurl {
-		url = "https://raw.githubusercontent.com/czaplicki/rofi-polkit-agent/master/rofi-polkit-agent";
-		sha256 = "1lv5m291v45akj7kh2z29sjk8hd36bdf5c1h7saxvl8dkr6jm00y";
-	};
-		
-	rofi-polkit-agent = pkgs.writeShellScriptBin "rofi-polkit-agent" ''
-	    #!/usr/bin/env bash
-	    ${builtins.readFile rofi-polkit-script}
-	  '';
-in
+{ lib, config, pkgs, inputs, vars, ... }:
 {
 	# ========== HOME ==========	
-	home.packages = [
-		rofi-polkit-agent
-		pkgs.sublime4
-	# 	pkgs.cmd-polkit  # ← обязательно!
-	# 	pkgs.jq
-	];
-	
 	# gtk = {
 	# 	enable = true;
 	# 	gtk3 = {
@@ -31,11 +13,11 @@ in
 	# 	# platformTheme.name = lib.mkForce "qt6ct";
 	# };
 	
-	dconf.settings = {
-		"org/gtk/settings/file-chooser" = {
-	    	sort-directories-first = true;
-		};
-	};
+	# dconf.settings = {
+	# 	"org/gtk/settings/file-chooser" = {
+	#     	sort-directories-first = true;
+	# 	};
+	# };
 	
 	home.pointerCursor = {
 		gtk.enable = true;
@@ -44,83 +26,151 @@ in
 		name = "Posy_Cursor_Black";
 		size = 32;
 	};
+	
+	services.mopidy = {
+		enable = true;
+		
+		extensionPackages = with pkgs; [
+			mopidy-mpd        # ← MPD протокол (ncmpcpp, rmpc и т.д. будут работать)
+			mopidy-local      # локальная музыка
+			mopidy-youtube    # YouTube поиск/плейлисты/каналы
+			mopidy-iris       # веб-интерфейс[](http://localhost:6680/iris)
+		#	mopidy-spotify    # кал
+		];
+		
+		settings = {
+			core = {
+				cache_dir = "${config.xdg.cacheHome}/mopidy";  # или ~/.cache/mopidy
+				config_dir = "${config.xdg.configHome}/mopidy";
+				data_dir   = "${config.xdg.dataHome}/mopidy";
+			};
+			
+			audio = {
+				output = "pipewiresink client-name=mopidy";
+			#	Опционально: уменьшить задержку (latency в микросекундах)
+			#	buffer_time = 200000;  # 200 мс
+			#	latency = 60000;       # 60 мс
+			};
+			
+			local = {
+				enabled = true;
+				media_dir = [ "/home/${vars.userName}/CoolStuff/Music" ];
+				# follow_symlinks = true;
+			#	excluded_file_extensions = ".jpg .png .txt";
+			};
+			
+			mpd = {
+				enabled = true;
+			#	hostname = "127.0.0.1";
+			#	port = 6600;
+			};
+			
+			youtube = {
+				enabled = true;
+			#	youtube_api_key = "твой_ключ_из_google_console";  # если нужно больше результатов
+			#	search_results = 20;
+			#	autoplay_enabled = false;
+			#	video_codec_priority = "vp9,h264";
+			};
+		};
+	};
 	# ========== STYLIX ==========
-# 	stylix = {
-# 		enable = true;
-# 		polarity = "dark";
-# 		targets = {
-# 			qt ={
-# 				enable = true;
-# 				platform = "qtct";
-# 				standardDialogs = "xdgdesktopportal";
-# 				# style = "kvantum";
-# 			};
-# 		};
-# 		opacity.terminal = 0.8;
-# 		fonts = {
-# 			sizes.applications = 12;
-# 			sizes.desktop = 12;
-# 			sizes.terminal = 12;
-# 			monospace =	{
-# 				package = pkgs.nerd-fonts.fira-code;
-# 				name = "FiraCode Nerd Font";
-# 			};
-# 			sansSerif = {
-# 				package = pkgs.nerd-fonts.fira-code;
-# 				name = "FiraCode Nerd Font";
-# 			};
-# 			serif = config.stylix.fonts.sansSerif;
-# 			emoji = {
-# 				package = pkgs.noto-fonts-color-emoji;
-# 				name = "Noto Color Emoji";
-# 			};
-# 		};
-# 		# Фоны и основные поверхности
-# 		# основной фон (editor, терминал, панели, tmux)
-# 		# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-#  		# фон выделения текста (visual mode, selected text, поиск)
-# 		# Серые тона для текста и неактивных элементов
-# 		# комментарии, невидимые символы, cursorline, неактивные элементы
-# 		# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
-# 		# Основной и яркий текст
-# 		# основной цвет текста (обычный код, prompt в терминале)
-# 		# редкий bright foreground / special UI
-# 		# самый яркий белый (контрастный текст, bold/bright)
-# 		# Акцентные цвета — семантика
-# 		# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-# 		# оранжевый — числа, константы, escape-последовательности, пути/URL
-# 		# жёлтый — классы, структуры, background поиска, WARN, иногда bold
-# 		# зелёный — строки, добавленное в diff, успех
-# 		# циан — типы, специальные конструкции, info, escape в строках
-# 		# синий — функции, методы, ссылки, основной акцентный цвет
-# 		# пурпурный — ключевые слова, control flow, операторы, storage
-# 		# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
-# 
-# 		
-# 			# Scheme = "theMe";
-# 			# author = "FoxyChipher";
-# 			# slug = "the-Me";
-# 		base16Scheme = {
-# 			base00 = "#060606";
-# 			base01 = "#363636";
-# 			base02 = "#565656";
-# 			base03 = "#767676";
-# 			base04 = "#a6a6a6";
-# 			base05 = "#d6d6d6";
-# 			base06 = "#f6f6f6";
-# 			base07 = "#f6f6f6";
-# 			base08 = "#d76667";
-# 			base09 = "#ff6d66";
-# 			base0A = "#fed666";
-# 			base0B = "#67b766";
-# 			base0C = "#61d6d6";
-# 			base0D = "#0666ff";
-# 			base0E = "#a666fd";
-# 			base0F = "#fd66a6";
-# 		};
-# 	};
-	stylix.targets.qt.standardDialogs = "xdgdesktopportal";
-
+	#	stylix = {
+	#		enable = true;
+	#		polarity = "dark";
+	#		targets = {
+	#			qt ={
+	#				enable = true;
+	#				platform = "qtct";
+	#				standardDialogs = "xdgdesktopportal";
+	#				# style = "kvantum";
+	#			};
+	#		};
+	#		opacity.terminal = 0.8;
+	#		fonts = {
+	#			sizes.applications = 12;
+	#			sizes.desktop = 12;
+	#			sizes.terminal = 12;
+	#			monospace =	{
+	#				package = pkgs.nerd-fonts.fira-code;
+	#				name = "FiraCode Nerd Font";
+	#			};
+	#			sansSerif = {
+	#				package = pkgs.nerd-fonts.fira-code;
+	#				name = "FiraCode Nerd Font";
+	#				};
+	#			serif = config.stylix.fonts.sansSerif;
+	#			emoji = {
+	#				package = pkgs.noto-fonts-color-emoji;
+	#				name = "Noto Color Emoji";
+	#			};
+	#		};
+	#		# Фоны и основные поверхности
+	#		# основной фон (editor, терминал, панели, tmux)
+	#		# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+	#		фон выделения текста (visual mode, selected text, поиск)
+	#		# Серые тона для текста и неактивных элементов
+	#		# комментарии, невидимые символы, cursorline, неактивные элементы
+	#		# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+	#		# Основной и яркий текст
+	#		# основной цвет текста (обычный код, prompt в терминале)
+	#		# редкий bright foreground / special UI
+	#		# самый яркий белый (контрастный текст, bold/bright)
+	#		# Акцентные цвета — семантика
+	#		# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+	#		# оранжевый — числа, константы, escape-последовательности, пути/URL
+	#		# жёлтый — классы, структуры, background поиска, WARN, иногда bold
+	#		# зелёный — строки, добавленное в diff, успех
+	#		# циан — типы, специальные конструкции, info, escape в строках
+	#		# синий — функции, методы, ссылки, основной акцентный цвет
+	#		# пурпурный — ключевые слова, control flow, операторы, storage
+	#		# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
+	#		
+	#		
+	#			# Scheme = "theMe";
+	#			# author = "FoxyChipher";
+	#			# slug = "the-Me";
+	#		base16Scheme = {
+	#			base00 = "#060606";
+	#			base01 = "#363636";
+	#			base02 = "#565656";
+	#			base03 = "#767676";
+	#			base04 = "#a6a6a6";
+	#			base05 = "#d6d6d6";
+	#			base06 = "#f6f6f6";
+	#			base07 = "#f6f6f6";
+	#			base08 = "#d76667";
+	#			base09 = "#ff6d66";
+	#			base0A = "#fed666";
+	#			base0B = "#67b766";
+	#			base0C = "#61d6d6";
+	#			base0D = "#0666ff";
+	#			base0E = "#a666fd";
+	#			base0F = "#fd66a6";
+	#		};
+	#};
+	
+	# stylix.targets.qt.standardDialogs = "xdgdesktopportal";
+	
+	programs.zarumet = {
+		enable = true;
+		settings = {
+			mpd = {
+				address = "localhost:6600";
+			};
+			colors = {
+			album = "#fae280";
+			artist = "#fae280";
+			border = "#fae280";
+			status = "#fae280";
+			title = "#fae280";
+			};
+			# pipewire = {
+			# 	bit_perfect_enabled = false;
+			# };
+		};
+	};
+	
 	programs.emacs = {
 	    enable = true;
 	    package = pkgs.emacs-gtk;
@@ -137,7 +187,7 @@ in
 	    formatter.command = lib.getExe pkgs.nixfmt;
 	  }];
 	};
-
+	
 	xdg = {
 		enable = true;
 		configFile = {
@@ -184,23 +234,23 @@ battery_color=92e79a
 media_player_format={title};{artist};{album}
 				'';
 			};
-# 			"xdg-desktop-portal-termfilechooser/config" = {
-# 				enable = true;
-# 				force = true;
-# 				text = ''
-# [filechooser]
-# cmd=${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-# default_dir=${config.home.homeDirectory}/Downloads
-# env=TERMCMD=kitty
-# open_mode=suggested
-# save_mode=last
-# '';
-# };
-			# "xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
-			# 	enable = true;
-			# 	executable = true;
-			# 	force = true;
-			# 	text = ''
+	#			"xdg-desktop-portal-termfilechooser/config" = {
+	#				enable = true;
+	#				force = true;
+	#				text = ''
+	# [filechooser]
+	# cmd=${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+	# default_dir=${config.home.homeDirectory}/Downloads
+	# env=TERMCMD=kitty
+	# open_mode=suggested
+	# save_mode=last
+	# '';
+	# };
+	#	"xdg-desktop-portal-termfilechooser/yazi-wrapper.sh" = {
+	#		enable = true;
+	#		executable = true;
+	#		force = true;
+	#		text = ''
 #!${pkgs.bash}/bin/bash
 # This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
 #
@@ -272,29 +322,6 @@ media_player_format={title};{artist};{album}
 			# };
 		};
 	};
-
-
-
-	systemd.user.services.rofi-polkit-agent = {
-	    Unit = {
-	      Description = "Rofi-based Polkit Authentication Agent";
-	      After = [ "graphical-session.target" ];
-	      Wants = [ "graphical-session.target" ];
-	    };
-	
-	    Service = {
-	      Type = "simple";
-	      ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
-	      Restart = "on-failure";
-	      RestartSec = 3;
-	    };
-	
-	    Install = {
-	      WantedBy = [ "graphical-session.target" ];
-	    };
-	  };
-
-
 	
 	# ========== WAYBAR ==========
 	programs.waybar = {
@@ -305,48 +332,49 @@ media_player_format={title};{artist};{album}
 				border: none;
 				border-radius: 0;
 				font-family: "FiraCode Nerd Font Mono";
+				font-weight: bold;
 				font-size: 14px;
 				min-height: 0;
 			}
 
 			window#waybar {
-				background: #16191C;
-				color: #AAB2BF;
+				background: #060606;
+				color: #f6f6f6;
 			}
 
 			#custom-launcher {
 				padding: 0 10px 0 12px;
-				color: #88C0D0;
+				color: #61d6d6;
 				font-size: 20px;
 			}
 
 			#custom-launcher:hover {
-				background: #2E3440;
+				background: #363636;
 			}
 
 			#workspaces button {
 				padding: 0 8px;
-				color: #AAB2BF;
+				color: #d6d6d6;
 				background: transparent;
 			}
 
 			#workspaces button:hover {
-				background: #2E3440;
+				background: #363636;
 			}
 
 			#workspaces button.active {
 				color: #88C0D0;
-				background: #2E3440;
+				background: #363636;
 			}
 
 			#workspaces button.focused {
-				color: #f5c2e7;
-				background: #2E3440;
+				color: #d76667;
+				background: #363636;
 				font-weight: bold;
 			}
 
 			#workspaces button.empty {
-				color: #4C566A;
+				color: #767676;
 			}
 
 			#workspaces button.current_output {
@@ -366,7 +394,7 @@ media_player_format={title};{artist};{album}
 
 			window#waybar.empty #window {
 				background-color: transparent;
-				color: #4C566A;
+				color: #767676;
 				font-style: normal;
 			}
 
@@ -528,7 +556,7 @@ media_player_format={title};{artist};{album}
 	programs.niri = {
 		settings = {
 			clipboard.disable-primary = false;
-			screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d %H:%M:%S.png";
+			screenshot-path = "~/Cooltuff/Pictures/Screenshots/%Y-%m-%d %H:%M:%S.png";
 			input = {
 				focus-follows-mouse.enable = true;
 				mod-key = "Super";
@@ -545,8 +573,8 @@ media_player_format={title};{artist};{album}
 				border = {
 					enable = true;
 					width = 4;
-					active.color = "#f5c2e7";
-					inactive.color = "#9399b2";
+					active.color = "#d76667";
+					inactive.color = "#363636";
 				};
 				gaps = 30;
 				struts = {
