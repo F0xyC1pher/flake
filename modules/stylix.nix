@@ -19,17 +19,18 @@
 			qt ={
 				enable = true;
 				platform = "qtct";
-				# standardDialogs = "xdgdesktopportal";
-				# style = "kvantum";
 			};
 		};
 		
 		opacity.terminal = 0.8;
 		
 		fonts = {
-			sizes.applications = 11;
-			sizes.desktop = 11;
-			sizes.terminal = 11;
+			sizes = let s = vars.fontSize; in {
+				applications	= s;
+				desktop			= s;
+				terminal		= s;
+				popups			= s;
+			};
 			serif.name = "${vars.fontName}";
 			monospace = config.stylix.fonts.serif;
 			sansSerif = config.stylix.fonts.serif;
