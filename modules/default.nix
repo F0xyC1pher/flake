@@ -2,6 +2,7 @@
 	config,
 	pkgs,
 	inputs,
+	vars,
 	...
 }: {
 	imports = [
@@ -21,5 +22,8 @@
 				./home.nix
 			];
 		};
+		home.username = "${vars.userName}";
+		home.homeDirectory = "/home/${vars.userName}";
+		home.stateVersion = "25.05";
 	};
 }
