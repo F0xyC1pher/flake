@@ -12,20 +12,33 @@ let
 	};
 		
 	rofi-polkit-agent = pkgs.writeShellScriptBin "rofi-polkit-agent" ''
-	    #!/usr/bin/env bash
-	    ${builtins.readFile rofi-polkit-script}
-	  '';
+		#!/usr/bin/env bash
+		${builtins.readFile rofi-polkit-script}
+	'';
 in
 {
-	environment.systemPackages = with pkgs; [
-		git
-		ntfs3g
-		micro-full
-		fd
-		btop
-		wget
-		tuigreet
-	];
+#	==========ENVIRONMENT==========
+	environment = {
+		
+#		==========PACKAGES==========
+		systemPackages = with pkgs; [
+			git
+			ntfs3g
+			micro-full
+			fd
+			btop
+			wget
+			tuigreet
+			gst_all_1.gstreamer
+			gst_all_1.gst-plugins-base
+			gst_all_1.gst-plugins-good
+			gst_all_1.gst-plugins-bad
+			gst_all_1.gst-plugins-ugly
+			gst_all_1.gst-libav
+			gst_all_1.gst-vaapi
+		];
+	};
+	
 	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
 		home.packages = with pkgs; [
 			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -102,25 +115,25 @@ in
 			cmd-polkit
 			niri-unstable
 			helix
-			];
-		home.stateVersion = "25.05";
+		];
+		
 		systemd.user.services.rofi-polkit-agent = {
-		    Unit = {
-		      Description = "Rofi-based Polkit Authentication Agent";
-		      After = [ "graphical-session.target" ];
-		      Wants = [ "graphical-session.target" ];
-		    };
-		
-		    Service = {
-		      Type = "simple";
-		      ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
-		      Restart = "on-failure";
-		      RestartSec = 3;
-		    };
-		
-		    Install = {
-		      WantedBy = [ "graphical-session.target" ];
-		    };
-		  };
+			Unit = {
+				Description = "Rofi-based Polkit Authentication Agent";
+				After = [ "graphical-session.target" ];
+				Wants = [ "graphical-session.target" ];
+			};
+			
+			Service = {
+				Type = "simple";
+				ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
+				Restart = "on-failure";
+				RestartSec = 3;
+			};
+			
+			Install = {
+				WantedBy = [ "graphical-session.target" ];
+			};
+		};
 	};
 }

@@ -88,9 +88,15 @@
 							extraSpecialArgs = { inherit inputs vars; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
-							sharedModules = [ mango.hmModules.mango zarumet.homeModules.default ];
+							# sharedModules = [ mango.hmModules.mango ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
-							users.${vars.userName} = import ./home; 
+							users.${vars.userName} = { ... }: {
+								imports = [
+									./home
+									inputs.zarumet.homeModules.default
+									mango.hmModules.mango
+								];
+							};
 						};
 					}
 				];

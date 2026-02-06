@@ -61,109 +61,52 @@
 			
 			mpd = {
 				enabled = true;
-			#	hostname = "127.0.0.1";
-			#	port = 6600;
+				hostname = "127.0.0.1";
+				port = 6600;
 			};
 			
 			youtube = {
 				enabled = true;
-			#	youtube_api_key = "твой_ключ_из_google_console";  # если нужно больше результатов
-			#	search_results = 20;
-			#	autoplay_enabled = false;
-			#	video_codec_priority = "vp9,h264";
+#				youtube_api_key = "твой_ключ_из_google_console";  # если нужно больше результатов
+#				search_results = 20;
+#				autoplay_enabled = false;
+#				video_codec_priority = "vp9,h264";
 			};
 		};
 	};
-	# ========== STYLIX ==========
-	#	stylix = {
-	#		enable = true;
-	#		polarity = "dark";
-	#		targets = {
-	#			qt ={
-	#				enable = true;
-	#				platform = "qtct";
-	#				standardDialogs = "xdgdesktopportal";
-	#				# style = "kvantum";
-	#			};
-	#		};
-	#		opacity.terminal = 0.8;
-	#		fonts = {
-	#			sizes.applications = 12;
-	#			sizes.desktop = 12;
-	#			sizes.terminal = 12;
-	#			monospace =	{
-	#				package = pkgs.nerd-fonts.fira-code;
-	#				name = "FiraCode Nerd Font";
-	#			};
-	#			sansSerif = {
-	#				package = pkgs.nerd-fonts.fira-code;
-	#				name = "FiraCode Nerd Font";
-	#				};
-	#			serif = config.stylix.fonts.sansSerif;
-	#			emoji = {
-	#				package = pkgs.noto-fonts-color-emoji;
-	#				name = "Noto Color Emoji";
-	#			};
-	#		};
-	#		# Фоны и основные поверхности
-	#		# основной фон (editor, терминал, панели, tmux)
-	#		# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-	#		фон выделения текста (visual mode, selected text, поиск)
-	#		# Серые тона для текста и неактивных элементов
-	#		# комментарии, невидимые символы, cursorline, неактивные элементы
-	#		# вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
-	#		# Основной и яркий текст
-	#		# основной цвет текста (обычный код, prompt в терминале)
-	#		# редкий bright foreground / special UI
-	#		# самый яркий белый (контрастный текст, bold/bright)
-	#		# Акцентные цвета — семантика
-	#		# красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-	#		# оранжевый — числа, константы, escape-последовательности, пути/URL
-	#		# жёлтый — классы, структуры, background поиска, WARN, иногда bold
-	#		# зелёный — строки, добавленное в diff, успех
-	#		# циан — типы, специальные конструкции, info, escape в строках
-	#		# синий — функции, методы, ссылки, основной акцентный цвет
-	#		# пурпурный — ключевые слова, control flow, операторы, storage
-	#		# розовый/малиновый — deprecated, теги, вставки другого языка, спец-символы
-	#		
-	#		
-	#			# Scheme = "theMe";
-	#			# author = "FoxyChipher";
-	#			# slug = "the-Me";
-	#		base16Scheme = {
-	#			base00 = "#060606";
-	#			base01 = "#363636";
-	#			base02 = "#565656";
-	#			base03 = "#767676";
-	#			base04 = "#a6a6a6";
-	#			base05 = "#d6d6d6";
-	#			base06 = "#f6f6f6";
-	#			base07 = "#f6f6f6";
-	#			base08 = "#d76667";
-	#			base09 = "#ff6d66";
-	#			base0A = "#fed666";
-	#			base0B = "#67b766";
-	#			base0C = "#61d6d6";
-	#			base0D = "#0666ff";
-	#			base0E = "#a666fd";
-	#			base0F = "#fd66a6";
-	#		};
-	#};
-	
-	# stylix.targets.qt.standardDialogs = "xdgdesktopportal";
 	
 	programs.zarumet = {
 		enable = true;
 		settings = {
 			mpd = {
-				address = "localhost:6600";
+				address = "127.0.0.1:6600";
 			};
 			colors = {
-			album = "#fae280";
-			artist = "#fae280";
-			border = "#fae280";
-			status = "#fae280";
-			title = "#fae280";
+				border = "#fae280";
+				song_title = "#fae280";
+				album = "#26a0a1";
+				artist = "#d67751";
+				border_title = "#8193af";
+				progress_filled = "#26a0a1";
+				progress_empty = "#1b1d0e";
+				paused = "#e16a7c";
+				playing = "#e16a7c";
+				stopped = "#e16a7c";
+				time_separator = "#e16a7c";
+				time_duration = "#e16a7c";
+				time_elapsed = "#e16a7c";
+				queue_selected_highlight = "#b18a4a";
+				queue_selected_text = "#1b1d0e";
+				queue_album = "#26a0a1";
+				queue_song_title = "#fae280";
+				queue_artist = "#d67751";
+				queue_position = "#e16a7c";
+				queue_duration = "#e16a7c";
+				top_accent = "#e16a7c";
+				volume = "#26a0a1";
+				volume_empty = "#1b1d0e";
+				mode = "#fae280";
+				track_duration = "#e16a7c";
 			};
 			# pipewire = {
 			# 	bit_perfect_enabled = false;
