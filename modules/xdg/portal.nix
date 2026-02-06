@@ -7,18 +7,6 @@
 }:
 {
 	xdg = {
-		mime.enable = true;
-		mime.defaultApplications = {
-			"inode/directory" = [ "yazi.desktop" ];
-		};
-		
-		terminal-exec = {
-			enable = true;
-			settings = {
-			default = ["kitty.desktop"];
-			};
-		};
-		
 		portal = {
 			enable = true;
 			xdgOpenUsePortal = true;
