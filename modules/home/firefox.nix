@@ -12,10 +12,10 @@ in
 			name = "Foxy_Chipher";
 			isDefault = true;
 			
-			extensions = with addons; [
+			extensions.packages = with addons; [
 				ublock-origin
 				sponsorblock
-				return-youtube-dislike
+				return-youtube-dislikes
 				stylus
 				violentmonkey
 				keepassxc-browser
