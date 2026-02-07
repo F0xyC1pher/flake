@@ -31,6 +31,11 @@
 			inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
 		};
 		
+		firefox-addons = {
+			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +67,7 @@
 		mango,
 		hyprland,
 		hyprland-plugins,
+		firefox-addons,
 		freesmlauncher,
 		zarumet,
 		rmpc,
@@ -79,10 +85,11 @@
 					./modules  # Модульная системная конфигурация
 					./hardware-configuration.nix # Основная хардваре конфигурация (автогенерация)
 					
-					stylix.nixosModules.stylix #собственно stylix
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
+					stylix.nixosModules.stylix #собственно stylix
 					niri.nixosModules.niri # niri как NixOS модуль
 					mango.nixosModules.mango
+					
 					{
 						home-manager = {
 							extraSpecialArgs = { inherit inputs vars; };
