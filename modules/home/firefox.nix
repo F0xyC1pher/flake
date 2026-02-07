@@ -4,12 +4,18 @@ let
   addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+	stylix.targets.firefox = {
+		enable = true;
+		# ← Самое важное: явно указываем имена профилей, к которым применять тему
+		profileNames = [ "${vars.userLongName}" ];   # если у тебя профиль называется иначе — пиши его имя
+	};
+	
 	programs.firefox = {
 		enable = true;
 		
-		profiles.default = {
+		profiles.${vars.userLongName} = {
 			id = 0;
-			name = "Foxy_Chipher";
+			name = "${vars.userLongName}";
 			isDefault = true;
 			
 			extensions.packages = with addons; [
