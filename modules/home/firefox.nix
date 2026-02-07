@@ -13,38 +13,35 @@ in
 			isDefault = true;
 			
 			extensions = with addons; [
-				ublock-origin;
-				sponsorblock;
-				return-youtube-dislike;
-				stylus;
-				violentmonkey;
-				keepassxc-browser;
-				sidebery;
-			]
+				ublock-origin
+				sponsorblock
+				return-youtube-dislike
+				stylus
+				violentmonkey
+				keepassxc-browser
+				sidebery
+			];
+			
+			settings = {
+				"browser.startup.homepage" = "about:blank";
+				"browser.newtabpage.enabled" = false;
+				"browser.search.defaultenginename" = "DuckDuckGo";
+				"extensions.pocket.enabled" = false;
+				"identity.fxaccounts.enabled" = true;  # без Mozilla-аккаунта
+				"toolkit.legacyUserProfileCustomizations.stylesheets" = true;  # userChrome
+				"sidebar.verticalTabs" = false;  # для Sidebery
+				"browser.tabs.closeWindowWithLastTab" = false;
+			};
 		};
 		
-		settings = {
-			"browser.startup.homepage" = "about:blank";
-			"browser.newtabpage.enabled" = false;
-			"browser.search.defaultenginename" = "DuckDuckGo";
-			"extensions.pocket.enabled" = false;
-			"identity.fxaccounts.enabled" = false;  # без Mozilla-аккаунта
-			"toolkit.legacyUserProfileCustomizations.stylesheets" = true;  # userChrome
-			"sidebar.verticalTabs" = true;  # для Sidebery
-			"browser.tabs.closeWindowWithLastTab" = false;
+		policies = {
+			DisableTelemetry = true;
+			NoDefaultBookmarks = true;
+			DisableFirefoxStudies = true;
+			EnableTrackingProtection = {
+				Value = true;
+				Locked = true;
+			};
 		};
 	};
-	
-	policies = {
-		DisableTelemetry = true;
-		NoDefaultBookmarks = true;
-		DisableFirefoxStudies = true;
-		EnableTrackingProtection = {
-			Value = true;
-			Locked = true;
-		};
-	};
-	
-	# Если используешь Stylus → можно закинуть userContent.css / userChrome.css
-	# home.file.".mozilla/firefox/default/chrome/userChrome.css".source = ./userChrome.css;
 }
