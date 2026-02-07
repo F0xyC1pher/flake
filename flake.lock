@@ -124,6 +124,28 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1770350627,
+        "narHash": "sha256-gaLX5akNsppWTRPw4Q+E8QxsjxMkMAU539wFdnI8i70=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "27854a8a99d8ef77d0d6c70cf9c7f99f1a3e8d8f",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -946,6 +968,7 @@
     },
     "root": {
       "inputs": {
+        "firefox-addons": "firefox-addons",
         "freesmlauncher": "freesmlauncher",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

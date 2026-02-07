@@ -61,7 +61,6 @@ in
 			swww
 			fzf
 			bluetuith
-			firefox
 			tor-browser
 			discord
 			discordo
