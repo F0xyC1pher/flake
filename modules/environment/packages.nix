@@ -2,7 +2,7 @@
 	inputs,
 	vars,
 	pkgs,
-	# config,
+	config,
 	...
 }:
 let

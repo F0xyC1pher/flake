@@ -90,6 +90,7 @@
 			"render"
 		];
 	};
+	
 	security = {
 		sudo.wheelNeedsPassword = false;
 		rtkit.enable = true;
@@ -104,49 +105,53 @@
 		
 		pipewire = {
 			enable = true;
-			alsa.enable = true;
-			alsa.support32Bit = true;
 			pulse.enable = true;
 			jack.enable = true;
 			wireplumber.enable = true;
+			alsa = {	
+				enable = true;
+				support32Bit = true;
+			};
 		};
 		
 		xserver = {
 			enable = true;
 			videoDrivers = ["nvidia"];
-			xkb.layout = "us,ru";
-			xkb.options = "grp:lalt_lshift_toggle;";
-			xkb.model = "pc86";
+			xkb = {
+				layout = "us,ru";
+				model = "pc86";
+				options = "grp:lalt_lshift_toggle;";
+			};
 		};
 		
-		# mpd = {
-		# 	enable = true;
-		# 	musicDirectory = "/home/${vars.userName}/CoolStuff/Music";
-		# 	user = "${vars.userName}";
-		# 	settings = {
-		# 		# Вот как теперь задаётся audio_output (это список, можно несколько блоков)
-		# 		audio_output = [
-		# 			{
-		# 				type = "pipewire";
-		# 				name = "My PipeWire Output";
-		# 				# Дополнительные параметры, если нужно (опционально):
-		# 				# format = "44100:16:2";      # пример
-		# 				# mixer_type = "software";
-		# 				# auto_resample = "no";
-		# 			}
-		# 		];
-		# 		# Если нужны другие простые параметры (не блоки), пиши их прямо здесь:
-		# 		# restore_paused = "yes";
-		# 		# max_playlist_length = "16384";
-		# 	};
-		# 	# network = {
-		# 	#     listenAddress = "any";          # если хочешь разрешить подключения не только с localhost
-		# 	#     startWhenNeeded = true;         # systemd socket activation — очень удобно
-		# 	#   };
-		# 	# Optional:
-		# #	network.listenAddress = "any"; # if you want to allow non-localhost connections
-		# 	startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
-		# };
+		mpd = {
+			enable = true;
+			musicDirectory = "/home/${vars.userName}/CoolStuff/Music";
+			user = "${vars.userName}";
+			settings = {
+				# Вот как теперь задаётся audio_output (это список, можно несколько блоков)
+				audio_output = [
+					{
+						type = "pipewire";
+						name = "My PipeWire Output";
+						# Дополнительные параметры, если нужно (опционально):
+						# format = "44100:16:2";      # пример
+						# mixer_type = "software";
+						# auto_resample = "no";
+					}
+				];
+				# Если нужны другие простые параметры (не блоки), пиши их прямо здесь:
+				# restore_paused = "yes";
+				# max_playlist_length = "16384";
+			};
+			# network = {
+			#     listenAddress = "any";          # если хочешь разрешить подключения не только с localhost
+			#     startWhenNeeded = true;         # systemd socket activation — очень удобно
+			#   };
+			# Optional:
+		#	network.listenAddress = "any"; # if you want to allow non-localhost connections
+			startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
+		};
 		
 		greetd = {
 			enable = true;
@@ -160,24 +165,10 @@
 		};
 	};
 	
-	# Важно: Mopidy как system service → PipeWire как user service
-	# Даём доступ к PipeWire сокету (uid 1000 = обычно первый юзер)
-	# systemd.services.mopidy = {
-	# 	environment = {
-	# 		XDG_RUNTIME_DIR = "/run/user/1000";  # ← подставь правильный uid (id -u ${vars.userName})
-	# 		PULSE_RUNTIME_PATH = "/run/user/1000/pulse";
-	# 	};
-	# 	serviceConfig = {
-	# 		# Дополнительно: если не поможет, добавь
-	# 		# SupplementaryGroups = [ "audio" "pipewire" ];  # иногда нужно
-	# 		Restart = "always";
-	# 	};
-	# };
-	
-	# systemd.services.mpd.environment = {
-	# 	# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-	# 	XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
-	# };
+	systemd.services.mpd.environment = {
+		# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+		XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+	};
 	
 	systemd.user.services.niri-flake-polkit.enable = false;
 	# ========== FONTS ==========
