@@ -73,20 +73,12 @@
 		rmpc,
 		... 
 	}@inputs: let
-	
-	system = "x86_64-linux";  # Добавляем определение system
-	
-	pkgs = nixpkgs.legacyPackages.${system};  # И pkgs для импорта пакетов
-	
-	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
-	
-	in {
-		packages.${system} = rec {
-			aimp = import ./packages/aimp.nix { inherit pkgs; };
-			config.allowUnfree = true;
-			# или если нужно передать больше: { inherit pkgs; extraArg = "value"; } — если функция принимает extraArg
-		};
 		
+		system = "x86_64-linux"; 
+		
+		vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+		
+	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
 				inherit system;
@@ -114,18 +106,6 @@
 								];
 							};
 						};
-					}
-					
-					{
-						nixpkgs.config = {
-							allowUnfree = true;  # or use allowUnfreePredicate above
-						};
-					}
-					
-					{
-						environment.systemPackages = [
-							self.packages.${system}.aimp
-						];
 					}
 				];
 			};
