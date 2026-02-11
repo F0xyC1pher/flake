@@ -73,13 +73,15 @@
 		rmpc,
 		... 
 	}@inputs: let
-	
-	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
-	
-	in	{
+		
+		system = "x86_64-linux"; 
+		
+		vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+		
+	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
+				inherit system;
 				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
 				modules = [
 					./modules  # Модульная системная конфигурация

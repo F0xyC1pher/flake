@@ -69,9 +69,9 @@
 			"1.1.1.1"
 			"1.0.0.1"
 		];
-		hosts = {
-			"94.131.119.22" = [ "grok.com" "x.ai" "accounts.x.ai" ];
-		};
+		# hosts = {
+		# 	"94.131.119.22" = [ "grok.com" "x.ai" "accounts.x.ai" ];
+		# };
 	};
 	
 	# ========== USER ==========
@@ -126,9 +126,10 @@
 		
 		mpd = {
 			enable = true;
-			musicDirectory = "/home/${vars.userName}/CoolStuff/Music";
 			user = "${vars.userName}";
 			settings = {
+				music_directory = "/home/${vars.userName}/CoolStuff/Music";
+				
 				# Вот как теперь задаётся audio_output (это список, можно несколько блоков)
 				audio_output = [
 					{
