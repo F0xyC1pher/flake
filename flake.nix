@@ -74,15 +74,19 @@
 		... 
 	}@inputs: let
 	
-	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
-	system = "x86_64-linux";
-	pkgs = nixpkgs.legacyPackages.${system};
+	system = "x86_64-linux";  # Добавляем определение system
 	
-	in	{
+	pkgs = nixpkgs.legacyPackages.${system};  # И pkgs для импорта пакетов
+	
+	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+	
+	in {
 		packages.${system} = rec {
-		  aimp = import ./packages/aimp.nix { inherit pkgs; };
-		  # или если нужно передать больше: { inherit pkgs; extraArg = "value"; } — если функция принимает extraArg
+			aimp = import ./packages/aimp.nix { inherit pkgs; };
+			config.allowUnfree = true;
+			# или если нужно передать больше: { inherit pkgs; extraArg = "value"; } — если функция принимает extraArg
 		};
+		
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
 				inherit system;
@@ -109,6 +113,12 @@
 									mango.hmModules.mango
 								];
 							};
+						};
+					}
+					
+					{
+						nixpkgs.config = {
+							allowUnfree = true;  # or use allowUnfreePredicate above
 						};
 					}
 					

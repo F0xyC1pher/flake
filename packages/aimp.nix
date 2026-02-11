@@ -1,22 +1,6 @@
-# packages/aimp.nix
-{ pkgs, stdenv, fetchurl, ... }:  # или { stdenv, fetchurl, ... } если хочешь явно
+{ pkgs, ... }:
 
-pkgs.stdenv.mkDerivation rec {
-  pname = "aimp";
-  version = "6.00.3037a";
-
-  src = pkgs.fetchurl {
-    url = "https://disk.yandex.ru/d/ClIiI_mP79J43w/v6.00%20Alpha/aimp-6.00-3037a-x86_64.pkg.tar.zst";
-    hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";  # рассчитай через `nix hash file --type sha256 --base32 файл`
-  };
-
-  nativeBuildInputs = with pkgs; [
-    autoPatchelfHook
-    makeWrapper
-    zstd
-    libarchive
-  ];
-
+let
   buildInputs = with pkgs; [
     gtk2 cairo pango atk gdk-pixbuf glib libpulseaudio alsa-lib libGL libGLU
     fontconfig freetype dbus libsecret curl openssl ffmpeg
@@ -24,38 +8,65 @@ pkgs.stdenv.mkDerivation rec {
   ] ++ (with pkgs.xorg; [
     libX11 libXext libXrender libXtst libXScrnSaver libXdamage libXfixes libXi
   ]);
+in
+
+pkgs.stdenv.mkDerivation rec {
+  pname = "aimp";
+  version = "nightly-2026-02-11";
+
+  src = pkgs.fetchurl {
+    url = "https://www.aimp.ru/files/windows/builds/aimp-nightly-x86_64.pkg.tar.zst";
+    hash = "sha256-ooYvVtOgbfs/DE3oQsdvshKE/jsdH63vbFLUxEhRWcw=";  # Your SRI hash
+  };
+
+  nativeBuildInputs = with pkgs; [
+    autoPatchelfHook
+    makeWrapper
+    zstd
+  ];
 
   dontConfigure = true;
   dontBuild = true;
 
   unpackPhase = ''
-    mkdir -p unpack
+    mkdir unpack
     cd unpack
-    tar --use-compress-program=${pkgs.zstd}/bin/zstd -xf $src
+    ${pkgs.zstd}/bin/zstd -d -c $src | tar x
   '';
 
   installPhase = ''
-    mkdir -p $out/opt/aimp $out/bin $out/share
-
-    cp -r unpack/usr/* $out/opt/aimp/ 2>/dev/null || cp -r unpack/* $out/opt/aimp/
-
-    BIN=$(find $out/opt/aimp -type f -executable -name "*aimp*" | head -1)
-    if [ -f "$BIN" ]; then
-      makeWrapper "$BIN" $out/bin/aimp \
-        --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs} \
-        --set XDG_DATA_DIRS "$$   out/share:   $${pkgs.gtk2}/share:${pkgs.hicolor-icon-theme}/share"
-    else
-      echo "Ошибка: бинарник aimp не найден!" >&2
+    # Find the main app dir (usually /opt/aimp)
+    APPDIR=$(find . -type d -name "*aimp*" | head -1)
+    if [ -z "$APPDIR" ]; then
+      echo "Error: No aimp directory found!" >&2
       exit 1
     fi
 
-    cp -r $out/opt/aimp/share/* $out/share/ 2>/dev/null || true
+    mkdir -p $out/opt/aimp $out/bin $out/share
+
+    # Copy app files
+    cp -r "$APPDIR"/* $out/opt/aimp/ || true
+
+    # Copy any share/icons
+    cp -r ./{usr,opt}/share/* $out/share/ 2>/dev/null || true
+
+    # Find binary and wrap
+    BIN=$(find $out/opt/aimp -type f -executable -name "*aimp*" -print -quit)
+    if [ -n "$BIN" ]; then
+      makeWrapper "$BIN" $out/bin/aimp \
+        --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath buildInputs} \
+        --prefix XDG_DATA_DIRS : "$out/share:${pkgs.gtk2}/share:${pkgs.hicolor-icon-theme}/share"
+    else
+      echo "Error: No aimp binary found!" >&2
+      exit 1
+    fi
   '';
 
-  meta = {
-    description = "AIMP 6 alpha native Linux (из Arch pkg.tar.zst)";
-    homepage = "https://www.aimp.ru/";
-    platforms = [ "x86_64-linux" ];
+  meta = with pkgs.lib; {
+    description = "AIMP music player (nightly Arch build)";
+    homepage = "https://www.aimp.ru";
+    license = licenses.unfree;
+    platforms = platforms.linux;
     mainProgram = "aimp";
   };
 }
