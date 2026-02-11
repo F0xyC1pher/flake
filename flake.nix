@@ -75,11 +75,17 @@
 	}@inputs: let
 	
 	vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+	system = "x86_64-linux";
+	pkgs = nixpkgs.legacyPackages.${system};
 	
 	in	{
+		packages.${system} = rec {
+		  aimp = import ./packages/aimp.nix { inherit pkgs; };
+		  # или если нужно передать больше: { inherit pkgs; extraArg = "value"; } — если функция принимает extraArg
+		};
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";  # Укажите вашу архитектуру, если отличается
+				inherit system;
 				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
 				modules = [
 					./modules  # Модульная системная конфигурация
@@ -104,6 +110,12 @@
 								];
 							};
 						};
+					}
+					
+					{
+						environment.systemPackages = [
+							self.packages.${system}.aimp
+						];
 					}
 				];
 			};
