@@ -23,13 +23,14 @@ in
 		#==========PACKAGES==========
 		systemPackages = with pkgs; [
 			(pkgs.callPackage ./packages/aimp.nix { })
+			(pkgs.callPackage ./packages/scripts.nix { })
+			rofi-polkit-agent
 		];
 	};
 	
 	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
-		home.packages = with pkgs; [
-			rofi-polkit-agent
-		];
+		# home.packages = with pkgs; [
+		# ];
 		
 		systemd.user.services.rofi-polkit-agent = {
 			Unit = {

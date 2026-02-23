@@ -25,11 +25,9 @@
 			gst_all_1.gst-plugins-ugly
 			gst_all_1.gst-libav
 			gst_all_1.gst-vaapi
-		];
-	};
-	
-	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
-		home.packages = with pkgs; [
+			pciutils
+			usbutils
+
 			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 			ayugram-desktop
@@ -111,4 +109,10 @@
 			gst_all_1.gst-vaapi
 		];
 	};
+	
+	# home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
+	# 	home.packages = with pkgs; [
+	# 		
+	# 	];
+	# };
 }

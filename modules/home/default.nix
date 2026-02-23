@@ -7,9 +7,12 @@
 	...
 }: {
 	imports = [
-		./home.nix
-		./waybar
+		./hyprland
+		./mango
 		./niri
+		# ./waybar
+		./yazi
 		./firefox.nix
+		./home.nix
 	];
 }
