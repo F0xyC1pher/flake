@@ -42,7 +42,8 @@
 			device = "/dev/sda";
 		};
 	};
-	
+
+	hardware.parallels.enable = true;
 
 	# ========== LOCALE ==========
 	console = {
