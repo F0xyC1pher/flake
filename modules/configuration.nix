@@ -72,6 +72,10 @@
 		# hosts = {
 		# 	"94.131.119.22" = [ "grok.com" "x.ai" "accounts.x.ai" ];
 		# };
+		wireless = {
+			enable = true;
+			userControlled = true;
+		};
 	};
 	
 	# ========== USER ==========
