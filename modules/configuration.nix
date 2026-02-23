@@ -285,25 +285,24 @@
 			enableVirtualCamera = true;
 		};
 		
-		yazi = {
-			enable = true;
-			plugins = {
-				inherit (pkgs.yaziPlugins) sudo;
-				inherit (pkgs.yaziPlugins) glow;
-				inherit (pkgs.yaziPlugins) piper;
-				inherit (pkgs.yaziPlugins) mount;
-				inherit (pkgs.yaziPlugins) gitui;
-				inherit (pkgs.yaziPlugins) chmod;
-				inherit (pkgs.yaziPlugins) miller;
-				inherit (pkgs.yaziPlugins) yatline;
-				inherit (pkgs.yaziPlugins) mime-ext;
-				inherit (pkgs.yaziPlugins) compress;
-				inherit (pkgs.yaziPlugins) mediainfo;
-				inherit (pkgs.yaziPlugins) toggle-pane;
-				inherit (pkgs.yaziPlugins) full-border;
-				# inherit (pkgs.yaziPlugins) ;
-			};
-		};
+		# yazi = {
+		# 	enable = true;
+		# 	plugins = with pkgs.yaziPlugins; {
+		# 		sudo = sudo;
+		# 		glow = glow;
+		# 		piper = piper;
+		# 		mount = mount;
+		# 		gitui = gitui;
+		# 		chmod = chmod;
+		# 		miller = miller;
+		# 		yatline = yatline;
+		# 		mime-ext = mime-ext;
+		# 		compress = compress;
+		# 		mediainfo = mediainfo;
+		# 		toggle-pane = toggle-pane;
+		# 		full-border = full-border;
+		# 	};
+		# };
 		
 		appimage = {
 			enable = true;
