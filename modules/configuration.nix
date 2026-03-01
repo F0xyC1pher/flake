@@ -22,11 +22,11 @@
 				
 			substituters = [
 				"https://cache.nixos.org/"
-				# "https://cache.garnix.io"
+				"https://cache.garnix.io"
 			];
 			trusted-public-keys = [
 				"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-				# "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+				"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
 			];
 		};
 	};
@@ -51,8 +51,8 @@
 		packages = with pkgs; [ terminus_font ];
 		useXkbConfig = true;
 		earlySetup = true;
-		# keyMap = "ru";
 	};
+	
 	i18n.defaultLocale = "ru_RU.UTF-8";
 	i18n.supportedLocales = ["all"];
 	
@@ -218,18 +218,18 @@
 			package = pkgs.niri-unstable;
 		};
 		
-		mango = {
-			enable = true;
-		};
+		# mango = {
+		# 	enable = true;
+		# };
 		
-		hyprland = {
-			enable = true;
-			xwayland.enable = true;
-			withUWSM = false;
-			package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-		};
+		# hyprland = {
+		# 	enable = true;
+		# 	xwayland.enable = true;
+		# 	withUWSM = false;
+		# 	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+		# };
 		
-		uwsm.enable = true;
+		# uwsm.enable = true;
 		
 		steam = {
 			enable = true;

@@ -19,17 +19,19 @@
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs
 		};
+
+		awww.url = "git+https://codeberg.org/LGFae/awww";
 		
-		mango = {
-			url = "github:DreamMaoMao/mango";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		# mango = {
+		# 	url = "github:DreamMaoMao/mango";
+		# 	inputs.nixpkgs.follows = "nixpkgs";
+		# };
 		
-		hyprland.url = "github:hyprwm/Hyprland";
-		hyprland-plugins = {
-			url = "github:hyprwm/hyprland-plugins";
-			inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
-		};
+		# hyprland.url = "github:hyprwm/Hyprland";
+		# hyprland-plugins = {
+		# 	url = "github:hyprwm/hyprland-plugins";
+		# 	inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
+		# };
 		
 		firefox-addons = {
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -50,6 +52,7 @@
 			url = "github:Immelancholy/zarumet";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		
 	# ayugram-desktop = {
 	# 	type = "git";
 	# 	submodules = true;
@@ -64,9 +67,10 @@
 		home-manager,
 		stylix,
 		niri,
-		mango,
-		hyprland,
-		hyprland-plugins,
+		awww,
+		# mango,
+		# hyprland,
+		# hyprland-plugins,
 		firefox-addons,
 		freesmlauncher,
 		zarumet,
@@ -90,7 +94,7 @@
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
 					stylix.nixosModules.stylix #собственно stylix
 					niri.nixosModules.niri # niri как NixOS модуль
-					mango.nixosModules.mango
+					# mango.nixosModules.mango
 					
 					{
 						home-manager = {
@@ -102,7 +106,7 @@
 							users.${vars.userName} = { ... }: {
 								imports = [
 									inputs.zarumet.homeModules.default
-									mango.hmModules.mango
+									# mango.hmModules.mango
 								];
 							};
 						};
