@@ -12,32 +12,25 @@
 #		==========PACKAGES==========
 		systemPackages = with pkgs; [
 			git
+			git-credential-keepassxc
 			ntfs3g
 			micro-full
 			fd
 			btop
 			wget
 			tuigreet
-			gst_all_1.gstreamer
-			gst_all_1.gst-plugins-base
-			gst_all_1.gst-plugins-good
-			gst_all_1.gst-plugins-bad
-			gst_all_1.gst-plugins-ugly
-			gst_all_1.gst-libav
-			gst_all_1.gst-vaapi
 			pciutils
 			usbutils
-			musikcube
 			rustdesk-flutter
-			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+			# inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 			ayugram-desktop
-			cmd-polkit
 			jq
 			yazi
 			kitty
 			sublime4
 			vscodium
+			musikcube
 			nixd
 			nil
 			nixfmt
@@ -76,17 +69,14 @@
 			ripgrep-all
 			pavucontrol
 			fastfetch
+			cliphist
 			wl-clipboard
 			wl-clipboard-x11
 			wl-clip-persist
-			cliphist
 			wayland-utils
+			helix
 			slurp
-			xwayland-satellite-unstable
 			keepassxc
-			git-credential-keepassxc
-			cmd-polkit 
-			jq
 			rofi
 			swaylock
 			swaynotificationcenter
@@ -100,8 +90,36 @@
 			nvidia-vaapi-driver
 			cmd-polkit
 			niri-unstable
-			helix
+			xwayland-satellite-unstable
 			
+			# required for preview
+			    file
+			    less
+			    bat
+			    glow
+			
+			    # media preview
+			    mediainfo
+			    ffmpegthumbnailer
+			    ffmpeg
+			
+			    # archives
+			    p7zip
+			    unzip
+			    zip
+			    xz
+			    gzip
+			
+			    # git integration
+			    git
+			    gitui
+			
+			    # utils
+			    miller
+			
+				poppler
+				imagemagick
+				exiftool
 			gst_all_1.gstreamer
 			gst_all_1.gst-plugins-base
 			gst_all_1.gst-plugins-good
