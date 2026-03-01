@@ -27,7 +27,6 @@
 			gst_all_1.gst-vaapi
 			pciutils
 			usbutils
-			
 			musikcube
 			rustdesk-flutter
 			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -55,15 +54,15 @@
 			discord-gamesdk
 			discord-rpc
 			arrpc
-					# ripcord
-					# overlayed
-					# goofcord
-					# mpvScripts.mpv-discord
-					# moonlight
-					# mprisence
-					# abaddon
-					# legcord
-					# equicord
+				# ripcord
+				# overlayed
+				# goofcord
+				# mpvScripts.mpv-discord
+				# moonlight
+				# mprisence
+				# abaddon
+				# legcord
+				# equicord
 			babelfish
 			ffmpeg-full
 			imagemagick
@@ -102,6 +101,7 @@
 			cmd-polkit
 			niri-unstable
 			helix
+			
 			gst_all_1.gstreamer
 			gst_all_1.gst-plugins-base
 			gst_all_1.gst-plugins-good

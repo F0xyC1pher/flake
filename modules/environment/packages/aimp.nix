@@ -7,10 +7,8 @@ let
     soxr libao libogg libvorbis
     openssl ffmpeg harfbuzz zlib sqlite
     stdenv.cc.cc.lib
-  ] ++ (with pkgs.xorg; [
-    libX11 libXext libXrender libXtst
-    libXScrnSaver libXdamage libXfixes libXi
-  ]);
+    libx11 libxext libxrender libxtst libxscrnsaver libxdamage libxfixes libxi
+  ];
 
   libraryPath = pkgs.lib.makeLibraryPath runtimeDeps;
 in
