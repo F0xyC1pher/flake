@@ -27,28 +27,4 @@ in
 			rofi-polkit-agent
 		];
 	};
-	
-	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
-		# home.packages = with pkgs; [
-		# ];
-		
-		systemd.user.services.rofi-polkit-agent = {
-			Unit = {
-				Description = "Rofi-based Polkit Authentication Agent";
-				After = [ "graphical-session.target" ];
-				Wants = [ "graphical-session.target" ];
-			};
-			
-			Service = {
-				Type = "simple";
-				ExecStart = "${rofi-polkit-agent}/bin/rofi-polkit-agent";
-				Restart = "on-failure";
-				RestartSec = 3;
-			};
-			
-			Install = {
-				WantedBy = [ "graphical-session.target" ];
-			};
-		};
-	};
 }

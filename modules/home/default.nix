@@ -7,12 +7,13 @@
 	...
 }: {
 	imports = [
-		./hyprland
-		./mango
+		# ./hyprland
+		# ./mango
 		./micro
 		./niri
 		# ./waybar
 		./yazi
+		./zarumet
 		./firefox.nix
 		./home.nix
 	];

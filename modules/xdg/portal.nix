@@ -21,8 +21,6 @@
 					"org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
 					"org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
 					"org.freedesktop.impl.portal.Settings"    = [ "gtk" ];
-					
-					# запасной вариант на случай, если конкретный интерфейс не найден
 					default = [ "termfilechooser" "wlr" "gtk" ];
 				};
 			};
@@ -72,7 +70,11 @@
 			portal = {
 				enable = true;
 				xdgOpenUsePortal = true;
-				
+				extraPortals = lib.mkForce [
+					pkgs.xdg-desktop-portal-termfilechooser
+					pkgs.xdg-desktop-portal-wlr
+					pkgs.xdg-desktop-portal-gtk
+				];
 				config = {
 					common = lib.mkForce {
 						"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
