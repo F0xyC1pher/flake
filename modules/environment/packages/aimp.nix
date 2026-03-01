@@ -3,12 +3,8 @@
 let
   runtimeDeps = with pkgs; [
     gtk3 gtk2 cairo pango atk gdk-pixbuf glib
-    libpulseaudio alsa-lib
-    libGL libGLU
-    fontconfig freetype dbus libsecret
-    curl
-      curl.out
-      curl.dev
+    libpulseaudio alsa-lib libGL libGLU fontconfig freetype dbus libsecret curl
+    soxr libao libogg libvorbis
     openssl ffmpeg harfbuzz zlib sqlite
     stdenv.cc.cc.lib
   ] ++ (with pkgs.xorg; [
@@ -21,7 +17,7 @@ in
 
 pkgs.stdenv.mkDerivation rec {
   pname = "aimp";
-  version = "nightly-2026-02-11";
+  version = "nightly";
 
   src = pkgs.fetchurl {
     url = "https://www.aimp.ru/files/windows/builds/aimp-nightly-x86_64.pkg.tar.zst";
@@ -43,7 +39,7 @@ pkgs.stdenv.mkDerivation rec {
 
  autoPatchelfIgnoreMissingDeps = false;
   
-  autoPatchelfSearchPath = runtimeDeps;
+  autoPatchelfSearchPath = map (p: "${p}/lib") runtimeDeps;
   dontConfigure = true;
   dontBuild = true;
 
@@ -57,7 +53,8 @@ pkgs.stdenv.mkDerivation rec {
     cp ${pkgs.curl.out}/lib/libcurl.so.4 $out/opt/aimp/
   
     makeWrapper "$out/opt/aimp/AIMP" $out/bin/aimp \
-      --set XDG_DATA_DIRS "$out/usr/share:${pkgs.gtk3}/share"
+      --set XDG_DATA_DIRS "$out/usr/share:${pkgs.gtk3}/share" \
+      --set LD_LIBRARY_PATH ${libraryPath}
   '';
 	postFixup = ''
 	  patchelf \

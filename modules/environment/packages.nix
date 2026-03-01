@@ -27,7 +27,9 @@
 			gst_all_1.gst-vaapi
 			pciutils
 			usbutils
-
+			
+			musikcube
+			rustdesk-flutter
 			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 			ayugram-desktop
