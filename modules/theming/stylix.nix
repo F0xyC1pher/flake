@@ -20,6 +20,7 @@
 				enable = true;
 				platform = "qtct";
 			};
+			micro.enable = false
 		};
 		
 		opacity.terminal = 0.8;
