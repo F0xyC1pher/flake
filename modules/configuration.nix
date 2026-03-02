@@ -186,8 +186,10 @@
 			nerd-fonts.fira-code
 			fira-code-symbols
 			font-awesome
+			inter
 			noto-fonts
 			noto-fonts-color-emoji
+			noto-fonts-cjk-sans
 		];
 		
 		fontconfig = {
