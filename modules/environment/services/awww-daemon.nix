@@ -13,7 +13,7 @@ systemd.user.services.awww-daemon = {
     wantedBy = [ "graphical-session.target" ];
 
     serviceConfig = {
-      ExecStart = "inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww/bin/awww-daemon";
+      ExecStart = "${inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww-daemon";
       Restart = "on-failure";
       RestartSec = 1;
     };
