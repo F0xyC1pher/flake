@@ -4,19 +4,17 @@
     enable = true;
     systemd.enable = true;
     settings = [{
-    height = 1;
-    layer = "top";
-    position = "bottom";
+      height = 1;
+      layer = "top";
+      position = "bottom";
       modules-left = [ "backlight" "wireplumber" "wireplumber#source" "niri/language" "bluetooth" ];
       modules-center = [ "niri/workspaces" ];
       modules-right = [ "tray" "clock#time" "custom/clock" "battery" ];
-
       backlight = {
         device = "intel_backlight";
         format = "{icon} {percent}%";
         format-icons = [ " " " " ];
       };
-
       bluetooth = {
         format = "󰂯 {status}";
         format-connected = "󰂯 {device_battery_percentage}%";
@@ -25,59 +23,51 @@
         tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
         tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
       };
-
       tray = {
         icon-size = 18;
         spacing = 12;
       };
-
       battery = {
         format = "{icon} {capacity}%";
         format-alt = "{icon} {time} ";
-        format-charging = "󰂅  {capacity}%";
+        format-charging = "󰂅 {capacity}%";
         format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
         states = {
           critical = 15;
           warning = 30;
         };
       };
-
       "clock#time" = {
-        format = "󰸘  {:%b %e}";
+        format = "󰸘 {:%b %e}";
         tooltip-format = "<tt>{calendar}</tt>";
         interval = 1;
       };
-
       "custom/clock" = {
-        exec = "date +\"  %H•%M\"";
+        exec = "date +\" %H•%M•%S\"";
         interval = 1;
       };
-
       "niri/language" = {
-        format = "󰌌  {}";
+        format = "󰌌 {}";
         format-en = "en";
         format-ru = "ru";
         keyboard-name = "kanata";
         interval = 1;
       };
-
       wireplumber = {
-        format = "{icon}  {volume}%";
+        format = "{icon} {volume}%";
         format-icons = [ "" "" "" ];
-        format-muted = "󰝟  mute";
+        format-muted = "󰝟 mute";
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         scroll-step = 3;
         max-volume = 100.0;
       };
-
       "wireplumber#source" = {
         node-type = "Audio/Source";
         format = "󰍬 {volume}%";
-        format-muted = "󰍭  mute";
+        format-muted = "󰍭 mute";
         on-click-right = "wpctl set-mute @default_audio_source@ toggle";
         scroll-step = 3;
       };
-
       "niri/workspaces" = {
         on-click = "activate";
         format = "{icon}";
@@ -95,8 +85,7 @@
           "11" = "一";
         };
         persistent-workspaces = {
-          "eDP-1" = [ 1 2 3 4 5 6 7 8 9 10 ];
-          "DP-2" = [ 1 2 3 4 5 6 7 8 9 10 ];
+          "DVI-D-1" = [ 1 2 3 4 5 6 7 8 9 10 ];
         };
       };
     }];
@@ -106,57 +95,49 @@
         font-weight: 700;
         font-size: 16px;
       }
-
       window#waybar {
         background-color: transparent;
-        color: #d7c4a0;
+        color: #d6d6d6;
       }
-
       window#waybar > box {
         margin: 0px 0px 0px 0px;
-        background-color: #16130e;
+        background-color: #161616;
         border-top: 1px;
         border-radius: 0px;
         border-style: solid;
-        border-color: #38342b;
+        border-color: #363636;
         padding-right: 8px;
         padding-left: 8px;
       }
-
       #workspaces button {
-        background-color: #4c4639;
-        border-radius: 20px;
+        background-color: #767676;
+        border-radius: 0px;
         margin: 2px;
         padding: 0px;
         padding-right: 5px;
         padding-left: 5px;
-        color: #d7c4a0;
+        color: #d6d6d6;
         min-height: 25px;
         transition: all 0.4s ease-in-out;
       }
-
       #workspaces button label{
-        color: #d7c4a0;
+        color: #d6d6d6;
         font-weight: bolder;
       }
-
       #workspaces button.empty{
-        background: #38342b;
+        background: #363636;
       }
-
       #workspaces button.active {
-        background: radial-gradient(circle, #d7c4a0 0%, #c88800 50%, #50462a 100%); 
+        background: radial-gradient(line, #d6d6d6 0%, #fed666 50%, #767676 100%);
         background-size: 400% 400%;
         animation: gradient 5s linear infinite;
         transition: all 0.3s ease-in-out;
-        border-color: #45475a;
+        border-color: #a6a6a6;
       }
-
       #workspaces button.active label {
-        color: #4c4639;
+        color: #161616;
         font-weight: bolder;
       }
-
       @keyframes gradient {
         0% {
           background-position: 0px 50px;
@@ -168,7 +149,6 @@
           background-position: 0px 50px;
         }
       }
-
       @keyframes gradient_f {
         0% {
           background-position: 0px 200px;
@@ -180,7 +160,6 @@
           background-position: 400px 200px;
         }
       }
-
       @keyframes gradient_f_nh {
         0% {
           background-position: 0px 200px;
@@ -189,7 +168,6 @@
           background-position: 200px 200px;
         }
       }
-
       #battery,
       #backlight,
       #clock,
@@ -204,124 +182,112 @@
       #tray,
       #image-network,
       #tray {
-        color: #d7c4a0;
-        background: #38342b;
+        color: #161616;
+        background: #d76667;
         padding: 0 0.4em;
         padding-top: 0px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #ff6d66;
         border: 1px;
         min-height: 30px;
       }
-
       #tray {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
-        background: #38342b;
+        border-color: #767676;
+        background: #363636;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 20 4 4 20px;
+        border-radius: 0px;
       }
-
       #battery {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4 20 20 4px;
+        border-radius: 0px;
       }
-
       #backlight {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
-        background: #38342b;
+        border-color: #767676;
+        background: #363636;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 20 4 4 20px;
+        border-radius: 0px;
       }
-
       #clock {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
-        background: #38342b;
+        border-color: #767676;
+        background: #363636;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4px;
+        border-radius: 0px;
       }
-
       #custom-clock {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4px;
+        border-radius: 0px;
       }
-
       #language {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4px;
+        border-radius: 0px;
       }
-
       #wireplumber {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4px;
+        border-radius: 0px;
       }
-
       #bluetooth {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
-        background: #38342b;
+        border-color: #767676;
+        background: #363636;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
-        border-radius: 4 20 20 4px;
+        border-radius: 0px;
       }
-
       #image-network {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 2 3 2px;
         padding: 0 0.4em;
       }
-
       #custom-separator {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         padding: 0px;
         margin: 0px;
       }
-
       #custom-launcher {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin-left: 0px;
         margin-right: 0px;
         padding-right: 0.6em;
-        border-radius: 0 20 20 0px;
+        border-radius: 0px;
       }
-
       #workspaces {
         border: 1px;
         border-style: solid;
-        border-color: #4c4639;
+        border-color: #767676;
         margin: 3 0 3 0px;
-        border-radius: 20px;
+        border-radius: 0px;
       }
     '';
   };
