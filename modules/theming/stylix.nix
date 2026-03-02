@@ -2,8 +2,12 @@
 { config, pkgs, lib, inputs, vars, ... }:
 {
 	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
-		stylix.targets.qt.standardDialogs = "xdgdesktopportal";
-		stylix.targets.micro.enable = true;
+		stylix = {
+			targets.qt.standardDialogs = "xdgdesktopportal";
+			targets.micro.enable = true;
+			opacity.terminal = 0.8;
+			
+		};
 	};
 	
 	stylix = {
