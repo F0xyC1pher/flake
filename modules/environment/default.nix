@@ -5,9 +5,9 @@
 	...
 }: {
 	imports = [
+		./services
 		./packages-custom.nix
 		./packages.nix
-		./services.nix
 		./variables.nix
 	];
 }
