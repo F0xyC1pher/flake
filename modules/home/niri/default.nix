@@ -8,6 +8,7 @@
 }: {
 	imports = [
 		./binds.nix
+		./window-rules.nix
 	];
 	# ========== NIRI ==========
 	programs.niri = {
@@ -22,6 +23,29 @@
 				keyboard.xkb = {
 					layout = "us,ru";
 					options = "grp:alt_shift_toggle";
+				};
+			};
+			
+			outputs = {
+				"DVI-D-1" = {
+					enable = true;
+					variable-refresh-rate = false;
+					scale = 1;
+
+					mode = {
+						width = 1600;
+						height = 900;
+						refresh = 60.000;
+					};
+					position = {
+						x = 0;
+						y = 0;
+					};
+					
+					transform = {
+						flipped = false;
+						rotation = 0;
+					};
 				};
 			};
 			
