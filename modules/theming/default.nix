@@ -6,7 +6,5 @@
 }: {
 	imports = [
 		./stylix.nix
-		# ./development
-		# ./gaming
 	];
 }

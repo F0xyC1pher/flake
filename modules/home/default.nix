@@ -11,7 +11,7 @@
 		# ./mango
 		./micro
 		./niri
-		# ./waybar
+		./waybar
 		./yazi
 		./zarumet
 		./firefox.nix
