@@ -4,6 +4,9 @@ let
   addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	stylix.targets.firefox = {
 		enable = true;
 		# ← Самое важное: явно указываем имена профилей, к которым применять тему
@@ -61,5 +64,7 @@ in
 				Locked = true;
 			};
 		};
+	};
+	};
 	};
 }

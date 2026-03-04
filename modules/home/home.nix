@@ -1,5 +1,8 @@
 { lib, config, pkgs, inputs, vars, ... }:
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	# ========== HOME ==========	
 	# gtk = {
 	# 	enable = true;
@@ -139,4 +142,6 @@
 		niri msg action reload-config 2>/dev/null || true
 		fi
 	'';
+};
+};
 }
