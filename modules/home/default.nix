@@ -16,9 +16,6 @@
 		./zarumet
 		./firefox.nix
 		./home.nix
+		./home-manager.nix
 	];
-	
-	programs = {
-		micro.enable = true;
-	};
 }

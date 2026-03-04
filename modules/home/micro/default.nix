@@ -1,5 +1,8 @@
 { lib, config, pkgs, inputs, vars, ... }:
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	programs.micro = {
 		enable = true;
 		settings = {
@@ -8,5 +11,7 @@
 			tabstospaces = false;  # Конвертировать tabs в spaces (default false)
 			tabsize = 4;  # Ширина tab
 		};
+	};
+	};
 	};
 }

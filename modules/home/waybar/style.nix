@@ -1,5 +1,8 @@
 { lib, config, pkgs, inputs, vars, ... }:
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	programs.waybar = {
 		style = ''
 			* {
@@ -131,5 +134,7 @@
 				color: #BF616A;
 			}
 		'';
+	};
+	};
 	};
 }

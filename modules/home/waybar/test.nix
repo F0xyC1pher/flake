@@ -1,5 +1,8 @@
 { lib, config, pkgs, inputs, vars, ... }:
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -290,5 +293,7 @@
         border-radius: 0px;
       }
     '';
+  };
+  };
   };
 }

@@ -1,5 +1,8 @@
 { lib, config, pkgs, inputs, vars, ... }:
 {
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	programs.zarumet = {
 		enable = true;
 		settings = {
@@ -37,5 +40,7 @@
 			# 	bit_perfect_enabled = false;
 			# };
 		};
+	};
+	};
 	};
 }

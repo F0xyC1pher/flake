@@ -139,7 +139,7 @@
 				audio_output = [
 					{
 						type = "pipewire";
-						name = "My PipeWire Output";
+						name = "PipeWire Output";
 						# Дополнительные параметры, если нужно (опционально):
 						# format = "44100:16:2";      # пример
 						# mixer_type = "software";
@@ -176,20 +176,20 @@
 		XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
 	};
 	
-	systemd.user.services.niri-flake-polkit.enable = false;
 	# ========== FONTS ==========
 	fonts = {
 		packages = with pkgs; [
-			monocraft
-			minecraftia
-			nerd-fonts.departure-mono
-			nerd-fonts.fira-code
 			fira-code-symbols
-			font-awesome
-			inter
+			nerd-fonts.fira-code
+			nerd-fonts.departure-mono
 			noto-fonts
 			noto-fonts-color-emoji
 			noto-fonts-cjk-sans
+			font-awesome
+			cozette
+			monocraft
+			minecraftia
+			inter
 		];
 		
 		fontconfig = {
@@ -219,19 +219,6 @@
 			enable = true;
 			package = pkgs.niri-unstable;
 		};
-		
-		# mango = {
-		# 	enable = true;
-		# };
-		
-		# hyprland = {
-		# 	enable = true;
-		# 	xwayland.enable = true;
-		# 	withUWSM = false;
-		# 	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-		# };
-		
-		# uwsm.enable = true;
 		
 		steam = {
 			enable = true;
@@ -287,25 +274,6 @@
 			enable = true;
 			enableVirtualCamera = true;
 		};
-		
-		# yazi = {
-		# 	enable = true;
-		# 	plugins = with pkgs.yaziPlugins; {
-		# 		sudo = sudo;
-		# 		glow = glow;
-		# 		piper = piper;
-		# 		mount = mount;
-		# 		gitui = gitui;
-		# 		chmod = chmod;
-		# 		miller = miller;
-		# 		yatline = yatline;
-		# 		mime-ext = mime-ext;
-		# 		compress = compress;
-		# 		mediainfo = mediainfo;
-		# 		toggle-pane = toggle-pane;
-		# 		full-border = full-border;
-		# 	};
-		# };
 		
 		appimage = {
 			enable = true;

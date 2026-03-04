@@ -6,6 +6,11 @@
 	vars,
 	...
 }: {
+	systemd.user.services.niri-flake-polkit.enable = false;
+
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
 	imports = [
 		./binds.nix
 		./window-rules.nix
@@ -66,5 +71,7 @@
 				};
 			};
 		};
+	};
+	};
 	};
 }
