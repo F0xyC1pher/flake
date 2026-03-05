@@ -7,8 +7,6 @@
 	...
 }: {
 	imports = [
-		# ./hyprland
-		# ./mango
 		./micro
 		./niri
 		./waybar

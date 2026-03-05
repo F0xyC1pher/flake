@@ -2,139 +2,153 @@
 {
 	home-manager = {
 		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} = { ... }: {
-	programs.waybar = {
-		style = ''
-			* {
-				border: none;
-				border-radius: 0;
-				font-family: "FiraCode Nerd Font Mono";
-				font-weight: bold;
-				font-size: 14px;
-				min-height: 0;
-			}
-			
-			window#waybar {
-				background: #060606;
-				color: #f6f6f6;
-			}
-			
-			#custom-launcher {
-				padding: 0 10px 0 12px;
-				color: #61d6d6;
-				font-size: 20px;
-			}
-			
-			#custom-launcher:hover {
-				background: #363636;
-			}
-			
-			#workspaces button {
-				padding: 0 8px;
-				color: #d6d6d6;
-				background: transparent;
-			}
-			
-			#workspaces button:hover {
-				background: #363636;
-			}
-			
-			#workspaces button.active {
-				color: #88C0D0;
-				background: #363636;
-			}
-			
-			#workspaces button.focused {
-				color: #d76667;
-				background: #363636;
-				font-weight: bold;
-			}
-			
-			#workspaces button.empty {
-				color: #767676;
-			}
-			
-			#workspaces button.current_output {
-				opacity: 1;
-			}
-			
-			#workspaces button:not(.current_output) {
-				opacity: 0.6;
-			}
-			
-			#window {
-				padding: 0 15px;
-				color: #88C0D0;
-				font-weight: bold;
-				font-style: italic;
-			}
-			
-			window#waybar.empty #window {
-				background-color: transparent;
-				color: #767676;
-				font-style: normal;
-			}
-			
-			window#waybar.solo #window {
-				color: #A3BE8C;
-			}
-			
-			#tray, #language, #pulseaudio, #network, #cpu, #memory, #clock {
-				padding: 0 10px;
-			}
-			
-			#language {
-				color: #B48EAD;
-				background: #2E3440;
-			}
-			
-			#language:hover {
-				background: #3B4252;
-			}
-			
-			#pulseaudio {
-				color: #EBCB8B;
-			}
-			
-			#pulseaudio.muted {
-				color: #4C566A;
-			}
-			
-			#network {
-				color: #81A1C1;
-			}
-			
-			#network.disconnected {
-				color: #BF616A;
-			}
-			
-			#cpu {
-				color: #D08770;
-			}
-			
-			#memory {
-				color: #A3BE8C;
-			}
-			
-			#clock {
-				color: #88C0D0;
-				font-weight: bold;
-			}
-			
-			#tray {
-				color: #5E81AC;
-			}
-			
-			#tray > .passive {
-				-gtk-icon-effect: dim;
-			}
-			
-			#tray > .needs-attention {
-				-gtk-icon-effect: highlight;
-				color: #BF616A;
-			}
-		'';
-	};
+		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		programs.waybar = {
+			style = ''
+				* {
+					font-family: FiraCode Nerd Font Mono, SourceHanSansJP;
+					font-weight: 600;
+					font-size: 16px;
+					border-radius: 0px;
+				}
+
+				window#waybar {
+					background: transparent;
+					color: #d6d6d6;
+				}
+
+				window#waybar > box {
+					background: #161616;
+					border-bottom: 1px solid #363636;
+					padding: 0 8px;
+				}
+		    
+			/*	===================================
+						COMMON MODULE STYLE
+				===================================	*/
+		    
+				#battery,
+				#backlight,
+				#clock,
+				#wireplumber,
+				#bluetooth,
+				#language,
+				#custom-clock,
+				#tray {
+					border: 1px solid #464646;
+					background: #363636;
+					color: #d6d6d6;
+					padding: 0 10px;
+					margin: 3px 4px;
+					min-height: 28px;
+				}
+
+			/*	===================================
+					COMMON MODULE STYLE :hover
+				===================================	*/
+			         
+				#battery:hover,
+				#backlight:hover,
+				#clock:hover,
+				#wireplumber:hover,
+				#bluetooth:hover,
+				#language:hover,
+				#custom-clock:hover,
+				#tray:hover {
+					border: 1px solid #666666;
+					background: #565656;
+					color: #f6f6f6;
+					padding: 0 10px;
+					margin: 3px 4px;
+					min-height: 28px;
+				}
+		          
+			/*	===================================
+							WORKSPACES
+				===================================	*/
+		    
+				#workspaces {
+					border: none;
+					background: transparent;
+					margin: 3px 4px;
+				}
+		    
+				#workspaces button {
+					border: 1px solid #464646;
+					background: #363636;
+					margin: 0 3px;
+					padding: 0 10px;
+					color: #d6d6d6;
+					min-height: 26px;
+				}
+
+				#workspaces button.empty {
+					border: 1px solid transparent;
+					color: #666666;
+					background: transparent;
+				}
+
+				#workspaces button.active {
+					border: 1px solid #d76667;
+					background: #d76667;
+					color: #060606;
+					border-bottom-style: none;
+					/* border-bottom-color: transparent; */
+					/* border-bottom-width: 0px; */
+				}
+				
+				#workspaces button.active:hover {
+					border: 1px solid #f6f6f6;
+					background: #d76667;
+					color: #060606;
+				}
+
+				#workspaces button:hover {
+					border: 1px solid #666666;
+					background: #565656;
+					color: #f6f6f6;
+				}
+				
+			/*	===================================
+							GTK FIX	
+				===================================	*/
+				
+				#workspaces button,
+				#workspaces button:focus,
+				#workspaces button:active,
+				#workspaces button:checked,
+				#workspaces button.active {
+					outline: 0 ;
+					box-shadow: none;
+					border-image: none;
+				}
+		      	
+			/*	===================================
+							TRAY FIX	
+				===================================	*/
+		    
+				#tray {
+					padding: 0 8px;
+				}
+		      
+			/*	===================================
+							STATE COLORS	
+				===================================	*/    
+		    
+				#battery.warning {
+					border-color: #d7a766;
+				}
+
+				#battery.critical {
+					border-color: #d76666;
+				}
+
+				#wireplumber.muted {
+					color: #888888;
+				}
+
+			'';
+		};
 	};
 	};
 }

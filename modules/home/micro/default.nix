@@ -2,7 +2,7 @@
 {
 	home-manager = {
 		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} = { ... }: {
+		users.${vars.userName} =  { config, pkgs, lib, ... }: {
 	programs.micro = {
 		enable = true;
 		settings = {
