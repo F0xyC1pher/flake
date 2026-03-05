@@ -5,10 +5,12 @@
 	userLongName = "Foxy_Chipher";
 	# The name of PC in da net
 	hostName = "p";
-	# Fontname
+	# Font name
 	fontName = "FiraCode Nerd Font Mono";
-	# Fontsize
+	# Font size
 	fontSize = 12;
+	# Shell
+	shell = "fish"; # fish bash zsh
 	# Terminal
 	terminal = "kitty"; # kitty alacritty ghostty
 	# Select wat do y want (true or false)
