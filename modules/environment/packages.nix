@@ -23,6 +23,7 @@
 			usbutils
 			rustdesk-flutter
 			# inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+			rmpc
 			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 			inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
 			ayugram-desktop
