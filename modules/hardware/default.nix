@@ -9,7 +9,5 @@
 		./nvidia.nix
 		./redist.nix
 		./zram.nix
-		# ./development
-		# ./gaming
 	];
 }

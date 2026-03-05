@@ -17,7 +17,4 @@
 	nvidia = true; # automatical detect in the future
 	bluetooth = true;
 	wifi = false;
-	niri = true;
-	hyprland = false;
-	mango = false;
 }

@@ -1,10 +1,10 @@
 { stdenv, config, pkgs, lib, inputs, vars, ... }:
 	let
 		n = vars.nvidia;
-		nvidiaOpts = if n then {
-			extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-			blacklistedKernelModules = [ "nouveau" ];
-			initrd.kernelModules = [ "nvidia" ];
+		nO = if n then {
+			eMP = [ config.boot.kernelPackages.nvidia_x11 ];
+			bKM = [ "nouveau" ];
+			iKM = [ "nvidia" ];
 		} else {};
 	in
 {
@@ -12,9 +12,9 @@
 #	==========	KERNEL	==========
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
 #	==========	NVIDIA	==========
-		extraModulePackages = nvidiaOpts.extraModulePackages or [];
-		blacklistedKernelModules = nvidiaOpts.blacklistedKernelModules or [];
-		initrd.kernelModules = nvidiaOpts.initrd.kernelModules or [];
+		extraModulePackages = nO.eMP or [];
+		blacklistedKernelModules = nO.bKM or [];
+		initrd.kernelModules = nO.iKM or [];
 #	==========	BOOTLOADER	==========
 		loader.grub = {
 			enable = true;
