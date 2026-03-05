@@ -1,5 +1,4 @@
 { stdenv, config, pkgs, lib, inputs, vars, ... }:
-{
 	let
 		n = vars.nvidia;
 		nvidiaOpts = if n then {
@@ -8,6 +7,7 @@
 			initrd.kernelModules = [ "nvidia" ];
 		} else {};
 	in
+{
 	boot = {
 #	==========	KERNEL	==========
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
