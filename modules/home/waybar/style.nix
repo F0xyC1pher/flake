@@ -61,8 +61,9 @@
 					padding: 0 10px;
 					margin: 3px 4px;
 					min-height: 28px;
+					transition: all 0.2s ease;
 				}
-		          
+				
 			/*	===================================
 							WORKSPACES
 				===================================	*/
@@ -74,17 +75,18 @@
 				}
 		    
 				#workspaces button {
+					border-bottom: none;
 					border: 1px solid #464646;
 					background: #363636;
 					margin: 0 3px;
 					padding: 0 10px;
 					color: #d6d6d6;
-					min-height: 26px;
+					min-height: 28px;
 				}
 
 				#workspaces button.empty {
 					border: 1px solid transparent;
-					color: #666666;
+					color: #d6d6d6;
 					background: transparent;
 				}
 
@@ -92,27 +94,31 @@
 					border: 1px solid #d76667;
 					background: #d76667;
 					color: #060606;
-					border-bottom-style: none;
-					/* border-bottom-color: transparent; */
-					/* border-bottom-width: 0px; */
+					border-bottom-width: 1px;
+					border-bottom-color: #d76667;
 				}
 				
 				#workspaces button.active:hover {
 					border: 1px solid #f6f6f6;
 					background: #d76667;
 					color: #060606;
+					border-bottom-width: 1px;
+					border-bottom-color: #f6f6f6;
+					transition: all 0.2s ease;
 				}
 
 				#workspaces button:hover {
 					border: 1px solid #666666;
 					background: #565656;
 					color: #f6f6f6;
+					transition: all 0.2s ease;
 				}
 				
 			/*	===================================
 							GTK FIX	
 				===================================	*/
 				
+				/*
 				#workspaces button,
 				#workspaces button:focus,
 				#workspaces button:active,
@@ -122,14 +128,7 @@
 					box-shadow: none;
 					border-image: none;
 				}
-		      	
-			/*	===================================
-							TRAY FIX	
-				===================================	*/
-		    
-				#tray {
-					padding: 0 8px;
-				}
+				*/
 		      
 			/*	===================================
 							STATE COLORS	
@@ -140,7 +139,7 @@
 				}
 
 				#battery.critical {
-					border-color: #d76666;
+					border-color: #d76667;
 				}
 
 				#wireplumber.muted {

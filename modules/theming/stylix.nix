@@ -6,6 +6,7 @@
 			polarity = "dark";
 			targets.qt.standardDialogs = "xdgdesktopportal";
 			targets.micro.enable = true;
+			targets.waybar.enable = false;
 		};
 	};
 	
