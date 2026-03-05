@@ -2,7 +2,7 @@
 {
 	home-manager = {
 		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} = { ... }: {
+		users.${vars.userName} =  { config, pkgs, lib, ... }: {
 	# ========== HOME ==========	
 	# gtk = {
 	# 	enable = true;
@@ -136,12 +136,6 @@
 			};
 		};
 	};
-	
-	home.activation.reloadNiri = lib.hm.dag.entryAfter ["writeBoundary"] ''
-		if command -v niri >/dev/null 2>&1; then
-		niri msg action reload-config 2>/dev/null || true
-		fi
-	'';
 };
 };
 }

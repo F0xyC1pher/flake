@@ -7,8 +7,7 @@
 	...
 }: {
 	imports = [
-		# ./config.nix
-		# ./style.nix
-		./test.nix
+		./config.nix
+		./style.nix
 	];
 }

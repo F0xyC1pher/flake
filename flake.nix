@@ -22,17 +22,6 @@
 
 		awww.url = "git+https://codeberg.org/LGFae/awww";
 		
-		# mango = {
-		# 	url = "github:DreamMaoMao/mango";
-		# 	inputs.nixpkgs.follows = "nixpkgs";
-		# };
-		
-		# hyprland.url = "github:hyprwm/Hyprland";
-		# hyprland-plugins = {
-		# 	url = "github:hyprwm/hyprland-plugins";
-		# 	inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
-		# };
-		
 		firefox-addons = {
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -68,9 +57,6 @@
 		stylix,
 		niri,
 		awww,
-		# mango,
-		# hyprland,
-		# hyprland-plugins,
 		firefox-addons,
 		freesmlauncher,
 		zarumet,
@@ -94,19 +80,16 @@
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
 					stylix.nixosModules.stylix #собственно stylix
 					niri.nixosModules.niri # niri как NixOS модуль
-					# mango.nixosModules.mango
 					
 					{
 						home-manager = {
 							extraSpecialArgs = { inherit inputs vars; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
-							# sharedModules = [ mango.hmModules.mango ];
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.${vars.userName} = { ... }: {
 								imports = [
 									inputs.zarumet.homeModules.default
-									# mango.hmModules.mango
 								];
 							};
 						};

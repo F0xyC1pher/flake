@@ -6,7 +6,7 @@ in
 {
 	home-manager = {
 		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} = { ... }: {
+		users.${vars.userName} =  { config, pkgs, lib, ... }: {
 	stylix.targets.firefox = {
 		enable = true;
 		# ← Самое важное: явно указываем имена профилей, к которым применять тему
