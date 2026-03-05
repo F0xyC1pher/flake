@@ -5,6 +5,7 @@
 		hostName = "${vars.hostName}";
 		networkmanager = {
 			enable = true;
+			# dns = "systemd-resolved";
 			dns = "none";
 		};
 		useDHCP = false;
@@ -21,4 +22,39 @@
 			userControlled = true;
 		};
 	};
+# 	services.resolved = {
+# 		enable = true;
+# 
+# 		settings = {
+# 			Resolve = {
+# 				DNS = [ "127.0.0.1:5300" ];
+# 				FallbackDNS = [ ];
+# 				Domains = [ "~." ];
+# 			};
+# 		};
+# 	};
+# 	services.dnscrypt-proxy = {
+# 		enable = true;
+# 
+# 		settings = {
+# 			listen_addresses = [ "127.0.0.1:5300" ];
+# 
+# 			server_names = [
+# 				"cloudflare"
+# 			];
+# 
+# 			ipv6_servers = false;
+# 			require_dnssec = true;
+# 
+# 			cache = true;
+# 			cache_size = 4096;
+# 			
+# 			sources.public-resolvers = {
+# 				urls = [
+# 					"https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+# 				];
+# 				cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
+# 			};
+# 		};
+# 	};
 }

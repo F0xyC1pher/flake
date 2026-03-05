@@ -8,7 +8,5 @@
 		./mime.nix
 		./portal.nix
 		./xdg.nix
-		# ./development
-		# ./gaming
 	];
 }

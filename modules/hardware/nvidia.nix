@@ -43,6 +43,37 @@
 					}
 				'';
 			};
+			"nvidia/nvidia-application-profiles-rc.d/50-gl-threaded-optimizations-bug-fix.json" = {
+				text = ''
+					{
+						"rules": [
+							{
+								"pattern": {
+									"feature": "dso",
+									"matches": "libGL.so.1"
+								},
+								"profile": "openGL_fix"
+							}
+						],
+						"profiles": [
+							{
+								"name": "openGL_fix",
+								"settings": [
+									{
+										"key": "GLThreadedOptimizations",
+										"value": false
+									}
+								]
+							}
+						]
+					}
+				'';
+			};
 		};
 	};
 }
+
+
+
+
+
