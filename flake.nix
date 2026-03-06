@@ -85,7 +85,7 @@
 				modules = [
 					./modules	# Модульная системная конфигурация
 					
-					hardware-configuration	# Основная хардваре конфигурация (автогенерация)
+					hardware-configuration.outPath	# Основная хардваре конфигурация (автогенерация)
 					
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
 					

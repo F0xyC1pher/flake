@@ -319,6 +319,19 @@
         "type": "gitlab"
       }
     },
+    "hardware-configuration": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768733814,
+        "narHash": "sha256-EwH22Rgn2/qWshZ8uGho3ue0zBgTsbZt0WJsWa8vkyA=",
+        "path": "/etc/nixos/hardware-configuration.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/etc/nixos/hardware-configuration.nix",
+        "type": "path"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -566,6 +579,7 @@
         "ayugram-desktop": "ayugram-desktop",
         "firefox-addons": "firefox-addons",
         "freesmlauncher": "freesmlauncher",
+        "hardware-configuration": "hardware-configuration",
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs_2",
