@@ -4,6 +4,11 @@
 	inputs = {
 		
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";  # Актуальная unstable ветка
+
+		hardware-configuration = {
+		  url = "path:/etc/nixos/hardware-configuration.nix";
+		  flake = false;
+		};
 		
 		home-manager = {
 			url = "github:nix-community/home-manager";
@@ -56,6 +61,7 @@
 	outputs = { 
 		self,
 		nixpkgs,
+		hardware-configuration,
 		home-manager,
 		stylix,
 		niri,
@@ -77,11 +83,14 @@
 				inherit system;
 				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
 				modules = [
-					./modules  # Модульная системная конфигурация
-					../hardware-configuration.nix # Основная хардваре конфигурация (автогенерация)
+					./modules	# Модульная системная конфигурация
+					
+					hardware-configuration	# Основная хардваре конфигурация (автогенерация)
 					
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
+					
 					stylix.nixosModules.stylix #собственно stylix
+					
 					niri.nixosModules.niri # niri как NixOS модуль
 					
 					{
