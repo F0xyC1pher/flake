@@ -7,7 +7,7 @@
 		
 		home-manager = {
 			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs для совместимости
+			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs
 		};
 		
 		stylix = {
@@ -17,10 +17,13 @@
 		
 		niri = {
 			url = "github:sodiboo/niri-flake";
-			inputs.nixpkgs.follows = "nixpkgs";  # Следуем за nixpkgs
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		awww.url = "git+https://codeberg.org/LGFae/awww";
+		awww = {
+			url = "git+https://codeberg.org/LGFae/awww";
+			inputs.nixpkgs.follows = "nixpkgs";
+		}
 		
 		firefox-addons = {
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -42,11 +45,11 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		
-	# ayugram-desktop = {
-	# 	type = "git";
-	# 	submodules = true;
-	# 	url = "https://github.com/ndfined-crp/ayugram-desktop/";
-	# };
+		ayugram-desktop = {
+			url = "https://github.com/ndfined-crp/ayugram-desktop/";
+			type = "git";
+			submodules = true;
+		};
 	
 	};
 	
@@ -66,7 +69,7 @@
 		
 		system = "x86_64-linux"; 
 		
-		vars = import ./vars.nix; # Выбор нужных модулей через абстрактные названия и проверку в самих модулях
+		vars = import ./vars.nix; # Выбор нужных компонентов через изменение переменных
 		
 	in {
 		nixosConfigurations = {
