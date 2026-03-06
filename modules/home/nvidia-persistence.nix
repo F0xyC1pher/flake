@@ -1,7 +1,9 @@
-{ lib, pkgs, inputs, vars, ... }:
+{ config, pkgs, lib, inputs, vars, ... }:
 
 let
-  powerMizerMode = 1;
+  nvidia = config.boot.kernelPackages.nvidia_x11;
+  bash = pkgs.bash;
+  powerMizerMode = "1";  # теперь строка
 in
 {
   home-manager = {
@@ -9,34 +11,32 @@ in
 
     users.${vars.userName} = { config, pkgs, lib, ... }: {
 
-      # Импортируем сервис прямо здесь
       systemd.user.services.nvidia-auto = {
-        description = "Automatic NVIDIA settings on Wayland/X: Persistence Mode, Max Power, PowerMizer if X available";
-        after = [ "graphical-session.target" ];
-        serviceConfig.Type = "oneshot";
+        serviceConfig = {
+          Description = "Automatic NVIDIA: Persistence Mode + Max Power + PowerMizer if X";
+          Type = "oneshot";
+          After = "graphical-session.target";
 
-        serviceConfig.ExecStart = ''
-          # Включаем Persistence Mode для всех NVIDIA GPU
-          ${pkgs.nvidia-x11}/bin/nvidia-smi -pm 1
+          ExecStart = "${bash}/bin/bash -c ''
+${nvidia}/bin/nvidia-smi -pm 1
+for gpu in \$(${nvidia}/bin/nvidia-smi --query-gpu=index --format=csv,noheader); do
+  max_limit=\$(${nvidia}/bin/nvidia-smi -i \$gpu --query-gpu=power.limit --format=csv,noheader | head -n1)
+  ${nvidia}/bin/nvidia-smi -i \$gpu -pl \$max_limit
+done
 
-          # Для каждой NVIDIA GPU устанавливаем Power Limit на максимум
-          for gpu in $(${pkgs.nvidia-x11}/bin/nvidia-smi --query-gpu=index --format=csv,noheader); do
-            max_limit=$(${pkgs.nvidia-x11}/bin/nvidia-smi -i $gpu --query-gpu=power.limit --format=csv,noheader | head -n1)
-            ${pkgs.nvidia-x11}/bin/nvidia-smi -i $gpu -pl $max_limit
-          done
+if [ -n \"\$DISPLAY\" ]; then
+  for gpu in \$(${nvidia}/bin/nvidia-smi --query-gpu=index --format=csv,noheader); do
+    ${nvidia}/bin/nvidia-settings -a \"[gpu:\$gpu]/GPUPowerMizerMode=${powerMizerMode}\"
+  done
+fi
+''";
+        };
 
-          # Если X-сессия активна, применяем PowerMizerMode
-          if [ -n "$DISPLAY" ]; then
-            for gpu in $(${pkgs.nvidia-x11}/bin/nvidia-smi --query-gpu=index --format=csv,noheader); do
-              ${pkgs.nvidia-x11}/bin/nvidia-settings -a "[gpu:${gpu}]/GPUPowerMizerMode=${powerMizerMode}"
-            done
-          fi
-        '';
-
-        install.wantedBy = [ "default.target" ];
+        install = {
+          WantedBy = [ "default.target" ];
+        };
       };
 
-      # Дополнительно пакеты пользователя, если нужно
       home.packages = [];
     };
   };

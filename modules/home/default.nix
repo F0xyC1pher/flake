@@ -12,7 +12,7 @@
 		./waybar
 		./yazi
 		./zarumet
-		./firefox.nix
+		./firefox
 		./home.nix
 		./home-manager.nix
 		./nvidia-persistence.nix

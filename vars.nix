@@ -13,8 +13,9 @@
 	shell = "fish"; # fish bash zsh
 	# Terminal
 	terminal = "kitty"; # kitty alacritty ghostty
+	nixos-hw = "none"; # null or "none" for disabling, string for hardware
 	# Select wat do y want (true or false)
 	nvidia = true; # automatical detect in the future
 	bluetooth = true;
-	wifi = false;
+	wifi = true;
 }

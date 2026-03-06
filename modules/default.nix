@@ -7,19 +7,8 @@
 	...
 }: {
 	imports = [
-		./environment
-		./theming
-		./hardware
+		./system
 		./home
-		./xdg
-		./boot.nix
-		./configuration.nix
-		./fonts.nix
-		./locale.nix
-		./network.nix
-		./programs.nix
-		./services.nix
-		./users.nix
 	];
 
 }
