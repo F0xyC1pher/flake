@@ -75,7 +75,7 @@
 				specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
 				modules = [
 					./modules  # Модульная системная конфигурация
-					/etc/nixos/hardware-configuration.nix # Основная хардваре конфигурация (автогенерация)
+					../hardware-configuration.nix # Основная хардваре конфигурация (автогенерация)
 					
 					home-manager.nixosModules.home-manager # home-manager как NixOS модуль
 					stylix.nixosModules.stylix #собственно stylix
