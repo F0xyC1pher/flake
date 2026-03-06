@@ -23,7 +23,6 @@
 		./portal.nix
 		./rofi-polkit.nix
 		./redist.nix
-		./services
 		./stylix.nix
 		./services.nix
 		./users.nix
