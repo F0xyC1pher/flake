@@ -1,0 +1,35 @@
+{
+	config,
+	pkgs,
+	lib,
+	inputs,
+	vars,
+	...
+}: {
+	imports = [
+		./awww-daemon.nix
+		./awww-restore.nix
+		./bluetooth.nix
+		./boot.nix
+		./configuration.nix
+		./fonts.nix
+		./locale.nix
+		./mime.nix
+		./network.nix
+		./nvidia.nix
+		./programs.nix
+		./packages-custom.nix
+		./packages.nix
+		./portal.nix
+		./rofi-polkit.nix
+		./redist.nix
+		./services
+		./stylix.nix
+		./services.nix
+		./users.nix
+		./variables.nix
+		./xdg.nix
+		./zram.nix
+	];
+
+}
