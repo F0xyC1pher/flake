@@ -21,6 +21,7 @@
 			tuigreet
 			pciutils
 			usbutils
+			lm_sensors
 			rustdesk-flutter
 			# inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
 			rmpc

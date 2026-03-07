@@ -15,6 +15,5 @@
 		./firefox
 		./home.nix
 		./home-manager.nix
-		./nvidia-persistence.nix
 	];
 }
