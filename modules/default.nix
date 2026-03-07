@@ -9,6 +9,7 @@
 	imports = [
 		./system
 		./home
+		./nix
 	];
 
 }

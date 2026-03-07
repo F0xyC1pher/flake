@@ -7,6 +7,7 @@
 	...
 }: {
 	imports = [
+		./hardware
 		./awww-daemon.nix
 		./awww-restore.nix
 		./bluetooth.nix
@@ -16,8 +17,6 @@
 		./locale.nix
 		./mime.nix
 		./network.nix
-		./nvidia.nix
-		./nvidia-persistence.nix
 		./programs.nix
 		./packages-custom.nix
 		./packages.nix
@@ -32,5 +31,7 @@
 		./xdg.nix
 		./zram.nix
 	];
+
+	system.stateVersion = "25.05";
 
 }
