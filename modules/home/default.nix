@@ -11,9 +11,18 @@
 		./niri
 		./waybar
 		./yazi
-		./zarumet
 		./firefox
 		./home.nix
-		./home-manager.nix
 	];
+
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} = { ... }: {
+			# imports = [
+			# ];
+		home.username = "${vars.userName}";
+		home.homeDirectory = "/home/${vars.userName}";
+		home.stateVersion = "25.05";
+		};
+	};
 }
