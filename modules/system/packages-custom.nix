@@ -15,8 +15,18 @@ let
 		#!/usr/bin/env bash
 		${builtins.readFile rofi-polkit-script}
 	'';
+
+	# myBtop = pkgs.btop.overrideAttrs (oldAttrs: rec {
+	# 	cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
+	# 		"-DBTOP_GPU=ON"
+	# 	];
+	# });
+	
 in
 {
+	# imports = [
+	# 	./packages/btop-nvidia-gpu.nix	
+	# ];
 	#==========ENVIRONMENT==========
 	environment = {
 		
@@ -25,6 +35,7 @@ in
 			(pkgs.callPackage ./packages/aimp.nix { })
 			(pkgs.callPackage ./packages/scripts.nix { })
 			rofi-polkit-agent
+			# myBtop
 		];
 	};
 }

@@ -17,6 +17,7 @@
 		./mime.nix
 		./network.nix
 		./nvidia.nix
+		./nvidia-persistence.nix
 		./programs.nix
 		./packages-custom.nix
 		./packages.nix
@@ -25,6 +26,7 @@
 		./redist.nix
 		./stylix.nix
 		./services.nix
+		./security.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix

@@ -4,7 +4,7 @@
 	inputs = {
 		
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";  # Актуальная unstable ветка
-
+		
 		hardware-configuration = {
 		  url = "path:/etc/nixos/hardware-configuration.nix";
 		  flake = false;
@@ -24,7 +24,7 @@
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		
 		awww = {
 			url = "git+https://codeberg.org/LGFae/awww";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +55,6 @@
 			type = "git";
 			submodules = true;
 		};
-	
 	};
 	
 	outputs = { 

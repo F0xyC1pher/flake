@@ -96,11 +96,11 @@
 	# 	];
 	# };
 	
-	security = {
-		sudo.wheelNeedsPassword = false;
-		rtkit.enable = true;
-		polkit.enable = true;
-	};
+	# security = {
+	# 	sudo.wheelNeedsPassword = false;
+	# 	rtkit.enable = true;
+	# 	polkit.enable = true;
+	# };
 	
 	# ========== SERVICES ==========
 	# services = {
