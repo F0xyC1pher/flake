@@ -1,5 +1,15 @@
 { stdenv, config, pkgs, lib, inputs, vars, ... }:
-{	
+{
+	# ========== NIXPKGS ==========
+	nixpkgs = {
+		overlays = [ inputs.niri.overlays.niri ];
+		config = {
+			allowUnfree = true;
+			permittedInsecurePackages = [
+				"openssl-1.1.1w"
+			];
+		};
+	};	
 	# ========== NIX ==========
 	nix = {
 		package = pkgs.lix;

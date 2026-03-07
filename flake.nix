@@ -37,15 +37,7 @@
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
 				inherit system; specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
-				nixpkgs = {
-					overlays = [ niri.overlays.niri ];
-					config = {
-						allowUnfree = true;
-						permittedInsecurePackages = [
-							"openssl-1.1.1w"
-						];
-					};
-				};
+				
 				
 				modules = [
 					./modules hardware-configuration.outPath stylix.nixosModules.stylix

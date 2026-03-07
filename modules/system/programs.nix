@@ -70,4 +70,28 @@
 			binfmt = true;	
 		};
 	};
+
+	home-manager = {
+		extraSpecialArgs = { inherit inputs vars; };
+		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		# 	programs.emacs = {
+		# 		enable = true;
+		# 		package = pkgs.emacs-gtk;
+		# #		extraConfig = ''
+		# #			(setq standard-indent 2)
+		# #		'';
+		# 	};
+		# 	
+		# 	programs.helix = {
+		# 		enable = true;
+		# 		languages.language = [
+		# 			{
+		# 				name = "nix";
+		# 				auto-format = true;
+		# 				formatter.command = lib.getExe pkgs.nixfmt;
+		# 			};
+		# 		];
+			# };
+		};
+	};
 }

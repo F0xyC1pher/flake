@@ -12,7 +12,6 @@
 		./awww-restore.nix
 		./bluetooth.nix
 		./boot.nix
-		./configuration.nix
 		./fonts.nix
 		./locale.nix
 		./mime.nix
