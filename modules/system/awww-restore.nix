@@ -6,16 +6,17 @@
 	...
 }:
 {
-systemd.user.services.awww-restore = {
-    description = "awww wallpaper restore";
+	systemd.user.services.awww-restore = {
+		description = "awww cached wallpaper restore";
 
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
+		requires = [ "awww-daemon.service" ];
+		after = [ "awww-daemon.service" ];
+		partOf = [ "graphical-session.target" ];
+		wantedBy = [ "graphical-session.target" ];
 
-    serviceConfig = {
-      ExecStart = "${inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww restore";
-      Restart = "on-failure";
-      RestartSec = 1;
-    };
-  };
+		serviceConfig = {
+			ExecStart = "${inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww restore";
+			Type = "oneshot";
+		};
+	};
 }

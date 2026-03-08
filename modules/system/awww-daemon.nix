@@ -4,18 +4,19 @@
 	vars,
 	pkgs,
 	...
-}:
-{
-systemd.user.services.awww-daemon = {
-    description = "awww wallpaper daemon";
+	}:
+	{
+	systemd.user.services.awww-daemon = {
+		description = "awww daemon";
 
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
+		after = [ "graphical-session.target" ];
+		partOf = [ "graphical-session.target" ];
+		wantedBy = [ "graphical-session.target" ];
 
-    serviceConfig = {
-      ExecStart = "${inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww-daemon";
-      Restart = "on-failure";
-      RestartSec = 1;
-    };
-  };
+		serviceConfig = {
+			ExecStart = "${inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww-daemon";
+			Restart = "on-failure";
+			RestartSec = 1;
+		};
+	};
 }
