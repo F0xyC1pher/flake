@@ -8,8 +8,8 @@
 }: {
 	imports = [
 		./hardware
-		./awww-daemon.nix
-		./awww-restore.nix
+		# ./awww-daemon.nix
+		# ./awww-restore.nix
 		./bluetooth.nix
 		./boot.nix
 		./fonts.nix
@@ -20,7 +20,7 @@
 		./packages-custom.nix
 		./packages.nix
 		./portal.nix
-		./rofi-polkit.nix
+		# ./rofi-polkit.nix
 		./redist.nix
 		./stylix.nix
 		./services.nix
