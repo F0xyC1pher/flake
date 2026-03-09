@@ -8,6 +8,7 @@
 }: {
 	imports = [
 		./hardware
+		./services
 		# ./awww-daemon.nix
 		# ./awww-restore.nix
 		./bluetooth.nix
@@ -30,6 +31,8 @@
 		./xdg.nix
 		./zram.nix
 	];
+
+	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };
 
 	system.stateVersion = "25.05";
 

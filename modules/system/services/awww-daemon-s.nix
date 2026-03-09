@@ -5,8 +5,10 @@ vars,
 pkgs,
 ...
 }:
+let
+	awww = inputs.awww.packages.${pkgs.system}.awww;
+in
 {
-  let awww = inputs.awww.packages.${pkgs.system}.awww; in
   systemd.user.services.awww-daemon = {
     description = "awww daemon";
     wantedBy = [ "graphical-session.target" ];
