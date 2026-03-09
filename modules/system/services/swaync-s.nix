@@ -6,7 +6,7 @@
 	...
 }:
 let
-	swaync = pkgs.swaync;
+	swaync = pkgs.swaynotificationcenter;
 in
 {
 	systemd.user.services.swaync = {

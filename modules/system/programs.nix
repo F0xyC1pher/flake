@@ -39,13 +39,6 @@
 				
 				"gfx.x11-egl.force-enabled" = true;
 				"widget.dmabuf.force-enabled" = true;
-				
-				# Set this to true if your GPU supports AV1.
-				#
-				# This can be determined by reading the output of the
-				# `vainfo` command, after the driver is enabled with
-				# the environment variable.
-				"media.av1.enabled" = true;
 			};
 		};
 		

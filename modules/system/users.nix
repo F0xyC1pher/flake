@@ -3,7 +3,7 @@
 	# ========== USER ==========
 	users.users.${vars.userName} = {
 		isNormalUser = true;
-		description = "${vars.userLongName}";
+		description = "${vars.userFullName}";
 		home = "/home/${vars.userName}";
 		shell = pkgs.${vars.shell};
 		extraGroups = [
@@ -14,6 +14,7 @@
 			"input"
 			"rtkit"
 			"render"
+			"games"
 		];
 	};
 }

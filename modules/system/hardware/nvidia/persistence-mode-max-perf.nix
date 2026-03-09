@@ -12,12 +12,6 @@ in
 
     serviceConfig.Type = "oneshot";
 
-    # path = [
-    #   nvidia
-    #   pkgs.coreutils
-    #   pkgs.gnugrep
-    # ];
-
     script = ''
       set -e
 

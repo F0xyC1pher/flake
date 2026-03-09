@@ -8,6 +8,6 @@ let
 
 in
 pkgs.writeShellScriptBin "rofi-polkit-agent" ''
-  #!/usr/bin/env bash
+  #!${pkgs.bash}/bin/bash
   ${builtins.readFile rofi-polkit-script}
 ''

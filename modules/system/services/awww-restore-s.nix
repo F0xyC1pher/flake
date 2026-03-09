@@ -5,8 +5,10 @@
 	pkgs,
 	...
 }:
+let
+	awww = inputs.awww.packages.${pkgs.system}.awww;
+in
 {
-  let awww = inputs.awww.packages.${pkgs.system}.awww; in
   systemd.user.services.awww-restore = {
     description = "awww wallpaper restore";
     wantedBy = [ "graphical-session.target" ];

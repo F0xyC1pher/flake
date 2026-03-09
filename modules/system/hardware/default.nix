@@ -8,6 +8,7 @@
 }: {
 	imports = [
 		./nvidia
+		./redist.nix
 	];
 
 	hardware.parallels.enable = true;

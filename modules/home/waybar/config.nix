@@ -5,7 +5,7 @@
 		users.${vars.userName} =  { config, pkgs, lib, ... }: {
 			programs.waybar = {
 				enable = true;
-				systemd.enable = true;
+				systemd.enable = false;
 				settings = [{
 					height = 1;
 					layer = "top";

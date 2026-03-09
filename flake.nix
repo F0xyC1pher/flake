@@ -1,5 +1,5 @@
 {
-	description = "foxyflake";
+	description = "flake";
 	
 	inputs = {
 		
@@ -24,11 +24,8 @@
 		ayugram-desktop = { url = "https://github.com/ndfined-crp/ayugram-desktop/"; type = "git"; submodules = true; };
 	};
 	
-	outputs = { 
-		self, nixpkgs, hardware-configuration, freesmlauncher, 
-		home-manager, stylix, niri, awww, firefox-addons, rmpc,
-		... 
-	}@inputs: let
+	outputs = { self, nixpkgs, hardware-configuration, home-manager, stylix, niri, awww, firefox-addons, rmpc, freesmlauncher, ... }@inputs:
+	let
 		
 		system = "x86_64-linux"; 
 		vars = import ./vars.nix; # Выбор нужных компонентов через изменение переменных
@@ -37,11 +34,12 @@
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
 				inherit system; specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
-				
-				
 				modules = [
-					./modules hardware-configuration.outPath stylix.nixosModules.stylix
-					home-manager.nixosModules.home-manager niri.nixosModules.niri
+					./modules
+					hardware-configuration.outPath
+					home-manager.nixosModules.home-manager
+					stylix.nixosModules.stylix
+					 niri.nixosModules.niri
 					{ 
 						home-manager = {
 							extraSpecialArgs = { inherit inputs vars; };
