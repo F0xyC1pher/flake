@@ -5,11 +5,11 @@ let
 in
 {
 	imports = [
-		extensions.nix
-		policies.nix
-		preferences.nix
-		settings.nix
-		userChrome.nix
+		./extensions.nix
+		./policies.nix
+		./settings.nix
+		./userChrome.nix
+		./userJS.nix
 	];
 	
 	home-manager = {

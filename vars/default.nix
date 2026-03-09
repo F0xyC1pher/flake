@@ -1,4 +1,12 @@
+let
+	hardware = import ./hardware.nix;
+	colors = import ./colors.nix;
+in
 {
+	# Подключаем переменные из hardware и colors
+	inherit hardware colors;
+	
+	# Подстановка переменных в различные ебеня системы
 	# Имя учётной записи в системе
 	userName = "f";
 	# Полное имя пользователя в описании учётной записи в системе и профиль в firefox
@@ -13,13 +21,4 @@
 	shell = "fish"; # fish bash zsh
 	# Эмулятор Терминала
 	terminal = "kitty"; # kitty alacritty ghostty
-	nixos-hw = "none"; # null или "none" чтобы отключить, строка для железа
-	# Модули (true или false)
-	nvidia = {
-		enable = true;# <- автообнаружение в будущем
-		Prime = false;
-		MaxPerfomance = true;
-	};
-	bluetooth = true;
-	wifi = true;
 }

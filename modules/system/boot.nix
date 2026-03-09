@@ -1,7 +1,7 @@
 { stdenv, config, pkgs, lib, inputs, vars, ... }:
 	let
-		n = vars.nvidia;
-		nO = if n then {
+		ne = vars.hardware.nvidia.enable;
+		nO = if ne then {
 			eMP = [ config.boot.kernelPackages.nvidia_x11 ];
 			bKM = [ "nouveau" ];
 			iKM = [ "nvidia" ];

@@ -13,10 +13,10 @@
 			
 			polarity = "dark";
 			
-			homeManagerIntegration = {
-				autoImport = true;
-				followSystem = true;
-			};
+			# homeManagerIntegration = {
+			# 	autoImport = true;
+			# 	followSystem = false;
+			# };
 			
 			targets = {
 				qt ={
@@ -25,6 +25,7 @@
 					standardDialogs = "xdgdesktopportal";
 				};
 				micro.enable = true;
+				kitty.enable = true;
 				waybar.enable = false;
 				firefox = {
 					enable = true;
@@ -80,7 +81,7 @@
 	};
 	
 	# stylix = {
-	# 	enable = true;
+	#	enable = true;
 	# 	
 	# 	polarity = "dark";
 	# 	

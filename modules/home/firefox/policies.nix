@@ -40,7 +40,7 @@
 					DontCheckDefaultBrowser       = true;
 					HardwareAcceleration          = true;
 					OfferToSaveLogins             = false;
-					DefaultDownloadDirectory      = "${home}/Downloads";
+					DefaultDownloadDirectory      = "/home/{vars.userName}/Downloads";
 				};
 			};
 		};
