@@ -28,7 +28,7 @@
 	let
 		
 		system = "x86_64-linux"; 
-		vars = import ./vars.nix; # Выбор нужных компонентов через изменение переменных
+		vars = import ./vars; # Выбор нужных компонентов через изменение переменных
 		
 	in {
 		nixosConfigurations = {
