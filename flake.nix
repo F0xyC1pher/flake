@@ -38,8 +38,8 @@
 					./modules
 					hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
-					stylix.nixosModules.stylix
-					 niri.nixosModules.niri
+					# stylix.nixosModules.stylix
+					niri.nixosModules.niri
 					{ 
 						home-manager = {
 							extraSpecialArgs = { inherit inputs vars; };
@@ -47,8 +47,9 @@
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.${vars.userName} = { ... }: {
-								# imports = [
-								# ];
+								imports = [
+									stylix.homeModules.stylix
+								];
 							};
 						};
 					}
