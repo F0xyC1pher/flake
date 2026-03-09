@@ -22,7 +22,6 @@
 		./packages.nix
 		./portal.nix
 		# ./rofi-polkit.nix
-		./redist.nix
 		./stylix.nix
 		./services.nix
 		./security.nix
