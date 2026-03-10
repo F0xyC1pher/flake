@@ -1,0 +1,116 @@
+* {
+    font-family: "FiraCode Nerd Font Mono", "SourceHanSansJP", "Comic Code Ligatures Medium", "Symbols Nerd Font Mono";
+    font-size: 12pt;
+    font-weight: bolder;
+}
+
+tooltip {
+    background: #1a1a1a;
+    border: 2px solid #b76667;
+}
+
+tooltip label {
+    color: #f0e0e0;
+}
+
+window#waybar,
+#workspaces,
+#taskbar,
+#window,
+#clock,
+#cpu,
+#memory,
+#disk,
+#network,
+#wireplumber,
+#wireplumber-source,
+#custom-notification,
+#tray,
+#battery,
+#backlight,
+#language,
+#keyboard-state {
+    background-color: #1a1a1a;
+    color: #f0e0e0;
+    box-shadow: rgba(0,0,0,0.5) 0px -6px 3px 1px;
+    border: none;
+    border-bottom: 4px solid #6f6f6f;
+    margin: 5px 1px 12px 1px;
+    padding: 2px 5px;
+    font-weight: bolder;
+}
+
+/* Workspaces buttons */
+#workspaces button {
+    padding: 1px 7px;
+    margin-right: 8px;
+    border-bottom: 4px solid #6f6f6f;
+    color: #f0e0e0;
+}
+
+#workspaces button.focused { border-bottom-color: #ff7273; color: #fff6f6; }
+#workspaces button.occupied { border-bottom-color: #9f9f9f; }
+#workspaces button.urgent { border-bottom-color: #d46dff; color: #fff; }
+
+/* Taskbar buttons */
+#taskbar button { padding: 2px 5px; border-bottom: 4px solid #6f6f6f; color: #ededed; }
+#taskbar button.minimized { border-bottom-color: #3f3f3f; color: #cba6f7; }
+#taskbar button.active { border-bottom-color: #b76667; color: #cba6f7; }
+#taskbar button.urgent { border-bottom-color: #d46dff; color: #cba6f7; }
+
+/* Custom notifications */
+#custom-notification { border-bottom-color: #d46dff; padding: 1px 12px 1px 6px; }
+
+/* WirePlumber */
+#wireplumber, #wireplumber-source {
+    border-bottom-color: #cba6f7;
+}
+
+/* Backlight */
+#backlight { border-bottom-color: #f0e0e0; }
+
+/* Battery */
+#battery { border-bottom-color: #ffff6d; }
+
+/* Dynamic pill */
+#custom-dynamic_pill.low { 
+    background: linear-gradient(52deg, #94e2d5 0%, #89dceb 19%, #74c7ec 43%, #89b4fa 56%, #b4befe 80%, #babbf1 100%);
+    animation: gradient 15s ease infinite;
+}
+#custom-dynamic_pill.normal {
+    background: linear-gradient(52deg, #a6d189 0%, #a6e3a1 26%, #94e2d5 65%, #81c8be 100%);
+    animation: gradient 15s ease infinite;
+}
+#custom-dynamic_pill.critical {
+    background: linear-gradient(52deg, #eba0ac 0%, #f38bac 30%, #e78284 48%, #fab387 77%, #f9e2af 100%);
+    animation: gradient 15s ease infinite;
+}
+#custom-dynamic_pill.playing {
+    background: linear-gradient(45deg, #f9e2af 0%, #f5c2e7 20%, #b4befe 100%);
+    font-weight: 900;
+}
+#custom-dynamic_pill.paused { background: #fff; color: #b4befe; }
+
+/* Clock */
+#clock { border-bottom-color: #ff7273; padding: 5px 15px; }
+
+/* CPU */
+#cpu { min-width: 80px; border-bottom-color: #0183ff; }
+
+/* Memory */
+#memory { min-width: 60px; border-bottom-color: #61d6d6; }
+
+/* Network states */
+#network.disabled, #network.disconnected { border-bottom-color: #6f6f6f; color: #f0e0e0; }
+#network.linked, #network.wifi { border-bottom-color: #61d6d6; }
+#network.ethernet { border-bottom-color: #67b766; }
+
+/* Tray */
+#tray { border-bottom-color: #6f6f6f; }
+
+/* Gradient animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

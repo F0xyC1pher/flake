@@ -1,6 +1,7 @@
 { config, pkgs, lib, inputs, vars, ... }:
 {
 	# ========== NVIDIA ==========
+	services.xserver.videoDrivers = ["nvidia"];
 	hardware = {
 		graphics = {
 			enable = true;

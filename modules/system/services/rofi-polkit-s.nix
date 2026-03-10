@@ -7,8 +7,8 @@ in
 	systemd.user.services.rofi-polkit-agent = {
 		description = "Rofi-based Polkit Authentication Agent";
 
-		wantedBy = [ "graphical-session.target" ];
-		after = [ "graphical-session.target" ];
+		wantedBy = [ "niri.service" ];
+		after = [ "niri.service" ];
 
 		serviceConfig = {
 			Type = "simple";

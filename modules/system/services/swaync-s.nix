@@ -11,7 +11,7 @@ in
 {
 	systemd.user.services.swaync = {
 		description = "swaync notification daemon";
-		wantedBy = [ "graphical-session.target" ];
+		wantedBy = [ "niri.service" ];
 		after = [ "niri.service" ];
 		partOf = [ "niri.service" ];
 
