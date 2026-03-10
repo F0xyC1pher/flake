@@ -21,4 +21,6 @@ in
 	shell = "fish"; # fish bash zsh
 	# Эмулятор Терминала
 	terminal = "kitty"; # kitty alacritty ghostty
+	# Загрузчик
+	bootLoader = "Limine"; #Limine или GRUB
 }

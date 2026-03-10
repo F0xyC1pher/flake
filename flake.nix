@@ -11,7 +11,8 @@
 		
 		stylix = { url = "github:nix-community/stylix"; inputs.nixpkgs.follows = "nixpkgs"; };
 		
-		niri = { url = "github:sodiboo/niri-flake"; inputs.nixpkgs.follows = "nixpkgs"; };
+		niri = { url = "github:sodiboo/niri-flake"; inputs.niri-unstable.follows = "niri-blur"; inputs.nixpkgs.follows = "nixpkgs"; };
+		niri-blur = { url = "github:niri-wm/niri/wip/branch"; flake = false; }; # пример ветки с blur
 		
 		awww = { url = "git+https://codeberg.org/LGFae/awww"; inputs.nixpkgs.follows = "nixpkgs"; };
 		
@@ -33,12 +34,12 @@
 	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				inherit system; specialArgs = { inherit inputs vars; };  # Передаём inputs в модули
+				inherit system; specialArgs = { inherit inputs vars; hwModule = hardware-configuration.outPath; };  # Передаём inputs в модули
 				modules = [
 					./modules
-					hardware-configuration.outPath
+					inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
-					# stylix.nixosModules.stylix
+					stylix.nixosModules.stylix
 					niri.nixosModules.niri
 					{ 
 						home-manager = {
@@ -47,9 +48,8 @@
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
 							users.${vars.userName} = { ... }: {
-								imports = [
-									stylix.homeModules.stylix
-								];
+								# imports = [
+								# ];
 							};
 						};
 					}

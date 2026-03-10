@@ -47,7 +47,6 @@
 		
 		xserver = {
 			enable = true;
-			videoDrivers = ["nvidia"];
 			xkb = {
 				layout = "us,ru";
 				model = "pc86";

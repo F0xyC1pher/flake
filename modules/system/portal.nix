@@ -64,27 +64,4 @@
 			'';
 		};
 	};
-	
-	home-manager.users.${vars.userName} = { config, pkgs, lib, ... }: {
-		xdg = {
-			portal = {
-				enable = true;
-				xdgOpenUsePortal = true;
-				extraPortals = lib.mkForce [
-					pkgs.xdg-desktop-portal-termfilechooser
-					pkgs.xdg-desktop-portal-wlr
-					pkgs.xdg-desktop-portal-gtk
-				];
-				config = {
-					common = lib.mkForce {
-						"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
-						"org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
-						"org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
-						"org.freedesktop.impl.portal.Settings"    = [ "gtk" ];
-						default = [ "termfilechooser" "wlr" "gtk" ];
-					};
-				};
-			};
-		};
-	};
 }
