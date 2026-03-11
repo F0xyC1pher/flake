@@ -18,7 +18,6 @@
 		./mime.nix
 		./network.nix
 		./programs.nix
-		./packages-custom.nix
 		./packages.nix
 		./portal.nix
 		# ./rofi-polkit.nix
@@ -33,6 +32,6 @@
 
 	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };
 
-	system.stateVersion = "25.05";
+	system.stateVersion = "26.05";
 
 }

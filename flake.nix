@@ -27,20 +27,49 @@
 	
 	outputs = { self, nixpkgs, hardware-configuration, home-manager, stylix, niri, awww, firefox-addons, rmpc, freesmlauncher, ... }@inputs:
 	let
-		
 		system = "x86_64-linux"; 
-		vars = import ./vars; # Выбор нужных компонентов через изменение переменных
+		vars = import ./vars; # Выбор нужных компонентов через изменение переменных	
+
+overlay = final: prev:
+  let
+    files = nixpkgs.lib.filterAttrs
+      (name: type: type == "regular" && builtins.match "^[^_].*\\.nix$" name != null)
+      (builtins.readDir ./packages);
+  in
+    builtins.foldl'
+      (acc: name:
+        let
+          pkgName = nixpkgs.lib.removeSuffix ".nix" name;
+          value = final.callPackage ./packages/${name} {};
+        in
+          acc // { "${pkgName}" = value; }
+      )
+      {}
+      (builtins.attrNames files);
+
+
 		
 	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				inherit system; specialArgs = { inherit inputs vars; hwModule = hardware-configuration.outPath; };  # Передаём inputs в модули
+				inherit system;
+
+				specialArgs = {
+					inherit inputs vars;
+					hwModule = hardware-configuration.outPath;
+				};
+
 				modules = [
 					./modules
 					inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
 					niri.nixosModules.niri
+
+					({ ... }: {
+						nixpkgs.overlays = [ overlay ];
+					})
+					
 					{ 
 						home-manager = {
 							extraSpecialArgs = { inherit inputs vars; };
