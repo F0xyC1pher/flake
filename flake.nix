@@ -27,14 +27,33 @@
 	
 	outputs = { self, nixpkgs, hardware-configuration, home-manager, stylix, niri, awww, firefox-addons, rmpc, freesmlauncher, ... }@inputs:
 	let
-		
 		system = "x86_64-linux"; 
 		vars = import ./vars; # Выбор нужных компонентов через изменение переменных
+		
+		overlay = final: prev: {
+			custom =
+			let
+				dir = ./packages;
+				files = builtins.readDir dir;
+			in
+			builtins.mapAttrs
+			(name: type:
+				prev.callPackage (dir + "/${name}") {}
+			)
+			(builtins.filterAttrs
+				(n: t: t == "regular" && builtins.match ".*\\.nix" n != null)
+			files);
+		};
+
+		pkgs = import nixpkgs {
+			inherit system;
+			overlays = [ overlay ];
+		};
 		
 	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				inherit system; specialArgs = { inherit inputs vars; hwModule = hardware-configuration.outPath; };  # Передаём inputs в модули
+				inherit system; specialArgs = { inherit inputs vars pkgs; hwModule = hardware-configuration.outPath; };  # Передаём inputs в модули
 				modules = [
 					./modules
 					inputs.hardware-configuration.outPath
@@ -43,7 +62,7 @@
 					niri.nixosModules.niri
 					{ 
 						home-manager = {
-							extraSpecialArgs = { inherit inputs vars; };
+							extraSpecialArgs = { inherit inputs vars pkgs; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов

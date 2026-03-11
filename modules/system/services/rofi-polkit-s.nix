@@ -1,20 +1,14 @@
-{ pkgs, config, lib, ... }:
+{ config, pkgs, ... }:
 
-let
-	rofiPolkit = import ../packages/rofi-polkit.nix { inherit pkgs; };
-in
 {
-	systemd.user.services.rofi-polkit-agent = {
-		description = "Rofi-based Polkit Authentication Agent";
+  systemd.user.services.rofi-polkit-agent = {
+    description = "Rofi Polkit Agent";
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "default.target" ];
 
-		wantedBy = [ "niri.service" ];
-		after = [ "niri.service" ];
-
-		serviceConfig = {
-			Type = "simple";
-			ExecStart = "${rofiPolkit}/bin/rofi-polkit-agent";
-			Restart = "on-failure";
-			RestartSec = 3;
-		};
-	};
+    serviceConfig = {
+      ExecStart = "${pkgs.cutom.rofi-polkit}/bin/rofi-polkit-agent";
+      Restart = "on-failure";
+    };
+  };
 }

@@ -12,7 +12,7 @@
 #		==========PACKAGES==========
 		systemPackages = with pkgs; [
 #		============CUSTOM============
-		(import ./packages/rofi-polkit.nix { inherit pkgs;})
+			custom.rofi-polkit
 #		==============================
 			git
 			git-credential-keepassxc
