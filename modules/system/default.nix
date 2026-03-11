@@ -18,7 +18,6 @@
 		./mime.nix
 		./network.nix
 		./programs.nix
-		./packages-custom.nix
 		./packages.nix
 		./portal.nix
 		# ./rofi-polkit.nix

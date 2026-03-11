@@ -14,6 +14,7 @@
 #		============CUSTOM============
 			custom.rofi-polkit
 #		==============================
+			aaa
 			git
 			git-credential-keepassxc
 			ntfs3g

@@ -15,7 +15,9 @@
 		package = pkgs.lix;
 		settings = {
 			experimental-features = [ "nix-command" "flakes" ];
-				
+
+			eval-cache = true;
+			
 			substituters = [
 				"https://cache.nixos.org/"
 				"https://cache.garnix.io"

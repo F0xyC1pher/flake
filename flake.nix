@@ -28,41 +28,51 @@
 	outputs = { self, nixpkgs, hardware-configuration, home-manager, stylix, niri, awww, firefox-addons, rmpc, freesmlauncher, ... }@inputs:
 	let
 		system = "x86_64-linux"; 
-		vars = import ./vars; # Выбор нужных компонентов через изменение переменных
-		
-		overlay = final: prev: {
-			custom =
-			let
-				dir = ./packages;
-				files = builtins.readDir dir;
-			in
-			builtins.mapAttrs
-			(name: type:
-				prev.callPackage (dir + "/${name}") {}
-			)
-			(builtins.filterAttrs
-				(n: t: t == "regular" && builtins.match ".*\\.nix" n != null)
-			files);
-		};
+		vars = import ./vars; # Выбор нужных компонентов через изменение переменных	
+# overlay пакетов
+  overlay = final: prev:
+    let
+      files = builtins.filterAttrs
+        (name: type: type == "regular" && builtins.match "^[^_].*\\.nix$" name != null)
+        (builtins.readDir ./packages);
+    in
+      builtins.foldl'
+        (acc: name:
+          let
+            pkgName = builtins.removeSuffix ".nix" name;
+            value = final.callPackage (./packages + "/" + name) {};
+          in
+            acc // { "${pkgName}" = value; }
+        )
+        {}
+        (builtins.attrNames files);
 
-		pkgs = import nixpkgs {
-			inherit system;
-			overlays = [ overlay ];
-		};
+
 		
 	in {
 		nixosConfigurations = {
 			"${vars.hostName}" = nixpkgs.lib.nixosSystem {
-				inherit system; specialArgs = { inherit inputs vars pkgs; hwModule = hardware-configuration.outPath; };  # Передаём inputs в модули
+				inherit system;
+
+				specialArgs = {
+					inherit inputs vars;
+					hwModule = hardware-configuration.outPath;
+				};
+
 				modules = [
 					./modules
 					inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
 					niri.nixosModules.niri
+
+					({ ... }: {
+						nixpkgs.overlays = [ overlay ];
+					})
+					
 					{ 
 						home-manager = {
-							extraSpecialArgs = { inherit inputs vars pkgs; };
+							extraSpecialArgs = { inherit inputs vars; };
 							useGlobalPkgs = true; # Используем глобальные пакеты из системы
 							useUserPackages = true; # Устанавливаем пакеты в пользовательский профиль
 							backupFileExtension = "backup"; # заодно поможет при конфликтах файлов
