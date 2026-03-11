@@ -12,7 +12,7 @@
 #		==========PACKAGES==========
 		systemPackages = with pkgs; [
 #		============CUSTOM============
-			custom.rofi-polkit
+			rofi-polkit
 #		==============================
 			aaa
 			git

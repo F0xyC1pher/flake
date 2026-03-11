@@ -7,7 +7,7 @@
     wantedBy = [ "default.target" ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.cutom.rofi-polkit}/bin/rofi-polkit-agent";
+      ExecStart = "${pkgs.rofi-polkit}/bin/rofi-polkit-agent";
       Restart = "on-failure";
     };
   };

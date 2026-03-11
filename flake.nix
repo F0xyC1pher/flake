@@ -29,23 +29,23 @@
 	let
 		system = "x86_64-linux"; 
 		vars = import ./vars; # Выбор нужных компонентов через изменение переменных	
-# overlay пакетов
-  overlay = final: prev:
-    let
-      files = builtins.filterAttrs
-        (name: type: type == "regular" && builtins.match "^[^_].*\\.nix$" name != null)
-        (builtins.readDir ./packages);
-    in
-      builtins.foldl'
-        (acc: name:
-          let
-            pkgName = builtins.removeSuffix ".nix" name;
-            value = final.callPackage (./packages + "/" + name) {};
-          in
-            acc // { "${pkgName}" = value; }
-        )
-        {}
-        (builtins.attrNames files);
+
+overlay = final: prev:
+  let
+    files = nixpkgs.lib.filterAttrs
+      (name: type: type == "regular" && builtins.match "^[^_].*\\.nix$" name != null)
+      (builtins.readDir ./packages);
+  in
+    builtins.foldl'
+      (acc: name:
+        let
+          pkgName = nixpkgs.lib.removeSuffix ".nix" name;
+          value = final.callPackage ./packages/${name} {};
+        in
+          acc // { "${pkgName}" = value; }
+      )
+      {}
+      (builtins.attrNames files);
 
 
 		
