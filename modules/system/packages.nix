@@ -15,7 +15,9 @@
 			rofi-polkit
 #		==============================
 			aaa
+			libnotify
 			git
+			lazygit
 			git-credential-keepassxc
 			ntfs3g
 			micro-full
