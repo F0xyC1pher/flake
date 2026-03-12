@@ -18,8 +18,15 @@
           null;
 
 
- sops = {
-    defaultSopsFile = ./../secrets/secrets.yaml;
-    age.keyFile = "/home/${vars.userName}/.config/sops/age/keys.txt";
+sops = {
+  defaultSopsFile = ../secrets/secrets.yaml; # Путь к твоему yaml
+  age.keyFile = "/home/${vars.userName}/.config/sops/age/keys.txt";
+
+  secrets.github_ssh_key = {
+    owner = vars.userName;
+    # Sops положит расшифрованный ключ прямо в .ssh
+    path = "/home/${vars.userName}/.ssh/id_ed25519";
+    mode = "0600";
   };
+};
 }
