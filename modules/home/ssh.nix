@@ -21,18 +21,19 @@
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
-      
+
         matchBlocks = {
           "*" = {
             addKeysToAgent = "yes";
           };
       
-          github = {
-            host = "github.com";
-            user = "git";
-            identityFile = keyPath;
-            identitiesOnly = true;
-          };
+         github = {
+                host = "github.com";
+                user = "git";
+                identityFile = keyPath;
+                identitiesOnly = true;
+                addKeysToAgent = "true";
+              };
         };
       };
     };
