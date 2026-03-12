@@ -14,6 +14,8 @@
 #		============CUSTOM============
 			rofi-polkit
 #		==============================
+			sops
+			openssh
 			aaa
 			libnotify
 			git

@@ -4,12 +4,7 @@
 	programs = {
 		fish.enable = true;
 		bash.enable = true;
-		
-		niri = {
-			enable = true;
-			package = pkgs.niri-unstable;
-		};
-		
+		ssh.startAgent = true;
 		steam = {
 			enable = true;
 			remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
