@@ -32,7 +32,7 @@
                 user = "git";
                 identityFile = keyPath;
                 identitiesOnly = true;
-                addKeysToAgent = "true";
+                addKeysToAgent = "yes";
               };
         };
       };
