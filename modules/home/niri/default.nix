@@ -7,7 +7,8 @@
 	...
 }: {
 	systemd.user.services.niri-flake-polkit.enable = false;
-
+	programs.niri.enable = true;
+	
 	home-manager = {
 		extraSpecialArgs = { inherit inputs vars; };
 		users.${vars.userName} =  { config, pkgs, lib, ... }: {
@@ -17,6 +18,8 @@
 	];
 	# ========== NIRI ==========
 	programs.niri = {
+
+		package = pkgs.niri-unstable;
 		settings = {
 			clipboard.disable-primary = false;
 			screenshot-path = "~/CoolStuff/Pictures/Screenshots/%Y-%m-%d %H:%M:%S.png";

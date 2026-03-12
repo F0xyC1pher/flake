@@ -21,9 +21,11 @@
 		./packages.nix
 		./portal.nix
 		# ./rofi-polkit.nix
-		./stylix.nix
-		./services.nix
+		./openssh.nix
 		./security.nix
+		./services.nix
+		./sops.nix
+		./stylix.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix

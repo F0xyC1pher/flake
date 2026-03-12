@@ -13,6 +13,7 @@
 		./yazi
 		./firefox
 		./home.nix
+		./ssh.nix
 	];
 
 	home-manager = {
