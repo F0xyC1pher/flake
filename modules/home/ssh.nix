@@ -1,41 +1,27 @@
-{ lib, config, pkgs, inputs, vars, ... }:
+{ config, pkgs, vars, ... }:
 {
-  home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
-
-    users.${vars.userName} = { config, pkgs, lib, ... }:
-    let
-      keyPath = "/home/${vars.userName}/.ssh/id_ed25519";
-    in
-    {
-      sops = {
-        age.keyFile = "/home/${vars.userName}/.config/sops/age/keys.txt";
-        defaultSopsFile = ../../secrets/secrets.yaml;
-      };
-
-      sops.secrets.github_ssh_key = {
-        path = keyPath;
-        mode = "0600";
-      };
-		services.ssh-agent.enable = true;
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-
-        matchBlocks = {
-          "*" = {
-            addKeysToAgent = "yes";
-          };
-      
-         github = {
-                host = "github.com";
-                user = "git";
-                identityFile = keyPath;
-                identitiesOnly = true;
-                addKeysToAgent = "yes";
-              };
-        };
+  home-manager.users.${vars.userName} = { config, ... }: {
+    programs.ssh = {
+      enable = true;
+      matchBlocks."github.com" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "/home/${vars.userName}/.ssh/id_ed25519";
       };
     };
+
+    services.ssh-agent.enable = true;
+
+    programs.fish.shellInit = ''
+      # Указываем путь к сокету
+      set -gx SSH_AUTH_SOCK "/run/user/1000/ssh-agent"
+
+      # Добавляем ключ в агент при запуске шелла
+      if not ssh-add -l > /dev/null 2>&1
+        if test -f /home/${vars.userName}/.ssh/id_ed25519
+          ssh-add /home/${vars.userName}/.ssh/id_ed25519 2>/dev/null
+        end
+      end
+    '';
   };
 }
