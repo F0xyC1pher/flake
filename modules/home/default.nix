@@ -14,6 +14,7 @@
 		./firefox
 		./home.nix
 		./ssh.nix
+		./vscodium
 	];
 
 	home-manager = {
@@ -21,7 +22,7 @@
 		users.${vars.userName} = { ... }: {
 			home.username = "${vars.userName}";
 			home.homeDirectory = "/home/${vars.userName}";
-			home.stateVersion = "25.05";
+			home.stateVersion = "26.05";
 		};
 	};
 }
