@@ -13,7 +13,7 @@
 		./yazi
 		./firefox
 		./home.nix
-		./ssh.nix
+		#./ssh.nix
 		./vscodium
 	];
 
