@@ -16,7 +16,8 @@
           lib.mkForce "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"
         else
           null;
-
+          
+services.openssh.enable = true;
 
 sops = {
   defaultSopsFile = ../secrets/secrets.yaml; # Путь к твоему yaml
