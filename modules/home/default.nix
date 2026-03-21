@@ -7,14 +7,15 @@
 	...
 }: {
 	imports = [
+		./firefox
 		./micro
 		./niri
+    ./rofi
+		./vscodium
 		./waybar
 		./yazi
-		./firefox
 		./home.nix
 		#./ssh.nix
-		./vscodium
 	];
 
 	home-manager = {

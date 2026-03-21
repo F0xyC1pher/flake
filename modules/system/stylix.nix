@@ -13,6 +13,7 @@
 			targets = {
 				micro.enable = true;
 				kitty.enable = true;
+				vscode.enable = true;
 				waybar.enable = false;
 				qt ={
 					enable = true;
@@ -29,7 +30,9 @@
 	
 	stylix = {
 	enable = true;
-		
+
+		autoEnable = false;
+
 		polarity = "dark";
 		
 		homeManagerIntegration = {
@@ -62,8 +65,8 @@
 		base16Scheme = {
 			# Фоны и основные поверхности
 			base00	=	"#161616";	# основной фон (editor, терминал, панели, tmux)
-			base01	=	"#363636";	# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-			base02	=	"#767676";	# фон выделения текста (visual mode, selected text, поиск)
+			base01	=	"#262626";	# лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+			base02	=	"#464646";	# фон выделения текста (visual mode, selected text, поиск)
 			
 			# Серые тона для текста и неактивных элементов
 			base03	=	"#969696";	# комментарии, невидимые символы, cursorline, неактивные элементы
