@@ -97,8 +97,8 @@ in
                   "editor.selectionHighlightBorder" = "1px solid ${vars.colors.green}";
 
                   # Подсветка текущей строки
-                  "editor.lineHighlightBackground" = "#10${vars.colors.base03}"; # легкая подсветка
-                  "editor.lineHighlightBorder" = "1px solid ${vars.colors.base03}";
+                  "editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
+                  "editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
 
                   # Подсветка скобок
                   "editorBracketMatch.background" = "#20${vars.colors.yellow}";
