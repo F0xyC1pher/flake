@@ -58,7 +58,7 @@
             specialArgs = { inherit inputs vars; };
             modules = [
                 ./modules
-                ./hosts/${hostName}.nix
+                ./hosts/${hostName}
                 inputs.hardware-configuration.outPath
                 home-manager.nixosModules.home-manager
                 stylix.nixosModules.stylix
@@ -77,7 +77,9 @@
                             sops-nix.homeManagerModules.sops
                         ];
                         users.${vars.userName} = { ... }: {
-                        
+							home.username = "${vars.userName}";
+							home.homeDirectory = "/home/${vars.userName}";
+							home.stateVersion = "26.05";
                         };
                     };
                 }
@@ -86,19 +88,20 @@
 
     in {
         nixosConfigurations =
-            # Автоматически подхватывает все файлы из hosts/
-            # Чтобы добавить хост — создай hosts/имяхоста.nix, больше ничего не нужно
-            let
-                hostFiles = builtins.readDir ./hosts;
-                hostNames = map
-                    (file: lib.removeSuffix ".nix" file)
-                    (builtins.filter
-                        (file: lib.hasSuffix ".nix" file)
-                        (builtins.attrNames hostFiles));
-            in
-                builtins.listToAttrs (map (hostName: {
-                    name = hostName;
-                    value = mkHost hostName;
-                }) hostNames);
+                # Автоматически подхватывает все поддиректории из hosts/
+                # Чтобы добавить хост — создай hosts/имяхоста/default.nix, больше ничего не нужно
+                let
+                    hostDirs = builtins.readDir ./hosts;
+                    hostNames = builtins.filter
+                        (name: 
+                            (hostDirs.${name} == "directory") && 
+                            (builtins.pathExists (./hosts + "/${name}/default.nix"))
+                        )
+                        (builtins.attrNames hostDirs);
+                in
+                    builtins.listToAttrs (map (hostName: {
+                        name = hostName;
+                        value = mkHost hostName;
+                    }) hostNames);
     };
 }

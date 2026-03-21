@@ -7,7 +7,8 @@
 	...
 }: {
 	imports = [
-		./hardware
+		# ./hardware
+		./nix
 		./services
 		# ./awww-daemon.nix
 		# ./awww-restore.nix
