@@ -86,29 +86,29 @@ in
                 "workbench.colorCustomizations" = {
                   # Выделение при поиске
                   "editor.findMatchHighlightBackground" = "#00000000";
-                  "editor.findMatchHighlightBorder" = "1px solid ${vars.colors.orange}";
+                  "editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
                   "editor.findMatchBackground" = "#00000000";
-                  "editor.findMatchBorder" = "1px solid ${vars.colors.yellow}";
+                  "editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
 
                   # Выделение выбранного текста
-                  "editor.selectionBackground" = "#40${vars.colors.blue}"; # 40 = 25% прозрачности
-                  "editor.selectionBorder" = "1px solid ${vars.colors.blue}";
-                  "editor.selectionHighlightBackground" = "#20${vars.colors.green}"; # 20 = 12.5% прозрачности
-                  "editor.selectionHighlightBorder" = "1px solid ${vars.colors.green}";
+                  "editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
+                  "editor.selectionBorder" = "1px solid ${vars.colors.b0}";
+                  "editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
+                  "editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
 
                   # Подсветка текущей строки
                   "editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
                   "editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
 
                   # Подсветка скобок
-                  "editorBracketMatch.background" = "#20${vars.colors.yellow}";
-                  "editorBracketMatch.border" = "1px solid ${vars.colors.yellow}";
+                  "editorBracketMatch.background" = "#20${vars.colors.y0}";
+                  "editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
 
                   # Подсветка слова под курсором
-                  "editor.wordHighlightBackground" = "#20${vars.colors.blue}";
-                  "editor.wordHighlightBorder" = "1px solid ${vars.colors.blue}";
-                  "editor.wordHighlightStrongBackground" = "#30${vars.colors.orange}";
-                  "editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.orange}";
+                  "editor.wordHighlightBackground" = "#20${vars.colors.b0}";
+                  "editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
+                  "editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
+                  "editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
                 };
               };
             };
