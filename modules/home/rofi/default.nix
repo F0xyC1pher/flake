@@ -27,25 +27,10 @@
                     inherit (config.lib.formats.rasi) mkLiteral;
                 in {
                     "*" = {
-                        black = mkLiteral "#1a1a1a";
-                        black-b = mkLiteral "#6f6f6f";
-                        red = mkLiteral "#d76667";
-                        red-b = mkLiteral "#d09a9b";
-                        green = mkLiteral "#67b766";
-                        green-b = mkLiteral "#9bd09a";
-                        yellow = mkLiteral "#fed666";
-                        yellow-b = mkLiteral "#ffeab3";
-                        blue = mkLiteral "#0666ff";
-                        blue-b = mkLiteral "#5294ff";
-                        magenta = mkLiteral "#a666fd";
-                        magenta-b = mkLiteral "#d3b4fe";
-                        cyan = mkLiteral "#61d6d6";
-                        bcyan = mkLiteral "#9ee6e6";
-                        white = mkLiteral "#f0e0e0";
-                        bwhite = mkLiteral "#ffffff";
+                        red = mkLiteral "{vars.colors.r0}";
 
-                        bg = mkLiteral "#1a1a1a";
-                        fg = mkLiteral "@white";
+                        bg = mkLiteral "{vars.colors.b1}";
+                        fg = mkLiteral "{vars.colors.bd}";
                         spacing = 0;
                         background-color = mkLiteral "transparent";
                     };
@@ -100,7 +85,7 @@
 
                     "button selected" = {
                         background-color = mkLiteral "@red";
-                        text-color = mkLiteral "@black";
+                        text-color = mkLiteral "@bg";
                     };
 
                     "listview" = {
@@ -135,7 +120,7 @@
 
                     "element selected" = {
                         background-color = mkLiteral "@red";
-                        text-color = mkLiteral "@black";
+                        text-color = mkLiteral "@bg";
                     };
 
                     "element normal normal, element alternate normal" = {
@@ -144,16 +129,16 @@
 
                     "element selected urgent" = {
                         text-color = mkLiteral "@fg";
-                        background-color = mkLiteral "@black";
+                        background-color = mkLiteral "@bg";
                     };
 
                     "element normal urgent, element alternate urgent" = {
-                        text-color = mkLiteral "@black";
+                        text-color = mkLiteral "@bg";
                         background-color = mkLiteral "@fg";
                     };
 
                     "element selected active" = {
-                        text-color = mkLiteral "@black";
+                        text-color = mkLiteral "@bg";
                     };
 
                     "element normal active, element alternate active" = {
