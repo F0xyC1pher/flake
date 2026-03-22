@@ -11,8 +11,6 @@
     # ./hardware
     ./nix
     ./services
-    # ./awww-daemon.nix
-    # ./awww-restore.nix
     ./bluetooth.nix
     ./boot.nix
     ./fonts.nix
@@ -22,7 +20,6 @@
     ./programs.nix
     ./packages.nix
     ./portal.nix
-    # ./rofi-polkit.nix
     ./openssh.nix
     ./security.nix
     ./services.nix
@@ -30,7 +27,7 @@
     ./stylix.nix
     ./users.nix
     ./variables.nix
-    # ./xdg.nix
+    ./xdg.nix
     ./zram.nix
   ];
 
