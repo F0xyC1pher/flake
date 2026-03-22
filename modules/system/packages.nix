@@ -14,7 +14,7 @@
       #		============CUSTOM============
       rofi-polkit
       #		==============================
-      inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
+      # inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor
       inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
       inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
