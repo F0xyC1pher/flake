@@ -15,16 +15,15 @@
       rofi-polkit
       #		==============================
       # inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor
-      inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
       inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+      inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+      inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # rmpc
+      mpd
       sops
       openssh
       aaa
       libnotify
-      git
-      lazygit
-      git-credential-keepassxc
       ntfs3g
       micro-full
       fd
@@ -35,7 +34,6 @@
       usbutils
       lm_sensors
       rustdesk-flutter
-      # rmpc
       ayugram-desktop
       jq
       yazi
@@ -53,7 +51,7 @@
       swww
       fzf
       bluetuith
-      tor-browser
+      # tor-browser
       discord
       discordo
       discord-gamesdk
@@ -86,14 +84,13 @@
       wl-clipboard-x11
       wl-clip-persist
       wayland-utils
-      helix
+      # helix
       slurp
       keepassxc
       rofi
       swaylock
       swaynotificationcenter
       mpv
-      mpd
       mpdris2
       obsidian
       libva-vdpau-driver
@@ -125,6 +122,8 @@
       # git integration
       git
       gitui
+      lazygit
+      git-credential-keepassxc
 
       # utils
       miller
