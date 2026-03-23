@@ -1,9 +1,9 @@
 {
-  stdenv,
+  # stdenv,
   config,
   pkgs,
   lib,
-  inputs,
+  # inputs,
   vars,
   ...
 }:
