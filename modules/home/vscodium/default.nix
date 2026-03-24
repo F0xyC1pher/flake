@@ -68,7 +68,7 @@ in
               "editor.detectIndentation" = false;
               "editor.useTabStops" = true;
               "editor.indentSize" = "tabSize";
-              "editor.formatOnSave" = true;
+              "editor.formatOnSave" = false;
 
               # "[nix]" = {
               # };

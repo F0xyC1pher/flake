@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/misc.kdl".text = ''
 
 recent-windows {
     // off
@@ -142,4 +158,8 @@ hotkey-overlay {
 
 clipboard {
     // disable-primary
+}
+        '';
+      };
+  };
 }

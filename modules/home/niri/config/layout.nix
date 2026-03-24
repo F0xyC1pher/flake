@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/layout.kdl".text = ''
 layout {
     // Set gaps around windows in logical pixels.
     gaps 50
@@ -82,4 +98,8 @@ layout {
          top -10
          bottom -10
     }
+}
+        '';
+      };
+  };
 }
