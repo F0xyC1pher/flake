@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/binds.kdl".text = ''
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -17,6 +33,7 @@ binds {
     // Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+	Mod+Y hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "yazi"; }
     Mod+R hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -185,8 +202,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+space       { toggle-window-floating; }
+    Mod+Shift+space { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -217,9 +234,15 @@ binds {
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
+	Ctrl+Mod+Alt+Q { quit; }
     Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+}
+
+        '';
+      };
+  };
 }

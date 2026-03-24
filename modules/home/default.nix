@@ -8,6 +8,7 @@
 }: {
 	imports = [
 		./firefox
+    ./fuzzel
 		./micro
 		./niri
 		./rofi

@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/window-rules.kdl".text = ''
 // ────────────── Window Rules  ──────────────
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
@@ -82,4 +98,8 @@ window-rule {
 
     // Или от скринкаста (разрешить скрины но запретить демонстрацию).
     // block-out-from "screencast"
+}
+        '';
+      };
+  };
 }

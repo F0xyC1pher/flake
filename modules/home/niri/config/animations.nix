@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/animations.kdl".text = ''
 animations {
     // off
     // slowdown 100
@@ -207,4 +223,8 @@ animations {
         // duration-ms 2000
         // curve "ease-out-quad"
     }
+}
+        '';
+      };
+  };
 }

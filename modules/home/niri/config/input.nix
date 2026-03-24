@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/input.kdl".text = ''
 input {
     keyboard {
         xkb {
@@ -32,4 +48,8 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
     focus-follows-mouse
     workspace-auto-back-and-forth
+}
+        '';
+      };
+  };
 }

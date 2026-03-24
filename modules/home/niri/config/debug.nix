@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/debug.kdl".text = ''
 debug {
     // preview-render "screencast"
     // preview-render "screen-capture"
@@ -26,4 +42,8 @@ debug {
     // honor-xdg-activation-with-invalid-serial
     // deactivate-unfocused-windows
     // keep-max-bpc-unchanged
+}
+        '';
+      };
+  };
 }

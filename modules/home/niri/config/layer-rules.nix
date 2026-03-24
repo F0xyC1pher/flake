@@ -1,3 +1,19 @@
+{
+  # config,
+  # lib,
+  inputs,
+  vars,
+  ...
+}:
+{
+  home-manager = {
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.userName} =
+      {
+        ...
+      }:
+      {
+        xdg.configFile."niri/layer-rules.kdl".text = ''
 // ────────────── Layer Settings ──────────────
 layer-rule {
     // This is for gslapper; change for other wallpaper tools.
@@ -24,4 +40,9 @@ layer-rule {
 layer-rule {
     match namespace="dms:blurwallpaper"
     place-within-backdrop true
+}
+
+        '';
+      };
+  };
 }
