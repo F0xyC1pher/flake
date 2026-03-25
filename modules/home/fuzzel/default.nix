@@ -8,6 +8,7 @@
 		extraSpecialArgs = { inherit inputs vars; };
 		users.${vars.userName} =
 			{
+        lib,
 				...
 			}:
 			{
@@ -70,7 +71,7 @@
 
 							enable-mouse=false;
 						};
-						colors = {
+						colors = lib.mkForce {
 							background="${vars.colors.b1}bb"; # фон окошка
 							text="${vars.colors.bd}ff"; # текст
 							message="${vars.colors.bd}ff"; # сообщение
