@@ -8,6 +8,7 @@ in
 		users.${vars.userName} =  { config, pkgs, lib, ... }: {
 			programs.firefox = {
 				profiles.${vars.userFullName} = {
+          extensions.force = true;
 					extensions.packages = with addons; [
 						ublock-origin
 						sponsorblock

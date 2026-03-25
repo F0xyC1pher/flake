@@ -123,7 +123,7 @@
                 background-color = mkLiteral "@bg";
                 handle-color = mkLiteral "@red";
                 handle-width = mkLiteral "10px";
-                border = mkLiteral "1 1px";
+                border = mkLiteral "2 2px";
                 border-color = mkLiteral "@red";
                 margin = mkLiteral "0 0 0 20px";
               };
