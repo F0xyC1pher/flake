@@ -12,16 +12,38 @@
 			polarity = "dark";
 			targets = {
 				micro.enable = true;
-				kitty.enable = true;
 				vscode.enable = true;
+        yazi.enable = true;
+        nixcord.enable = true;
+        fontconfig.enable = true;
+        fish.enable = true;
 				waybar.enable = false;
+        nixos-icons.enable = true;
+        mangohud.enable = true;
+        fuzzel.enable = true;
+        anki.enable = true;
+        swaync.enable = true;
+				kitty = {
+          enable = true;
+          variant256Colors = false;
+        };
 				qt ={
 					enable = true;
 					platform = "qtct";
 					standardDialogs = "xdgdesktopportal";
 				};
+        gtk = {
+          enable = true;
+          flatpakSupport.enable = true;
+          fonts.enable = true;
+          extraCss = ''
+            // Remove rounded corners
+            * { border-radius: 0; }
+          '';
+        };
 				firefox = {
 					enable = true;
+          colorTheme.enable = true;
 					profileNames = [ "${vars.userFullName}" ];
 				};
 			};
@@ -41,13 +63,15 @@
 		};
 		
 		targets = {
+      console.enable = true;
+      fish.enable = true;
 			qt ={
 				enable = true;
 				platform = "qtct";
 			};
 		};
 		
-		opacity.terminal = 0.8;
+		opacity.terminal = 0.6;
 		
 		fonts = {
 			sizes = let s = vars.fontSize; in {

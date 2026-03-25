@@ -28,8 +28,8 @@
     ./battery.nix
   ];
 
-  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.6") pkgs.linuxPackages_latest;
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [ "asus_armoury" ];
   # The bottom 2 parts are taken from the framework 16-inch laptops configurations.
   # Workaround for SuspendThenHibernate: https://lore.kernel.org/linux-kernel/20231106162310.85711-1-mario.limonciello@amd.com/
   boot.kernelParams =

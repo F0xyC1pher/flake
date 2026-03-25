@@ -23,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord.url = "github:FlameFlag/nixcord";
+
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.niri-unstable.follows = "niri-blur";
@@ -71,6 +73,7 @@
       sops-nix,
       stylix,
       niri,
+      nixcord,
       awww,
       firefox-addons,
       rmpc,
@@ -127,6 +130,7 @@
                 backupFileExtension = "backup";
                 sharedModules = [
                   sops-nix.homeManagerModules.sops
+                  nixcord.homeModules.nixcord
                 ];
                 users.${vars.userName} =
                   { ... }:
