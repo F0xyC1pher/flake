@@ -6,6 +6,10 @@
   ...
 }:
 {
+
+  imports = [
+    ./zerotierone.nix
+  ];
   # Диск для загрузчика (весь диск, не раздел)
   # Найти свой: ls -la /dev/disk/by-id/ | grep -v part
   boot.loader.limine.biosDevice =

@@ -11,6 +11,7 @@
     ./fuzzel
 		./micro
 		./niri
+    ./nixcord
 		./rofi
 		./vscodium
 		./waybar

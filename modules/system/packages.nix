@@ -38,7 +38,6 @@
       jq
       yazi
       kitty
-      sublime4
       vscodium
       musikcube
       nixd
@@ -52,7 +51,7 @@
       fzf
       bluetuith
       # tor-browser
-      discord
+      # discord
       discordo
       discord-gamesdk
       discord-rpc
@@ -98,8 +97,8 @@
       obs-studio-plugins.obs-vaapi
       nvidia-vaapi-driver
       cmd-polkit
-      niri-unstable
-      xwayland-satellite-unstable
+      # niri-unstable
+      # xwayland-satellite-unstable
 
       # required for preview
       file
@@ -138,6 +137,17 @@
       gst_all_1.gst-plugins-ugly
       gst_all_1.gst-libav
       gst_all_1.gst-vaapi
+
+      qbittorrent
+
+      # wine
+      wineWow64Packages.stagingFull
+      wineWow64Packages.waylandFull
+      wineWow64Packages.fonts
+      wineasio
+      # mono
+      # winetricks
+      winetricks
     ];
   };
 
