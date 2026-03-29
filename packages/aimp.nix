@@ -38,7 +38,11 @@
 
 	libraryPath = pkgs.lib.makeLibraryPath runtimeDeps;
 in
+<<<<<<< HEAD
 	pkgs.stdenv.mkDerivation rec {
+=======
+	pkgs.stdenv.mkDerivation {
+>>>>>>> 5493921 (Changees in syntax)
 		pname = "aimp";
 		version = "nightly";
 
