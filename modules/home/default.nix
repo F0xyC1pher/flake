@@ -8,10 +8,10 @@
 }: {
 	imports = [
 		./firefox
-    ./fuzzel
+		./fuzzel
 		./micro
 		./niri
-    ./nixcord
+		./nixcord
 		./rofi
 		./vscodium
 		./waybar
