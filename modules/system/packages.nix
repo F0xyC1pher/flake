@@ -9,126 +9,135 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
-			#		============CUSTOM============
-			rofi-polkit
-			#		==============================
-			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor
-			inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
-			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
-			# rmpc
-			mpd
-			sops
-			openssh
-			aaa
-			libnotify
-			ntfs3g
-			micro-full
-			fd
-			btop
-			wget
-			tuigreet
+			# 🔧 Системные утилиты и инструменты
 			pciutils
 			usbutils
 			lm_sensors
-			rustdesk-flutter
-			ayugram-desktop
-			jq
+			ethtool
+			dnsutils
+			smartmontools
+			duf
+			glances
+			btop
+			fastfetch
+
+			# 🛠 Файловые менеджеры и работа с файлами
 			yazi
-			kitty
-			vscodium
-			musikcube
-			nixd
-			nil
-			nixfmt
-			alejandra
-			package-version-server
-			android-tools
-			zenity
-			mangohud
-			swww
-			fzf
-			bluetuith
-			# tor-browser
-			# discord
-			discordo
-			discord-gamesdk
-			discord-rpc
-			arrpc
-			# ripcord
-			# overlayed
-			# goofcord
-			# mpvScripts.mpv-discord
-			# moonlight
-			# mprisence
-			# abaddon
-			# legcord
-			# equicord
-			babelfish
-			ffmpeg-full
-			imagemagick
-			pandoc
-			yt-dlp
 			eza
 			bat
-			zed-editor
-			lapce
-			socat
+			fd
 			ripgrep-all
-			pavucontrol
-			fastfetch
-			cliphist
-			wl-clipboard
-			wl-clipboard-x11
-			wl-clip-persist
-			wayland-utils
-			# helix
-			slurp
-			keepassxc
-			rofi
-			swaylock
-			swaynotificationcenter
-			mpv
-			mpdris2
-			obsidian
-			libva-vdpau-driver
-			libvdpau-va-gl
-			obs-studio-plugins.obs-vaapi
-			nvidia-vaapi-driver
-			cmd-polkit
-			# niri-unstable
-			# xwayland-satellite-unstable
-
-			# required for preview
-			file
-			less
-			bat
-			glow
-
-			# media preview
+			fzf
+			trash-cli
 			mediainfo
 			ffmpegthumbnailer
-			ffmpeg
+			file
+			less
+			glow
+			poppler
+			exiftool
 
-			# archives
+			# 📦 Архивы и сжатие
 			p7zip
 			unzip
 			zip
 			xz
 			gzip
 
-			# git integration
+			# 🐧 Nix и разработка
+			nixd
+			nil
+			nixfmt
+			alejandra
+			package-version-server
+			micro-full
+			vscodium
+			zed-editor
+			lapce
 			git
 			gitui
 			lazygit
 			git-credential-keepassxc
 
-			# utils
-			miller
+			# 🎵 Медиа и Звук
+			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+			# rmpc
+			mpd
+			mpdris2
+			musikcube
+			playerctl
+			pavucontrol
+			mpv
+			ffmpeg-full
+			yt-dlp
 
-			poppler
-			imagemagick
-			exiftool
+			# 🖼 Обои и анимации (Wayland)
+			inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+
+			# 🔐 Безопасность и шифрование
+			keepassxc
+			sops
+			openssh
+			swaylock
+
+			# 🚀 Запуск приложений и меню
+			rofi
+			rofi-polkit
+			swaynotificationcenter
+			zenity
+			libnotify
+			cmd-polkit
+			tuigreet
+
+			# 🖥 Терминал и оболочка
+			kitty
+			babelfish
+
+			# 🌐 Сеть и скачивание
+			wget
+			aria2
+			qbittorrent
+
+			# 📱 Android и мобильное
+			android-tools
+
+			# 🎮 Игры и лаунчеры
+			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+			mangohud
+
+			# 🛠 Wine / Windows-приложения
+			wineWow64Packages.stagingFull
+			wineWow64Packages.waylandFull
+			wineWow64Packages.fonts
+			wineasio
+			winetricks
+
+			# 🪟 Wayland / Графика
+			wayland-utils
+			wlr-randr
+			wev
+			slurp
+			wl-clipboard
+			wl-clipboard-x11
+			wl-clip-persist
+			cliphist
+			brightnessctl
+
+			# 📨 Мессенджеры и коммуникация
+			ayugram-desktop
+			discordo
+			discord-gamesdk
+			discord-rpc
+			arrpc
+			rustdesk-flutter
+
+			# 🎥 Запись и стриминг
+			obs-studio-plugins.obs-vaapi
+
+			# 🔧 VA-API / Аппаратное ускорение (NVIDIA + Intel/AMD)
+			libva-vdpau-driver
+			libvdpau-va-gl
+			nvidia-vaapi-driver
 			gst_all_1.gstreamer
 			gst_all_1.gst-plugins-base
 			gst_all_1.gst-plugins-good
@@ -137,18 +146,14 @@
 			gst_all_1.gst-libav
 			gst_all_1.gst-vaapi
 
-			qbittorrent
+			# 🧹 Остальное / Полезные утилиты
+			libnotify
+			imagemagick
+			pandoc
+			socat
 
-			yetris
-
-			# wine
-			wineWow64Packages.stagingFull
-			wineWow64Packages.waylandFull
-			wineWow64Packages.fonts
-			wineasio
-			# mono
-			# winetricks
-			winetricks
+			# 📥 Из inputs (flake inputs)
+			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor  # закомментировано
 		];
 	};
 
