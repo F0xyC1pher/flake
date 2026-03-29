@@ -1,5 +1,4 @@
-{ config, pkgs, lib, inputs, vars, ... }:
-{
+{...}: {
 	# ========== BLUETOOTH ==========
 	hardware = {
 		bluetooth = {
@@ -8,7 +7,7 @@
 			settings = {
 				General = {
 					Experimental = true;
-					FastConnectable = true;	
+					FastConnectable = true;
 				};
 				Policy = {
 					AutoEnable = true;

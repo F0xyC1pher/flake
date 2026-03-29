@@ -1,11 +1,4 @@
-{
-	config,
-	pkgs,
-	lib,
-	inputs,
-	vars,
-	...
-}: {
+{...}: {
 	imports = [
 		./firefox
 		./fuzzel

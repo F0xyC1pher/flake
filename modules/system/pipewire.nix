@@ -1,13 +1,12 @@
-{ stdenv, config, pkgs, lib, inputs, vars, ... }:
-{
-#	========== SERVICES ==========
+{...}: {
+	#	========== SERVICES ==========
 	services = {
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
 			jack.enable = true;
 			wireplumber.enable = true;
-			alsa = {	
+			alsa = {
 				enable = true;
 				support32Bit = true;
 			};
