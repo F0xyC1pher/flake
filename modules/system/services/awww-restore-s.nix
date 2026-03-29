@@ -1,18 +1,16 @@
 {
-  inputs,
-  pkgs,
-  ...
-}:
-let
-  awww = inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww;
-in
-{
-  systemd.user.services.awww-restore = {
-    description = "Restore wallpaper";
+	inputs,
+	pkgs,
+	...
+}: let
+	awww = inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww;
+in {
+	systemd.user.services.awww-restore = {
+		description = "Restore wallpaper";
 
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${awww}/bin/awww restore";
-    };
-  };
+		serviceConfig = {
+			Type = "oneshot";
+			ExecStart = "${awww}/bin/awww restore";
+		};
+	};
 }

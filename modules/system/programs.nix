@@ -1,92 +1,89 @@
 {
-  # stdenv,
-  # config,
-  pkgs,
-  # lib,
-  inputs,
-  vars,
-  ...
-}:
-{
-  # ========== PROGRAMS ==========
-  programs = {
-    fish.enable = true;
-    bash.enable = true;
-    ssh.startAgent = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
-      gamescopeSession.enable = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-        gamemode
-      ];
-    };
+	# stdenv,
+	# config,
+	pkgs,
+	# lib,
+	inputs,
+	vars,
+	...
+}: {
+	# ========== PROGRAMS ==========
+	programs = {
+		fish.enable = true;
+		bash.enable = true;
+		ssh.startAgent = true;
+		steam = {
+			enable = true;
+			remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
+			dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
+			gamescopeSession.enable = true;
+			extraCompatPackages = with pkgs; [
+				proton-ge-bin
+				gamemode
+			];
+		};
 
-    nh = {
-      enable = true;
-    };
+		nh = {
+			enable = true;
+		};
 
-    neovim = {
-      enable = true;
-      # configure = {
-      # packages.myVimPackage = with pkgs.vimPlugins; {
-      # 	start = [ ctrlp ];
-      # };
-      # };
-    };
+		neovim = {
+			enable = true;
+			# configure = {
+			# packages.myVimPackage = with pkgs.vimPlugins; {
+			# 	start = [ ctrlp ];
+			# };
+			# };
+		};
 
-    gamemode.enable = true;
+		gamemode.enable = true;
 
-    # waybar = {
-    # 	enable = true;
-    # };
+		# waybar = {
+		# 	enable = true;
+		# };
 
-    throne = {
-      enable = true;
-      tunMode.enable = true;
-    };
+		throne = {
+			enable = true;
+			tunMode.enable = true;
+		};
 
-    obs-studio = {
-      enable = true;
-      enableVirtualCamera = true;
-    };
+		obs-studio = {
+			enable = true;
+			enableVirtualCamera = true;
+		};
 
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-  };
+		appimage = {
+			enable = true;
+			binfmt = true;
+		};
+	};
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
-    users.${vars.userName} =
-      {
-        # config,
-        # pkgs,
-        # lib,
-        ...
-      }:
-      {
-        # 	programs.emacs = {
-        # 		enable = true;
-        # 		package = pkgs.emacs-gtk;
-        # #		extraConfig = ''
-        # #			(setq standard-indent 2)
-        # #		'';
-        # 	};
-        #
-        # 	programs.helix = {
-        # 		enable = true;
-        # 		languages.language = [
-        # 			{
-        # 				name = "nix";
-        # 				auto-format = true;
-        # 				formatter.command = lib.getExe pkgs.nixfmt;
-        # 			};
-        # 		];
-        # };
-      };
-  };
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {
+			# config,
+			# pkgs,
+			# lib,
+			...
+		}: {
+			# 	programs.emacs = {
+			# 		enable = true;
+			# 		package = pkgs.emacs-gtk;
+			# #		extraConfig = ''
+			# #			(setq standard-indent 2)
+			# #		'';
+			# 	};
+			#
+			# 	programs.helix = {
+			# 		enable = true;
+			# 		languages.language = [
+			# 			{
+			# 				name = "nix";
+			# 				auto-format = true;
+			# 				formatter.command = lib.getExe pkgs.nixfmt;
+			# 			};
+			# 		];
+			# };
+		};
+	};
 }

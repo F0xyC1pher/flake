@@ -1,6 +1,4 @@
 {
-	lib,
-	config,
 	pkgs,
 	inputs,
 	vars,
@@ -28,11 +26,16 @@ in {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {
-			config,
 			pkgs,
 			lib,
 			...
 		}: {
+			home.file.".vscode-oss/argv.json".text =
+				builtins.toJSON {
+					"disable-hardware-acceleration" = false;
+					"enable-crash-reporter" = false;
+					"locale" = "ru";
+				};
 			programs.vscode = {
 				enable = true;
 				package = pkgs.vscodium;
@@ -55,7 +58,6 @@ in {
 					];
 
 					userSettings = {
-						"locale" = "ru-ru";
 						"editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
 						"editor.fontSize" = lib.mkForce 14;
 						"editor.fontLigatures" = true;
@@ -92,55 +94,41 @@ in {
 									# You can write arbitrary Nix expressions here, to produce valid "options" declaration result.
 									# Tip: for flake-based configuration, utilize `builtins.getFlake`
 									"nixos" = {
-										"expr" = "(builtins.getFlake \"/home/f/flake\").nixosConfigurations.<name>.options";
+										"expr" = "(builtins.getFlake \"/home/${vars.userName}/flake\").nixosConfigurations.${vars.hostName}.options";
 									};
 									"home-manager" = {
-										"expr" = "(builtins.getFlake \"/home/f/flake\").nixosConfigurations.<name>.options.home-manager.users.type.getSubOptions []";
+										"expr" = "(builtins.getFlake \"/home/${vars.userName}/flake\").nixosConfigurations.${vars.hostName}.options.home-manager.users.type.getSubOptions []";
 									};
-									# Tip: use ${workspaceFolder} variable to define path
-									#"nix-darwin": {
-									# "expr": "(builtins.getFlake \"${workspaceFolder}/path/to/flake\").darwinConfigurations.<name>.options",
-									#};
 								};
 							};
 						};
-						# "nix.enableLanguageServer" = true;
-						# "nix.serverPath" = "nixd";
-						# "nix.serverSettings"
-						# .nixd.options" = {
-						#   "nixos".expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.${vars.hostName}.options";
-						#   "home-manager".expr =
-						#     "(builtins.getFlake \"/etc/nixos\").homeConfigurations.${vars.userName}.options";
-						# };
 
-						userSettings = {
-							"workbench.colorCustomizations" = {
-								# Выделение при поиске
-								"editor.findMatchHighlightBackground" = "#00000000";
-								"editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
-								"editor.findMatchBackground" = "#00000000";
-								"editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
+						"workbench.colorCustomizations" = {
+							# Выделение при поиске
+							# "editor.findMatchHighlightBackground" = "#00000000";
+							# "editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
+							# "editor.findMatchBackground" = "#00000000";
+							# "editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
 
-								# Выделение выбранного текста
-								"editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
-								"editor.selectionBorder" = "1px solid ${vars.colors.b0}";
-								"editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
-								"editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
+							# Выделение выбранного текста
+							# "editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
+							# "editor.selectionBorder" = "1px solid ${vars.colors.b0}";
+							# "editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
+							# "editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
 
-								# Подсветка текущей строки
-								"editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
-								"editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
+							# Подсветка текущей строки
+							# "editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
+							# "editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
 
-								# Подсветка скобок
-								"editorBracketMatch.background" = "#20${vars.colors.y0}";
-								"editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
+							# Подсветка скобок
+							# "editorBracketMatch.background" = "#20${vars.colors.y0}";
+							# "editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
 
-								# Подсветка слова под курсором
-								"editor.wordHighlightBackground" = "#20${vars.colors.b0}";
-								"editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
-								"editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
-								"editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
-							};
+							# Подсветка слова под курсором
+							# "editor.wordHighlightBackground" = "#20${vars.colors.b0}";
+							# "editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
+							# "editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
+							# "editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
 						};
 					};
 				};

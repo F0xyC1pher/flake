@@ -1,6 +1,5 @@
-{ stdenv, config, pkgs, lib, inputs, vars, ... }:
-{
-# ========== FONTS ==========
+{pkgs, ...}: {
+	# ========== FONTS ==========
 	fonts = {
 		packages = with pkgs; [
 			fira-code-symbols
@@ -15,8 +14,8 @@
 			minecraftia
 			inter
 		];
-		
-#	==========	FONTCONFIG	==========
+
+		#	==========	FONTCONFIG	==========
 		fontconfig = {
 			enable = true;
 			cache32Bit = true;
@@ -25,7 +24,7 @@
 			useEmbeddedBitmaps = true;
 			subpixel = {
 				rgba = "rgb";
-				lcdfilter = "default";	
+				lcdfilter = "default";
 			};
 			hinting = {
 				enable = true;

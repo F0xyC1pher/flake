@@ -1,19 +1,11 @@
-{
-	inputs,
-	config,
-	vars,
-	pkgs,
-	...
-}:
-let
+{pkgs, ...}: let
 	swaync = pkgs.swaynotificationcenter;
-in
-{
+in {
 	systemd.user.services.swaync = {
 		description = "swaync notification daemon";
-		wantedBy = [ "niri.service" ];
-		after = [ "niri.service" ];
-		partOf = [ "niri.service" ];
+		wantedBy = ["niri.service"];
+		after = ["niri.service"];
+		partOf = ["niri.service"];
 
 		serviceConfig = {
 			ExecStart = "${swaync}/bin/swaync";
