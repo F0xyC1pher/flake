@@ -1,119 +1,150 @@
 {
-  lib,
-  config,
-  pkgs,
-  inputs,
-  vars,
-  ...
-}:
+	lib,
+	config,
+	pkgs,
+	inputs,
+	vars,
+	...
+}: let
+	nix-embedded-highlighter =
+		pkgs.vscode-utils.buildVscodeExtension {
+			pname = "nix-embedded-highlighter";
+			version = "0.0.1";
+			vscodeExtName = "nix-embedded-highlighter";
+			vscodeExtPublisher = "atomicspirit";
+			vscodeExtUniqueId = "atomicspirit.nix-embedded-highlighter";
 
-let
-  nix-embedded-highlighter = pkgs.vscode-utils.buildVscodeExtension {
-    pname = "nix-embedded-highlighter";
-    version = "0.0.1";
-    vscodeExtName = "nix-embedded-highlighter";
-    vscodeExtPublisher = "atomicspirit";
-    vscodeExtUniqueId = "atomicspirit.nix-embedded-highlighter";
+			src =
+				pkgs.fetchurl {
+					url = "https://open-vsx.org/api/atomicspirit/nix-embedded-highlighter/0.0.1/file/atomicspirit.nix-embedded-highlighter-0.0.1.vsix";
+					sha256 = "sha256-KZfUaPjReHQH0XCCiejAs+0Go8WEeGiOuxjkTfSnku0=";
+					name = "nix-embedded-highlighter-0.0.1.zip";
+				};
 
-    src = pkgs.fetchurl {
-      url = "https://open-vsx.org/api/atomicspirit/nix-embedded-highlighter/0.0.1/file/atomicspirit.nix-embedded-highlighter-0.0.1.vsix";
-      sha256 = "sha256-KZfUaPjReHQH0XCCiejAs+0Go8WEeGiOuxjkTfSnku0=";
-      name = "nix-embedded-highlighter-0.0.1.zip";
-    };
+			nativeBuildInputs = [pkgs.unzip];
+			sourceRoot = "extension";
+		};
+in {
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {
+			config,
+			pkgs,
+			lib,
+			...
+		}: {
+			programs.vscode = {
+				enable = true;
+				package = pkgs.vscodium;
 
-    nativeBuildInputs = [ pkgs.unzip ];
-    sourceRoot = "extension";
-  };
-in
-{
-  home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
-    users.${vars.userName} =
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }:
-      {
+				profiles.default = {
+					extensions = with pkgs.vscode-extensions; [
+						jnoortheen.nix-ide
+						christian-kohler.path-intellisense
+						jeff-hykin.better-nix-syntax
+						ms-ceintl.vscode-language-pack-ru
+						nix-embedded-highlighter
+					];
 
-        programs.vscode = {
-          enable = true;
-          package = pkgs.vscodium;
+					keybindings = [
+						{
+							key = "ctrl+/";
+							command = "editor.action.commentLine";
+							when = "editorTextFocus && !editorReadonly";
+						}
+					];
 
-          profiles.default = {
-            extensions = with pkgs.vscode-extensions; [
-              jnoortheen.nix-ide
-              christian-kohler.path-intellisense
-              jeff-hykin.better-nix-syntax
-              ms-ceintl.vscode-language-pack-ru
-              nix-embedded-highlighter
-            ];
+					userSettings = {
+						"locale" = "ru-ru";
+						"editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
+						"editor.fontSize" = lib.mkForce 14;
+						"editor.fontLigatures" = true;
+						"editor.tabSize" = 4;
+						"editor.indentSize" = "tabSize";
+						"editor.insertSpaces" = false;
+						"editor.detectIndentation" = false;
+						"editor.useTabStops" = true;
+						"editor.formatOnSave" = true;
 
-            keybindings = [
-              {
-                key = "ctrl+/";
-                command = "editor.action.commentLine";
-                when = "editorTextFocus && !editorReadonly";
-              }
-            ];
+						# "[nix]" = {
+						# };
+						"nix.enableLanguageServer" = true;
+						"nix.serverPath" = "nixd"; # or "nil", or ["executable", "argument1", ...]
+						# LSP config can be passed via the ``nix.serverSettings.{lsp}`` as shown below.
+						"nix.serverSettings" = {
+							# check https://github.com/oxalica/nil/blob/main/docs/configuration.md for all options available
+							# "nil"= {
+							#   # "diagnostics": {
+							#   #  "ignored": ["unused_binding", "unused_with"];
+							#   # };
+							#   "formatting"= {
+							#     "command"= ["nixfmt"];
+							#   };
+							# };
+							# check https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md for all nixd config
+							"nixd" = {
+								"formatting" = {
+									# "command" = [ "nixfmt" ];
+									"command" = ["alejandra"];
+								};
+								"options" = {
+									# By default, this entry will be read from `import <nixpkgs> { }`.
+									# You can write arbitrary Nix expressions here, to produce valid "options" declaration result.
+									# Tip: for flake-based configuration, utilize `builtins.getFlake`
+									"nixos" = {
+										"expr" = "(builtins.getFlake \"/home/f/flake\").nixosConfigurations.<name>.options";
+									};
+									"home-manager" = {
+										"expr" = "(builtins.getFlake \"/home/f/flake\").nixosConfigurations.<name>.options.home-manager.users.type.getSubOptions []";
+									};
+									# Tip: use ${workspaceFolder} variable to define path
+									#"nix-darwin": {
+									# "expr": "(builtins.getFlake \"${workspaceFolder}/path/to/flake\").darwinConfigurations.<name>.options",
+									#};
+								};
+							};
+						};
+						# "nix.enableLanguageServer" = true;
+						# "nix.serverPath" = "nixd";
+						# "nix.serverSettings"
+						# .nixd.options" = {
+						#   "nixos".expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.${vars.hostName}.options";
+						#   "home-manager".expr =
+						#     "(builtins.getFlake \"/etc/nixos\").homeConfigurations.${vars.userName}.options";
+						# };
 
-            userSettings = {
-              "locale" = "ru-ru";
-              "editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
-              "editor.fontSize" = lib.mkForce 14;
-              "editor.fontLigatures" = true;
-              "editor.tabSize" = 4;
-              "editor.insertSpaces" = false;
-              "editor.detectIndentation" = false;
-              "editor.useTabStops" = true;
-              "editor.indentSize" = "tabSize";
-              "editor.formatOnSave" = false;
+						userSettings = {
+							"workbench.colorCustomizations" = {
+								# Выделение при поиске
+								"editor.findMatchHighlightBackground" = "#00000000";
+								"editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
+								"editor.findMatchBackground" = "#00000000";
+								"editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
 
-              # "[nix]" = {
-              # };
+								# Выделение выбранного текста
+								"editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
+								"editor.selectionBorder" = "1px solid ${vars.colors.b0}";
+								"editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
+								"editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
 
-              "nix.enableLanguageServer" = true;
-              "nix.serverPath" = "nixd";
-              "nix.serverSettings.nixd.options" = {
-                "nixos".expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.${vars.hostName}.options";
-                "home-manager".expr =
-                  "(builtins.getFlake \"/etc/nixos\").homeConfigurations.${vars.userName}.options";
-              };
-              userSettings = {
-                # ... ваши существующие настройки ...
+								# Подсветка текущей строки
+								"editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
+								"editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
 
-                "workbench.colorCustomizations" = {
-                  # Выделение при поиске
-                  "editor.findMatchHighlightBackground" = "#00000000";
-                  "editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
-                  "editor.findMatchBackground" = "#00000000";
-                  "editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
+								# Подсветка скобок
+								"editorBracketMatch.background" = "#20${vars.colors.y0}";
+								"editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
 
-                  # Выделение выбранного текста
-                  "editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
-                  "editor.selectionBorder" = "1px solid ${vars.colors.b0}";
-                  "editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
-                  "editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
-
-                  # Подсветка текущей строки
-                  "editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
-                  "editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
-
-                  # Подсветка скобок
-                  "editorBracketMatch.background" = "#20${vars.colors.y0}";
-                  "editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
-
-                  # Подсветка слова под курсором
-                  "editor.wordHighlightBackground" = "#20${vars.colors.b0}";
-                  "editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
-                  "editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
-                  "editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
-                };
-              };
-            };
-          };
-        };
-      };
-  };
+								# Подсветка слова под курсором
+								"editor.wordHighlightBackground" = "#20${vars.colors.b0}";
+								"editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
+								"editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
+								"editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
+							};
+						};
+					};
+				};
+			};
+		};
+	};
 }
