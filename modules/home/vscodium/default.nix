@@ -50,7 +50,7 @@ in {
 						{
 							key = "ctrl+/";
 							command = "editor.action.commentLine";
-							when = "editorTextFocus && !editorReadonly";
+							when = "editorTextFocus";
 						}
 					];
 
