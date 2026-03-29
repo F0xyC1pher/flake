@@ -35,6 +35,7 @@ in {
 					"disable-hardware-acceleration" = false;
 					"enable-crash-reporter" = false;
 					"locale" = "ru";
+					"password-store" = "basic";
 				};
 			programs.vscode = {
 				enable = true;
