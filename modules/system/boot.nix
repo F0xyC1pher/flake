@@ -7,6 +7,11 @@
 	boot = {
 		#	==========	KERNEL	==========
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
+		kernelModules = ["snd-usb-audio"];
+		kernelParams = [
+			"preempt=full" # Полная вытесняемость ядра
+			"threadirqs" # Прерывания в потоках
+		];
 		#	==========	BOOTLOADER	==========
 		loader =
 			if vars.bootLoader == "GRUB"

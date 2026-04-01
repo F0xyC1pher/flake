@@ -519,6 +519,49 @@
         "type": "github"
       }
     },
+    "nekobox-appimage": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-lvUujYlnzkSq8AUEWDpdneGWaQORCNhIt3aATUbHNCg=",
+        "type": "file",
+        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage"
+      }
+    },
+    "nekobox-bin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775004068,
+        "narHash": "sha256-FbjVWxET0GD9KEdN+d+F274Wyqbwb1Y/arsuI8jwN+o=",
+        "type": "tarball",
+        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz"
+      }
+    },
+    "nekobox-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775037664,
+        "narHash": "sha256-NM1feZyeCcdq0NHhCQ3NcSsF77LRoPT8OwQURsxuxG8=",
+        "ref": "refs/heads/main",
+        "rev": "1f9b54e68814a935252d2fe3705cb7dd46836c77",
+        "revCount": 3430,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/qr243vbi/nekobox"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/qr243vbi/nekobox"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -825,6 +868,24 @@
         "type": "github"
       }
     },
+    "rofi-polkit-agent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748204176,
+        "narHash": "sha256-2CITX6jvEz/5qH6IJ+NdyJtFJas3azHIGC03UxpxPRg=",
+        "ref": "refs/heads/master",
+        "rev": "9fde4aa1ecbe8d640728f7effba4896f821780bc",
+        "revCount": 5,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/Zebra2711/rofi-polkit-agent"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/Zebra2711/rofi-polkit-agent"
+      }
+    },
     "root": {
       "inputs": {
         "awww": "awww",
@@ -833,12 +894,16 @@
         "freesmlauncher": "freesmlauncher",
         "hardware-configuration": "hardware-configuration",
         "home-manager": "home-manager",
+        "nekobox-appimage": "nekobox-appimage",
+        "nekobox-bin": "nekobox-bin",
+        "nekobox-src": "nekobox-src",
         "niri": "niri",
         "niri-blur": "niri-blur",
         "nixcord": "nixcord",
         "nixos-conf-editor": "nixos-conf-editor",
         "nixpkgs": "nixpkgs_5",
         "rmpc": "rmpc",
+        "rofi-polkit-agent": "rofi-polkit-agent",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
       }

@@ -10,6 +10,7 @@
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
 			nekobox-bin
+			libsForQt5.qtstyleplugin-kvantum
 			sing-box
 
 			# 🔧 Системные утилиты и инструменты

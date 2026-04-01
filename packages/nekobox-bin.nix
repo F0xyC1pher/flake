@@ -1,13 +1,13 @@
-{pkgs}:
+{
+	pkgs,
+	inputs,
+	...
+}:
 pkgs.stdenv.mkDerivation {
 	pname = "nekobox-bin";
 	version = "5.10.29";
 
-	src =
-		pkgs.fetchurl {
-			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz";
-			hash = "sha256-plhIjDwgh2FsFBd/9VYCNsbKj9QVS8vmbMG3hl1SkHU="; # ТУТ НУЖЕН ХЕШ
-		};
+	src = inputs.nekobox-bin;
 
 	nativeBuildInputs = [pkgs.autoPatchelfHook pkgs.makeWrapper];
 
