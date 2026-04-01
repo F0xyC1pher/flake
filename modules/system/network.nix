@@ -13,6 +13,8 @@
 			enable = false;
 			# trustedInterfaces = ["ztpp6h5cno"];
 		};
+		# proxy.default = "";
+		# proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 		# nameservers = [
 		# 	"1.1.1.1"
 		# 	"1.0.0.1"
