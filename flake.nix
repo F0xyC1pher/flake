@@ -12,7 +12,7 @@
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
-		}; # Следуем за nixpkgs
+		};
 
 		sops-nix.url = "github:Mic92/sops-nix";
 		sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +32,7 @@
 		niri-blur = {
 			url = "github:niri-wm/niri/wip/branch";
 			flake = false;
-		}; # пример ветки с blur
+		};
 
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
@@ -61,6 +61,28 @@
 			type = "git";
 			submodules = true;
 		};
+
+		nekobox-src = {
+			url = "https://github.com/qr243vbi/nekobox";
+			flake = false;
+			type = "git";
+			submodules = true;
+		};
+		nekobox-bin = {
+			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz";
+			flake = false;
+		};
+		nekobox-appimage = {
+			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage";
+			flake = false;
+		};
+
+		rofi-polkit-agent = {
+			url = "https://github.com/Zebra2711/rofi-polkit-agent";
+			type = "git";
+			submodules = true;
+			flake = false;
+		};
 	};
 
 	outputs = {
@@ -76,6 +98,7 @@
 		firefox-addons,
 		rmpc,
 		freesmlauncher,
+		rofi-polkit-agent,
 		...
 	} @ inputs: let
 		system = "x86_64-linux";
@@ -92,7 +115,7 @@
 			builtins.foldl' (
 				acc: name: let
 					pkgName = lib.removeSuffix ".nix" name;
-					value = final.callPackage ./packages/${name} {};
+					value = final.callPackage ./packages/${name} {inherit inputs;};
 				in
 					acc // {"${pkgName}" = value;}
 			) {} (builtins.attrNames files);

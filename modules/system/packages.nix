@@ -9,6 +9,10 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			nekobox-bin
+			libsForQt5.qtstyleplugin-kvantum
+			sing-box
+
 			# 🔧 Системные утилиты и инструменты
 			pciutils
 			usbutils
@@ -82,7 +86,7 @@
 
 			# 🚀 Запуск приложений и меню
 			rofi
-			rofi-polkit
+			rofi-polkit-agent
 			swaynotificationcenter
 			zenity
 			libnotify
@@ -91,6 +95,7 @@
 
 			# 🖥 Терминал и оболочка
 			kitty
+			cool-retro-term
 			babelfish
 
 			# 🌐 Сеть и скачивание

@@ -17,16 +17,31 @@
 			programs.yazi = {
 				settings = {
 					mgr = {
-						show_hidden = true;
+						ratio = [
+							1
+							4
+							3
+						];
 						sort_by = "natural";
-						sort_dir_first = true;
+						sort_sensitive = true;
 						sort_reverse = false;
+						sort_dir_first = true;
+						linemode = "none";
+						show_hidden = true;
+						show_symlink = true;
 					};
 
 					preview = {
 						max_width = 1200;
 						max_height = 900;
+						image_quality = 90;
 						cache_dir = "${config.xdg.cacheHome}/yazi";
+					};
+
+					tasks = {
+						micro_workers = 5;
+						macro_workers = 10;
+						bizarre_retry = 5;
 					};
 
 					plugin = {
