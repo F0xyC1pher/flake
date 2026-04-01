@@ -25,6 +25,7 @@
 		./services.nix
 		./sops.nix
 		./stylix.nix
+		./swap.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix

@@ -11,7 +11,7 @@
 		useDHCP = false;
 		firewall = {
 			enable = false;
-			trustedInterfaces = ["ztpp6h5cno"];
+			# trustedInterfaces = ["ztpp6h5cno"];
 		};
 		# nameservers = [
 		# 	"1.1.1.1"
@@ -32,7 +32,7 @@
 		settings = {
 			Resolve = {
 				DNS = ["127.0.0.1:5300"];
-				FallbackDNS = [];
+				FallbackDNS = ["1.1.1.1"];
 				Domains = ["~."];
 				DNSStubListener = false;
 				# Add this to prevent fallback to per-link DNS
@@ -49,7 +49,7 @@
 
 		settings = {
 			listen_addresses = ["127.0.0.1:5300"];
-
+			bootstrap_resolvers = ["1.1.1.1:53"];
 			server_names = [
 				"cloudflare"
 			];
@@ -61,7 +61,7 @@
 			require_nolog = true;
 			require_dnssec = true;
 
-			ipv6_servers = false;
+			ipv6_servers = true;
 
 			cache = true;
 			cache_size = 4096;
@@ -71,6 +71,7 @@
 					"https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
 				];
 				cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
+				minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
 			};
 		};
 	};

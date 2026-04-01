@@ -12,7 +12,7 @@
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
-		}; # Следуем за nixpkgs
+		};
 
 		sops-nix.url = "github:Mic92/sops-nix";
 		sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +61,19 @@
 			type = "git";
 			submodules = true;
 		};
+
+		# nekobox-src = {
+		# 	url = "git+https://github.com/qr243vbi/nekobox?submodules=1";
+		# 	flake = false;
+		# };
+		# nekobox-bin = {
+		# 	url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz";
+		# 	flake = false;
+		# };
+		# nekobox-appimage = {
+		# 	url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage";
+		# 	flake = false;
+		# };
 	};
 
 	outputs = {

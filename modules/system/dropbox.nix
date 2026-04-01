@@ -4,14 +4,14 @@
 	...
 }: {
 	environment.systemPackages = with pkgs; [
-		# dropbox - we don't need this in the environment. systemd unit pulls it in
+		dropbox
 		dropbox-cli
 	];
 
-	networking.firewall = {
-		allowedTCPPorts = [17500];
-		allowedUDPPorts = [17500];
-	};
+	# networking.firewall = {
+	# 	allowedTCPPorts = [17500];
+	# 	allowedUDPPorts = [17500];
+	# };
 
 	systemd.user.services.dropbox = {
 		description = "Dropbox";
