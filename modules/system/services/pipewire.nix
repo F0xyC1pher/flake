@@ -3,10 +3,7 @@
 		enable = true;
 		pulse.enable = true;
 		wireplumber.enable = true;
-		jack = {
-			enable = true;
-			rtkit = true;
-		};
+		jack.enable = true;
 		alsa = {
 			enable = true;
 			support32Bit = true;
@@ -110,8 +107,9 @@
 					}
 				];
 			};
-
-			wireplumber."10-low-latency" = {
+		};
+		wireplumber.extraConfig = {
+			"10-low-latency" = {
 				"wireplumber.settings" = {
 					"log.level" = 2;
 					"default-configure" = true;

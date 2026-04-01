@@ -8,28 +8,23 @@
 }: {
 	imports = [
 		# ./hardware
-		./nix
+		./systemd
 		./services
+		./nix
 		./bluetooth.nix
 		./boot.nix
 		./fonts.nix
 		./locale.nix
-		./logind.nix
 		./mime.nix
 		./network.nix
-		./no-cups.nix
 		./programs.nix
 		./packages.nix
 		./portal.nix
 		./power.nix
-		./openssh.nix
 		./security.nix
-		./services.nix
 		./sops.nix
 		./stylix.nix
 		./swap.nix
-		./systemd.nix
-		./udev.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix

@@ -9,24 +9,6 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
-			# Мониторинг
-			htop
-			iotop
-			powertop
-			cpufrequtils
-			irqbalance
-			numactl
-
-			# Настройка производительности
-			tuna # Настройка IRQ и affinity
-			schedtool # Управление планировщиком
-			taskset # Управление affinity
-
-			# Аудио мониторинг
-			rtirq # Управление приоритетами IRQ
-			jack-example-tools
-			pw-top
-
 			dropbox
 			dropbox-cli
 
@@ -35,6 +17,10 @@
 			sing-box
 
 			# 🔧 Системные утилиты и инструменты
+			# Мониторинг
+			btop
+			htop
+			iotop
 			pciutils
 			usbutils
 			lm_sensors
@@ -43,8 +29,21 @@
 			smartmontools
 			duf
 			glances
-			btop
 			fastfetch
+			powertop
+
+			# Настройка производительности
+			tuna # Настройка IRQ и affinity
+			schedtool # Управление планировщиком
+			util-linux # Содержит taskset Управление affinity
+			cpufrequtils
+			irqbalance
+			numactl
+
+			# Аудио инструменты
+			jack-example-tools # jack_connect, jack_lsp и др.
+			alsa-utils # alsamixer, aplay, arecord
+			alsa-tools # hdajackretask, hda-verb
 
 			# 🛠 Файловые менеджеры и работа с файлами
 			yazi

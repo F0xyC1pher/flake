@@ -1,12 +1,27 @@
-{...}: {
+{
+	# stdenv,
+	#config,
+	#pkgs,
+	lib,
+	# inputs,
+	#vars,
+	...
+}: {
 	imports = [
-		# ./awww-daemon-s.nix
-		./awww-daemon-s-test.nix
-		# ./awww-restore-s.nix
-		# ./awww-path-trigger.nix
-		./rofi-polkit-s.nix
-		./setup-rtirq.nix
-		# ./swaync-s.nix
-		# ./waybar-s.nix
+		./cups.nix
+		./greetd.nix
+		./locate.nix
+		./logind.nix
+		./mpd.nix
+		./openssh.nix
+		./pipewire.nix
+		./udev.nix
+		./xserver.nix
 	];
+	#	========== SERVICES ==========
+	services = {
+		dbus.enable = true;
+		gnome.gnome-keyring.enable = lib.mkForce false;
+		desktopManager.gnome.enable = lib.mkForce false;
+	};
 }
