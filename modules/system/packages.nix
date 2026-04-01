@@ -9,6 +9,24 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			# Мониторинг
+			htop
+			iotop
+			powertop
+			cpufrequtils
+			irqbalance
+			numactl
+
+			# Настройка производительности
+			tuna # Настройка IRQ и affinity
+			schedtool # Управление планировщиком
+			taskset # Управление affinity
+
+			# Аудио мониторинг
+			rtirq # Управление приоритетами IRQ
+			jack-example-tools
+			pw-top
+
 			dropbox
 			dropbox-cli
 

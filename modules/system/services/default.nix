@@ -5,6 +5,7 @@
 		# ./awww-restore-s.nix
 		# ./awww-path-trigger.nix
 		./rofi-polkit-s.nix
+		./setup-rtirq.nix
 		# ./swaync-s.nix
 		# ./waybar-s.nix
 	];

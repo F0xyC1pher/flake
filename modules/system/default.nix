@@ -14,8 +14,10 @@
 		./boot.nix
 		./fonts.nix
 		./locale.nix
+		./logind.nix
 		./mime.nix
 		./network.nix
+		./no-cups.nix
 		./programs.nix
 		./packages.nix
 		./portal.nix
@@ -26,6 +28,7 @@
 		./sops.nix
 		./stylix.nix
 		./swap.nix
+		./systemd.nix
 		./udev.nix
 		./users.nix
 		./variables.nix
