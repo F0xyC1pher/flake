@@ -12,7 +12,6 @@
 		./services
 		./bluetooth.nix
 		./boot.nix
-		./dropbox.nix
 		./fonts.nix
 		./locale.nix
 		./mime.nix
@@ -20,12 +19,14 @@
 		./programs.nix
 		./packages.nix
 		./portal.nix
+		./power.nix
 		./openssh.nix
 		./security.nix
 		./services.nix
 		./sops.nix
 		./stylix.nix
 		./swap.nix
+		./udev.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix

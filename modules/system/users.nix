@@ -1,5 +1,12 @@
-{ stdenv, config, pkgs, lib, inputs, vars, ... }:
 {
+	stdenv,
+	config,
+	pkgs,
+	lib,
+	inputs,
+	vars,
+	...
+}: {
 	# ========== USER ==========
 	users.users.${vars.userName} = {
 		isNormalUser = true;
@@ -13,8 +20,15 @@
 			"audio"
 			"input"
 			"rtkit"
+			"realtime"
 			"render"
 			"games"
+			"gamemode"
+			"mpd"
+			"cdrom"
+			"disk"
+			"floppy"
+			"kmem"
 		];
 	};
 }
