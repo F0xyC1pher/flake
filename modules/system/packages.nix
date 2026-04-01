@@ -9,6 +9,9 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			dropbox
+			dropbox-cli
+
 			nekobox-bin
 			libsForQt5.qtstyleplugin-kvantum
 			sing-box
