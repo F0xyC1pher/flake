@@ -47,5 +47,18 @@
 			item = "nice";
 			value = "-11";
 		}
+		# Для всех пользователей
+		{
+			domain = "*";
+			type = "soft";
+			item = "nofile";
+			value = "65536";
+		}
+		{
+			domain = "*";
+			type = "hard";
+			item = "nofile";
+			value = "65536";
+		}
 	];
 }
