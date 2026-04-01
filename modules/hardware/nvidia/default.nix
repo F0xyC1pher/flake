@@ -1,13 +1,13 @@
 {
-	config,
-	pkgs,
-	lib,
-	inputs,
-	vars,
+	# config,
+	# pkgs,
+	# lib,
+	# inputs,
+	# vars,
 	...
 }: {
 	imports = [
-		./boot.nix
+		# ./boot.nix
 		./nvidia.nix
 		./application-profiles.nix
 		./persistence-mode-max-perf.nix
