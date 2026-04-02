@@ -10,13 +10,13 @@
 		# ./hardware
 		./systemd
 		./services
-		./nix
 		./bluetooth.nix
 		./boot.nix
 		./fonts.nix
 		./locale.nix
 		./mime.nix
 		./network.nix
+		./nix.nix
 		./programs.nix
 		./packages.nix
 		./portal.nix

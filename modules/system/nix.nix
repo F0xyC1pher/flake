@@ -1,23 +1,30 @@
-{ stdenv, config, pkgs, lib, inputs, vars, ... }:
 {
+	# stdenv,
+	# config,
+	# lib,
+	# vars,
+	inputs,
+	pkgs,
+	...
+}: {
 	# ========== NIXPKGS ==========
 	nixpkgs = {
-		overlays = [ inputs.niri.overlays.niri ];
+		overlays = [inputs.niri.overlays.niri];
 		config = {
 			allowUnfree = true;
 			permittedInsecurePackages = [
 				"openssl-1.1.1w"
 			];
 		};
-	};	
+	};
 	# ========== NIX ==========
 	nix = {
 		package = pkgs.lix;
 		settings = {
-			experimental-features = [ "nix-command" "flakes" ];
+			experimental-features = ["nix-command" "flakes"];
 
 			eval-cache = true;
-			
+
 			substituters = [
 				"https://cache.nixos.org/"
 				"https://cache.garnix.io"

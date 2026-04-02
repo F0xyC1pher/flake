@@ -1,4 +1,4 @@
-{
+{vars, ...}: {
 	services.pipewire = {
 		enable = true;
 		pulse.enable = true;
@@ -35,7 +35,7 @@
 					"default.video.rate.denom" = 1;
 					# JACK специфичные настройки
 					"jack.default.rate" = 192000;
-					"jack.default.quantum" = 128;
+					"jack.default.quantum" = 256;
 					# Дополнительные оптимизации
 					"log.level" = 0; # Минимум логов для производительности
 				};
@@ -50,28 +50,6 @@
 							"rt.time.hard" = 200000;
 							"cpu.affinity" = [2 3 6 7];
 						};
-					}
-					{
-						name = "libpipewire-module-protocol-native";
-						args = {
-							"rt.prio" = 88;
-							"max.access.control" = true;
-						};
-					}
-					{
-						name = "libpipewire-module-alsa";
-						args = {
-							"flags" = ["ifexists" "nofail"];
-							"props" = {
-								"alsa.resample" = false; # Отключаем ресемплинг в ALSA
-								"alsa.midi" = true;
-							};
-						};
-					}
-					# Добавлен модуль для улучшенной обработки сессий
-					{
-						name = "libpipewire-module-client-node";
-						args = {};
 					}
 				];
 			};

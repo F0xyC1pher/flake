@@ -10,7 +10,7 @@
 		./waybar
 		./yazi
 		./home.nix
-		./dropbox.nix
+		# ./dropbox.nix
 		#./ssh.nix
 	];
 }
