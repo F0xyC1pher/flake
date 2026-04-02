@@ -22,7 +22,6 @@
 		};
 		# network = {
 		#     listenAddress = "any";          # если хочешь разрешить подключения не только с localhost
-		#     startWhenNeeded = true;         # systemd socket activation — очень удобно
 		#   };
 		# Optional:
 		#	network.listenAddress = "any"; # if you want to allow non-localhost connections
