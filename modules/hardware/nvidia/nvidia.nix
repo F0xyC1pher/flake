@@ -41,7 +41,6 @@ in {
 			# package = config.boot.kernelPackages.nvidiaPackages.stable;
 			package = nvidiaPkg;
 
-			powerManagement.finegrained = false;
 			powerManagement.enable = false;
 			modesetting.enable = true;
 			nvidiaSettings = true;

@@ -8,11 +8,9 @@
 		#	==========	KERNEL	==========
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
 		# Инициализация ядра
-		initrd.kernelModules = ["snd-usb-audio" "snd-hda-intel" "tcp_bbr"];
+		initrd.kernelModules = ["tcp_bbr"];
 		# Чёрный список ненужных модулей
 		blacklistedKernelModules = [
-			"pcspkr" # Пищалка
-			"snd_pcsp" # PC Speaker
 			"snd_hda_codec_hdmi" # Если не используете HDMI audio
 		];
 
