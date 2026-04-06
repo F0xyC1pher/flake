@@ -22,5 +22,5 @@
   c0	=	"#76f6f6";	#cyan
   b0	=	"#76a6f6";	#blue
   p0	=	"#b676f6";	#purple
-  m0	=	"#f676f6";	#magenta
+  m0	=	"#f676b6";	#magenta
 }
