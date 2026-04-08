@@ -1,10 +1,6 @@
 # flake.nix (или внутри modules/system/services/awww.nix)
-{
-	pkgs,
-	inputs,
-	...
-}: let
-	awww = inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww;
+{pkgs, ...}: let
+	awww = pkgs.awww;
 in {
 	# === Демон awww ===
 	systemd.user.services.awww-daemon = {

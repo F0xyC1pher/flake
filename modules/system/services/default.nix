@@ -10,6 +10,7 @@
 	imports = [
 		./cups.nix
 		./greetd.nix
+		./gvfs.nix
 		./locate.nix
 		./logind.nix
 		./mpd.nix

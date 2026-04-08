@@ -14,7 +14,7 @@
 				equibop.enable = false;
 				discord = {
 					enable = true;
-					equicord.enable = true;
+					# equicord.enable = true;
 					vencord.enable = false;
 					openASAR.enable = false;
 					autoscroll.enable = false;

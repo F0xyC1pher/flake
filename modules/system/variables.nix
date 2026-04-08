@@ -1,18 +1,9 @@
-{
-	lib,
-	inputs,
-	vars,
-	...
-}: {
+{lib, ...}: {
 	#	==========ENVIRONMENT==========
 	environment = {
 		#		==========VARIABLES==========
 		variables =
 			lib.mkForce {
-				# XDG_CACHE_HOME = "/home/${vars.userName}/.cache";
-				# XDG_CONFIG_HOME = "/home/${vars.userName}/.config";
-				# XDG_DATA_HOME = "/home/${vars.userName}/.local/share";
-
 				# Базовые Wayland настройки
 				XDG_SESSION_TYPE = "wayland";
 				XDG_SESSION_DESKTOP = "niri";

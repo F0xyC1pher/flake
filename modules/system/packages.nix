@@ -9,8 +9,13 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			glib
+
 			dropbox
 			dropbox-cli
+
+			bluetui
+			bluetuith
 
 			nekobox-bin
 			libsForQt5.qtstyleplugin-kvantum
@@ -46,6 +51,9 @@
 			alsa-tools # hdajackretask, hda-verb
 
 			# 🛠 Файловые менеджеры и работа с файлами
+			gvfs
+			libmtp
+			# mtpfs
 			yazi
 			eza
 			bat
@@ -60,6 +68,12 @@
 			glow
 			poppler
 			exiftool
+
+			# 📱 Android и мобильное
+			android-tools
+			android-file-transfer
+			android-translation-layer
+			extract-dtb
 
 			# 📦 Архивы и сжатие
 			p7zip
@@ -77,18 +91,17 @@
 			micro-full
 			vscodium
 			zed-editor
-			lapce
 			git
 			gitui
-			lazygit
+			# lazygit
 			git-credential-keepassxc
 
 			# 🎵 Медиа и Звук
-			inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
-			# rmpc
+			# inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+			rmpc
 			mpd
 			mpdris2
-			musikcube
+			# musikcube
 			playerctl
 			pavucontrol
 			mpv
@@ -96,7 +109,8 @@
 			yt-dlp
 
 			# 🖼 Обои и анимации (Wayland)
-			inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+			# inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+			awww
 
 			# 🔐 Безопасность и шифрование
 			keepassxc
@@ -123,12 +137,10 @@
 			aria2
 			qbittorrent
 
-			# 📱 Android и мобильное
-			android-tools
-
 			# 🎮 Игры и лаунчеры
 			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 			mangohud
+			yetris
 
 			# 🛠 Wine / Windows-приложения
 			wineWow64Packages.stagingFull
@@ -152,7 +164,7 @@
 			ayugram-desktop
 			discordo
 			discord-gamesdk
-			discord-rpc
+			# discord-rpc
 			arrpc
 			rustdesk-flutter
 
@@ -163,13 +175,13 @@
 			libva-vdpau-driver
 			libvdpau-va-gl
 			nvidia-vaapi-driver
-			gst_all_1.gstreamer
-			gst_all_1.gst-plugins-base
-			gst_all_1.gst-plugins-good
-			gst_all_1.gst-plugins-bad
-			gst_all_1.gst-plugins-ugly
-			gst_all_1.gst-libav
-			gst_all_1.gst-vaapi
+			# gst_all_1.gstreamer
+			# gst_all_1.gst-plugins-base
+			# gst_all_1.gst-plugins-good
+			# gst_all_1.gst-plugins-bad
+			# gst_all_1.gst-plugins-ugly
+			# gst_all_1.gst-libav
+			# gst_all_1.gst-vaapi
 
 			# 🧹 Остальное / Полезные утилиты
 			libnotify

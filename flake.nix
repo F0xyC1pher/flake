@@ -36,10 +36,10 @@
 
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
-		awww = {
-			url = "git+https://codeberg.org/LGFae/awww";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		# awww = {
+		# 	url = "git+https://codeberg.org/LGFae/awww";
+		# 	inputs.nixpkgs.follows = "nixpkgs";
+		# };
 
 		firefox-addons = {
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -51,10 +51,10 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		rmpc = {
-			url = "github:mierak/rmpc";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		# rmpc = {
+		# 	url = "github:mierak/rmpc";
+		# 	inputs.nixpkgs.follows = "nixpkgs";
+		# };
 
 		ayugram-desktop = {
 			url = "https://github.com/ndfined-crp/ayugram-desktop/";
@@ -94,9 +94,9 @@
 		stylix,
 		niri,
 		nixcord,
-		awww,
+		# awww,
 		firefox-addons,
-		rmpc,
+		# rmpc,
 		freesmlauncher,
 		rofi-polkit-agent,
 		...
