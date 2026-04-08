@@ -18,12 +18,19 @@
 				keymap = {
 					mgr = {
 						prepend_keymap = [
+							{
+								on = ["M" "m"];
+								run = "plugin gvfs -- select-then-mount --jump";
+								desc = "Монтировать устройство и перейти";
+							}
+							{
+								on = ["M" "u"];
+								run = "plugin gvfs -- select-then-unmount";
+								desc = "Отмонтировать устройство";
+							}
 							# gitui
 							{
-								on = [
-									"g"
-									"i"
-								];
+								on = ["g" "i"];
 								run = "plugin gitui";
 								desc = "gitui";
 							}
@@ -37,30 +44,21 @@
 
 							# chmod
 							{
-								on = [
-									"c"
-									"m"
-								];
+								on = ["c" "m"];
 								run = "plugin chmod";
 								desc = "chmod";
 							}
 
 							# compress
 							{
-								on = [
-									"c"
-									"a"
-								];
+								on = ["c" "a"];
 								run = "plugin compress";
 								desc = "compress";
 							}
 
 							# mediainfo
 							{
-								on = [
-									"m"
-									"i"
-								];
+								on = ["m" "i"];
 								run = "plugin mediainfo";
 								desc = "media info";
 							}

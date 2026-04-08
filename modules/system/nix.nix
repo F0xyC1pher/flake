@@ -10,12 +10,7 @@
 	# ========== NIXPKGS ==========
 	nixpkgs = {
 		overlays = [inputs.niri.overlays.niri];
-		config = {
-			allowUnfree = true;
-			permittedInsecurePackages = [
-				"openssl-1.1.1w"
-			];
-		};
+		config.allowUnfree = true;
 	};
 	# ========== NIX ==========
 	nix = {
@@ -27,11 +22,11 @@
 
 			substituters = [
 				"https://cache.nixos.org/"
-				"https://cache.garnix.io"
+				# "https://cache.garnix.io"
 			];
 			trusted-public-keys = [
 				"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-				"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+				# "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
 			];
 		};
 	};

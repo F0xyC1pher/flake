@@ -1,9 +1,5 @@
-{
-	inputs,
-	pkgs,
-	...
-}: let
-	awww = inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww;
+{pkgs, ...}: let
+	awww = pkgs.awww;
 in {
 	systemd.user.services.awww-daemon = {
 		description = "awww daemon";

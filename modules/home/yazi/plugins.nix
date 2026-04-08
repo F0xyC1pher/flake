@@ -1,12 +1,24 @@
-{ lib, config, pkgs, inputs, vars, ... }:
 {
+	# lib,
+	# config,
+	# pkgs,
+	inputs,
+	vars,
+	...
+}: {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {
+			# config,
+			pkgs,
+			# lib,
+			...
+		}: {
 			programs.yazi = {
 				plugins = with pkgs.yaziPlugins; {
 					sudo = sudo;
 					glow = glow;
+					gvfs = gvfs;
 					piper = piper;
 					mount = mount;
 					gitui = gitui;
