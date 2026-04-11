@@ -1,7 +1,7 @@
 {...}: {
 	imports = [
 		./nvidia
-		#./parallels.nix
+		./parallels.nix
 		./redist.nix
 	];
 }

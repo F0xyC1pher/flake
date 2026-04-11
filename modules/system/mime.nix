@@ -1,18 +1,11 @@
-{
-  # config,
-  # pkgs,
-  # lib,
-  # vars,
-  ...
-}:
-{
-  xdg = {
-    mime.enable = true;
-    mime.defaultApplications = {
-      "inode/directory" = [ "yazi.desktop" ];
-      "x-scheme-handler/terminal" = [ "kitty.desktop" ];
-      "application/x-terminal-emulator" = [ "kitty.desktop" ];
-      "text/plain" = [ "kitty.desktop" ];
-    };
-  };
+{...}: {
+	xdg = {
+		mime.enable = true;
+		mime.defaultApplications = {
+			"inode/directory" = ["yazi.desktop"];
+			"x-scheme-handler/terminal" = ["kitty.desktop"];
+			"application/x-terminal-emulator" = ["kitty.desktop"];
+			"text/plain" = ["kitty.desktop"];
+		};
+	};
 }
