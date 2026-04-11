@@ -11,6 +11,7 @@
 		./cups.nix
 		./greetd.nix
 		./gvfs.nix
+		./irqbalance.nix
 		./locate.nix
 		./logind.nix
 		./mpd.nix

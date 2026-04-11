@@ -16,11 +16,7 @@
 			"preempt=full" # Полная вытесняемость (voluntary = частичная)
 			"threadirqs" # Все IRQ как потоки
 			"nmi_watchdog=0" # Отключаем NMI watchdog (снижает задержки)
-			"rcu_nocbs=2-7" # RCU на выделенных ядрах
-			"isolcpus=2-7" # Изоляция ядер 2-7
-			"rcu_nocb_poll" # Позволяет RCU использовать изолированные ядра
-			"nohz_full=2-7" # Отключаем тики на изолированных ядрах
-			"nohz=on" # Включаем динамические тики
+			"nowatchdog"
 			"tsc=reliable" # Используем TSC как надежный источник времени
 
 			# Управление питанием
@@ -28,26 +24,22 @@
 			"intel_idle.max_cstate=0" # Отключаем глубокие C-states (Intel)
 
 			# Управление памятью
-			"transparent_hugepage=never" # Отключаем прозрачные огромные страницы
-			"default_hugepagesz=2M" # Размер огромных страниц
-			"hugepagesz=2M" # Для лучшего управления памятью
+			"transparent_hugepage=madvise" # Отключаем прозрачные огромные страницы
 
-			# Управление прерываниями
-			"irqaffinity=0-1" # Привязываем IRQ к первым ядрам
 			"pcie_aspm=off" # Отключаем ASPM для PCIe (снижает задержки)
 
 			# Отключаем ненужные функции безопасности для производительности
 			"mitigations=off" # ОСТОРОЖНО! Отключает защиту от Spectre/Meltdown
 		];
 		kernel.sysctl = {
+			"kernel.sched_latency_ns" = 4000000;
+			"kernel.sched_migration_cost_ns" = 500000;
+			"kernel.sched_wakeup_granularity_ns" = 2000000;
 			# Управление памятью
 			"vm.swappiness" = 10; # Меньше использовать swap
 			"vm.vfs_cache_pressure" = 50; # Держим кэш дольше
-			"vm.dirty_ratio" = 30; # Настройка грязных страниц
-			"vm.dirty_background_ratio" = 5;
-
-			# Огромные страницы для JACK/Ardour
-			"vm.nr_hugepages" = 512; # 512MB для huge pages
+			"vm.dirty_ratio" = 15; # Настройка грязных страниц
+			"vm.dirty_background_ratio" = 3;
 
 			# Управление OOM
 			"vm.panic_on_oom" = 0;
@@ -82,6 +74,8 @@
 			"net.ipv4.tcp_fack" = 0;
 			"net.ipv4.tcp_timestamps" = 1;
 			"net.ipv4.tcp_fastopen" = 3;
+			# Сеть для игр (минимизируем буферизацию)
+			"net.ipv4.tcp_slow_start_after_idle" = 0; # Не замедлять TCP после простоя
 			"net.ipv4.tcp_low_latency" = 1;
 
 			# ----------------------------------------------------------------------
@@ -96,7 +90,7 @@
 			# ----------------------------------------------------------------------
 
 			# Максимальное количество mmap (важно для аудио семплеров)
-			"vm.max_map_count" = 16777216;
+			"vm.max_map_count" = 2147483642;
 
 			# Dirty pages настройки (ваши значения)
 			"vm.dirty_bytes" = 419430400; # 400MB
@@ -105,7 +99,7 @@
 			"vm.dirty_writeback_centisecs" = 1500;
 
 			# Минимальная свободная память (ваше значение)
-			"vm.min_free_kbytes" = 103479;
+			"vm.min_free_kbytes" = 262144;
 
 			# ----------------------------------------------------------------------
 			# 5. ДОПОЛНИТЕЛЬНЫЕ АУДИО-ОПТИМИЗАЦИИ
@@ -114,7 +108,7 @@
 			"kernel.nmi_watchdog" = 0;
 
 			# Огромные страницы для аудио приложений
-			"vm.hugetlb_shm_group" = 1000; # audio group
+			"vm.hugetlb_shm_group" = 17; # audio group
 
 			# Улучшаем производительность ввода-вывода
 			"vm.drop_caches" = 0; # Не сбрасываем кэш автоматически
