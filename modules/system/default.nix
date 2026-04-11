@@ -28,7 +28,7 @@
 		./users.nix
 		./variables.nix
 		./xdg.nix
-		./zram.nix
+		./zswap.nix
 	];
 
 	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };

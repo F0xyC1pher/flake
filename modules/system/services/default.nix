@@ -1,14 +1,8 @@
-{
-	# stdenv,
-	#config,
-	#pkgs,
-	lib,
-	# inputs,
-	#vars,
-	...
-}: {
+{...}: {
 	imports = [
 		./cups.nix
+		./dbus.nix
+		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
 		./irqbalance.nix
@@ -20,10 +14,4 @@
 		./udev.nix
 		./xserver.nix
 	];
-	#	========== SERVICES ==========
-	services = {
-		dbus.enable = true;
-		gnome.gnome-keyring.enable = lib.mkForce false;
-		desktopManager.gnome.enable = lib.mkForce false;
-	};
 }

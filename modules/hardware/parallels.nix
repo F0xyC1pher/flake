@@ -1,0 +1,3 @@
+{...}: {
+	hardware.parallels.enable = true;
+}
