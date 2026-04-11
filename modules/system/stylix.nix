@@ -1,4 +1,3 @@
-# { stdenv, config, pkgs, lib, inputs, vars, ... }:
 {
 	config,
 	vars,
@@ -59,7 +58,7 @@
 
 						.header-bar {
 						  background-image: none;
-						  background-color: #363636;
+						  background-color: ${vars.style.theme.surface3};
 						  box-shadow: none;
 						}
 						/* You may want to use this if you do not like the double title. */
@@ -131,14 +130,14 @@
 			base07 = vars.style.theme.contrastText; # самый яркий белый (контрастный текст, bold/bright)
 
 			# Акцентные цвета — семантика
-			base08 = vars.style.colors.red; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-			base09 = vars.style.colors.orange; # оранжевый — числа, константы, escape-последовательности, пути/URL
-			base0A = vars.style.colors.yellow; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
-			base0B = vars.style.colors.green; # зелёный — строки, добавленное в diff, успех
-			base0C = vars.style.colors.cyan; # циан — типы, специальные конструкции, info, escape в строках
-			base0D = vars.style.colors.blue; # синий — функции, методы, ссылки, основной акцентный цвет
-			base0E = vars.style.colors.purple; # фиолетовый — ключевые слова, control flow, операторы, storage
-			base0F = vars.style.colors.pink; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
+			base08 = vars.style.colors.r0; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+			base09 = vars.style.colors.o0; # оранжевый — числа, константы, escape-последовательности, пути/URL
+			base0A = vars.style.colors.y0; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
+			base0B = vars.style.colors.g0; # зелёный — строки, добавленное в diff, успех
+			base0C = vars.style.colors.c0; # циан — типы, специальные конструкции, info, escape в строках
+			base0D = vars.style.colors.b0; # синий — функции, методы, ссылки, основной акцентный цвет
+			base0E = vars.style.colors.p0; # фиолетовый — ключевые слова, control flow, операторы, storage
+			base0F = vars.style.colors.p1; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
 
 			Scheme = "theme";
 			slug = "theme";

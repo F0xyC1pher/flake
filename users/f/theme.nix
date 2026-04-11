@@ -14,12 +14,12 @@
 	contrastText = vars.colors.bf;
 
 	# Цвета
-	accent = vars.colors.red;
-	secondary = vars.colors.orange;
-	error = vars.colors.green;
-	success = vars.colors.red;
-	warning = vars.colors.yellow;
-	info = vars.colors.blue;
-	special = vars.colors.purple;
-	love = vars.colors.pink;
+	accent = vars.colors.r0;
+	secondary = vars.colors.o0;
+	error = vars.colors.r0;
+	success = vars.colors.g0;
+	warning = vars.colors.y0;
+	info = vars.colors.b0;
+	special = vars.colors.p0;
+	love = vars.colors.p1;
 }

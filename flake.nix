@@ -103,7 +103,7 @@
 	} @ inputs: let
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
-		vars = import ./vars;
+		#vars = import ./vars;
 
 		# Оверлей: автоматически подхватывает все пакеты из packages/*.nix
 		overlay = final: prev: let
@@ -122,25 +122,31 @@
 
 		# Вспомогательная функция: создаёт nixosConfiguration для хоста
 		mkHost = hostName: let
-			# Читаем конфиг хоста, чтобы узнать имя пользователя
-			# Предположим, в hosts/name/default.nix будет атрибут mainUser
-			hostConfig = import ./hosts/${hostName}/default.nix;
-			# Если хост не определил юзера, берем дефолт 'f'
-			targetUser = hostConfig.mainUser or "f";
+			# 1. Читаем ЧИСТЫЕ данные из meta.nix (это не функция, импорт всегда успешен)
+			hostMeta = import ./hosts/${hostName}/meta.nix;
+			targetUser = hostMeta.mainUser;
 
-			# Импортируем стили этого конкретного юзера
-			userStyle = import ./users/${targetUser}/default.nix {inherit lib;};
+			# 2. Подтягиваем настройки этого юзера (тоже вызываем как функцию)
+			userSettings = import ./users/${targetUser}/default.nix {inherit lib;};
+
+			# Формируем итоговые vars
+			hostVars = {
+				userName = targetUser;
+				# Переменные из юзера
+				inherit (userSettings) userFullName fontName fontSize shell terminal;
+				# ВРУЧНУЮ упаковываем тему и цвета в объект style
+				style = {
+					inherit (userSettings) colors theme;
+				};
+				# Переменные из хоста (теперь они точно есть в hostMeta)
+				inherit (hostMeta) hostName bootLoader hardware;
+			};
 		in
 			lib.nixosSystem {
 				inherit system;
 				specialArgs = {
 					inherit inputs;
-					vars =
-						vars
-						// {
-							userName = targetUser;
-							style = userStyle;
-						};
+					vars = hostVars; # Передаем сформированный объект
 				};
 				modules = [
 					./modules
@@ -157,7 +163,10 @@
 					)
 					{
 						home-manager = {
-							extraSpecialArgs = {inherit inputs vars;};
+							extraSpecialArgs = {
+								inherit inputs;
+								vars = hostVars;
+							};
 							useGlobalPkgs = true;
 							useUserPackages = true;
 							backupFileExtension = "backup";

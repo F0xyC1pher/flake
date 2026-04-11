@@ -74,9 +74,9 @@
 							placeholder = "${vars.style.theme.fgMain}ff"; # хрен знает
 							input = "${vars.style.theme.fgMain}ff"; # ввод
 							match = "${vars.style.theme.fgMain}ff"; # совпадения
-							selection = "${vars.style.theme.accent}"; # фон выбранного элемента
+							selection = "${vars.style.theme.accent}ff"; # фон выбранного элемента
 							selection-text = "${vars.style.theme.bgMain}ff"; # текст выбранного элемента
-							selection-match = "${vars.style.theme.accent}ff"; # подсвеченные буковки на выбранном элементе при поиске
+							selection-match = "${vars.style.colors.g0}ff"; # подсвеченные буковки на выбранном элементе при поиске
 							counter = "93a1a1ff"; # счетчик чего-то
 							border = "${vars.style.theme.accent}ff"; # обводка окошка
 						};

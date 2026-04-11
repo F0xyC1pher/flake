@@ -15,12 +15,12 @@
 	be = "#e6e6e6";
 	bf = "#f6f6f6";
 
-	red = "#f67676"; #red
-	orange = "#f6b676"; #orange
-	yellow = "#f6f676"; #yellow
-	green = "#76f676"; #green
-	cyan = "#76f6f6"; #cyan
-	blue = "#76a6f6"; #blue
-	purple = "#b676f6"; #purple
-	pink = "#f676b6"; #magenta
+	r0 = "#f67676"; #red
+	o0 = "#f6b676"; #orange
+	y0 = "#f6f676"; #yellow
+	g0 = "#76f676"; #green
+	c0 = "#76f6f6"; #cyan
+	b0 = "#76a6f6"; #blue
+	p0 = "#b676f6"; #purple
+	p1 = "#f676b6"; #pink
 }
