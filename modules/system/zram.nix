@@ -5,11 +5,11 @@
 }: {
 	# Отключаем zswap
 	boot.kernelParams = [
-		"zswap.enabled=0"
+		"zswap.enabled=1"
 	];
 
 	zramSwap = {
-		enable = true;
+		enable = false;
 		algorithm = "zstd";
 		memoryPercent = 100; # или 150
 		priority = 100; # максимальный приоритет

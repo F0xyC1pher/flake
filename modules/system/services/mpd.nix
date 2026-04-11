@@ -14,7 +14,7 @@
 			restore_paused = "yes";
 			max_playlist_length = "16384";
 			auto_update = "yes";
-			auto_update_depth = "3";
+			# auto_update_depth = "3";
 
 			# Настройки буферизации
 			buffer_before_play = "10%";

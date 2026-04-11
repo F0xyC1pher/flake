@@ -1,4 +1,11 @@
-{...}: {
+{pkgs, ...}: {
+	services = {
+		udev = {
+			packages = with pkgs; [
+				game-devices-udev-rules
+			];
+		};
+	};
 	# Отключаем энергосбережение для USB
 	services.udev.extraRules = ''
 		# Увеличиваем приоритет звуковых IRQ
