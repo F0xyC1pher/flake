@@ -1,55 +1,48 @@
 {
-  # config,
-  # lib,
-  inputs,
-  vars,
-  ...
-}:
-{
-  home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
-    users.${vars.userName} =
-      {
-        ...
-      }:
-      {
-        xdg.configFile."niri/input.kdl".text = ''
-input {
-    keyboard {
-        xkb {
-            layout "us,ru"
-            options "grp:alt_shift_toggle"
-        }
-        repeat-delay 200
-        repeat-rate 40
-        track-layout "global"
-    }
+	inputs,
+	vars,
+	...
+}: {
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
+			xdg.configFile."niri/input.kdl".text = ''
+				input {
+				    keyboard {
+				        xkb {
+				            layout "us,ru"
+				            options "grp:alt_shift_toggle"
+				        }
+				        repeat-delay 200
+				        repeat-rate 40
+				        track-layout "global"
+				    }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    // All commented-out settings here are examples, not defaults.
-    touchpad {
-        off
-    }
+				    // Next sections include libinput settings.
+				    // Omitting settings disables them, or leaves them at their default values.
+				    // All commented-out settings here are examples, not defaults.
+				    touchpad {
+				        off
+				    }
 
-    mouse {
-        // off
-        // accel-speed 0.2
-        accel-profile "flat"
-        scroll-factor 1.2
-        // scroll-factor vertical=1.0 horizontal=-2.0
-    }
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    //warp-mouse-to-focus
-    disable-power-key-handling
+				    mouse {
+				        // off
+				        // accel-speed 0.2
+				        accel-profile "flat"
+				        scroll-factor 1.2
+				        // scroll-factor vertical=1.0 horizontal=-2.0
+				    }
+				    // Uncomment this to make the mouse warp to the center of newly focused windows.
+				    //warp-mouse-to-focus
+				    disable-power-key-handling
 
-    // Focus windows and outputs automatically when moving the mouse into them.
-    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
-    focus-follows-mouse
-    workspace-auto-back-and-forth
-}
-        '';
-      };
-  };
+				    // Focus windows and outputs automatically when moving the mouse into them.
+				    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+				    // focus-follows-mouse max-scroll-amount="0%"
+				    focus-follows-mouse
+				    workspace-auto-back-and-forth
+				}
+			'';
+		};
+	};
 }

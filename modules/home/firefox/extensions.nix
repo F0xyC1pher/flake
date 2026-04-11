@@ -1,14 +1,17 @@
-{ config, pkgs, inputs, vars, ... }:
-let
-  addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
+	pkgs,
+	inputs,
+	vars,
+	...
+}: let
+	addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
+in {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
 			programs.firefox = {
 				profiles.${vars.userFullName} = {
-          extensions.force = true;
+					extensions.force = true;
 					extensions.packages = with addons; [
 						ublock-origin
 						sponsorblock
@@ -23,4 +26,3 @@ in
 		};
 	};
 }
-

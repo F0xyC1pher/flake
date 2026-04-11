@@ -1,6 +1,4 @@
 {
-	# lib,
-	# config,
 	inputs,
 	vars,
 	...
@@ -13,12 +11,7 @@
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
-			# config,
-			# lib,
-			pkgs,
-			...
-		}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			programs.yazi = {
 				enableFishIntegration = true;
 				enableBashIntegration = true;

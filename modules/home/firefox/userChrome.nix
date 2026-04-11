@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, vars, ... }:
 {
+	inputs,
+	vars,
+	...
+}: {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
 			programs.firefox = {
 				profiles.${vars.userFullName} = {
 					userChrome = ''
@@ -19,4 +22,3 @@
 		};
 	};
 }
-

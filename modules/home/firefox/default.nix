@@ -1,9 +1,8 @@
-{ config, pkgs, inputs, vars, ... }:
-let
-  # Короткий алиас, чтобы не писать длинную строку каждый раз
-  addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
+	inputs,
+	vars,
+	...
+}: {
 	imports = [
 		./extensions.nix
 		./policies.nix
@@ -11,10 +10,10 @@ in
 		./userChrome.nix
 		./userJS.nix
 	];
-	
+
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
 			programs.firefox = {
 				enable = true;
 				profiles.${vars.userFullName} = {
