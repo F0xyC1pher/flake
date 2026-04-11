@@ -26,7 +26,7 @@
 					"clock.power-of-two-quantum" = false;
 					"link.follow-exclusive-outputs" = false;
 
-					"cpu.affinity" = [2 3 6 7];
+					#"cpu.affinity" = [2 3 6 7];
 
 					# Настройка приоритетов для потоков
 					"default.video.width" = 640;
@@ -48,7 +48,7 @@
 							"rt.prio" = 88;
 							"rt.time.soft" = 200000;
 							"rt.time.hard" = 200000;
-							"cpu.affinity" = [2 3 6 7];
+							#	"cpu.affinity" = [2 3 6 7];
 						};
 					}
 				];

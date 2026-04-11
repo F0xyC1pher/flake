@@ -1,15 +1,7 @@
-{
-	config,
-	pkgs,
-	lib,
-	inputs,
-	vars,
-	...
-}: {
+{...}: {
 	imports = [
 		./nvidia
+		#./parallels.nix
 		./redist.nix
 	];
-
-	# hardware.parallels.enable = true;
 }

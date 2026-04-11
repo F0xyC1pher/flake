@@ -31,7 +31,7 @@
 					type = "pipewire";
 					name = "PipeWire Output";
 					format = "192000:32:2";
-					mixer_type = "software";
+					# mixer_type = "software";
 					auto_resample = "no";
 					buffer_time = "50000";
 					period_time = "16384";
@@ -46,19 +46,17 @@
 			# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
 			XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
 		};
-		serviceConfig = {
-			# Приоритет процесса MPD
-			Nice = -5;
-			CPUSchedulingPolicy = "rr";
-			CPUSchedulingPriority = 85;
-			# Ядра для звука (из ваших cpu.affinity = [2 3 6 7])
-			CPUAffinity = [6 7];
-			# Ограничения памяти
-			# MemoryMax = "512M";
-			# MemoryHigh = "256M";
-			# IO приоритет
-			IOSchedulingClass = "realtime";
-			IOWeight = 100;
-		};
+		#		serviceConfig = {
+		#			# Приоритет процесса MPD
+		#			Nice = -5;
+		#			CPUSchedulingPolicy = "rr";
+		#			CPUSchedulingPriority = 85;
+		#			# Ограничения памяти
+		#			MemoryMax = "512M";
+		#			MemoryHigh = "256M";
+		#			# IO приоритет
+		#			IOSchedulingClass = "realtime";
+		#			IOWeight = 100;
+		#		};
 	};
 }
