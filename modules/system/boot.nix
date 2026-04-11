@@ -9,10 +9,6 @@
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
 		# Инициализация ядра
 		initrd.kernelModules = ["tcp_bbr"];
-		# Чёрный список ненужных модулей
-		blacklistedKernelModules = [
-			"snd_hda_codec_hdmi" # Если не используете HDMI audio
-		];
 
 		# Параметры ядра для real-time аудио
 		kernelParams = [
