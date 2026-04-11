@@ -1,16 +1,19 @@
 {vars, ...}: {
+	# Фон
 	bgMain = vars.colors.b1;
-	surface = vars.colors.b2;
-	surface2 = vars.colors.b3;
-	surface3 = vars.colors.b4;
-	surface4 = vars.colors.b5;
+	surface2 = vars.colors.b2;
+	surface3 = vars.colors.b3;
+	surface4 = vars.colors.b4;
+	surface5 = vars.colors.b5;
 
-	# Text
+	# Текст
+	subtext = vars.colors.b9;
+	statusline = vars.colors.ba;
 	fgMain = vars.colors.bd;
-	subtext = vars.colors.b7;
-	selection = vars.colors.b4;
+	brightText = vars.colors.be;
+	contrastText = vars.colors.bf;
 
-	# Accents
+	# Цвета
 	accent = vars.colors.red;
 	secondary = vars.colors.orange;
 	error = vars.colors.green;

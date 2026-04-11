@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, vars, ... }:
 {
+	inputs,
+	vars,
+	...
+}: {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
 			programs.firefox = {
 				profiles.${vars.userFullName} = {
 					settings = {
@@ -10,8 +13,8 @@
 						"browser.newtabpage.enabled" = false;
 						"browser.search.defaultenginename" = "DuckDuckGo";
 						"extensions.pocket.enabled" = false;
-						"identity.fxaccounts.enabled" = true;  # аккаунты Mozilla
-						"toolkit.legacyUserProfileCustomizations.stylesheets" = true;  # userChrome
+						"identity.fxaccounts.enabled" = true; # аккаунты Mozilla
+						"toolkit.legacyUserProfileCustomizations.stylesheets" = true; # userChrome
 						"sidebar.verticalTabs" = false;
 						"sidebar.main.tools" = "none";
 						"browser.tabs.tabmanager.enabled" = false;
@@ -23,4 +26,3 @@
 		};
 	};
 }
-

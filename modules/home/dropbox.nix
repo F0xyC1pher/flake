@@ -1,19 +1,11 @@
 {
-	lib,
-	config,
-	pkgs,
 	inputs,
 	vars,
 	...
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
-			config,
-			pkgs,
-			lib,
-			...
-		}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			# Сервис Dropbox через Home Manager
 			systemd.user.services.dropbox = {
 				Unit = {

@@ -5,9 +5,15 @@
 	vars,
 	...
 }: {
+	# Это наше кастомное поле, которое прочитает flake.nix
+	_module.args.mainUser = "f";
+
+	networking.hostName = "p";
+
 	imports = [
 		./zerotierone.nix
 	];
+
 	hardware.cpu.intel.updateMicrocode = true;
 	# Диск для загрузчика (весь диск, не раздел)
 	# Найти свой: ls -la /dev/disk/by-id/ | grep -v part

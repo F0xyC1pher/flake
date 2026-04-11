@@ -121,10 +121,27 @@
 			) {} (builtins.attrNames files);
 
 		# Вспомогательная функция: создаёт nixosConfiguration для хоста
-		mkHost = hostName:
+		mkHost = hostName: let
+			# Читаем конфиг хоста, чтобы узнать имя пользователя
+			# Предположим, в hosts/name/default.nix будет атрибут mainUser
+			hostConfig = import ./hosts/${hostName}/default.nix;
+			# Если хост не определил юзера, берем дефолт 'f'
+			targetUser = hostConfig.mainUser or "f";
+
+			# Импортируем стили этого конкретного юзера
+			userStyle = import ./users/${targetUser}/default.nix {inherit lib;};
+		in
 			lib.nixosSystem {
 				inherit system;
-				specialArgs = {inherit inputs vars;};
+				specialArgs = {
+					inherit inputs;
+					vars =
+						vars
+						// {
+							userName = targetUser;
+							style = userStyle;
+						};
+				};
 				modules = [
 					./modules
 					./hosts/${hostName}
@@ -148,9 +165,9 @@
 								sops-nix.homeManagerModules.sops
 								nixcord.homeModules.nixcord
 							];
-							users.${vars.userName} = {...}: {
-								home.username = "${vars.userName}";
-								home.homeDirectory = "/home/${vars.userName}";
+							users.${targetUser} = {...}: {
+								home.username = "${targetUser}";
+								home.homeDirectory = "/home/${targetUser}";
 								home.stateVersion = "26.05";
 							};
 						};

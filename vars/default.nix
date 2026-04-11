@@ -1,9 +1,9 @@
 let
 	hardware = import ./hardware.nix;
-	colors = import ./colors.nix;
+	#colors = import ./colors.nix;
 in {
 	# Подключаем переменные из hardware и colors
-	inherit hardware colors;
+	inherit hardware; #colors;
 
 	# Подстановка переменных в различные ебеня системы
 	# Имя учётной записи в системе

@@ -1,165 +1,158 @@
 {
-  # config,
-  # lib,
-  inputs,
-  vars,
-  ...
-}:
-{
-  home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
-    users.${vars.userName} =
-      {
-        ...
-      }:
-      {
-        xdg.configFile."niri/misc.kdl".text = ''
+	inputs,
+	vars,
+	...
+}: {
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
+			xdg.configFile."niri/misc.kdl".text = ''
 
-recent-windows {
-    // off
-    // debounce-ms 0
-    // open-delay-ms 0
+				recent-windows {
+				    // off
+				    // debounce-ms 0
+				    // open-delay-ms 0
 
-    highlight {
-        // active-color "#99ff99ff"
+				    highlight {
+				        // active-color "#99ff99ff"
 
-        // urgent-color "#9999ff"
-        // urgent-color "#9b0000"
-        // urgent-color "#ac4242"
+				        // urgent-color "#9999ff"
+				        // urgent-color "#9b0000"
+				        // urgent-color "#ac4242"
 
-        // padding 0
-        // padding 10
-        // padding 100
+				        // padding 0
+				        // padding 10
+				        // padding 100
 
-        corner-radius 0
-        // corner-radius 8
-        // corner-radius 30
-    }
+				        corner-radius 0
+				        // corner-radius 8
+				        // corner-radius 30
+				    }
 
-    previews {
-        // max-height 200
-        max-height 320
-        // max-height 1080
-        // max-height 10000
+				    previews {
+				        // max-height 200
+				        max-height 320
+				        // max-height 1080
+				        // max-height 10000
 
-        // max-scale 0.75
-        // max-scale 1
-    }
+				        // max-scale 0.75
+				        // max-scale 1
+				    }
 
-    /-binds {
-        Mod+Tab         { next-window scope="output"; }
-        Mod+Shift+Tab   { previous-window scope="output"; }
-        Mod+grave       { next-window filter="app-id" scope="output"; }
-        Mod+Shift+grave { previous-window filter="app-id" scope="output"; }
-    }
-}
+				    /-binds {
+				        Mod+Tab         { next-window scope="output"; }
+				        Mod+Shift+Tab   { previous-window scope="output"; }
+				        Mod+grave       { next-window filter="app-id" scope="output"; }
+				        Mod+Shift+grave { previous-window filter="app-id" scope="output"; }
+				    }
+				}
 
-/-environment {
-    // GSK_RENDERER "cairo"
-    // WAYLAND_DISPLAY null
-    // _JAVA_AWT_WM_NONREPARENTING "1"
-    // GTK_IM_MODULE "none"
-}
+				/-environment {
+				    // GSK_RENDERER "cairo"
+				    // WAYLAND_DISPLAY null
+				    // _JAVA_AWT_WM_NONREPARENTING "1"
+				    // GTK_IM_MODULE "none"
+				}
 
-// ────────────── Overview Settings ──────────────
-// Optionally, disable the workspace shadows in the overview.
-overview {
-    backdrop-color "#00000080"
-    workspace-shadow {
-        //    off
-        softness 30
-        spread 5
-        offset x=0 y=0
-        color "#ff000007"
-    }
-}
+				// ────────────── Overview Settings ──────────────
+				// Optionally, disable the workspace shadows in the overview.
+				overview {
+				    backdrop-color "#00000080"
+				    workspace-shadow {
+				        //    off
+				        softness 30
+				        spread 5
+				        offset x=0 y=0
+				        color "#ff000007"
+				    }
+				}
 
 
-/-overview {
-    // zoom 0.0001
-    // zoom 0.01
-    // zoom 0.1
-    // zoom 0.25
-    // zoom 0.5
-    // zoom 0.333
-    // zoom 0.75
+				/-overview {
+				    // zoom 0.0001
+				    // zoom 0.01
+				    // zoom 0.1
+				    // zoom 0.25
+				    // zoom 0.5
+				    // zoom 0.333
+				    // zoom 0.75
 
-    // backdrop-color "#ffffff"
-    // backdrop-color "#444"
-    // backdrop-color "#900"
-    // backdrop-color "#262626"
+				    // backdrop-color "#ffffff"
+				    // backdrop-color "#444"
+				    // backdrop-color "#900"
+				    // backdrop-color "#262626"
 
-    workspace-shadow {
-        // off
+				    workspace-shadow {
+				        // off
 
-        // softness 0
-        // softness 40
-        // softness 45
-        // softness 50
-        // softness 60
-        // softness 80
-        // softness 100
+				        // softness 0
+				        // softness 40
+				        // softness 45
+				        // softness 50
+				        // softness 60
+				        // softness 80
+				        // softness 100
 
-        // spread 5
-        // spread 10
-        // spread 50
+				        // spread 5
+				        // spread 10
+				        // spread 50
 
-        // offset x=0 y=10
-        // offset x=20 y=20
+				        // offset x=0 y=10
+				        // offset x=20 y=20
 
-        // color "#0005"
-        // color "#000d"
-        // color "#000a"
-    }
-}
+				        // color "#0005"
+				        // color "#000d"
+				        // color "#000a"
+				    }
+				}
 
-gestures {
-    dnd-edge-view-scroll {
-        // trigger-width 0
-        // trigger-width 1
-        // trigger-width 10000
-        // max-speed 100000
-        // delay-ms 0
-        // delay-ms 100
-        // delay-ms 1000
-    }
+				gestures {
+				    dnd-edge-view-scroll {
+				        // trigger-width 0
+				        // trigger-width 1
+				        // trigger-width 10000
+				        // max-speed 100000
+				        // delay-ms 0
+				        // delay-ms 100
+				        // delay-ms 1000
+				    }
 
-    dnd-edge-workspace-switch {
-        // max-speed 500
-    }
+				    dnd-edge-workspace-switch {
+				        // max-speed 500
+				    }
 
-    hot-corners {
-        // off
-        // bottom-left
-        // top-right
-    }
-}
+				    hot-corners {
+				        // off
+				        // bottom-left
+				        // top-right
+				    }
+				}
 
-xwayland-satellite {
-    // off
-    // path "~/source/rs/xwayland-satellite/target/release/xwayland-satellite"
-}
+				xwayland-satellite {
+				    // off
+				    // path "~/source/rs/xwayland-satellite/target/release/xwayland-satellite"
+				}
 
-cursor {
-    // xcursor-theme "breeze_cursors"
-    // xcursor-theme "arstieonart"
-    // xcursor-size 48
-    // hide-when-typing
-    // hide-after-inactive-ms 100
-}
+				cursor {
+				    // xcursor-theme "breeze_cursors"
+				    // xcursor-theme "arstieonart"
+				    // xcursor-size 48
+				    // hide-when-typing
+				    // hide-after-inactive-ms 100
+				}
 
-// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-// screenshot-path "~/Pictures/niri-scale/%M-%S.png"
-// screenshot-path "%M-%S.png"
+				// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+				// screenshot-path "~/Pictures/niri-scale/%M-%S.png"
+				// screenshot-path "%M-%S.png"
 
-hotkey-overlay {
-    skip-at-startup
-}
+				hotkey-overlay {
+				    skip-at-startup
+				}
 
-clipboard {
-    // disable-primary
-}
-        '';
-      };
-  };
+				clipboard {
+				    // disable-primary
+				}
+			'';
+		};
+	};
 }

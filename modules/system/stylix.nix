@@ -117,28 +117,28 @@
 
 		base16Scheme = {
 			# Фоны и основные поверхности
-			base00 = vars.colors.b1; # основной фон (editor, терминал, панели, tmux)
-			base01 = vars.colors.b2; # лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-			base02 = vars.colors.b4; # фон выделения текста (visual mode, selected text, поиск)
+			base00 = vars.style.theme.bgMain; # основной фон (editor, терминал, панели, tmux)
+			base01 = vars.style.theme.surface2; # лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+			base02 = vars.style.theme.surface4; # фон выделения текста (visual mode, selected text, поиск)
 
 			# Серые тона для текста и неактивных элементов
-			base03 = vars.colors.b9; # комментарии, невидимые символы, cursorline, неактивные элементы
-			base04 = vars.colors.ba; # вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+			base03 = vars.style.theme.subtext; # комментарии, невидимые символы, cursorline, неактивные элементы
+			base04 = vars.style.theme.statusline; # вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
 
 			# Основной и яркий текст
-			base05 = vars.colors.bd; # основной цвет текста (обычный код, prompt в терминале)
-			base06 = vars.colors.be; # bright foreground / special UI
-			base07 = vars.colors.bf; # самый яркий белый (контрастный текст, bold/bright)
+			base05 = vars.style.theme.fgMain; # основной цвет текста (обычный код, prompt в терминале)
+			base06 = vars.style.theme.brightText; # bright foreground / special UI
+			base07 = vars.style.theme.contrastText; # самый яркий белый (контрастный текст, bold/bright)
 
 			# Акцентные цвета — семантика
-			base08 = vars.colors.r0; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-			base09 = vars.colors.o0; # оранжевый — числа, константы, escape-последовательности, пути/URL
-			base0A = vars.colors.y0; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
-			base0B = vars.colors.g0; # зелёный — строки, добавленное в diff, успех
-			base0C = vars.colors.c0; # циан — типы, специальные конструкции, info, escape в строках
-			base0D = vars.colors.b0; # синий — функции, методы, ссылки, основной акцентный цвет
-			base0E = vars.colors.p0; # фиолетовый — ключевые слова, control flow, операторы, storage
-			base0F = vars.colors.m0; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
+			base08 = vars.style.colors.red; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+			base09 = vars.style.colors.orange; # оранжевый — числа, константы, escape-последовательности, пути/URL
+			base0A = vars.style.colors.yellow; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
+			base0B = vars.style.colors.green; # зелёный — строки, добавленное в diff, успех
+			base0C = vars.style.colors.cyan; # циан — типы, специальные конструкции, info, escape в строках
+			base0D = vars.style.colors.blue; # синий — функции, методы, ссылки, основной акцентный цвет
+			base0E = vars.style.colors.purple; # фиолетовый — ключевые слова, control flow, операторы, storage
+			base0F = vars.style.colors.pink; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
 
 			Scheme = "theme";
 			slug = "theme";

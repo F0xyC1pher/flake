@@ -1,19 +1,11 @@
 {
-	# lib,
-	# config,
-	# pkgs,
 	inputs,
 	vars,
 	...
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
-			# config,
-			pkgs,
-			# lib,
-			...
-		}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			programs.yazi = {
 				plugins = with pkgs.yaziPlugins; {
 					sudo = sudo;

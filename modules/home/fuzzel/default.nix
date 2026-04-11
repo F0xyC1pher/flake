@@ -2,102 +2,96 @@
 	inputs,
 	vars,
 	...
-}:
-{
+}: {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =
-			{
-        lib,
-				...
-			}:
-			{
-				programs.fuzzel = {
-					enable = true;
-					settings = {
-						main = {
-							# output=<not set>
-							#font="${vars.fontName}";
-							# dpi-aware=auto
-							use-bold=false;
-							# message=
-							# message-mode=wrap
-							# prompt="> "
-							# placeholder=
-							# icon-theme=default
-							icons-enabled=true;
-							# hide-before-typing=no
-							# fields=filename,name,generic
-							password-character="*";
-							# filter-desktop=no
-							match-mode="fzf";
-							# sort-result=yes
-							# match-counter=no
-							# delayed-filter-ms=300
-							# delayed-filter-limit=20000
-							# show-actions=no
-							# terminal=$TERMINAL -e  # Note: you cannot actually use environment variables here
-							# launch-prefix=<not set>
-							# list-executables-in-path=no
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {lib, ...}: {
+			programs.fuzzel = {
+				enable = true;
+				settings = {
+					main = {
+						# output=<not set>
+						#font="${vars.fontName}";
+						# dpi-aware=auto
+						use-bold = false;
+						# message=
+						# message-mode=wrap
+						# prompt="> "
+						# placeholder=
+						# icon-theme=default
+						icons-enabled = true;
+						# hide-before-typing=no
+						# fields=filename,name,generic
+						password-character = "*";
+						# filter-desktop=no
+						match-mode = "fzf";
+						# sort-result=yes
+						# match-counter=no
+						# delayed-filter-ms=300
+						# delayed-filter-limit=20000
+						# show-actions=no
+						# terminal=$TERMINAL -e  # Note: you cannot actually use environment variables here
+						# launch-prefix=<not set>
+						# list-executables-in-path=no
 
-							# anchor=center
-							# x-margin=0
-							# y-margin=0
-							# lines=15
-							# minimal-lines=no
-							# width=30
-							# tabs=8
-							# horizontal-pad=40
-							# vertical-pad=8
-							# inner-pad=0
+						# anchor=center
+						# x-margin=0
+						# y-margin=0
+						# lines=15
+						# minimal-lines=no
+						# width=30
+						# tabs=8
+						# horizontal-pad=40
+						# vertical-pad=8
+						# inner-pad=0
 
-							# scaling-filter=box
-							# image-size-ratio=0.5
+						# scaling-filter=box
+						# image-size-ratio=0.5
 
-							# gamma-correct-blending=no
-							# line-height=<use font metrics>
-							# letter-spacing=0
+						# gamma-correct-blending=no
+						# line-height=<use font metrics>
+						# letter-spacing=0
 
-							# layer=overlay
-							keyboard-focus="exclusive";
-							exit-on-keyboard-focus-loss=true;
+						# layer=overlay
+						keyboard-focus = "exclusive";
+						exit-on-keyboard-focus-loss = true;
 
-							# cache=<not set>
+						# cache=<not set>
 
-							# render-workers=<number of logical CPUs>
-							# match-workers=<number of logical CPUs>
+						# render-workers=<number of logical CPUs>
+						# match-workers=<number of logical CPUs>
 
-							# auto-select=no
+						# auto-select=no
 
-							enable-mouse=false;
-						};
-						colors = lib.mkForce {
-							background="${vars.colors.b1}bb"; # фон окошка
-							text="${vars.colors.bd}ff"; # текст
-							message="${vars.colors.bd}ff"; # сообщение
-							prompt="${vars.colors.bd}ff"; # строка ввода?
-							placeholder="${vars.colors.bd}ff"; # хрен знает
-							input="${vars.colors.bd}ff"; # ввод
-							match="${vars.colors.bd}ff"; # совпадения
-							selection="d76667ff"; # фон выбранного элемента
-							selection-text="${vars.colors.b1}ff"; # текст выбранного элемента
-							selection-match="${vars.colors.g0}ff"; # подсвеченные буковки на выбранном элементе при поиске
-							counter="93a1a1ff"; # счетчик чего-то
-							border="${vars.colors.r0}ff"; # обводка окошка
+						enable-mouse = false;
+					};
+					colors =
+						lib.mkForce {
+							background = "${vars.style.theme.bgMain}bb"; # фон окошка
+							text = "${vars.style.theme.fgMain}ff"; # текст
+							message = "${vars.style.theme.fgMain}ff"; # сообщение
+							prompt = "${vars.style.theme.fgMain}ff"; # строка ввода?
+							placeholder = "${vars.style.theme.fgMain}ff"; # хрен знает
+							input = "${vars.style.theme.fgMain}ff"; # ввод
+							match = "${vars.style.theme.fgMain}ff"; # совпадения
+							selection = "${vars.style.theme.accent}"; # фон выбранного элемента
+							selection-text = "${vars.style.theme.bgMain}ff"; # текст выбранного элемента
+							selection-match = "${vars.style.theme.accent}ff"; # подсвеченные буковки на выбранном элементе при поиске
+							counter = "93a1a1ff"; # счетчик чего-то
+							border = "${vars.style.theme.accent}ff"; # обводка окошка
 						};
 
-						border = {
-							width=1;
-							radius=0;
-						};
+					border = {
+						width = 1;
+						radius = 0;
+					};
 
-						dmenu = {
+					dmenu = {
 						# mode=text  # text|index
 						# exit-immediately-if-empty=no
-						};
+					};
 
-						key-bindings = {
-
+					key-bindings = {
 						# cancel=Escape Control+g Control+c Control+bracketleft
 						# execute=Return KP_Enter Control+y
 						# execute-or-next=Tab
@@ -148,9 +142,9 @@
 						# custom-17=Mod1+ampersand
 						# custom-18=Mod1+asterix
 						# custom-19=Mod1+parentleft
-						};
 					};
 				};
 			};
+		};
 	};
 }
