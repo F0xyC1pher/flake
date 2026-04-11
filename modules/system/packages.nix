@@ -1,8 +1,6 @@
 {
 	inputs,
-	# vars,
 	pkgs,
-	# config,
 	...
 }: {
 	#	==========ENVIRONMENT==========

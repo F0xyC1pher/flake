@@ -1,8 +1,5 @@
 {
-	# stdenv,
-	# config,
 	pkgs,
-	# lib,
 	inputs,
 	vars,
 	...

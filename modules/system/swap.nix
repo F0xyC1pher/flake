@@ -1,9 +1,4 @@
-{
-	#config,
-	#pkgs,
-	...
-}: {
-	# Настройка Swap-файла
+{...}: {
 	swapDevices = [
 		{
 			device = "/var/lib/swapfile";

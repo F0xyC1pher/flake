@@ -1,11 +1,4 @@
-{
-    config,
-    pkgs,
-    lib,
-    vars,
-    ...
-}:
-{
+{...}: {
 	xdg = {
 		terminal-exec = {
 			enable = true;
