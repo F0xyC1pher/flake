@@ -1,15 +1,8 @@
 {
-	# config,
-	# pkgs,
 	lib,
 	vars,
 	...
 }: {
-	# Это наше кастомное поле, которое прочитает flake.nix
-	_module.args.mainUser = "f";
-
-	networking.hostName = "p";
-
 	imports = [
 		./zerotierone.nix
 	];
