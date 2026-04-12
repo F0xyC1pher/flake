@@ -108,7 +108,7 @@
 			"kernel.nmi_watchdog" = 0;
 
 			# Огромные страницы для аудио приложений
-			"vm.hugetlb_shm_group" = 17; # audio group
+			# "vm.hugetlb_shm_group" = 17; # audio group
 
 			# Улучшаем производительность ввода-вывода
 			"vm.drop_caches" = 0; # Не сбрасываем кэш автоматически
@@ -123,7 +123,7 @@
 			"net.ipv4.tcp_ecn" = 0; # Отключаем ECN для снижения задержек
 
 			# Увеличиваем буферы для multicast (аудио стриминг)
-			"net.ipv4.igmp_max_memberships" = 1024;
+			# "net.ipv4.igmp_max_memberships" = 1024;
 			# ----------------------------------------------------------------------
 			# 7. БЕЗОПАСНОСТЬ И СТАБИЛЬНОСТЬ
 			# ----------------------------------------------------------------------
@@ -131,9 +131,9 @@
 			"net.ipv4.tcp_syncookies" = 1;
 
 			# Защита от ICMP redirect
-			"net.ipv4.conf.all.accept_redirects" = 0;
-			"net.ipv4.conf.default.accept_redirects" = 0;
-			"net.ipv4.conf.all.secure_redirects" = 0;
+			# "net.ipv4.conf.all.accept_redirects" = 0;
+			# "net.ipv4.conf.default.accept_redirects" = 0;
+			# "net.ipv4.conf.all.secure_redirects" = 0;
 
 			"net.core.busy_poll" = 50;
 			"net.core.busy_read" = 50;

@@ -8,7 +8,7 @@
 		};
 in {
 	inherit theme colors;
-	# Личные переменные
+	# переменные
 	userFullName = "Foxy_Chipher";
 	fontName = "FiraCode Nerd Font Mono";
 	fontSize = 12;

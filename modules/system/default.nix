@@ -17,11 +17,12 @@
 		./security.nix
 		./sops.nix
 		./stylix.nix
-		./swap.nix
+		# ./swap.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix
-		./zswap.nix
+		./zram.nix
+		# ./zswap.nix
 	];
 
 	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };
