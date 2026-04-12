@@ -5,10 +5,12 @@
 		./services
 		./bluetooth.nix
 		./boot.nix
+		./etc.nix
 		./fonts.nix
 		./locale.nix
 		./mime.nix
 		./network.nix
+		./nix-init.nix
 		./nix.nix
 		./programs.nix
 		./packages.nix
