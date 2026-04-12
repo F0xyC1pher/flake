@@ -10,8 +10,9 @@ in {
 	inherit theme colors;
 	# переменные
 	userFullName = "Foxy_Chipher";
+	userPassword = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
 	fontName = "FiraCode Nerd Font Mono";
-	fontSize = 12;
-	shell = "fish";
+	fontSize = 14;
+	shell = "brush"; # fish zsh bash brush
 	terminal = "kitty";
 }

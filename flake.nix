@@ -133,7 +133,7 @@
 			hostVars = {
 				userName = targetUser;
 				# Переменные из юзера
-				inherit (userSettings) userFullName fontName fontSize shell terminal;
+				inherit (userSettings) userFullName userPassword fontName fontSize shell terminal;
 				# ВРУЧНУЮ упаковываем тему и цвета в объект style
 				style = {
 					inherit (userSettings) colors theme;

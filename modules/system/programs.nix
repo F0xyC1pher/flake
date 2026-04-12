@@ -7,8 +7,14 @@
 	# ========== PROGRAMS ==========
 	programs = {
 		fish.enable = true;
-		bash.enable = true;
+		zoxide.enableBashIntegration = true;
+		bash = {
+			enable = true;
+			completion.enable = true;
+		};
+
 		ssh.startAgent = true;
+
 		steam = {
 			enable = true;
 			remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
@@ -57,30 +63,7 @@
 
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
-			# config,
-			# pkgs,
-			# lib,
-			...
-		}: {
-			# 	programs.emacs = {
-			# 		enable = true;
-			# 		package = pkgs.emacs-gtk;
-			# #		extraConfig = ''
-			# #			(setq standard-indent 2)
-			# #		'';
-			# 	};
-			#
-			# 	programs.helix = {
-			# 		enable = true;
-			# 		languages.language = [
-			# 			{
-			# 				name = "nix";
-			# 				auto-format = true;
-			# 				formatter.command = lib.getExe pkgs.nixfmt;
-			# 			};
-			# 		];
-			# };
+		users.${vars.userName} = {...}: {
 		};
 	};
 }

@@ -9,6 +9,7 @@
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
 		# Инициализация ядра
 		initrd.kernelModules = ["tcp_bbr"];
+		initrd.systemd.enable = true;
 
 		# Параметры ядра для real-time аудио
 		kernelParams = [

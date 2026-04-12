@@ -9,6 +9,7 @@
 		description = "${vars.userFullName}";
 		home = "/home/${vars.userName}";
 		shell = pkgs.${vars.shell};
+		hashedPassword = "${vars.userPassword}";
 		extraGroups = [
 			"networkmanager"
 			"wheel"

@@ -7,6 +7,8 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			brush
+
 			glib
 
 			dropbox
