@@ -1,8 +1,8 @@
 {...}: {
 	imports = [
-		# ./hardware
-		./systemd
+		./programs
 		./services
+		./systemd
 		./bluetooth.nix
 		./boot.nix
 		./etc.nix
@@ -12,11 +12,11 @@
 		./network.nix
 		./nix-init.nix
 		./nix.nix
-		./programs.nix
 		./packages.nix
 		./portal.nix
 		./power.nix
 		./security.nix
+		./shells.nix
 		./sops.nix
 		./stylix.nix
 		# ./swap.nix

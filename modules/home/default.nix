@@ -9,6 +9,7 @@
 		./vscodium
 		./waybar
 		./yazi
+		./fish.nix
 		./home.nix
 		# ./dropbox.nix
 		#./ssh.nix

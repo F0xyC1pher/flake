@@ -7,7 +7,7 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
-			brush
+			grc
 
 			glib
 

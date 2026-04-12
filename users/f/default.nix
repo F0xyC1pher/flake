@@ -13,6 +13,6 @@ in {
 	userPassword = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
 	fontName = "FiraCode Nerd Font Mono";
 	fontSize = 14;
-	shell = "brush"; # fish zsh bash brush
+	shell = "fish"; # fish zsh bash brush
 	terminal = "kitty";
 }
