@@ -9,6 +9,8 @@
 		systemPackages = with pkgs; [
 			grc
 
+			jetbrains.clion
+
 			glib
 
 			dropbox
@@ -188,7 +190,6 @@
 			imagemagick
 			pandoc
 			socat
-
 			# 📥 Из inputs (flake inputs)
 			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor  # закомментировано
 		];
