@@ -11,6 +11,8 @@
 		./yazi
 		./fish.nix
 		./home.nix
+		./mangohud.nix
+		./mpv.nix
 		# ./dropbox.nix
 		#./ssh.nix
 	];

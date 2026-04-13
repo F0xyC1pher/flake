@@ -9,8 +9,6 @@
 		systemPackages = with pkgs; [
 			grc
 
-			jetbrains.clion
-
 			glib
 
 			dropbox
@@ -86,13 +84,12 @@
 
 			# 🐧 Nix и разработка
 			nixd
-			nil
-			nixfmt
 			alejandra
 			package-version-server
 			micro-full
 			vscodium
 			zed-editor
+			jetbrains.clion
 			git
 			gitui
 			# lazygit
@@ -106,7 +103,6 @@
 			# musikcube
 			playerctl
 			pavucontrol
-			mpv
 			ffmpeg-full
 			yt-dlp
 
@@ -131,7 +127,6 @@
 
 			# 🖥 Терминал и оболочка
 			kitty
-			cool-retro-term
 			babelfish
 
 			# 🌐 Сеть и скачивание

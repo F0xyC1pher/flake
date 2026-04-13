@@ -4,6 +4,8 @@
 	lib,
 	...
 }: {
+	programs.fish.enable =
+		lib.mkIf (vars.shell == "fish") true;
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {pkgs, ...}: {

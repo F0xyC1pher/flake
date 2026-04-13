@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/window-rules.kdl".text = ''
+				//
 				// ────────────── Window Rules  ──────────────
 				// Window rules let you adjust behavior for individual windows.
 				// Find more information on the wiki:
@@ -44,6 +45,11 @@
 				    max-width 391
 				    min-height 155
 				    max-height 155
+				}
+
+				/-window-rule {
+				    match app-id="mpv"
+				    max-height 779
 				}
 
 				// Indicate active windows with red colors.
