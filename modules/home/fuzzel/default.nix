@@ -12,8 +12,8 @@
 					main = {
 						# output=<not set>
 						#font="${vars.fontName}";
-						# dpi-aware=auto
-						use-bold = false;
+						dpi-aware = true;
+						# use-bold = false;
 						# message=
 						# message-mode=wrap
 						# prompt="> "
@@ -32,7 +32,7 @@
 						# show-actions=no
 						# terminal=$TERMINAL -e  # Note: you cannot actually use environment variables here
 						# launch-prefix=<not set>
-						# list-executables-in-path=no
+						list-executables-in-path = true;
 
 						# anchor=center
 						# x-margin=0
@@ -49,7 +49,7 @@
 						# image-size-ratio=0.5
 
 						# gamma-correct-blending=no
-						# line-height=<use font metrics>
+						# line-height = "14";
 						# letter-spacing=0
 
 						# layer=overlay
@@ -61,9 +61,9 @@
 						# render-workers=<number of logical CPUs>
 						# match-workers=<number of logical CPUs>
 
-						# auto-select=no
+						auto-select = false;
 
-						enable-mouse = false;
+						enable-mouse = true;
 					};
 					colors =
 						lib.mkForce {

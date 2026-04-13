@@ -25,11 +25,7 @@
 in {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
-			pkgs,
-			lib,
-			...
-		}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			home.file.".vscode-oss/argv.json".text =
 				builtins.toJSON {
 					"disable-hardware-acceleration" = false;
@@ -59,8 +55,8 @@ in {
 					];
 
 					userSettings = {
-						"editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
-						"editor.fontSize" = lib.mkForce 14;
+						# "editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
+						# "editor.fontSize" = lib.mkForce 10;
 						"editor.fontLigatures" = true;
 						"editor.tabSize" = 4;
 						"editor.indentSize" = "tabSize";

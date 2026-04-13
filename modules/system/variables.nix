@@ -70,13 +70,9 @@
 				# Firefox
 				MOZ_DISABLE_RDD_SANDBOX = "1";
 				MOZ_ENABLE_WAYLAND = "1";
-				# MOZ_X11_EGL = "1";
 
 				# NVIDIA Direct Rendering
 				NVD_BACKEND = "direct";
-
-				# OBS Studio
-				# OBS_USE_EGL = "1";
 
 				# MangoHud
 				MANGOHUD = "1";

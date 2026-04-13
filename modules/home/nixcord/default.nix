@@ -9,9 +9,9 @@
 			programs.nixcord = {
 				enable = true;
 				vesktop.enable = false;
-				equibop.enable = false;
+				equibop.enable = true;
 				discord = {
-					enable = true;
+					enable = false;
 					# equicord.enable = true;
 					vencord.enable = false;
 					openASAR.enable = false;
