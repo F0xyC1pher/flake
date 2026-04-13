@@ -1,5 +1,4 @@
-{ config, pkgs, lib, inputs, vars, ... }:
-{
+{...}: {
 	environment = {
 		etc = {
 			"nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json" = {

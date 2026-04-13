@@ -1,11 +1,4 @@
-{
-	# config,
-	# pkgs,
-	# lib,
-	# inputs,
-	# vars,
-	...
-}: {
+{...}: {
 	imports = [
 		# ./boot.nix
 		./nvidia.nix
