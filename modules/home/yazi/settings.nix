@@ -8,6 +8,21 @@
 		users.${vars.userName} = {config, ...}: {
 			programs.yazi = {
 				settings = {
+					opener = {
+						video = [
+							{
+								run = ''mpv --profile=kitty "$@"'';
+								block = true;
+								desc = "Play in Kitty";
+							}
+						];
+					};
+					rules = [
+						{
+							mime = "video/*";
+							use = "video";
+						}
+					];
 					mgr = {
 						ratio = [1 4 3];
 						sort_by = "natural";
