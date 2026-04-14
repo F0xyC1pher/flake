@@ -80,6 +80,10 @@
 			parted
 			gparted-full
 			mtools
+			lolcat
+			clolcat
+			dotacat
+			blahaj
 
 			# 📱 Android и мобильное
 			android-tools
@@ -196,6 +200,7 @@
 			# 📥 Из inputs (flake inputs)
 			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor  # закомментировано
 			# inputs.pawbar.packages.${pkgs.stdenv.hostPlatform.system}.default
+			# inputs.queercat.packages.${pkgs.stdenv.hostPlatform.system}.default
 		];
 	};
 

@@ -59,6 +59,11 @@
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
 
+		queercat = {
+			url = "https://github.com/Elsa002/queercat";
+			type = "git";
+			submodules = true;
+		};
 		pawbar = {
 			url = "https://github.com/nekorg/pawbar";
 			type = "git";

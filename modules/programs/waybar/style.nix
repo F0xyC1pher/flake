@@ -7,10 +7,11 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {vars, ...}: {
 			programs.waybar.style = ''
+				/*css*/
 				* {
 				  font-family: ${vars.fontName}, "Source Han Sans JP";
 				  font-weight: 600;
-				  font-size: 15px;          /* чуть меньше, чтобы лучше влезало в высоту 56 */
+				  font-size: 14px;
 				  border-radius: 0px;
 				}
 
@@ -20,17 +21,15 @@
 				}
 
 				window#waybar > box {
-				  background: ${vars.style.theme.bgMain};
+				  background: rgba(22, 22, 22, 0.6);
 				  border-bottom: 1px solid ${vars.style.theme.surface4};
-				  padding: 0 8px;
+				  padding: 0 6px;
 				}
 
-				/* ===================================
-				             COMMON MODULE STYLE
-				   =================================== */
+				/* COMMON MODULE STYLE */
 				#backlight,
 				#wireplumber,
-				#wireplumber.source,           /* для wireplumber#source */
+				#wireplumber.source,
 				#language,
 				#bluetooth,
 				#network,
@@ -39,16 +38,18 @@
 				#clock,
 				#custom-notification,
 				#tray,
-				#battery {
+				#battery,
+				#custom-arrow-left,
+				#custom-arrow-right {
 				  border: 1px solid ${vars.style.theme.surface4};
 				  background: ${vars.style.theme.surface3};
 				  color: ${vars.style.theme.fgMain};
-				  padding: 0 12px;
-				  margin: 4px 3px;
-				  min-height: 32px;
+				  padding: 0 10px;
+				  margin: 3px 2px;
+				  min-height: 28px;
 				}
 
-				/* Hover эффект */
+				/* Hover */
 				#backlight:hover,
 				#wireplumber:hover,
 				#wireplumber.source:hover,
@@ -60,31 +61,29 @@
 				#clock:hover,
 				#custom-notification:hover,
 				#tray:hover,
-				#battery:hover {
+				#battery:hover,
+				#custom-arrow-left:hover,
+				#custom-arrow-right:hover {
 				  border: 1px solid ${vars.style.theme.surface5};
 				  background: ${vars.style.theme.surface5};
 				  color: ${vars.style.theme.brightText};
-				  transition: all 0.2s ease;
+				  transition: all 0.25s ease;
 				}
 
-				/* ===================================
-				                WORKSPACES (niri)
-				   =================================== */
+				/* WORKSPACES */
 				#workspaces {
-				  border: none;
 				  background: transparent;
-				  margin: 4px 3px;
-				  padding: 0;
+				  margin: 3px 2px;
 				}
 
 				#workspaces button {
 				  border: 1px solid ${vars.style.theme.surface4};
 				  background: ${vars.style.theme.surface3};
 				  color: ${vars.style.theme.fgMain};
-				  margin: 0 3px;
-				  padding: 0 14px;
-				  min-height: 32px;
-				  font-size: 18px;   /* японские цифры лучше смотрятся крупнее */
+				  margin: 0 2px;
+				  padding: 0 12px;
+				  min-height: 28px;
+				  font-size: 17px;
 				}
 
 				#workspaces button.empty {
@@ -96,26 +95,22 @@
 				#workspaces button.active {
 				  border: 1px solid ${vars.style.theme.accent};
 				  background: ${vars.style.theme.accent};
-				  color: ${vars.style.theme.bgMain};   /* тёмный текст на красном акценте */
+				  color: ${vars.style.theme.bgMain};
 				}
 
 				#workspaces button.active:hover {
 				  border: 1px solid ${vars.style.theme.brightText};
 				  background: ${vars.style.theme.accent};
 				  color: ${vars.style.theme.bgMain};
-				  transition: all 0.2s ease;
 				}
 
 				#workspaces button:hover {
 				  border: 1px solid ${vars.style.theme.surface5};
 				  background: ${vars.style.theme.surface5};
 				  color: ${vars.style.theme.brightText};
-				  transition: all 0.2s ease;
 				}
 
-				/* ===================================
-				                STATE COLORS
-				   =================================== */
+				/* STATE COLORS */
 				#battery.warning {
 				  border-color: ${vars.style.theme.warning};
 				  color: ${vars.style.theme.warning};
@@ -131,22 +126,21 @@
 				  color: ${vars.style.theme.subtext};
 				}
 
-				/* ===================================
-				                CUSTOM NOTIFICATION
-				   =================================== */
 				#custom-notification {
-				  font-size: 18px;
+				  font-size: 17px;
 				}
 
-				/* Убираем ненужные бордеры у tray */
 				#tray {
 				  border: 1px solid ${vars.style.theme.surface4};
 				  background: ${vars.style.theme.surface3};
 				}
 
-				/* Чуть больше отступов для clock, т.к. там календарь */
 				#clock {
-				  min-width: 110px;
+				   min-width: 80px;
+				}
+				#cpu,
+				#memory {
+					 min-width: 50px;
 				}
 			'';
 		};
