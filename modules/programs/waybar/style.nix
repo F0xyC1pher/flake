@@ -1,153 +1,154 @@
-{ lib, config, pkgs, inputs, vars, ... }:
 {
+	inputs,
+	vars,
+	...
+}: {
 	home-manager = {
-		extraSpecialArgs = { inherit inputs vars; };
-		users.${vars.userName} =  { config, pkgs, lib, ... }: {
-		programs.waybar = {
-			style = ''
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {vars, ...}: {
+			programs.waybar.style = ''
 				* {
-					font-family: FiraCode Nerd Font Mono, SourceHanSansJP;
-					font-weight: 600;
-					font-size: 16px;
-					border-radius: 0px;
+				  font-family: ${vars.fontName}, "Source Han Sans JP";
+				  font-weight: 600;
+				  font-size: 15px;          /* чуть меньше, чтобы лучше влезало в высоту 56 */
+				  border-radius: 0px;
 				}
 
 				window#waybar {
-					background: transparent;
-					color: #d6d6d6;
+				  background: transparent;
+				  color: ${vars.style.theme.fgMain};
 				}
 
 				window#waybar > box {
-					background: #161616;
-					border-bottom: 1px solid #363636;
-					padding: 0 8px;
-				}
-		    
-			/*	===================================
-						COMMON MODULE STYLE
-				===================================	*/
-		    
-				#battery,
-				#backlight,
-				#clock,
-				#wireplumber,
-				#bluetooth,
-				#language,
-				#custom-clock,
-				#tray {
-					border: 1px solid #464646;
-					background: #363636;
-					color: #d6d6d6;
-					padding: 0 10px;
-					margin: 3px 4px;
-					min-height: 28px;
+				  background: ${vars.style.theme.bgMain};
+				  border-bottom: 1px solid ${vars.style.theme.surface4};
+				  padding: 0 8px;
 				}
 
-			/*	===================================
-					COMMON MODULE STYLE :hover
-				===================================	*/
-			         
-				#battery:hover,
+				/* ===================================
+				             COMMON MODULE STYLE
+				   =================================== */
+				#backlight,
+				#wireplumber,
+				#wireplumber.source,           /* для wireplumber#source */
+				#language,
+				#bluetooth,
+				#network,
+				#cpu,
+				#memory,
+				#clock,
+				#custom-notification,
+				#tray,
+				#battery {
+				  border: 1px solid ${vars.style.theme.surface4};
+				  background: ${vars.style.theme.surface3};
+				  color: ${vars.style.theme.fgMain};
+				  padding: 0 12px;
+				  margin: 4px 3px;
+				  min-height: 32px;
+				}
+
+				/* Hover эффект */
 				#backlight:hover,
-				#clock:hover,
 				#wireplumber:hover,
-				#bluetooth:hover,
+				#wireplumber.source:hover,
 				#language:hover,
-				#custom-clock:hover,
-				#tray:hover {
-					border: 1px solid #666666;
-					background: #565656;
-					color: #f6f6f6;
-					padding: 0 10px;
-					margin: 3px 4px;
-					min-height: 28px;
-					transition: all 0.2s ease;
+				#bluetooth:hover,
+				#network:hover,
+				#cpu:hover,
+				#memory:hover,
+				#clock:hover,
+				#custom-notification:hover,
+				#tray:hover,
+				#battery:hover {
+				  border: 1px solid ${vars.style.theme.surface5};
+				  background: ${vars.style.theme.surface5};
+				  color: ${vars.style.theme.brightText};
+				  transition: all 0.2s ease;
 				}
-				
-			/*	===================================
-							WORKSPACES
-				===================================	*/
-		    
+
+				/* ===================================
+				                WORKSPACES (niri)
+				   =================================== */
 				#workspaces {
-					border: none;
-					background: transparent;
-					margin: 3px 4px;
+				  border: none;
+				  background: transparent;
+				  margin: 4px 3px;
+				  padding: 0;
 				}
-		    
+
 				#workspaces button {
-					border-bottom: none;
-					border: 1px solid #464646;
-					background: #363636;
-					margin: 0 3px;
-					padding: 0 10px;
-					color: #d6d6d6;
-					min-height: 28px;
+				  border: 1px solid ${vars.style.theme.surface4};
+				  background: ${vars.style.theme.surface3};
+				  color: ${vars.style.theme.fgMain};
+				  margin: 0 3px;
+				  padding: 0 14px;
+				  min-height: 32px;
+				  font-size: 18px;   /* японские цифры лучше смотрятся крупнее */
 				}
 
 				#workspaces button.empty {
-					border: 1px solid transparent;
-					color: #d6d6d6;
-					background: transparent;
+				  border: 1px solid transparent;
+				  background: transparent;
+				  color: ${vars.style.theme.subtext};
 				}
 
 				#workspaces button.active {
-					border: 1px solid #d76667;
-					background: #d76667;
-					color: #060606;
-					border-bottom-width: 1px;
-					border-bottom-color: #d76667;
+				  border: 1px solid ${vars.style.theme.accent};
+				  background: ${vars.style.theme.accent};
+				  color: ${vars.style.theme.bgMain};   /* тёмный текст на красном акценте */
 				}
-				
+
 				#workspaces button.active:hover {
-					border: 1px solid #f6f6f6;
-					background: #d76667;
-					color: #060606;
-					border-bottom-width: 1px;
-					border-bottom-color: #f6f6f6;
-					transition: all 0.2s ease;
+				  border: 1px solid ${vars.style.theme.brightText};
+				  background: ${vars.style.theme.accent};
+				  color: ${vars.style.theme.bgMain};
+				  transition: all 0.2s ease;
 				}
 
 				#workspaces button:hover {
-					border: 1px solid #666666;
-					background: #565656;
-					color: #f6f6f6;
-					transition: all 0.2s ease;
+				  border: 1px solid ${vars.style.theme.surface5};
+				  background: ${vars.style.theme.surface5};
+				  color: ${vars.style.theme.brightText};
+				  transition: all 0.2s ease;
 				}
-				
-			/*	===================================
-							GTK FIX	
-				===================================	*/
-				
-				/*
-				#workspaces button,
-				#workspaces button:focus,
-				#workspaces button:active,
-				#workspaces button:checked,
-				#workspaces button.active {
-					outline: 0 ;
-					box-shadow: none;
-					border-image: none;
-				}
-				*/
-		      
-			/*	===================================
-							STATE COLORS	
-				===================================	*/    
-		    
+
+				/* ===================================
+				                STATE COLORS
+				   =================================== */
 				#battery.warning {
-					border-color: #d7a766;
+				  border-color: ${vars.style.theme.warning};
+				  color: ${vars.style.theme.warning};
 				}
 
 				#battery.critical {
-					border-color: #d76667;
+				  border-color: ${vars.style.theme.error};
+				  color: ${vars.style.theme.error};
 				}
 
-				#wireplumber.muted {
-					color: #888888;
+				#wireplumber.muted,
+				#wireplumber.source.muted {
+				  color: ${vars.style.theme.subtext};
 				}
 
+				/* ===================================
+				                CUSTOM NOTIFICATION
+				   =================================== */
+				#custom-notification {
+				  font-size: 18px;
+				}
+
+				/* Убираем ненужные бордеры у tray */
+				#tray {
+				  border: 1px solid ${vars.style.theme.surface4};
+				  background: ${vars.style.theme.surface3};
+				}
+
+				/* Чуть больше отступов для clock, т.к. там календарь */
+				#clock {
+				  min-width: 110px;
+				}
 			'';
 		};
-	};
 	};
 }

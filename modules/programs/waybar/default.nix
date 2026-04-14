@@ -2,14 +2,16 @@
 	inputs,
 	vars,
 	...
-}: let
-	waybarConfig = builtins.fromJSON (builtins.readFile ./config.json);
-	waybarCss = builtins.readFile ./style.css;
-in {
-	# imports = [
-	# 	./config.nix
-	# 	./style.nix
-	# ];
+}:
+# let
+# 	waybarConfig = builtins.fromJSON (builtins.readFile ./config.json);
+# 	waybarCss = builtins.readFile ./style.css;
+# in
+{
+	imports = [
+		./config.nix
+		./style.nix
+	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 
@@ -18,8 +20,8 @@ in {
 				enable = true;
 				systemd.enable = true;
 
-				settings = [waybarConfig];
-				style = waybarCss;
+				# settings = [waybarConfig];
+				# style = waybarCss;
 			};
 			# systemd.user.services.waybar = {
 			# 	Unit = {
