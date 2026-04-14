@@ -11,18 +11,31 @@
 					opener = {
 						video = [
 							{
-								run = ''mpv --profile=kitty "$@"'';
+								run = "mpv %s";
 								block = true;
-								desc = "Play in Kitty";
+								desc = "Play in mpv";
+							}
+						];
+						image = [
+							{
+								run = "mcat -I %s";
+								block = true;
+								desc = "View Image (mcat)";
 							}
 						];
 					};
-					rules = [
-						{
-							mime = "video/*";
-							use = "video";
-						}
-					];
+					open = {
+						prepend_rules = [
+							{
+								mime = "video/*";
+								use = "video";
+							}
+							{
+								mime = "image/*";
+								use = "image";
+							}
+						];
+					};
 					mgr = {
 						ratio = [1 4 3];
 						sort_by = "natural";

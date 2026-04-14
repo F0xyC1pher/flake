@@ -1,6 +1,7 @@
 {
 	inputs,
 	vars,
+	lib,
 	...
 }: {
 	home-manager = {
@@ -9,6 +10,7 @@
 			xdg.configFile."niri/config.kdl".text = ''
 				include "animations.kdl"
 				include "binds.kdl"
+				    ${lib.optionalString vars.blur.enable ''include "blur.kdl"''}
 				include "colors.kdl"
 				include "debug.kdl"
 				include "input.kdl"

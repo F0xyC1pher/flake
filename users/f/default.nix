@@ -15,4 +15,6 @@ in {
 	fontSize = 12;
 	shell = "fish"; # fish zsh bash brush
 	terminal = "kitty";
+	blur.enable = true;
+	blur.xray.enable = false;
 }
