@@ -59,33 +59,23 @@ in {
 						# "editor.fontSize" = lib.mkForce 10;
 						"editor.fontLigatures" = true;
 						"editor.tabSize" = 4;
-						"editor.indentSize" = "tabSize";
+						"editor.indentSize" = 4;
 						"editor.insertSpaces" = false;
 						"editor.detectIndentation" = false;
 						"editor.useTabStops" = true;
 						"editor.formatOnSave" = true;
 
-						# "[nix]" = {
-						# };
+						"[nix]" = {
+							"editor.tabSize" = 4;
+							"editor.insertSpaces" = false;
+						};
 						"nix.enableLanguageServer" = true;
 						"nix.serverPath" = "nixd"; # or "nil", or ["executable", "argument1", ...]
 						# LSP config can be passed via the ``nix.serverSettings.{lsp}`` as shown below.
 						"nix.serverSettings" = {
-							# check https://github.com/oxalica/nil/blob/main/docs/configuration.md for all options available
-							# "nil"= {
-							#   # "diagnostics": {
-							#   #  "ignored": ["unused_binding", "unused_with"];
-							#   # };
-							#   "formatting"= {
-							#     "command"= ["nixfmt"];
-							#   };
-							# };
 							# check https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md for all nixd config
 							"nixd" = {
-								"formatting" = {
-									# "command" = [ "nixfmt" ];
-									"command" = ["alejandra"];
-								};
+								"formatting"."command" = ["alejandra"];
 								"options" = {
 									# By default, this entry will be read from `import <nixpkgs> { }`.
 									# You can write arbitrary Nix expressions here, to produce valid "options" declaration result.

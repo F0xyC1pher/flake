@@ -1,0 +1,58 @@
+{
+	config,
+	lib,
+	modulesPath,
+	...
+}: {
+	imports = [
+		(modulesPath + "/installer/scan/not-detected.nix")
+	];
+
+	# Модули для загрузки
+	boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "usbhid" "sd_mod"];
+	boot.initrd.kernelModules = ["overlay"];
+	boot.kernelModules = ["kvm-intel"];
+	boot.extraModulePackages = [];
+
+	# Корень (Btrfs)
+	fileSystems."/" = {
+		device = "/dev/disk/by-uuid/741b96c0-c372-4136-adca-5c72b78370ca";
+		fsType = "btrfs";
+		options = ["subvol=@"];
+		# В systemd-initrd корень монтируется автоматически,
+		# но явное указание не повредит.
+	};
+
+	fileSystems."/home" = {
+		device = "/dev/disk/by-uuid/741b96c0-c372-4136-adca-5c72b78370ca";
+		fsType = "btrfs";
+		options = ["subvol=@home"];
+	};
+
+	fileSystems."/boot" = {
+		device = "/dev/disk/by-uuid/D793-503B";
+		fsType = "vfat";
+		options = ["fmask=0022" "dmask=0022"];
+	};
+
+	fileSystems."/home/f/Games" = {
+		device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
+		fsType = "btrfs";
+	};
+
+	fileSystems."/home/f/CoolStuff" = {
+		device = "/dev/disk/by-uuid/b0964288-b748-4f3e-b7c7-4b2b27ffdf35";
+		fsType = "btrfs";
+	};
+
+	# Тот самый overlay для /etc
+	fileSystems."/etc" = {
+		device = "overlay";
+		fsType = "overlay";
+	};
+
+	swapDevices = [];
+
+	nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+	hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
