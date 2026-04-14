@@ -11,12 +11,12 @@
 				settings = {
 					main = {
 						# output=<not set>
-						#font="${vars.fontName}";
+						font = "${vars.fontName}:size=16";
 						dpi-aware = true;
-						# use-bold = false;
+						use-bold = false;
 						# message=
 						# message-mode=wrap
-						# prompt="> "
+						prompt = ">> ";
 						# placeholder=
 						# icon-theme=default
 						icons-enabled = true;
@@ -25,25 +25,25 @@
 						password-character = "*";
 						# filter-desktop=no
 						match-mode = "fzf";
-						# sort-result=yes
+						sort-result = false;
 						# match-counter=no
-						# delayed-filter-ms=300
+						delayed-filter-ms = "0";
 						# delayed-filter-limit=20000
 						# show-actions=no
-						# terminal=$TERMINAL -e  # Note: you cannot actually use environment variables here
+						terminal = "${vars.terminal}";
 						# launch-prefix=<not set>
-						list-executables-in-path = true;
+						list-executables-in-path = false;
 
-						# anchor=center
+						anchor = "center";
 						# x-margin=0
 						# y-margin=0
 						# lines=15
 						# minimal-lines=no
-						# width=30
-						# tabs=8
-						# horizontal-pad=40
-						# vertical-pad=8
-						# inner-pad=0
+						width = "40";
+						tabs = "4";
+						horizontal-pad = "20";
+						vertical-pad = "10";
+						inner-pad = "10";
 
 						# scaling-filter=box
 						# image-size-ratio=0.5
@@ -63,7 +63,7 @@
 
 						auto-select = false;
 
-						enable-mouse = true;
+						enable-mouse = false;
 					};
 					colors =
 						lib.mkForce {

@@ -7,11 +7,11 @@
 	surface5 = vars.colors.b5;
 
 	# Текст
-	subtext = vars.colors.b9;
-	statusline = vars.colors.ba;
-	fgMain = vars.colors.bd;
-	brightText = vars.colors.be;
-	contrastText = vars.colors.bf;
+	subtext = vars.colors.b4;
+	statusline = vars.colors.b5;
+	fgMain = vars.colors.b6;
+	brightText = vars.colors.b7;
+	contrastText = vars.colors.b8;
 
 	# Цвета
 	accent = vars.colors.r0;

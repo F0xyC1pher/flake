@@ -13,6 +13,28 @@
 			monocraft
 			minecraftia
 			inter
+
+			nerd-fonts.hack
+			nerd-fonts.caskaydia-cove
+			nerd-fonts.caskaydia-mono
+
+			inconsolata
+
+			monocraft
+			minecraftia
+
+			inter
+
+			roboto
+			roboto-mono
+			roboto-flex
+			roboto-serif
+
+			googlesans-code
+
+			ubuntu-sans
+
+			material-symbols
 		];
 
 		#	==========	FONTCONFIG	==========
