@@ -12,7 +12,7 @@
 				package = (
 					pkgs.mpv.override {
 						scripts = with pkgs.mpvScripts; [
-							uosc
+							# uosc
 							sponsorblock
 						];
 
@@ -25,22 +25,26 @@
 				);
 
 				config = {
-					profile = "high-quality";
 					ytdl-format = "bestvideo+bestaudio";
-					cache-default = 4000000;
-					vo = "gpu";
-					gpu-context = "wayland";
-				};
-				profiles = {
-					kitty = {
-						image-display-duration = "inf";
-						keep-open = "yes";
-						osd-bar = "yes";
-						cache = "yes";
-						loop = "yes";
-						vo = "kitty";
-						osc = "yes";
-					};
+					image-display-duration = "inf";
+					input-vo-keyboard = "yes";
+					vo-kitty-use-shm = "yes";
+					profile = "high-quality";
+					really-quiet = "yes";
+					force-window = "no";
+					keep-open = "yes";
+					osd-bar = "yes";
+					quiet = "yes";
+					cache = "yes";
+					loop = "yes";
+					vo = "kitty";
+					osc = "yes";
+					osd-font = "FiraCode Nerd Font Mono";
+					osd-font-size = 30;
+					video-rotate = "0";
+					auto-window-resize = "no";
+					video-unscaled = "yes";
+					panscan = 1.0;
 				};
 			};
 		};

@@ -12,6 +12,7 @@
 		./openssh.nix
 		./pipewire.nix
 		./udev.nix
+		./upower.nix
 		./userborn.nix
 		./xserver.nix
 	];

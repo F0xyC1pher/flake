@@ -7,8 +7,6 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
-			grc
-
 			glib
 
 			dropbox
@@ -24,7 +22,6 @@
 			# 🔧 Системные утилиты и инструменты
 			# Мониторинг
 			btop
-			htop
 			iotop
 			pciutils
 			usbutils
@@ -33,13 +30,13 @@
 			dnsutils
 			smartmontools
 			duf
-			glances
 			fastfetch
 			powertop
 
 			# Настройка производительности
 			tuna # Настройка IRQ и affinity
 			schedtool # Управление планировщиком
+			scx.cscheds
 			util-linux # Содержит taskset Управление affinity
 			cpufrequtils
 			irqbalance
@@ -50,14 +47,20 @@
 			alsa-utils # alsamixer, aplay, arecord
 			alsa-tools # hdajackretask, hda-verb
 
-			# 🛠 Файловые менеджеры и работа с файлами
+			# 🛠 Терминальное
+			kitty
+			babelfish
 			gvfs
 			libmtp
 			# mtpfs
 			yazi
+			pandoc
 			eza
 			bat
+			bat-extras.core
 			fd
+			rgrc
+			grc
 			ripgrep-all
 			fzf
 			trash-cli
@@ -68,6 +71,11 @@
 			glow
 			poppler
 			exiftool
+			mcat
+
+			parted
+			gparted-full
+			mtools
 
 			# 📱 Android и мобильное
 			android-tools
@@ -124,10 +132,6 @@
 			libnotify
 			cmd-polkit
 			tuigreet
-
-			# 🖥 Терминал и оболочка
-			kitty
-			babelfish
 
 			# 🌐 Сеть и скачивание
 			wget

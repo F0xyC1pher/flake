@@ -1,6 +1,7 @@
 {
 	inputs,
 	vars,
+	lib,
 	...
 }: {
 	home-manager = {
@@ -23,6 +24,16 @@
 				window-rule {
 				    open-maximized true
 				    draw-border-with-background false
+				}
+
+				${
+					# Вставляем правило только если блюр включен, а xray специально выключен в vars
+					lib.optionalString (vars.blur.enable && !vars.blur.xray.enable) ''
+						window-rule {
+						    background-effect {
+						        xray false
+						    }
+						}''
 				}
 
 				// Steam Notifications in right-down corner and without focus
