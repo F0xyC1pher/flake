@@ -6,10 +6,10 @@
 		./niri
 		./nixcord
 		./rofi
+		./shell
 		./vscodium
 		./waybar
 		./yazi
-		./fish.nix
 		./home.nix
 		./mangohud.nix
 		./mpv.nix

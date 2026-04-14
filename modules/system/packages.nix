@@ -195,7 +195,7 @@
 			socat
 			# 📥 Из inputs (flake inputs)
 			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor  # закомментировано
-			inputs.pawbar.packages.${pkgs.stdenv.hostPlatform.system}.default
+			# inputs.pawbar.packages.${pkgs.stdenv.hostPlatform.system}.default
 		];
 	};
 

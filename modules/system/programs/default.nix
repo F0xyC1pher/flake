@@ -1,7 +1,6 @@
 {...}: {
 	imports = [
 		./appimage.nix
-		./bash.nix
 		./gamemode.nix
 		./nh.nix
 		./obs-studio.nix

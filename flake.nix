@@ -4,10 +4,12 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Актуальная unstable ветка
 
-		hardware-configuration = {
-			url = "path:/etc/nixos/hardware-configuration.nix";
-			flake = false;
-		};
+		# hardware-configuration = {
+		# 	url = "path:/etc/nixos/hardware-configuration.nix";
+		# 	flake = false;
+		# };
+
+		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 		home-manager = {
 			url = "github:nix-community/home-manager";
@@ -57,7 +59,11 @@
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
 
-		# pawbar.url = "github:nekorg/pawbar";
+		pawbar = {
+			url = "https://github.com/nekorg/pawbar";
+			type = "git";
+			submodules = true;
+		};
 
 		ayugram-desktop = {
 			url = "https://github.com/ndfined-crp/ayugram-desktop/";
@@ -81,7 +87,7 @@
 	outputs = {
 		self,
 		nixpkgs,
-		hardware-configuration,
+		# hardware-configuration,
 		home-manager,
 		sops-nix,
 		stylix,
@@ -144,7 +150,7 @@
 				modules = [
 					./modules
 					./hosts/${hostName}
-					inputs.hardware-configuration.outPath
+					# inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
 					niri.nixosModules.niri
