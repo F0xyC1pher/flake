@@ -46,17 +46,5 @@
 			# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
 			XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
 		};
-		#		serviceConfig = {
-		#			# Приоритет процесса MPD
-		#			Nice = -5;
-		#			CPUSchedulingPolicy = "rr";
-		#			CPUSchedulingPriority = 85;
-		#			# Ограничения памяти
-		#			MemoryMax = "512M";
-		#			MemoryHigh = "256M";
-		#			# IO приоритет
-		#			IOSchedulingClass = "realtime";
-		#			IOWeight = 100;
-		#		};
 	};
 }

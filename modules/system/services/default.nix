@@ -8,6 +8,7 @@
 		./irqbalance.nix
 		./locate.nix
 		./logind.nix
+		./logmein-hamachi.nix
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
