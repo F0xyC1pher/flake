@@ -1,7 +1,7 @@
 {...}: {
 	imports = [
 		./system
-		./home
+		./programs
 		./hardware
 	];
 }
