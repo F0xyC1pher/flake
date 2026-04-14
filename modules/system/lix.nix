@@ -17,7 +17,7 @@
 		package = pkgs.lix;
 		settings = {
 			experimental-features = ["nix-command" "flakes" "flake-self-attrs"];
-
+			extra-deprecated-features = ["url-literals"];
 			eval-cache = true;
 
 			substituters = [
