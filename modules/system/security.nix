@@ -8,7 +8,7 @@
 		owner = "root";
 		group = "root";
 		capabilities = "cap_net_admin,cap_net_bind_service=+ep";
-		source = "${pkgs.nekobox-bin}/bin/nekobox";
+		source = "${pkgs.nekobox}/bin/nekobox";
 	};
 	security.pam.loginLimits = [
 		{

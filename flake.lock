@@ -449,19 +449,7 @@
         "type": "github"
       }
     },
-    "nekobox-appimage": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Aonqasszcj/9rPXYz5vKZqn+iWRGrU91CyqdLjttI2Y=",
-        "type": "file",
-        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage"
-      }
-    },
-    "nekobox-bin": {
+    "nekobox": {
       "flake": false,
       "locked": {
         "lastModified": 1775092144,
@@ -472,24 +460,6 @@
       "original": {
         "type": "tarball",
         "url": "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz"
-      }
-    },
-    "nekobox-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1775896377,
-        "narHash": "sha256-NAcp7H+rRFNO9zV9IABXuSPmCBP/RhN5PL8Zp+wL01g=",
-        "ref": "refs/heads/main",
-        "rev": "ef90db98b51bcc152b788ca1c87fdadc6b9c0d0c",
-        "revCount": 3521,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/qr243vbi/nekobox"
-      },
-      "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/qr243vbi/nekobox"
       }
     },
     "niri": {
@@ -785,9 +755,7 @@
         "freesmlauncher": "freesmlauncher",
         "hardware-configuration": "hardware-configuration",
         "home-manager": "home-manager",
-        "nekobox-appimage": "nekobox-appimage",
-        "nekobox-bin": "nekobox-bin",
-        "nekobox-src": "nekobox-src",
+        "nekobox": "nekobox",
         "niri": "niri",
         "niri-blur": "niri-blur",
         "nixcord": "nixcord",
