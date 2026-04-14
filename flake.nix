@@ -29,6 +29,7 @@
 			inputs.niri-unstable.follows = "niri-blur";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
 		niri-blur = {
 			url = "github:niri-wm/niri/wip/branch";
 			flake = false;
@@ -56,24 +57,16 @@
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
 
+		# pawbar.url = "github:nekorg/pawbar";
+
 		ayugram-desktop = {
 			url = "https://github.com/ndfined-crp/ayugram-desktop/";
 			type = "git";
 			submodules = true;
 		};
 
-		nekobox-src = {
-			url = "https://github.com/qr243vbi/nekobox";
-			flake = false;
-			type = "git";
-			submodules = true;
-		};
-		nekobox-bin = {
+		nekobox = {
 			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-linux-amd64.tar.gz";
-			flake = false;
-		};
-		nekobox-appimage = {
-			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.29/nekobox-5.10.29-x86_64-linux.AppImage";
 			flake = false;
 		};
 

@@ -11,7 +11,7 @@
 		./mime.nix
 		./network.nix
 		./nix-init.nix
-		./nix.nix
+		./lix.nix
 		./packages.nix
 		./portal.nix
 		./power.nix

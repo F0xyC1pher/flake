@@ -7,15 +7,19 @@
 	environment = {
 		#		==========PACKAGES==========
 		systemPackages = with pkgs; [
+			# go
+			# gcc
+			# pkg-config
+
 			glib
 
 			dropbox
 			dropbox-cli
-
+			# Bluetooth
 			bluetui
 			bluetuith
-
-			nekobox-bin
+			# VPN
+			nekobox
 			libsForQt5.qtstyleplugin-kvantum
 			sing-box
 
@@ -72,7 +76,7 @@
 			poppler
 			exiftool
 			mcat
-
+			# disks
 			parted
 			gparted-full
 			mtools
@@ -191,6 +195,7 @@
 			socat
 			# 📥 Из inputs (flake inputs)
 			# inputs.nixos-conf-editor.packages.${pkgs.stdenv.hostPlatform.system}.nixos-conf-editor  # закомментировано
+			inputs.pawbar.packages.${pkgs.stdenv.hostPlatform.system}.default
 		];
 	};
 
