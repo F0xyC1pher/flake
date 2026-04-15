@@ -14,7 +14,7 @@
 					enable = true;
 					# equicord.enable = true;
 					vencord.enable = false;
-					openASAR.enable = false;
+					openASAR.enable = true;
 					autoscroll.enable = false;
 				};
 				config = {

@@ -11,6 +11,8 @@
 			# gcc
 			# pkg-config
 
+			# logmein-hamachi
+
 			glib
 
 			dropbox

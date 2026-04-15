@@ -11,7 +11,7 @@
 				settings = {
 					main = {
 						# output=<not set>
-						font = "${vars.fontName}:size=16";
+						font = lib.mkForce "${vars.fontName}:size=16";
 						dpi-aware = true;
 						use-bold = false;
 						# message=
