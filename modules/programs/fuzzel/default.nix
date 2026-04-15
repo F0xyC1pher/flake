@@ -25,7 +25,7 @@
 						password-character = "*";
 						# filter-desktop=no
 						match-mode = "fzf";
-						sort-result = false;
+						sort-result = true;
 						# match-counter=no
 						delayed-filter-ms = "0";
 						# delayed-filter-limit=20000

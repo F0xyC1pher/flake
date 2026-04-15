@@ -27,20 +27,22 @@
 				}
 
 				/* COMMON MODULE STYLE */
-				#backlight,
-				#wireplumber,
-				#wireplumber.source,
-				#language,
-				#bluetooth,
-				#network,
-				#cpu,
-				#memory,
-				#clock,
-				#custom-notification,
-				#tray,
-				#battery,
 				#custom-arrow-left,
-				#custom-arrow-right {
+				#custom-arrow-right,
+				#custom-notification,
+				#backlight,
+				#battery,
+				#bluetooth,
+				#clock,
+				#cpu,
+				#disk,
+				#memory,
+				#network,
+				#language,
+				#tray,
+				#wireplumber,
+				#wireplumber.source
+				{
 				  border: 1px solid ${vars.style.theme.surface4};
 				  background: ${vars.style.theme.surface3};
 				  color: ${vars.style.theme.fgMain};
@@ -50,20 +52,22 @@
 				}
 
 				/* Hover */
-				#backlight:hover,
-				#wireplumber:hover,
-				#wireplumber.source:hover,
-				#language:hover,
-				#bluetooth:hover,
-				#network:hover,
-				#cpu:hover,
-				#memory:hover,
-				#clock:hover,
-				#custom-notification:hover,
-				#tray:hover,
-				#battery:hover,
 				#custom-arrow-left:hover,
-				#custom-arrow-right:hover {
+				#custom-arrow-right:hover,
+				#custom-notification:hover,
+				#backlight:hover,
+				#battery:hover,
+				#bluetooth:hover,
+				#clock:hover,
+				#cpu:hover,
+				#disk:hover,
+				#memory:hover,
+				#network:hover,
+				#language:hover,
+				#tray:hover,
+				#wireplumber:hover,
+				#wireplumber.source:hover
+				{
 				  border: 1px solid ${vars.style.theme.surface5};
 				  background: ${vars.style.theme.surface5};
 				  color: ${vars.style.theme.brightText};

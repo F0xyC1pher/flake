@@ -10,13 +10,19 @@
 				keymap = {
 					mgr = {
 						prepend_keymap = [
+							# mount
 							{
-								on = ["M" "m"];
+								on = ["M" "M"];
+								run = "plugin mount";
+								desc = "mount";
+							}
+							{
+								on = ["M" "g"];
 								run = "plugin gvfs -- select-then-mount --jump";
 								desc = "Монтировать устройство и перейти";
 							}
 							{
-								on = ["M" "u"];
+								on = ["M" "g" "u"];
 								run = "plugin gvfs -- select-then-unmount";
 								desc = "Отмонтировать устройство";
 							}
@@ -53,13 +59,6 @@
 								on = ["m" "i"];
 								run = "plugin mediainfo";
 								desc = "media info";
-							}
-
-							# mount
-							{
-								on = ["M"];
-								run = "plugin mount";
-								desc = "mount";
 							}
 
 							# toggle pane

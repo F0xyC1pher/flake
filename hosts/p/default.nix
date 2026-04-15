@@ -5,8 +5,8 @@
 }: {
 	imports = [
 		./hardware-configuration.nix
-		./tailscale.nix
-		# ./zerotierone.nix
+		# ./tailscale.nix
+		./zerotierone.nix
 	];
 
 	hardware.cpu.intel.updateMicrocode = true;
