@@ -89,9 +89,9 @@ lib.mkForce {
 
 		# Синхронизация/VSync
 		mesa_glthread = "true";
-		vblank_mode = "0";
-		gl_vsync = "0";
-		vsync = "1";
+		# vblank_mode = "0";
+		# gl_vsync = "0";
+		# vsync = "1";
 		MESA_VK_WSI_PRESENT_MODE = "immediate";
 
 		# DXVK
@@ -110,7 +110,7 @@ lib.mkForce {
 		PROTON_LOG = "1";
 
 		# Wayland/XWayland
-		vk_xwayland_wait_ready = "false";
+		# vk_xwayland_wait_ready = "false";
 
 		# NixOS специфичные
 		NIXOS_OZONE_WL = "1";

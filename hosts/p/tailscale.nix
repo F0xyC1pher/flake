@@ -1,5 +1,7 @@
 {...}: {
 	services.tailscale.enable = true;
 	services.tailscale.useRoutingFeatures = "both";
-	services.tailscale.extraDaemonFlags = ["--no-logs-no-support"];
+	systemd.services.tailscaled.serviceConfig.Environment = [
+		"TS_DEBUG_FIREWALL_MODE=nftables"
+	];
 }

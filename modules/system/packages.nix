@@ -38,6 +38,7 @@
 			duf
 			fastfetch
 			powertop
+			dua #space anal
 
 			# Настройка производительности
 			tuna # Настройка IRQ и affinity
@@ -107,7 +108,8 @@
 			micro-full
 			vscodium
 			zed-editor
-			jetbrains.clion
+			# duat
+			# jetbrains.clion
 			git
 			gitui
 			# lazygit

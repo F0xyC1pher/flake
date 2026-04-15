@@ -21,7 +21,7 @@
 		./users.nix
 		./variables.nix
 		./xdg.nix
-		# ./zram.nix
+		./zram.nix
 		./zswap.nix
 	];
 

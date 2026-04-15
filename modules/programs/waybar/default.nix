@@ -9,6 +9,7 @@
 # in
 {
 	imports = [
+		./modules
 		./config.nix
 		./style.nix
 	];
@@ -16,20 +17,40 @@
 		extraSpecialArgs = {inherit inputs vars;};
 
 		users.${vars.userName} = {...}: {
+			xdg.configFile."waybar/config".text = ''
+				include: [
+					"./modules/default.json"
+				],
+			'';
+
 			programs.waybar = {
 				enable = true;
 				systemd.enable = true;
+				settings = {
+					mainBar = {
+						layer = "top";
+						position = "top";
+						height = 40;
+						spacing = 3;
+						"margin-bottom" = -15;
 
-				# settings = [waybarConfig];
-				# style = waybarCss;
+						modules-left = [
+							"group/left-hidden"
+							"niri/language"
+						];
+
+						modules-center = ["niri/workspaces"];
+
+						modules-right = [
+							"custom/notification"
+							"network"
+							"group/right-hidden"
+							"clock"
+							"tray"
+						];
+					};
+				};
 			};
-			# systemd.user.services.waybar = {
-			# 	Unit = {
-			# 		After = [ "niri.service" ];
-			# 		PartOf = [ "niri.service" ];
-			# 		Target = "niri.service";
-			# 	};
-			# };
 		};
 	};
 }
