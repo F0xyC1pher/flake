@@ -19,10 +19,6 @@
 				fuzzel.enable = true;
 				anki.enable = true;
 				swaync.enable = true;
-				kitty = {
-					enable = true;
-					variant256Colors = false;
-				};
 				qt = {
 					enable = true;
 					platform = "qtct";
