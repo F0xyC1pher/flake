@@ -162,6 +162,7 @@
 			winetricks
 
 			# 🪟 Wayland / Графика
+			cliphist-fuzzel-img
 			wayland-utils
 			wlr-randr
 			wev

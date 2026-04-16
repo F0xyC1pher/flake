@@ -95,6 +95,13 @@
 			submodules = true;
 			flake = false;
 		};
+
+		cliphist = {
+			url = "https://github.com/sentriz/cliphist";
+			type = "git";
+			submodules = true;
+			flake = false;
+		};
 	};
 
 	outputs = {

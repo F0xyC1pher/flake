@@ -1,7 +1,9 @@
 {...}: {
 	imports = [
+		./cliphist.nix
 		./cups.nix
 		./dbus.nix
+		./dropbox.nix
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
@@ -15,6 +17,7 @@
 		./udev.nix
 		./upower.nix
 		./userborn.nix
+		./wl-clip-persist.nix
 		./xserver.nix
 	];
 }

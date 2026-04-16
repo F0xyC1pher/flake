@@ -90,6 +90,24 @@
         "type": "github"
       }
     },
+    "cliphist": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774179381,
+        "narHash": "sha256-pObz1tpFIqQQOkwLBSHlnnDia7b3+O2Y/uzICiaq88M=",
+        "ref": "refs/heads/master",
+        "rev": "cee6dca8ef4e03ef5dfcf7e2d13ca688ae2116c6",
+        "revCount": 123,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/sentriz/cliphist"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/sentriz/cliphist"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "nixpkgs": [
@@ -864,6 +882,7 @@
     "root": {
       "inputs": {
         "ayugram-desktop": "ayugram-desktop",
+        "cliphist": "cliphist",
         "firefox-addons": "firefox-addons",
         "freesmlauncher": "freesmlauncher",
         "home-manager": "home-manager",
