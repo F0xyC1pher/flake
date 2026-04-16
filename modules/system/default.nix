@@ -1,8 +1,5 @@
 {...}: {
 	imports = [
-		./services
-		./systemd
-		./bluetooth.nix
 		./boot.nix
 		./etc.nix
 		./fonts.nix

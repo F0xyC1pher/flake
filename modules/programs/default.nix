@@ -12,7 +12,6 @@
 		./waybar
 		./yazi
 		./appimage.nix
-		# ./dropbox.nix
 		./gamemode.nix
 		./home.nix
 		./mangohud.nix
