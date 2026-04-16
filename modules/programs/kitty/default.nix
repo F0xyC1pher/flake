@@ -29,7 +29,7 @@
 					enable_audio_bell = true;
 					remember_window_size = false;
 					remember_window_position = false;
-					window_border_width = "0.5 pt";
+					window_border_width = "1.0 pt";
 					draw_minimal_borders = true;
 					draw_window_borders_for_single_window = true; #fatasstetoplush
 					window_margin_width = "15 20";
@@ -37,9 +37,6 @@
 					window_padding_width = "15 20";
 					single_window_padding_width = -1;
 					placement_strategy = "center";
-					active_border_color = "${vars.style.theme.accent}";
-					inactive_border_color = "#cccccc";
-					bell_border_color = "#ff5a00";
 					hide_window_decorations = true;
 					# resize_in_steps = true;
 					confirm_os_window_close = "-1 count-backgrounds";
