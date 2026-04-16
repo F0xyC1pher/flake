@@ -7,23 +7,24 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/default.json".text = ''
-				#json
+				// syntax: json
 				{
-					include: [
-						"./custom/arrow-left.json",
-						"./custom/arrow-right.json",
-						"./custom/notification.json",
-						"./group/left-hidden.json",
-						"./group/right-hidden.json",
-						"./backlight.json",
-						"./battery.json",
-						"./clock.json",
-						"./cpu.json",
-						"./memory.json",
-						"./network.json",
-						"./niri.json",
-						"./tray.nix",
-						"./wireplumber.json",
+					"include": [
+						"./modules/custom/arrow-left.json",
+						"./modules/custom/arrow-right.json",
+						"./modules/custom/notification.json",
+						"./modules/group/left-hidden.json",
+						"./modules/group/right-hidden.json",
+						"./modules/backlight.json",
+						"./modules/battery.json",
+						"./modules/clock.json",
+						"./modules/cpu.json",
+						"./modules/disk.json",
+						"./modules/memory.json",
+						"./modules/network.json",
+						"./modules/niri.json",
+						"./modules/tray.json",
+						"./modules/wireplumber.json",
 					],
 				}
 			'';
@@ -39,6 +40,7 @@
 		./battery.nix
 		./clock.nix
 		./cpu.nix
+		./disk.nix
 		./memory.nix
 		./network.nix
 		./niri.nix

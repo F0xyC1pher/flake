@@ -7,18 +7,18 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/network.json".text = ''
-				# json
+				// syntax: json
 				{
-					network: {
-						interval: 2,
-						format-wifi: "{gwaddr} ({signalStrength}%)",
-						format-ethernet: "{gwaddr}",
-						format-linked: "No IP ({ifname})",
-						format-disconnected:"Disconnected",
-						# tooltip-format: "{ifname} {ipaddr}/{cidr} via {gwaddr}",
-						# format-alt: "↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
-						on-click-right: "~/.config/niri/scripts/networkmanager_dmenu",
-					};
+					"network": {
+						"interval": 2,
+						"format-wifi": "wi-fi ({signalStrength}%)",
+						"format-ethernet": "eth 󰈀",
+						"format-linked": "no IP ({ifname})",
+						"format-disconnected":"no",
+						"tooltip-format": "{ifname} {ipaddr}/{cidr} via {gwaddr} ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
+						"format-alt": "{gwaddr}",
+						// "on-click-right": "~/.config/niri/scripts/networkmanager_dmenu",
+					},
 				}
 			'';
 		};

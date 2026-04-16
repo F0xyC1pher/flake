@@ -7,7 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/custom/arrow-right.json".text = ''
-				# json
+				// syntax: json
 				{
 					"custom/arrow-right": {
 						"format": "",

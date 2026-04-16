@@ -7,7 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/group/right-hidden.json".text = ''
-				# json
+				// syntax: json
 				{
 					"group/right-hidden": {
 						"orientation": "horizontal",
@@ -17,10 +17,12 @@
 							"click-to-reveal": true,
 						},
 						"modules": [
-							"custom/arrow-left"
-							"battery"
-							"memory"
-							"cpu"
+							"custom/arrow-left",
+							"battery",
+							"memory",
+							"cpu",
+							"disk",
+							"network",
 						],
 					},
 				}

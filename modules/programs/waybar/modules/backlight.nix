@@ -7,12 +7,12 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/backlight.json".text = ''
-				# json
+				// syntax: json
 				{
-					backlight: {
-						device: "intel_backlight",
-						format: "{icon} {percent}%",
-						format-icons: [" " " "],
+					"backlight": {
+						"device": "intel_backlight",
+						"format": "{icon} {percent}%",
+						"format-icons": [" ", " "],
 					},
 				}
 			'';

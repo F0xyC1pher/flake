@@ -7,16 +7,16 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."waybar/modules/battery.json".text = ''
-				# json
+				// syntax: json
 				{
-					battery: {
-						format: "{icon} {capacity}%",
-						format-alt: "{icon} {time}",
-						format-charging: "󰂅 {capacity}%",
-						format-icons: ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"],
-						states: {
-							critical: 15,
-							warning: 30,
+					"battery": {
+						"format": "{icon} {capacity}%",
+						"format-alt": "{icon} {time}",
+						"format-charging": "󰂅 {capacity}%",
+						"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+						"states": {
+							"critical": 15,
+							"warning": 30,
 						},
 					},
 				}
