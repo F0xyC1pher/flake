@@ -55,7 +55,6 @@
 			alsa-tools # hdajackretask, hda-verb
 
 			# 🛠 Терминальное
-			kitty
 			babelfish
 			gvfs
 			libmtp

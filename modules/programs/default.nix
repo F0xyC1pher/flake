@@ -2,6 +2,7 @@
 	imports = [
 		./firefox
 		./fuzzel
+		./kitty
 		./micro
 		./niri
 		./nixcord

@@ -1,5 +1,5 @@
 {
 	boot.kernelParams = [
-		"zswap.enabled=1"
+		"zswap.enabled=0"
 	];
 }
