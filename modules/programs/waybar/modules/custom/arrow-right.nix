@@ -9,11 +9,11 @@
 			xdg.configFile."waybar/modules/custom/arrow-right.json".text = ''
 				# json
 				{
-					"custom/arrow-right" = {
-						"format" = "";
-						"tooltip" = false;
-						"cursor" = true;
-					};
+					"custom/arrow-right": {
+						"format": "",
+						"tooltip": false,
+						"cursor": true,
+					},
 				}
 			'';
 		};

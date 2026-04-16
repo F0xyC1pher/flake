@@ -9,12 +9,12 @@
 			xdg.configFile."waybar/modules/memory.json".text = ''
 				# json
 				{
-					memory = {
-						interval = 2;
-						format = "{}% 󰍛";
-						on-click = "kitty btop";
-						on-click-right = "cliphist list | rofi -dmenu -normal-window | cliphist decode | wl-copy";
-					};
+					memory: {
+						interval: 2,
+						format: "{}% 󰍛",
+						on-click: "kitty btop",
+						on-click-right: "cliphist list | rofi -dmenu -normal-window | cliphist decode | wl-copy",
+					},
 				}
 			'';
 		};

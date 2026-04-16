@@ -10,21 +10,20 @@
 				#json
 				{
 					include: [
-						"./custom/arrow-left.json"
-						"./custom/arrow-right.json"
-						"./custom/notification.json"
-						"./group/left-hidden.json"
-						"./group/right-hidden.json"
-
-						"./backlight.json"
-						"./battery.json"
-						"./clock.json"
-						"./cpu.json"
-						"./memory.json"
-						"./network.json"
-						"./niri.json"
-						"./tray.nix"
-						"./wireplumber.json"
+						"./custom/arrow-left.json",
+						"./custom/arrow-right.json",
+						"./custom/notification.json",
+						"./group/left-hidden.json",
+						"./group/right-hidden.json",
+						"./backlight.json",
+						"./battery.json",
+						"./clock.json",
+						"./cpu.json",
+						"./memory.json",
+						"./network.json",
+						"./niri.json",
+						"./tray.nix",
+						"./wireplumber.json",
 					],
 				}
 			'';
@@ -36,7 +35,6 @@
 		./custom/notification.nix
 		./group/left-hidden.nix
 		./group/right-hidden.nix
-
 		./backlight.nix
 		./battery.nix
 		./clock.nix

@@ -9,20 +9,20 @@
 			xdg.configFile."waybar/modules/group/right-hidden.json".text = ''
 				# json
 				{
-					"group/right-hidden" = {
-						"orientation" = "horizontal";
-						"drawer" = {
-							"transition-duration" = 500;
-							"transition-left-to-right" = false;
-							"click-to-reveal" = true;
-						};
-						"modules" = [
+					"group/right-hidden": {
+						"orientation": "horizontal",
+						"drawer": {
+							"transition-duration": 500,
+							"transition-left-to-right": false,
+							"click-to-reveal": true,
+						},
+						"modules": [
 							"custom/arrow-left"
 							"battery"
 							"memory"
 							"cpu"
-						];
-					};
+						],
+					},
 				}
 			'';
 		};

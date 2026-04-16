@@ -10,7 +10,6 @@
 {
 	imports = [
 		./modules
-		./config.nix
 		./style.nix
 	];
 	home-manager = {

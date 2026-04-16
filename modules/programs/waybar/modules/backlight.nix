@@ -9,11 +9,11 @@
 			xdg.configFile."waybar/modules/backlight.json".text = ''
 				# json
 				{
-					backlight = {
-						device = "intel_backlight";
-						format = "{icon} {percent}%";
-						format-icons = [" " " "];
-					};
+					backlight: {
+						device: "intel_backlight",
+						format: "{icon} {percent}%",
+						format-icons: [" " " "],
+					},
 				}
 			'';
 		};
