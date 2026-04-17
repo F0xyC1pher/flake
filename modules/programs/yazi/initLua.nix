@@ -8,9 +8,15 @@
 		users.${vars.userName} = {...}: {
 			programs.yazi = {
 				initLua = ''
+					--[[
+					# syntax: lua
+					]]--
 					require("gvfs"):setup({})
 
-					require("full-border"):setup()
+					-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+					require("full-border"):setup{
+						type = ui.Border.PLAIN,
+					}
 
 					require("yatline"):setup({
 						section_separator = { open = "▐", close = "▌" },
@@ -59,8 +65,8 @@
 							zip = "application/zip",
 						},
 
-					-- Fallback на file(1) для неизвестных типов (рекомендую true для точности, false для максимальной скорости)
-					  fallback_file1 = true,
+						-- Fallback на file(1) для неизвестных типов (рекомендую true для точности, false для максимальной скорости)
+						fallback_file1 = true,
 					}
 				'';
 			};
