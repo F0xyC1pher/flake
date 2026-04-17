@@ -1,10 +1,4 @@
 {...}: {
-	imports = [
-		# ./awww-daemon.nix
-		./fuzzel-polkit-service.nix
-		# ./rofi-polkit-service.nix
-		# ./waybar-s.nix
-	];
 	systemd = {
 		# Вместо extraConfig используем settings
 		settings = {

@@ -9,7 +9,7 @@
 			services.arrpc = {
 				enable = true;
 				package = pkgs.arrpc;
-				systemdTargets = ["graphical-session.target"];
+				systemdTarget = "graphical-session.target";
 			};
 		};
 	};
