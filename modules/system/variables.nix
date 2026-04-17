@@ -1,9 +1,4 @@
-{
-	config,
-	lib,
-	pkgs,
-	...
-}: {
+{...}: {
 	environment.sessionVariables = {
 		# === Wayland session ===
 		XDG_SESSION_TYPE = "wayland";
