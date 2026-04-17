@@ -392,6 +392,24 @@
         "type": "github"
       }
     },
+    "fuzzel-polkit-agent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735641713,
+        "narHash": "sha256-try9S/ZrS2aIk8yrQlBX+ElRZVexfOWKNuaRgERdVXg=",
+        "ref": "refs/heads/main",
+        "rev": "b030c1a50784843b2b8d3dabaaa1d196e35da886",
+        "revCount": 8,
+        "submodules": true,
+        "type": "git",
+        "url": "https://codeberg.org/lukeflo/fuzzel-polkit-agent"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://codeberg.org/lukeflo/fuzzel-polkit-agent"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -885,6 +903,7 @@
         "cliphist": "cliphist",
         "firefox-addons": "firefox-addons",
         "freesmlauncher": "freesmlauncher",
+        "fuzzel-polkit-agent": "fuzzel-polkit-agent",
         "home-manager": "home-manager",
         "nekobox": "nekobox",
         "niri": "niri",

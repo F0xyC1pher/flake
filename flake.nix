@@ -96,6 +96,13 @@
 			flake = false;
 		};
 
+		fuzzel-polkit-agent = {
+			url = "https://codeberg.org/lukeflo/fuzzel-polkit-agent";
+			type = "git";
+			submodules = true;
+			flake = false;
+		};
+
 		cliphist = {
 			url = "https://github.com/sentriz/cliphist";
 			type = "git";
