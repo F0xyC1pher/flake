@@ -1,5 +1,6 @@
 {...}: {
 	imports = [
+		./arrpc.nix
 		./awww.nix
 		./cliphist.nix
 		./cups.nix
