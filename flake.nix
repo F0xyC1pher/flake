@@ -28,14 +28,14 @@
 
 		niri = {
 			url = "github:sodiboo/niri-flake";
-			inputs.niri-unstable.follows = "niri-blur";
+			# inputs.niri-unstable.follows = "niri-blur";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		niri-blur = {
-			url = "github:niri-wm/niri/wip/branch";
-			flake = false;
-		};
+		# niri-blur = {
+		# 	url = "github:niri-wm/niri/wip/branch";
+		# 	flake = false;
+		# };
 
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
