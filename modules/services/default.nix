@@ -1,5 +1,7 @@
 {...}: {
 	imports = [
+		./custom
+		./arrpc.nix
 		./awww.nix
 		./cliphist.nix
 		./cups.nix
