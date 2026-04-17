@@ -13,7 +13,6 @@
 				nixcord.enable = true;
 				fontconfig.enable = true;
 				fish.enable = true;
-				waybar.enable = false;
 				nixos-icons.enable = true;
 				mangohud.enable = true;
 				fuzzel.enable = true;

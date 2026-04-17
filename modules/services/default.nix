@@ -14,6 +14,7 @@
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
+		./swaync.nix
 		./udev.nix
 		./upower.nix
 		./userborn.nix
