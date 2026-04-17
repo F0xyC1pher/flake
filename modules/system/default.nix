@@ -15,6 +15,7 @@
 		./sops.nix
 		./stylix.nix
 		./swap.nix
+		./systemd.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix
