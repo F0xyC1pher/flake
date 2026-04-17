@@ -116,8 +116,9 @@
 
 			# 🎵 Медиа и Звук
 			# inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
-			rmpc
-			mpd
+			youtube-tui
+			termusic
+			ytermusic
 			mpdris2
 			# musikcube
 			playerctl

@@ -47,17 +47,11 @@
 				    }
 				}
 
-				/-environment {
-				    // GSK_RENDERER "cairo"
-				    // WAYLAND_DISPLAY null
-				    // _JAVA_AWT_WM_NONREPARENTING "1"
-				    // GTK_IM_MODULE "none"
-				}
 
 				// ────────────── Overview Settings ──────────────
 				// Optionally, disable the workspace shadows in the overview.
 				overview {
-				    backdrop-color "#00000080"
+				    backdrop-color "#16161677"
 				    workspace-shadow {
 				        //    off
 				        softness 30
@@ -107,38 +101,11 @@
 				}
 
 				gestures {
-				    dnd-edge-view-scroll {
-				        // trigger-width 0
-				        // trigger-width 1
-				        // trigger-width 10000
-				        // max-speed 100000
-				        // delay-ms 0
-				        // delay-ms 100
-				        // delay-ms 1000
-				    }
-
-				    dnd-edge-workspace-switch {
-				        // max-speed 500
-				    }
-
 				    hot-corners {
 				        // off
 				        // bottom-left
 				        // top-right
 				    }
-				}
-
-				xwayland-satellite {
-				    // off
-				    // path "~/source/rs/xwayland-satellite/target/release/xwayland-satellite"
-				}
-
-				cursor {
-				    // xcursor-theme "breeze_cursors"
-				    // xcursor-theme "arstieonart"
-				    // xcursor-size 48
-				    // hide-when-typing
-				    // hide-after-inactive-ms 100
 				}
 
 				// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

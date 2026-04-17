@@ -52,6 +52,11 @@ in {
 							command = "editor.action.commentLine";
 							when = "editorTextFocus";
 						}
+						{
+							key = "ctrl+/";
+							command = "editor.action.commentBlock";
+							when = "editorTextFocus";
+						}
 					];
 
 					userSettings = {
@@ -63,7 +68,7 @@ in {
 						"editor.insertSpaces" = false;
 						"editor.detectIndentation" = false;
 						"editor.useTabStops" = true;
-						"editor.formatOnSave" = true;
+						"editor.formatOnSave" = false;
 
 						"[nix]" = {
 							"editor.tabSize" = 4;

@@ -18,6 +18,7 @@
 		./mpv.nix
 		./nh.nix
 		./obs-studio.nix
+		./rmpc.nix
 		./ssh.nix
 		# ./starship.nix
 		./steam.nix
