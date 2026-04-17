@@ -1,5 +1,6 @@
 {...}: {
 	imports = [
+		./awww.nix
 		./cliphist.nix
 		./cups.nix
 		./dbus.nix

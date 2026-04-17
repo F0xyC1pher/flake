@@ -1,12 +1,8 @@
 {...}: {
 	imports = [
-		# ./awww-daemon-s.nix
-		./awww-daemon-s-test.nix
-		# ./awww-restore-s.nix
-		# ./awww-path-trigger.nix
+		# ./awww-daemon.nix
 		./fuzzel-polkit-service.nix
 		# ./rofi-polkit-service.nix
-		# ./swaync-s.nix
 		# ./waybar-s.nix
 	];
 	systemd = {
