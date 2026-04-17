@@ -29,7 +29,7 @@
 					flatpakSupport.enable = true;
 					fonts.enable = true;
 					extraCss = ''
-						/*css*/
+						// syntax: css
 						// Remove rounded corners
 						* {
 							border-radius: 0px;
