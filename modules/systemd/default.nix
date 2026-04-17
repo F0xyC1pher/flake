@@ -4,7 +4,8 @@
 		./awww-daemon-s-test.nix
 		# ./awww-restore-s.nix
 		# ./awww-path-trigger.nix
-		./rofi-polkit-s.nix
+		./fuzzel-polkit-service.nix
+		# ./rofi-polkit-service.nix
 		# ./swaync-s.nix
 		# ./waybar-s.nix
 	];
