@@ -9,7 +9,6 @@
 		./greetd.nix
 		./gvfs.nix
 		./irqbalance.nix
-		./linux-wallpaperengine.nix
 		./locate.nix
 		./logind.nix
 		# ./logmein-hamachi.nix

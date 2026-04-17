@@ -12,7 +12,7 @@
 				package = (
 					pkgs.mpv.override {
 						scripts = with pkgs.mpvScripts; [
-							# uosc
+							uosc
 							sponsorblock
 						];
 
@@ -39,7 +39,7 @@
 					loop = "yes";
 					vo = "kitty";
 					osc = "yes";
-					osd-font = "FiraCode Nerd Font Mono";
+					osd-font = "${vars.fontName}";
 					osd-font-size = 30;
 					video-rotate = "0";
 					auto-window-resize = "no";
