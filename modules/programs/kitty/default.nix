@@ -29,7 +29,7 @@
 					enable_audio_bell = true;
 					remember_window_size = false;
 					remember_window_position = false;
-					window_border_width = "1.0 pt";
+					window_border_width = "4.0 pt";
 					draw_minimal_borders = true;
 					draw_window_borders_for_single_window = true; #fatasstetoplush
 					window_margin_width = "15 20";
@@ -39,7 +39,7 @@
 					placement_strategy = "center";
 					hide_window_decorations = true;
 					# resize_in_steps = true;
-					confirm_os_window_close = "-1 count-backgrounds";
+					confirm_os_window_close = "0";
 					background_opacity = "0.6";
 					background_blur = lib.mkIf (vars.blur.enable) 1;
 				};

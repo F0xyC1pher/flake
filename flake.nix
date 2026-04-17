@@ -28,14 +28,8 @@
 
 		niri = {
 			url = "github:sodiboo/niri-flake";
-			# inputs.niri-unstable.follows = "niri-blur";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
-		# niri-blur = {
-		# 	url = "github:niri-wm/niri/wip/branch";
-		# 	flake = false;
-		# };
 
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
@@ -43,6 +37,7 @@
 		# 	url = "git+https://codeberg.org/LGFae/awww";
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
+
 		spicetify-nix = {
 			url = "github:Gerg-L/spicetify-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -72,6 +67,7 @@
 			type = "git";
 			submodules = true;
 		};
+
 		pawbar = {
 			url = "https://github.com/nekorg/pawbar";
 			type = "git";

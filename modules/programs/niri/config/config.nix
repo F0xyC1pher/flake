@@ -10,7 +10,6 @@
 			xdg.configFile."niri/config.kdl".text = ''
 				include "animations.kdl"
 				include "binds.kdl"
-				    ${lib.optionalString vars.blur.enable ''include "blur.kdl"''}
 				include "colors.kdl"
 				include "debug.kdl"
 				include "input.kdl"
@@ -19,6 +18,7 @@
 				include "misc.kdl"
 				include "outputs.kdl"
 				include "window-rules.kdl"
+				    ${lib.optionalString vars.blur.enable ''include "blur.kdl"''}
 			'';
 		};
 	};
