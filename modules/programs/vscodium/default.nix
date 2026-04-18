@@ -60,6 +60,13 @@ in {
 					];
 
 					userSettings = {
+						"nix-embedded-languages.include" = {
+							"KDL|kdl" = {
+								"name" = "KDL/kdl";
+								"scopeName" = "source.kdl";
+							};
+						};
+
 						# "editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
 						# "editor.fontSize" = lib.mkForce 10;
 						"editor.fontLigatures" = true;

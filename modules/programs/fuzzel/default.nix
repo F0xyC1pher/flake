@@ -37,16 +37,17 @@
 						anchor = "center";
 						# x-margin=0
 						# y-margin=0
-						# lines=15
+						lines = 28;
 						# minimal-lines=no
-						width = "40";
+						width = "100";
+						# height = "100";
 						tabs = "4";
 						horizontal-pad = "20";
 						vertical-pad = "10";
 						inner-pad = "10";
 
 						# scaling-filter=box
-						# image-size-ratio=0.5
+						image-size-ratio = "1.0";
 
 						# gamma-correct-blending=no
 						# line-height = "14";
@@ -82,7 +83,7 @@
 						};
 
 					border = {
-						width = 1;
+						width = 2;
 						radius = 0;
 					};
 
