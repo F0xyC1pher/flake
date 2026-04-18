@@ -6,6 +6,7 @@
 		./micro
 		./niri
 		./nixcord
+		./rmpc
 		./rofi
 		./shell
 		./vscodium
@@ -18,7 +19,6 @@
 		./mpv.nix
 		./nh.nix
 		./obs-studio.nix
-		./rmpc.nix
 		./ssh.nix
 		# ./starship.nix
 		./steam.nix
