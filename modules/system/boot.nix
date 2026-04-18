@@ -1,4 +1,5 @@
 {
+	lib,
 	config,
 	pkgs,
 	vars,
@@ -140,14 +141,16 @@
 			"net.core.busy_read" = 50;
 		};
 		#	==========	BOOTLOADER	==========
-		loader =
-			if vars.bootLoader == "GRUB"
+		loader = let
+			lowerLoader = lib.toLower vars.bootLoader;
+		in
+			if lowerLoader == "grub"
 			then {
 				grub.enable = true;
 				grub.device = config.fileSystems."/boot".device;
 				limine.enable = false;
 			}
-			else if vars.bootLoader == "Limine"
+			else if lowerLoader == "limine"
 			then {
 				limine.enable = true;
 				limine.biosDevice = config.fileSystems."/boot".device;
