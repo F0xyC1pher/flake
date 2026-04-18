@@ -12,34 +12,30 @@
 		initrd.kernelModules = ["tcp_bbr"];
 		initrd.systemd.enable = true;
 
-		# Параметры ядра для real-time аудио
 		kernelParams = [
-			# Real-time настройки
 			"preempt=full" # Полная вытесняемость (voluntary = частичная)
 			"threadirqs" # Все IRQ как потоки
 			"nmi_watchdog=0" # Отключаем NMI watchdog (снижает задержки)
 			"nowatchdog"
 			"tsc=reliable" # Используем TSC как надежный источник времени
+			"transparent_hugepage=always" # Отключаем прозрачные огромные страницы
+			"pcie_aspm=off" # Отключаем ASPM для PCIe (снижает задержки)
+			"mitigations=off" # Отключает защиту от Spectre/Meltdown
 
 			# Управление питанием
-			"processor.max_cstate=1" # Ограничиваем C-states (Intel)
-			"intel_idle.max_cstate=0" # Отключаем глубокие C-states (Intel)
-
-			# Управление памятью
-			"transparent_hugepage=madvise" # Отключаем прозрачные огромные страницы
-
-			"pcie_aspm=off" # Отключаем ASPM для PCIe (снижает задержки)
-
-			# Отключаем ненужные функции безопасности для производительности
-			"mitigations=off" # ОСТОРОЖНО! Отключает защиту от Spectre/Meltdown
+			# "processor.max_cstate=1" # Ограничиваем C-states (Intel)
+			# "intel_idle.max_cstate=0" # Отключаем глубокие C-states (Intel)
 		];
 		kernel.sysctl = {
+			"kernel.sched_child_runs_first" = 0; # Важно для многопоточных движков
+			"kernel.sched_autogroup_enabled" = 1; # Группирует процессы (хорошо для отзывчивости десктопа)
+			"kernel.sched_cfs_bandwidth_slice_us" = 3000; # Уменьшаем квант времени для плавности
 			"kernel.sched_latency_ns" = 4000000;
-			"kernel.sched_migration_cost_ns" = 500000;
-			"kernel.sched_wakeup_granularity_ns" = 2000000;
+			"kernel.sched_min_granularity_ns" = 500000;
+			"kernel.sched_wakeup_granularity_ns" = 1000000;
 			# Управление памятью
 			"vm.swappiness" = 10; # Меньше использовать swap
-			"vm.vfs_cache_pressure" = 50; # Держим кэш дольше
+			"vm.vfs_cache_pressure" = 100; # Держим кэш дольше
 			"vm.dirty_ratio" = 15; # Настройка грязных страниц
 			"vm.dirty_background_ratio" = 3;
 
@@ -49,7 +45,7 @@
 			# ----------------------------------------------------------------------
 			# 1. ОСНОВНЫЕ НАСТРОЙКИ СЕТИ И ПРОИЗВОДИТЕЛЬНОСТЬ
 			# ----------------------------------------------------------------------
-			"net.core.netdev_max_backlog" = 16384;
+			"net.core.netdev_max_backlog" = 5000;
 			"net.core.somaxconn" = 8192;
 			"net.ipv4.tcp_max_syn_backlog" = 8192;
 
@@ -78,7 +74,6 @@
 			"net.ipv4.tcp_fastopen" = 3;
 			# Сеть для игр (минимизируем буферизацию)
 			"net.ipv4.tcp_slow_start_after_idle" = 0; # Не замедлять TCP после простоя
-			"net.ipv4.tcp_low_latency" = 1;
 
 			# ----------------------------------------------------------------------
 			# 3. МАРШРУТИЗАЦИЯ
