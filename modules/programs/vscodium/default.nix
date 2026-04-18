@@ -53,8 +53,8 @@ in {
 							when = "editorTextFocus";
 						}
 						{
-							key = "ctrl+/";
-							command = "editor.action.commentBlock";
+							key = "ctrl+Shift+/";
+							command = "editor.action.blockComment";
 							when = "editorTextFocus";
 						}
 					];
@@ -68,7 +68,8 @@ in {
 						"editor.insertSpaces" = false;
 						"editor.detectIndentation" = false;
 						"editor.useTabStops" = true;
-						"editor.formatOnSave" = false;
+						"editor.formatOnSave" = true;
+						# "editor.formatOnSaveMode"= "modifications";
 
 						"[nix]" = {
 							"editor.tabSize" = 4;

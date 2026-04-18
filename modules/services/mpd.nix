@@ -6,6 +6,10 @@
 		startWhenNeeded = true;
 		settings = {
 			music_directory = "/home/${vars.userName}/Music";
+			playlist_directory = "/home/${vars.userName}/.config/mpd/playlists";  # лучше явно
+			db_file = "/home/${vars.userName}/.config/mpd/database";
+			state_file = "/home/${vars.userName}/.config/mpd/state";
+			sticker_file = "/home/${vars.userName}/.config/mpd/sticker.sql";
 
 			bind_to_address = "/tmp/mpd_socket"; # если хочешь разрешить подключения не только с localhost
 			# port = 6600;
@@ -45,6 +49,7 @@
 		environment = {
 			# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
 			XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+			PIPEWIRE_RUNTIME_DIR = "/run/user/1000";
 		};
 	};
 }

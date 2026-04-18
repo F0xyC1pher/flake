@@ -5,10 +5,8 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.userName} = {...}: {
 			programs.rmpc = {
-				enable = true;
-				package = pkgs.rmpc;
 				config = "
 					(
 						address: \"/tmp/mpd_socket\",
@@ -22,9 +20,16 @@
 						enable_config_hot_reload: true,
 						select_current_song_on_change: true,
 						browser_song_sort: [Disc, Track, Artist, Title],
+						album_art: (
+							method: Kitty,
+							max_size_px: (600, 600),
+						),
 					)
 				";
 			};
 		};
 	};
+	imports=[
+		./keybinds.nix
+	];
 }
