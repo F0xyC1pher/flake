@@ -15,7 +15,8 @@
 
 	# Цвета
 	accent = vars.colors.r0;
-	secondary = vars.colors.o0;
+	second = vars.colors.o0;
+	antiac = vars.colors.g0;
 	error = vars.colors.c0;
 	success = vars.colors.g0;
 	warning = vars.colors.y0;

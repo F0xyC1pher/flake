@@ -2,7 +2,9 @@
 	lib,
 	vars,
 	...
-}: {
+}: let
+	lowerLoader = lib.toLower vars.bootLoader;
+in {
 	imports = [
 		./hardware-configuration.nix
 		# ./tailscale.nix
@@ -13,12 +15,12 @@
 	# Диск для загрузчика (весь диск, не раздел)
 	# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
 	boot.loader.limine.biosDevice =
-		if vars.bootLoader == "Limine"
+		if lowerLoader == "limine"
 		then lib.mkForce "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"
 		else null;
 
 	boot.loader.grub.device =
-		if vars.bootLoader == "GRUB"
+		if lowerLoader == "grub"
 		then lib.mkForce "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"
 		else null;
 

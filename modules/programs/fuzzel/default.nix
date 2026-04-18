@@ -77,7 +77,7 @@
 							match = "${vars.style.theme.fgMain}ff"; # совпадения
 							selection = "${vars.style.theme.accent}ff"; # фон выбранного элемента
 							selection-text = "${vars.style.theme.bgMain}ff"; # текст выбранного элемента
-							selection-match = "${vars.style.colors.g0}ff"; # подсвеченные буковки на выбранном элементе при поиске
+							selection-match = "${vars.style.theme.antiac}ff"; # подсвеченные буковки на выбранном элементе при поиске
 							counter = "93a1a1ff"; # счетчик чего-то
 							border = "${vars.style.theme.accent}ff"; # обводка окошка
 						};

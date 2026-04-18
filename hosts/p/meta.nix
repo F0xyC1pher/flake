@@ -1,7 +1,7 @@
 {
 	mainUser = "f";
 	hostName = "p";
-	bootLoader = "GRUB";
+	bootLoader = "LIMINE"; #GRUB LIMINE
 	hardware = {
 		bluetooth = true;
 		wifi = true;
