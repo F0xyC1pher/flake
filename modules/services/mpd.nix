@@ -7,8 +7,8 @@
 		settings = {
 			music_directory = "/home/${vars.userName}/Music";
 
-			bind_to_address = "any"; # если хочешь разрешить подключения не только с localhost
-			port = 6600;
+			bind_to_address = "/tmp/mpd_socket"; # если хочешь разрешить подключения не только с localhost
+			# port = 6600;
 
 			# Основные настройки
 			restore_paused = "yes";

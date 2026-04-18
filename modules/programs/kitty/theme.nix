@@ -27,7 +27,7 @@
 					url_color = "#a6a6a6";
 					cursor = "#d6d6d6";
 					cursor_text_color = "#161616";
-					active_border_color = "${vars.style.theme.accent}";
+					active_border_color = "${vars.style.theme.subtext}";
 					inactive_border_color = "#262626";
 					active_tab_background = "#161616";
 					active_tab_foreground = "#d6d6d6";
