@@ -68,7 +68,7 @@
 				    match is-active=true
 
 				    shadow {
-				        color "${vars.style.theme.accent}77"
+				        color "${vars.style.theme.accent}a8"
 				    }
 				}
 
@@ -95,6 +95,7 @@
 				    // - host Firefox (app-id is "firefox")
 				    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
 				    match title="^Картинка в картинке$"
+					match title="Picture-in-Picture"
 					open-focused false
 				    open-floating true
 					default-floating-position x=20 y=20 relative-to="bottom-right"

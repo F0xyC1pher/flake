@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {vars,...}: {
+		users.${vars.userName} = {vars, ...}: {
 			programs.kitty = {
 				settings = {
 					# vim:ft=kitty
@@ -20,50 +20,50 @@
 					# Scheme author: FoxyChipher
 					# Template author: Tinted Theming (https://github.com/tinted-theming/tinted-kitty)
 
-					background = vars.style.theme.bgMain;
-					foreground = vars.style.theme.fgMain;
-					selection_background = vars.style.theme.subtext;
-					selection_foreground = vars.style.theme.fgMain;
-					url_color = vars.style.theme.statusline;
-					cursor = vars.style.theme.fgMain;
-					cursor_text_color = vars.style.theme.bgMain;
+					background = vars.style.theme.ui."0";
+					foreground = vars.style.theme.text.main;
+					selection_background = vars.style.theme.text.sub-main;
+					selection_foreground = vars.style.theme.text.main;
+					url_color = vars.style.theme.text.syntax.info;
+					cursor = vars.style.theme.text.main;
+					cursor_text_color = vars.style.theme.ui."0";
 					active_border_color = vars.style.theme.accent;
-					inactive_border_color = vars.style.theme.subtext;
+					inactive_border_color = vars.style.theme.text.sub-main;
 					active_tab_background = vars.style.theme.accent;
-					active_tab_foreground = vars.style.theme.bgMain;
-					inactive_tab_background = vars.style.theme.surface2;
-					inactive_tab_foreground = vars.style.theme.subtext;
-					tab_bar_background = vars.style.theme.bgMain;
-					wayland_titlebar_color = vars.style.theme.bgMain;
-					macos_titlebar_color = vars.style.theme.bgMain;
+					active_tab_foreground = vars.style.theme.ui."0";
+					inactive_tab_background = vars.style.theme.ui."2";
+					inactive_tab_foreground = vars.style.theme.text.sub-main;
+					tab_bar_background = vars.style.theme.ui."0";
+					wayland_titlebar_color = vars.style.theme.ui."0";
+					macos_titlebar_color = vars.style.theme.ui."0";
 
 					# normal
-					color0 = vars.style.colors.b1;
-					color1 = vars.style.colors.r0;
-					color2 = vars.style.colors.g0;
-					color3 = vars.style.colors.y0;
-					color4 = vars.style.colors.b0;
-					color5 = vars.style.colors.p0;
-					color6 = vars.style.colors.c0;
-					color7 = vars.style.colors.bd;
+					color0 = vars.style.theme.ui."0";
+					color1 = vars.style.colors.accent.red;
+					color2 = vars.style.colors.accent.green;
+					color3 = vars.style.colors.accent.yellow;
+					color4 = vars.style.colors.accent.blue;
+					color5 = vars.style.colors.accent.purple;
+					color6 = vars.style.colors.accent.cyan;
+					color7 = vars.style.theme.text.main;
 
 					# bright
-					color8 = vars.style.colors.b4;
-					color9 = vars.style.colors.r0;
-					color10 = vars.style.colors.g0;
-					color11 = vars.style.colors.y0;
-					color12 = vars.style.colors.b0;
-					color13 = vars.style.colors.p0;
-					color14 = vars.style.colors.c0;
-					color15 = vars.style.colors.bf;
+					color8 = vars.style.theme.ui."4";
+					color9 = vars.style.colors.accent.red;
+					color10 = vars.style.colors.accent.green;
+					color11 = vars.style.colors.accent.yellow;
+					color12 = vars.style.colors.accent.blue;
+					color13 = vars.style.colors.accent.purple;
+					color14 = vars.style.colors.accent.cyan;
+					color15 = vars.style.theme.text.heading;
 
 					# extended base16 colors
-					color16 = vars.style.colors.o0;
-					color17 = vars.style.colors.p1;
-					color18 = vars.style.colors.b2;
-					color19 = vars.style.colors.b4;
-					color20 = vars.style.colors.ba;
-					color21 = vars.style.colors.be;
+					color16 = vars.style.colors.accent.orange;
+					color17 = vars.style.colors.accent.pink;
+					color18 = vars.style.theme.ui."2";
+					color19 = vars.style.theme.ui."4";
+					color20 = vars.style.theme.text.faint;
+					color21 = vars.style.theme.text.highlight;
 				};
 			};
 		};

@@ -68,17 +68,17 @@
 					};
 					colors =
 						lib.mkForce {
-							background = "${vars.style.theme.bgMain}bb"; # фон окошка
-							text = "${vars.style.theme.fgMain}ff"; # текст
-							message = "${vars.style.theme.fgMain}ff"; # сообщение
-							prompt = "${vars.style.theme.fgMain}ff"; # строка ввода?
-							placeholder = "${vars.style.theme.fgMain}ff"; # хрен знает
-							input = "${vars.style.theme.fgMain}ff"; # ввод
-							match = "${vars.style.theme.fgMain}ff"; # совпадения
+							background = "${vars.style.theme.ui.deep}53"; # фон окошка
+							text = "${vars.style.theme.text.primary}ff"; # текст
+							message = "${vars.style.theme.text.primary}ff"; # сообщение
+							prompt = "${vars.style.theme.text.primary}ff"; # строка ввода?
+							placeholder = "${vars.style.theme.text.primary}ff"; # хрен знает
+							input = "${vars.style.theme.text.primary}ff"; # ввод
+							match = "${vars.style.theme.text.primary}ff"; # совпадения
 							selection = "${vars.style.theme.accent}ff"; # фон выбранного элемента
-							selection-text = "${vars.style.theme.bgMain}ff"; # текст выбранного элемента
-							selection-match = "${vars.style.theme.antiac}ff"; # подсвеченные буковки на выбранном элементе при поиске
-							counter = "93a1a1ff"; # счетчик чего-то
+							selection-text = "${vars.style.theme.ui.deep}ff"; # текст выбранного элемента
+							selection-match = "${vars.style.theme.text.match}ff"; # подсвеченные буковки на выбранном элементе при поиске
+							counter = "93a1a1ff"; # счетчик чего-то что я ещё не видел
 							border = "${vars.style.theme.accent}ff"; # обводка окошка
 						};
 
