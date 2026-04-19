@@ -15,7 +15,7 @@
 				fish.enable = true;
 				nixos-icons.enable = true;
 				mangohud.enable = true;
-				fuzzel.enable = true;
+				# fuzzel.enable = true;
 				anki.enable = true;
 				swaync.enable = true;
 				qt = {
@@ -42,7 +42,7 @@
 
 						.header-bar {
 							background-image: none;
-							background-color: ${vars.style.theme.surface3};
+							background-color: ${vars.style.theme.ui."3"};
 							box-shadow: none;
 						}
 						// You may want to use this if you do not like the double title.
@@ -100,28 +100,28 @@
 
 		base16Scheme = {
 			# Фоны и основные поверхности
-			base00 = vars.style.theme.bgMain; # основной фон (editor, терминал, панели, tmux)
-			base01 = vars.style.theme.surface2; # лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
-			base02 = vars.style.theme.surface4; # фон выделения текста (visual mode, selected text, поиск)
+			base00 = vars.style.theme.ui."0"; # основной фон (editor, терминал, панели, tmux)
+			base01 = vars.style.theme.ui."2"; # лёгкий фон (статус-бары, tabline, folded код, вторичные панели)
+			base02 = vars.style.theme.ui."4"; # фон выделения текста (visual mode, selected text, поиск)
 
 			# Серые тона для текста и неактивных элементов
-			base03 = vars.style.theme.subtext; # комментарии, невидимые символы, cursorline, неактивные элементы
-			base04 = vars.style.theme.statusline; # вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
+			base03 = vars.style.theme.text.comment; # комментарии, невидимые символы, cursorline, неактивные элементы
+			base04 = vars.style.theme.text.faint; # вторичный/приглушённый текст (statusline, git branch, метки, бордеры)
 
 			# Основной и яркий текст
-			base05 = vars.style.theme.fgMain; # основной цвет текста (обычный код, prompt в терминале)
-			base06 = vars.style.theme.brightText; # bright foreground / special UI
-			base07 = vars.style.theme.contrastText; # самый яркий белый (контрастный текст, bold/bright)
+			base05 = vars.style.theme.text.primary; # основной цвет текста (обычный код, prompt в терминале)
+			base06 = vars.style.theme.text.highlight; # bright foreground / special UI
+			base07 = vars.style.theme.text.heading; # самый яркий белый (контрастный текст, bold/bright)
 
 			# Акцентные цвета — семантика
-			base08 = vars.style.colors.r0; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
-			base09 = vars.style.colors.o0; # оранжевый — числа, константы, escape-последовательности, пути/URL
-			base0A = vars.style.colors.y0; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
-			base0B = vars.style.colors.g0; # зелёный — строки, добавленное в diff, успех
-			base0C = vars.style.colors.c0; # циан — типы, специальные конструкции, info, escape в строках
-			base0D = vars.style.colors.b0; # синий — функции, методы, ссылки, основной акцентный цвет
-			base0E = vars.style.colors.p0; # фиолетовый — ключевые слова, control flow, операторы, storage
-			base0F = vars.style.colors.p1; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
+			base08 = vars.style.colors.accent.red; # красный — ошибки, удалённое в diff, переменные, XML-теги, предупреждения
+			base09 = vars.style.colors.accent.orange; # оранжевый — числа, константы, escape-последовательности, пути/URL
+			base0A = vars.style.colors.accent.yellow; # жёлтый — классы, структуры, background поиска, WARN, иногда bold
+			base0B = vars.style.colors.accent.green; # зелёный — строки, добавленное в diff, успех
+			base0C = vars.style.colors.accent.cyan; # циан — типы, специальные конструкции, info, escape в строках
+			base0D = vars.style.colors.accent.blue; # синий — функции, методы, ссылки, основной акцентный цвет
+			base0E = vars.style.colors.accent.purple; # фиолетовый — ключевые слова, control flow, операторы, storage
+			base0F = vars.style.colors.accent.pink; # пурпурный — deprecated, теги, вставки другого языка, спец-символы
 
 			Scheme = "theme";
 			slug = "theme";

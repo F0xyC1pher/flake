@@ -13,6 +13,8 @@
 
 			# logmein-hamachi
 
+			noise-suppression-for-voice
+
 			glib
 
 			dropbox

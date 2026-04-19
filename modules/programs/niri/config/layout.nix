@@ -44,7 +44,7 @@
 				    // off
 				     width 4
 				        active-color "${vars.style.theme.accent}"
-				        inactive-color "${vars.style.theme.surface3}"
+				        inactive-color "${vars.style.theme.ui."3"}"
 
 				    }
 
@@ -53,7 +53,7 @@
 				        off
 				        width 4
 				        active-color "${vars.style.theme.accent}"
-				        inactive-color "${vars.style.theme.surface3}"
+				        inactive-color "${vars.style.theme.ui."3"}"
 				        urgent-color "#9b0000"
 				        // Gradients can use a few different interpolation color spaces.
 				        // For example, this is a pastel rainbow gradient via in="oklch longer hue".
@@ -77,7 +77,7 @@
 				        // Offset moves the shadow relative to the window.
 				        offset x=0 y=0
 				        // You can also change the shadow color and opacity.
-				        color "${vars.style.theme.surface2}"
+				        color "${vars.style.theme.ui."2"}"
 				    }
 
 				    // Struts shrink the area occupied by windows, similarly to layer-shell panels.

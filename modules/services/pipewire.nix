@@ -1,6 +1,7 @@
 {
 	lib,
 	vars,
+	pkgs,
 	...
 }: let
 	rate = vars.hardware.sound.rate; # твоя переменная: 48000, 96000, 192000 и т.д.
@@ -68,7 +69,44 @@ in {
 					}
 				];
 			};
-
+			pipewire."99-input-denoising" = {
+				"context.modules" = [
+					{
+						name = "libpipewire-module-filter-chain";
+						args = {
+							"node.description" = "Noise Canceling Source";
+							"media.name" = "Noise Canceling Source";
+							"filter.graph" = {
+								nodes = [
+									{
+										type = "native";
+										name = "rnnoise";
+										plugin = "${pkgs.noise-suppression-for-voice}/lib/ladspa/librnnoise_ladspa.so";
+										label = "noise_suppressor_mono";
+										control = {
+											"VAD Threshold (%)" = 50.0; # Порог срабатывания голоса
+											"VAD Grace Period (ms)" = 200;
+											"Retroactive VAD Grace (ms)" = 0;
+										};
+									}
+								];
+							};
+							"capture.props" = {
+								"node.name" = "capture.rnnoise_source";
+								"node.passive" = true;
+								"audio.rate" = rate;
+								"node.latency" = "${toString quantum}/${toString rate}";
+							};
+							"playback.props" = {
+								"node.name" = "rnnoise_source";
+								"media.class" = "Audio/Source";
+								"audio.rate" = rate;
+								"node.latency" = "${toString quantum}/${toString rate}";
+							};
+						};
+					}
+				];
+			};
 			# ==================== ОПТИМИЗАЦИЯ ДЛЯ JACK ====================
 			jack."10-low-latency" = {
 				"jack.properties" = {
