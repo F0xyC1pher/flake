@@ -9,7 +9,7 @@
 		./nix-init.nix
 		./nix.nix
 		./packages.nix
-		./portal.nix
+		# ./portal.nix
 		./power.nix
 		./security.nix
 		./sops.nix
