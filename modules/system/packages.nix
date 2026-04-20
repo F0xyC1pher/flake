@@ -13,6 +13,8 @@
 
 			# logmein-hamachi
 
+			r2modman
+
 			rnnoise-plugin
 
 			glib
