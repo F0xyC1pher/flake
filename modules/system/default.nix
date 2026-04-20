@@ -7,20 +7,17 @@
 		./mime.nix
 		./network.nix
 		./nix-init.nix
-		./lix.nix
+		./nix.nix
 		./packages.nix
 		./portal.nix
 		./power.nix
 		./security.nix
 		./sops.nix
 		./stylix.nix
-		./swap.nix
 		./systemd.nix
 		./users.nix
 		./variables.nix
 		./xdg.nix
-		./zram.nix
-		./zswap.nix
 	];
 
 	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };

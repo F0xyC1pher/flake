@@ -34,7 +34,7 @@
 			"kernel.sched_min_granularity_ns" = 500000;
 			"kernel.sched_wakeup_granularity_ns" = 1000000;
 			# Управление памятью
-			"vm.swappiness" = 10; # Меньше использовать swap
+			"vm.swappiness" = 50; # Меньше использовать swap
 			"vm.vfs_cache_pressure" = 100; # Держим кэш дольше
 			"vm.dirty_ratio" = 15; # Настройка грязных страниц
 			"vm.dirty_background_ratio" = 3;
