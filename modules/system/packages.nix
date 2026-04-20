@@ -13,7 +13,7 @@
 
 			# logmein-hamachi
 
-			noise-suppression-for-voice
+			rnnoise-plugin
 
 			glib
 
