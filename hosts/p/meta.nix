@@ -7,7 +7,7 @@
 		wifi = true;
 
 		sound = {
-			rate = 48000;
+			rate = 192000;
 		};
 
 		nvidia = {

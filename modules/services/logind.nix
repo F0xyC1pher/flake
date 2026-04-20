@@ -6,10 +6,8 @@
 				HandleLidSwitchExternalPower = "ignore";
 				HandleLidSwitchDocked = "ignore";
 				IdleAction = "ignore";
-				KillUserProcesses = false;
-				KillOnlyUsers = [];
+				KillUserProcesses = true;
 				KillExcludeUsers = ["root"];
-				UserTasksMax = "infinity";
 			};
 		};
 	};

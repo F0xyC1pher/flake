@@ -16,10 +16,10 @@
 	nix = {
 		package = pkgs.lix;
 		settings = {
+			auto-optimise-store = true;
+			eval-cache = true;
 			experimental-features = ["nix-command" "flakes" "flake-self-attrs"];
 			extra-deprecated-features = ["url-literals"];
-			eval-cache = true;
-
 			substituters = [
 				"https://cache.nixos.org/"
 				"https://cache.garnix.io"
