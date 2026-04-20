@@ -69,39 +69,60 @@ in {
 					}
 				];
 			};
-			pipewire."99-input-denoising" = {
+			pipewire."99-rnnoise-pro" = {
 				"context.modules" = [
 					{
 						name = "libpipewire-module-filter-chain";
 						args = {
-							"node.description" = "Noise Canceling Source";
-							"media.name" = "Noise Canceling Source";
+							"node.description" = "🎤 RNNoise Pro | Noise Suppressor";
+							"media.name" = "RNNoise Professional";
+
 							"filter.graph" = {
 								nodes = [
 									{
-										type = "native";
+										type = "ladspa";
 										name = "rnnoise";
-										plugin = "${pkgs.noise-suppression-for-voice}/lib/ladspa/librnnoise_ladspa.so";
+										# Путь к плагину через переменную pkgs
+										plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
 										label = "noise_suppressor_mono";
 										control = {
-											"VAD Threshold (%)" = 50.0; # Порог срабатывания голоса
-											"VAD Grace Period (ms)" = 200;
-											"Retroactive VAD Grace (ms)" = 0;
+											"VAD Threshold (%)" = 95.0;
+											"VAD Grace Period (ms)" = 250;
+											"Retroactive VAD Grace (ms)" = 30;
 										};
 									}
 								];
 							};
+
 							"capture.props" = {
-								"node.name" = "capture.rnnoise_source";
+								"node.name" = "capture.rnnoise_pro";
 								"node.passive" = true;
-								"audio.rate" = rate;
-								"node.latency" = "${toString quantum}/${toString rate}";
+								# "audio.rate" = 48000;
+								"audio.channels" = 1;
+								"audio.position" = ["MONO"];
+								"node.autoconnect" = true;
+								"stream.dont-remix" = true;
 							};
+
 							"playback.props" = {
-								"node.name" = "rnnoise_source";
+								"node.name" = "rnnoise_pro";
 								"media.class" = "Audio/Source";
-								"audio.rate" = rate;
-								"node.latency" = "${toString quantum}/${toString rate}";
+								# "audio.rate" = 48000;
+								"audio.channels" = 1;
+								"audio.position" = ["MONO"];
+
+								"node.nick" = "🎤 RNNoise Pro";
+								"node.description" = "AI Noise Cancelling Microphone";
+
+								# Высокий приоритет для сессии
+								"priority.driver" = 2000;
+								"priority.session" = 2000;
+								"node.priority" = 2000;
+								"node.group" = "audio-filter";
+
+								# Твои "Pro" метаданные
+								"application.name" = "PipeWire RNNoise Processor";
+								"node.icon-name" = "microphone-sensitivity-high";
 							};
 						};
 					}
