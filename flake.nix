@@ -84,6 +84,12 @@
 			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.40/nekobox-5.10.40-linux-amd64.tar.gz";
 			flake = false;
 		};
+		nekobox-git = {
+			url = "https://github.com/qr243vbi/nekobox";
+			type = "git";
+			flake = false;
+			submodules = true;
+		};
 
 		rofi-polkit-agent = {
 			url = "https://github.com/Zebra2711/rofi-polkit-agent";

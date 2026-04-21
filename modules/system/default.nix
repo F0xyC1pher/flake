@@ -8,7 +8,6 @@
 		./network.nix
 		./nix-init.nix
 		./nix.nix
-		./packages.nix
 		# ./portal.nix
 		./power.nix
 		./security.nix

@@ -13,6 +13,9 @@
 
 			# logmein-hamachi
 
+			wayneko
+			# oneko # Only for X server
+
 			r2modman
 
 			rnnoise-plugin
@@ -25,9 +28,10 @@
 			bluetui
 			bluetuith
 			# VPN
-			nekobox
-			libsForQt5.qtstyleplugin-kvantum
-			sing-box
+			# nekobox
+
+			# libsForQt5.qtstyleplugin-kvantum
+			# sing-box
 
 			# 🔧 Системные утилиты и инструменты
 			# Мониторинг
