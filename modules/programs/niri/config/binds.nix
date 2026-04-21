@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			xdg.configFile."niri/binds.kdl".text = ''
 				// syntax: kdl
 				binds {
@@ -50,10 +50,10 @@
 
 				    // Example media keys mapping using playerctl.
 				    // This will work with any MPRIS-enabled media player.
-				    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-				    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-				    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-				    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+				    XF86AudioPlay        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl play-pause"; }
+				    XF86AudioStop        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl stop"; }
+				    XF86AudioPrev        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl previous"; }
+				    XF86AudioNext        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl next"; }
 
 				    // Example brightness key mappings for brightnessctl.
 				    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
@@ -166,13 +166,15 @@
 				    // Expel the bottom window from the focused column to the right.
 				    Mod+Period { expel-window-from-column; }
 
-				    Mod+D { switch-preset-column-width; }
+				    // Mod+D { switch-preset-column-width; }
 				    // Cycling through the presets in reverse order is also possible.
 				    // Mod+D { switch-preset-column-width-back; }
-				    Mod+Shift+D { switch-preset-window-height; }
-				    Mod+Ctrl+D { reset-window-height; }
-				    Mod+F { maximize-column; }
-				    Mod+Shift+F { fullscreen-window; }
+				    // Mod+Shift+D { switch-preset-window-height; }
+				    // Mod+Ctrl+D { reset-window-height; }
+				    // Mod+F { maximize-column; }
+				    Mod+F { fullscreen-window; }
+				    Mod+Shift+F { toggle-windowed-fullscreen; }
+					Mod+Ctrl+Shift+F { maximize-window-to-edges; }
 
 				    // Expand the focused column to space not taken up by other fully visible columns.
 				    // Makes the column "fill the rest of the space".
@@ -238,7 +240,6 @@
 				    // moving the mouse or pressing any other key.
 				    Mod+Shift+P { power-off-monitors; }
 				}
-
 			'';
 		};
 	};
