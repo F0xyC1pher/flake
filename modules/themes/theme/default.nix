@@ -1,4 +1,4 @@
-# ── Theme: cicada — role mapping ──────────────────────────────────────────────
+# ── Theme: theme — role mapping ──────────────────────────────────────────────
 #
 # This is the ROLE LAYER. The shape of the returned attrset (ui.*, text.*,
 # accent, text.syntax.*) is a CONTRACT — every theme must produce these same
