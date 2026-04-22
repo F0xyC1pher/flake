@@ -18,7 +18,7 @@
 						},
 						"modules": [
 							"custom/arrow-left",
-							"battery",
+							// "battery",
 							"memory",
 							"cpu",
 							"disk",

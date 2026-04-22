@@ -10,7 +10,7 @@
 				// syntax: json
 				{
 					"disk": {
-					  "interval": 30,
+					  "interval": 60,
 					  "path": "/",
 					  "format": "{percentage_used}% ",
 					  "on-click": "kitty yazi",
