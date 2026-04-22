@@ -140,7 +140,7 @@
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 		#vars = import ./vars;
-
+		themes = import ./modules/themes/lib.nix {inherit lib;};
 		# Оверлей: автоматически подхватывает все пакеты из packages/*.nix
 		overlay = final: prev: let
 			files =
@@ -156,26 +156,51 @@
 					acc // {"${pkgName}" = value;}
 			) {} (builtins.attrNames files);
 
-		# Вспомогательная функция: создаёт nixosConfiguration для хоста
+		# ── mkHost ──────────────────────────────────────────────────────────────
+		# Reads hosts/<name>/meta.nix and users/<mainUser>/default.nix as pure
+		# data, resolves the chosen theme, and bundles everything into a single
+		# `vars` attrset that gets passed to every NixOS / HM module.
 		mkHost = hostName: let
 			# 1. Читаем ЧИСТЫЕ данные из meta.nix (это не функция, импорт всегда успешен)
-			hostMeta = import ./hosts/${hostName}/meta.nix;
+			hostMeta = import (./hosts + "/${hostName}/meta.nix");
 			targetUser = hostMeta.mainUser;
 
 			# 2. Подтягиваем настройки этого юзера (тоже вызываем как функцию)
-			userSettings = import ./users/${targetUser}/default.nix {inherit lib;};
-
+			userSettings = import (./users + "/${targetUser}/default.nix") {inherit lib;};
+			resolved =
+				themes.resolve {
+					name = userSettings.theme;
+					colorOverrides = userSettings.colorOverrides or {};
+					roleOverrides = userSettings.roleOverrides  or {};
+				};
 			# Формируем итоговые vars
 			hostVars = {
+				# identity
 				userName = targetUser;
-				# Переменные из юзера
-				inherit (userSettings) userFullName userPassword fontName fontSize shell terminal blur;
-				# ВРУЧНУЮ упаковываем тему и цвета в объект style
+				userFullName = userSettings.userFullName;
+				userPassword = userSettings.userPassword or null;
+
+				# appearance
+				fontName = userSettings.fontName;
+				fontSize = userSettings.fontSize;
+				shell = userSettings.shell;
+				terminal = userSettings.terminal;
+				blur =
+					userSettings.blur or {
+						enable = false;
+						xray.enable = false;
+					};
+
+				# style bundle
 				style = {
-					inherit (userSettings) colors theme;
+					colors = resolved.colors;
+					theme = resolved.theme;
 				};
-				# Переменные из хоста (теперь они точно есть в hostMeta)
-				inherit (hostMeta) hostName bootLoader hardware;
+
+				# host
+				hostName = hostMeta.hostName;
+				bootLoader = hostMeta.bootLoader or null;
+				hardware = hostMeta.hardware  or {};
 			};
 		in
 			lib.nixosSystem {
