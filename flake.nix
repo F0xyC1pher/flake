@@ -116,6 +116,7 @@
 			submodules = true;
 			flake = false;
 		};
+		jbr-wayland-nix.url = "github:BananchickPasha/jbr-wayland-nix";
 	};
 
 	outputs = {
@@ -128,6 +129,7 @@
 		niri,
 		scroll-flake,
 		nixcord,
+		# jbr-wayland-nix,
 		# awww,
 		firefox-addons,
 		# rmpc,
