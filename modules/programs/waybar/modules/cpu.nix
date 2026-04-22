@@ -10,7 +10,7 @@
 				// syntax: json
 				{
 					"cpu": {
-						"interval": 2,
+						"interval": 5,
 						"format": "{load:.0f}% ",
 						"on-click": "kitty btop",
 						"on-click-right": "kitty btop",

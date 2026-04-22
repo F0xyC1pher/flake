@@ -12,10 +12,11 @@
 
 		nvidia = {
 			enable = true;
-			Laptop = false;
-			Perfomance = {
-				MaxWatts = true;
-				PersistenceMode = true;
+			package = "legacy_580"; # "latest" "legacy_580" "legacy_470"
+			perf = {
+				# true для максимума | число для указания Ватт | "строка" процент Ватт от максимума | false | null
+				value = true;
+				persistence = true;
 			};
 		};
 	};

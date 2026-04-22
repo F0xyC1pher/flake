@@ -10,7 +10,7 @@
 				// syntax: json
 				{
 					"memory": {
-						"interval": 2,
+						"interval": 5,
 						"format": "{}% 󰍛",
 						"on-click": "kitty btop",
 						"on-click-right": "cliphist-fuzzel-img",
