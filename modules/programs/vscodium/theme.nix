@@ -8,7 +8,7 @@
 		users.${vars.userName} = {...}: let
 			t = vars.style.theme;
 		in {
-			programs.vscode = {
+			programs.vscode.profiles.default = {
 				userSettings = {
 					"workbench.colorCustomizations" = {
 						# ── Editor core ────────────────────────────────────────────
