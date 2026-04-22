@@ -1,17 +1,4 @@
-{
-	# stdenv,
-	# config,
-	# lib,
-	# vars,
-	inputs,
-	pkgs,
-	...
-}: {
-	# ========== NIXPKGS ==========
-	nixpkgs = {
-		overlays = [inputs.niri.overlays.niri];
-		config.allowUnfree = true;
-	};
+{pkgs, ...}: {
 	# ========== NIX ==========
 	nix = {
 		package = pkgs.lix;
