@@ -1,6 +1,5 @@
 {...}: {
 	imports = [
-		./boot.nix
 		./etc.nix
 		./fonts.nix
 		./locale.nix
@@ -8,7 +7,6 @@
 		./network.nix
 		./nix-init.nix
 		./nix.nix
-		# ./portal.nix
 		./power.nix
 		./security.nix
 		./sops.nix
@@ -18,8 +16,6 @@
 		./variables.nix
 		./xdg.nix
 	];
-
-	# systemd.user.services = import ./services/default.nix { inherit pkgs config lib inputs vars; };
 
 	system.stateVersion = "26.05";
 }

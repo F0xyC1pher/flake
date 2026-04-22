@@ -8,6 +8,7 @@
 		./nixcord
 		./rmpc
 		./rofi
+		./scroll
 		./shell
 		./vscodium
 		./waybar
@@ -23,6 +24,7 @@
 		# ./starship.nix
 		./steam.nix
 		./throne.nix
+		./xwayland.nix
 		./zoxide.nix
 	];
 }
