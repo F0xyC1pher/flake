@@ -7,6 +7,7 @@
 		./cups.nix
 		./dbus.nix
 		./dropbox.nix
+		./envfs.nix
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix

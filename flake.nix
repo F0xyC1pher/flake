@@ -31,6 +31,11 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		scroll-flake = {
+			url = "github:Diax170/scroll-flake";
+			inputs.nixpkgs.follows = "nixpkgs"; # this assumes nixos unstable
+		};
+
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
 		# awww = {
@@ -121,6 +126,7 @@
 		sops-nix,
 		stylix,
 		niri,
+		scroll-flake,
 		nixcord,
 		# awww,
 		firefox-addons,
@@ -183,6 +189,7 @@
 					home-manager.nixosModules.home-manager
 					stylix.nixosModules.stylix
 					niri.nixosModules.niri
+					scroll-flake.nixosModules.default
 					sops-nix.nixosModules.sops
 					(
 						{...}: {
