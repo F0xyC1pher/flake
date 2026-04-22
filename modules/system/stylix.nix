@@ -8,8 +8,8 @@
 			polarity = "dark";
 			targets = {
 				micro.enable = true;
-				vscode.enable = true;
-				yazi.enable = true;
+				# vscode.enable = true;
+				# yazi.enable = true;
 				nixcord.enable = true;
 				fontconfig.enable = true;
 				fish.enable = true;

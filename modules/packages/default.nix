@@ -127,6 +127,8 @@
 
 		# 🖼️ Wayland & Graphics (Графическая среда)
 		wayland-utils
+		xdg-utils
+		xdg-user-dirs
 		wlr-randr
 		wev
 		slurp

@@ -23,6 +23,9 @@
 			sourceRoot = "extension";
 		};
 in {
+	imports = [
+		./theme.nix
+	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {pkgs, ...}: {
@@ -44,6 +47,9 @@ in {
 						jeff-hykin.better-nix-syntax
 						ms-ceintl.vscode-language-pack-ru
 						nix-embedded-highlighter
+						pkief.material-icon-theme
+						eamodio.gitlens
+						usernamehw.errorlens
 					];
 
 					keybindings = [
@@ -60,23 +66,44 @@ in {
 					];
 
 					userSettings = {
+						# ── Window ─────────────────────────────────────────────────────
+						"window.titleBarStyle" = "custom";
+						"window.menuBarVisibility" = "toggle";
+						"window.zoomLevel" = 0;
+
+						# ── Editor ─────────────────────────────────────────────────────
+						"editor.fontFamily" = "${vars.fontName}";
+						"editor.fontSize" = 14;
+						"editor.lineHeight" = 22;
+						"editor.fontLigatures" = true;
+						"editor.tabSize" = 4;
+						"editor.indentSize" = 4;
+						"editor.insertSpaces" = false;
+						"editor.renderWhitespace" = "boundary";
+						"editor.cursorStyle" = "block";
+						"editor.cursorBlinking" = "phase";
+						"editor.minimap.enabled" = true;
+						"editor.scrollBeyondLastLine" = false;
+						"editor.smoothScrolling" = true;
+						"editor.bracketPairColorization.enabled" = true;
+						"editor.guides.bracketPairs" = true;
+						"editor.detectIndentation" = false;
+						"editor.useTabStops" = true;
+						"editor.formatOnSave" = true;
+						# "editor.formatOnSaveMode"= "modifications";
+
+						# ── Workbench ──────────────────────────────────────────────────
+						# "workbench.colorTheme" = "Default Dark Modern";
+						"workbench.startupEditor" = "none";
+						"workbench.iconTheme" = "material-icon-theme";
+						# "workbench.tree.indent" = 14;
+
 						"nix-embedded-languages.include" = {
 							"KDL|kdl" = {
 								"name" = "KDL/kdl";
 								"scopeName" = "source.kdl";
 							};
 						};
-
-						# "editor.fontFamily" = lib.mkForce "FiraCode Nerd Font Mono";
-						# "editor.fontSize" = lib.mkForce 10;
-						"editor.fontLigatures" = true;
-						"editor.tabSize" = 4;
-						"editor.indentSize" = 4;
-						"editor.insertSpaces" = false;
-						"editor.detectIndentation" = false;
-						"editor.useTabStops" = true;
-						"editor.formatOnSave" = true;
-						# "editor.formatOnSaveMode"= "modifications";
 
 						"[nix]" = {
 							"editor.tabSize" = 4;
@@ -103,33 +130,14 @@ in {
 							};
 						};
 
-						"workbench.colorCustomizations" = {
-							# Выделение при поиске
-							# "editor.findMatchHighlightBackground" = "#00000000";
-							# "editor.findMatchHighlightBorder" = "1px solid ${vars.colors.o0}";
-							# "editor.findMatchBackground" = "#00000000";
-							# "editor.findMatchBorder" = "1px solid ${vars.colors.y0}";
+						# ── Telemetry ────────────────────────────────────────────────────
+						"telemetry.telemetryLevel" = "off";
+						"update.mode" = "none";
 
-							# Выделение выбранного текста
-							# "editor.selectionBackground" = "#40${vars.colors.b0}"; # 40 = 25% прозрачности
-							# "editor.selectionBorder" = "1px solid ${vars.colors.b0}";
-							# "editor.selectionHighlightBackground" = "#20${vars.colors.g0}"; # 20 = 12.5% прозрачности
-							# "editor.selectionHighlightBorder" = "1px solid ${vars.colors.g0}";
-
-							# Подсветка текущей строки
-							# "editor.lineHighlightBackground" = "#10${vars.colors.b3}"; # легкая подсветка
-							# "editor.lineHighlightBorder" = "1px solid ${vars.colors.b3}";
-
-							# Подсветка скобок
-							# "editorBracketMatch.background" = "#20${vars.colors.y0}";
-							# "editorBracketMatch.border" = "1px solid ${vars.colors.y0}";
-
-							# Подсветка слова под курсором
-							# "editor.wordHighlightBackground" = "#20${vars.colors.b0}";
-							# "editor.wordHighlightBorder" = "1px solid ${vars.colors.b0}";
-							# "editor.wordHighlightStrongBackground" = "#30${vars.colors.o0}";
-							# "editor.wordHighlightStrongBorder" = "1px solid ${vars.colors.o0}";
-						};
+						# ── Files ────────────────────────────────────────────────────────
+						"files.autoSave" = false;
+						"files.trimTrailingWhitespace" = false;
+						"files.insertFinalNewline" = false;
 					};
 				};
 			};

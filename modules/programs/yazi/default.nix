@@ -8,6 +8,7 @@
 		./keymap.nix
 		./plugins.nix
 		./settings.nix
+		./theme.nix
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
