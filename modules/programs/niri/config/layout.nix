@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/layout.kdl".text = ''
+				// syntax: kdl
 				layout {
 				    // Set gaps around windows in logical pixels.
 				    gaps 50

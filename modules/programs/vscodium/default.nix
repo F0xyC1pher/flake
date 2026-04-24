@@ -22,6 +22,24 @@
 			nativeBuildInputs = [pkgs.unzip];
 			sourceRoot = "extension";
 		};
+	vscode-kdl-v1hz =
+		pkgs.vscode-utils.buildVscodeExtension {
+			pname = "vscode-kdl-v1hz";
+			version = "2.1.3";
+			vscodeExtName = "kdl";
+			vscodeExtPublisher = "v1hz";
+			vscodeExtUniqueId = "v1hz.kdl";
+
+			src =
+				pkgs.fetchurl {
+					url = "https://open-vsx.org/api/v1hz/kdl/2.1.3/file/v1hz.kdl-2.1.3.vsix";
+					sha256 = "sha256-i5J4hXU3cOnFiPS+LZ0fIwwQo7hV0dueF0cPXUv25z0=";
+					name = "v1hz-kdl-0.0.1.zip";
+				};
+
+			nativeBuildInputs = [pkgs.unzip];
+			sourceRoot = "extension";
+		};
 in {
 	imports = [
 		./theme.nix
@@ -42,11 +60,12 @@ in {
 
 				profiles.default = {
 					extensions = with pkgs.vscode-extensions; [
+						nix-embedded-highlighter
+						vscode-kdl-v1hz
 						jnoortheen.nix-ide
 						christian-kohler.path-intellisense
 						jeff-hykin.better-nix-syntax
 						ms-ceintl.vscode-language-pack-ru
-						nix-embedded-highlighter
 						pkief.material-icon-theme
 						eamodio.gitlens
 						usernamehw.errorlens

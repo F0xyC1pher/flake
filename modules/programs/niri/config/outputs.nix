@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/outputs.kdl".text = ''
+				// syntax: kdl
 				// ────────────── Output Configuration ──────────────
 				// https://yalter.github.io/niri/Configuration:-Outputs
 				output "DVI-D-1" {

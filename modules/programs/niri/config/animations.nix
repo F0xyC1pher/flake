@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/animations.kdl".text = ''
+				// syntax: kdl
 				animations {
 				    // off
 				    // slowdown 100

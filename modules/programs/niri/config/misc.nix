@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/misc.kdl".text = ''
+				// syntax: kdl
 
 				recent-windows {
 				    // off

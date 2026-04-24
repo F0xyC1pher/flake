@@ -8,6 +8,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/window-rules.kdl".text = ''
+				// syntax: kdl
 				//
 				// ────────────── Window Rules  ──────────────
 				// Window rules let you adjust behavior for individual windows.

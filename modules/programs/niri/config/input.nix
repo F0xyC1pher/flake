@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/input.kdl".text = ''
+				// syntax: kdl
 				input {
 				    keyboard {
 				        xkb {
