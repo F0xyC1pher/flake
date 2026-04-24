@@ -85,6 +85,8 @@ in {
 					];
 
 					userSettings = {
+						"http.systemCertificatesNode" = true;
+						"geminicodeassist.project" = "gen-lang-client-0845042642";
 						# ── Window ─────────────────────────────────────────────────────
 						"window.titleBarStyle" = "custom";
 						"window.menuBarVisibility" = "toggle";

@@ -15,10 +15,10 @@
 						"editor.background" = t.ui.main;
 						"editor.foreground" = t.text.main;
 						"editor.selectionBackground" = t.ui.overlay;
-						"editor.selectionHighlightBackground" = t.ui.selection;
+						"editor.selectionHighlightBackground" = "${t.ui.selection}77";
 						"editor.lineHighlightBackground" = t.ui.surface;
 						"editor.findMatchBackground" = t.accent;
-						"editor.findMatchHighlightBackground" = t.ui.selection;
+						"editor.findMatchHighlightBackground" = "${t.ui.selection}77";
 						"editorCursor.foreground" = t.accent;
 						"editorCursor.background" = t.ui.main;
 						"editorLineNumber.foreground" = t.ui.highlight;
