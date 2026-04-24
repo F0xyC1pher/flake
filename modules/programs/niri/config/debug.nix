@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/debug.kdl".text = ''
+				// syntax: kdl
 				debug {
 				    // preview-render "screencast"
 				    // preview-render "screen-capture"

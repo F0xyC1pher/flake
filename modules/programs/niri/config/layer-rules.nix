@@ -7,6 +7,7 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {
 			xdg.configFile."niri/layer-rules.kdl".text = ''
+				// syntax: kdl
 				// ────────────── Layer Settings ──────────────
 				layer-rule {
 				    // This is for gslapper; change for other wallpaper tools.
