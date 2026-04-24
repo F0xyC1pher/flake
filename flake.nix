@@ -4,11 +4,6 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Актуальная unstable ветка
 
-		# hardware-configuration = {
-		# 	url = "path:/etc/nixos/hardware-configuration.nix";
-		# 	flake = false;
-		# };
-
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 		home-manager = {
