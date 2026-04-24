@@ -104,7 +104,9 @@ in {
 			git
 			gitui
 			git-credential-keepassxc
+			color-lsp
 			nixd
+			nil
 			alejandra
 			package-version-server
 			vscodium
