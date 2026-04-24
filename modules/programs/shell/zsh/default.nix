@@ -27,12 +27,12 @@
 				# 	'';
 				# typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 				initContent = ''
+					# syntax: shell
 					setopt automenu
 					setopt nobeep
 
 					export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 					export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
-					export GEMINI_API_KEY="AIzaSyBAov0_3ai5ckA816WhZxxQdSRagDnkb7Q"
 
 					typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 

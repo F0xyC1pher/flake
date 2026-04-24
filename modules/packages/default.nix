@@ -113,6 +113,10 @@ in {
 			zed-editor
 			jetbrains.clion
 			micro-full
+			gemini-cli-bin
+			#gemini-cli
+			#lagrange-tui
+			tuios
 
 			# 🌐 Networking & VPN (Сеть)
 			sniffglue
