@@ -8,8 +8,8 @@
 		users.${vars.userName} = {...}: {
 			programs.kitty.keybindings = {
 				# Табы
-				"ctrl+t" = "new_tab";
-				"ctrl+q" = "close_tab";
+				"ctrl+shift+t" = "new_tab";
+				"ctrl+shift+q" = "close_tab";
 				"ctrl+tab" = "next_tab";
 				"ctrl+shift+tab" = "previous_tab";
 
