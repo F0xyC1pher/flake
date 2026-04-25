@@ -7,8 +7,11 @@
 	imports = [
 		./${vars.shell}
 	];
-	environment.shells = [
-		pkgs.${vars.shell}
+	environment.shells = with pkgs; [
+		#vars.shell
+		fish
+		zsh
+		bash
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};

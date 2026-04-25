@@ -11,8 +11,8 @@
 	};
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {lib, ...}: {
-			xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
+		users.${vars.userName} = {pkgs, ...}: {
+			# xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
 
 			programs.zsh = {
 				enable = true;
@@ -34,14 +34,14 @@
 					export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 					export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
 
-					typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
+					#typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
-					bindkey -v
-					bindkey '^H' vi-backward-kill-word
-					bindkey '^w' vi-backward-kill-word
-					bindkey '^[[1;5C' vi-forward-word
-					bindkey '^[[1;5D' vi-backward-word
-					bindkey '^f' beginning-of-line
+					#bindkey -v
+					#bindkey '^H' vi-backward-kill-word
+					#bindkey '^w' vi-backward-kill-word
+					#bindkey '^[[1;5C' vi-forward-word
+					#bindkey '^[[1;5D' vi-backward-word
+					#bindkey '^f' beginning-of-line
 
 					export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
 					export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
