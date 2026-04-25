@@ -87,6 +87,7 @@ in {
 					userSettings = {
 						"http.systemCertificatesNode" = true;
 						"geminicodeassist.project" = "gen-lang-client-0845042642";
+						"security.workspace.trust.untrustedFiles" = "open";
 						# ── Window ─────────────────────────────────────────────────────
 						"window.titleBarStyle" = "custom";
 						"window.menuBarVisibility" = "toggle";
@@ -156,7 +157,7 @@ in {
 						"update.mode" = "none";
 
 						# ── Files ────────────────────────────────────────────────────────
-						"files.autoSave" = false;
+						"files.autoSave" = "off";
 						"files.trimTrailingWhitespace" = false;
 						"files.insertFinalNewline" = false;
 					};
