@@ -81,7 +81,7 @@
 		};
 
 		nekobox = {
-			url = "https://github.com/qr243vbi/nekobox/releases/download/5.10.40/nekobox-5.10.40-linux-amd64.tar.gz";
+			url = "https://github.com/qr243vbi/nekobox/releases/download/5.11.2/nekobox-5.11.2-linux-amd64.tar.gz";
 			flake = false;
 		};
 		nekobox-git = {
