@@ -5,7 +5,10 @@
 	...
 }: {
 	imports = [
-		./${vars.shell}
+		# ./${vars.shell}
+		./bash
+		./fish
+		./zsh
 	];
 	environment.shells = with pkgs; [
 		#vars.shell

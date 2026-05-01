@@ -5,8 +5,9 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.userName} = {pkgs, ...}: {
 			programs.micro = {
+				package = pkgs.micro-full;
 				enable = true;
 				settings = {
 					showchars = "itab=│"; # Показывать отступы как │ (для spaces и tabs; настройте символ по вкусу, например "┊" или "┆")

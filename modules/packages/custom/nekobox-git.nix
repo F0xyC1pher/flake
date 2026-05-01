@@ -11,7 +11,7 @@
 in
 	pkgs.stdenv.mkDerivation {
 		pname = "nekobox-git";
-		version = "5.10.40";
+		version = "git";
 
 		src = inputs.nekobox-git;
 

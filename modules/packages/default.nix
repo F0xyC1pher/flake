@@ -112,7 +112,7 @@ in {
 			vscodium
 			zed-editor
 			jetbrains.clion
-			micro-full
+			# micro-full
 			gemini-cli-bin
 			#gemini-cli
 			#lagrange-tui

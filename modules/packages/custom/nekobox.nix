@@ -5,7 +5,7 @@
 }:
 pkgs.stdenv.mkDerivation {
 	pname = "nekobox";
-	version = "5.10.40";
+	version = "5.11.2";
 
 	src = inputs.nekobox;
 
