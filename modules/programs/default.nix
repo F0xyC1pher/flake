@@ -10,6 +10,7 @@
 		./rofi
 		./scroll
 		./shell
+		./tmux
 		./vscodium
 		./waybar
 		./yazi

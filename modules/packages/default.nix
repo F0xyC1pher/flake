@@ -18,9 +18,9 @@
 		else nvtopPackages.full;
 in {
 	imports = [
-		./overlays.nix
 	];
-	environment.systemPackages = with pkgs; [
+	environment.systemPackages = with pkgs;
+	with inputs; [
 		# 🖥️ Core & System Essentials (Основа системы)
 		glib
 		gvfs
@@ -207,6 +207,10 @@ in {
 		nvidia-vaapi-driver
 		libva-vdpau-driver
 		libvdpau-va-gl
+
+		gpu-screen-recorder
+		gpu-screen-recorder-gtk
+		niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 	];
 	# ++ (
 	# 	if vars.hardware.nvidia.enable

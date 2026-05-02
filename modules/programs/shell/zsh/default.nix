@@ -98,7 +98,7 @@
 
 					tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
 
-					[[ ! -f /home/${vars.userName}/.p10k.zsh ]] || source /home/${vars.userName}/.p10k.zsh
+					[[ ! -f /home/${vars.userName}/.config/.p10k.zsh ]] || source /home/${vars.userName}/.config/zsh/.p10k.zsh
 				'';
 				plugins = with inputs; [
 					{

@@ -10,32 +10,33 @@
 				// syntax: kdl
 				// ────────────── Layer Settings ──────────────
 				layer-rule {
-				    // This is for gslapper; change for other wallpaper tools.
-				    // Find the right namespace by running niri msg layers.
-				    match namespace="^slapper$"
-				    place-within-backdrop true
+					match at-startup=true
+					match namespace="waybar"
+					match namespace="^slapper$"
+					match namespace="^mpvpaper$"
+					match namespace="^awww-daemon$"
+					match namespace="^swww-daemonoverview$"
+					match namespace="^noctalia-overview*"
+					match namespace="^quickshell$"
+					match namespace="dms:blurwallpaper"
+					match namespace="^wallpaper$"
+					place-within-backdrop true
 				}
 				layer-rule {
-				    // This is for mpvpaper; change for other wallpaper tools.
-				    // Find the right namespace by running niri msg layers.
-				    match namespace="^mpvpaper$"
-				    place-within-backdrop true
-				}
-				layer-rule {
-					// This is for awww; change for other wallpaper tools.
-					// Find the right namespace by running niri msg layers.
-				    match namespace="^awww-daemon$"
-				    place-within-backdrop true
-				}
-				layer-rule {
-				    match namespace="^quickshell$"
-				    place-within-backdrop true
-				}
-				layer-rule {
-				    match namespace="dms:blurwallpaper"
-				    place-within-backdrop true
-				}
+					match namespace="rofi"
+					match namespace="fuzzel"
+					match namespace="waybar"
+					match namespace="noctalia-shell"
 
+					shadow {
+						on
+						softness 40
+						spread 10
+						draw-behind-window true
+					}
+
+					place-within-backdrop true
+				}
 			'';
 		};
 	};

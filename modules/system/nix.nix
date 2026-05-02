@@ -1,9 +1,13 @@
-{pkgs, ...}: {
-	# ========== NIX ==========
+{
+	inputs,
+	pkgs,
+	...
+}: {
 	nix = {
 		package = pkgs.lix;
 		settings = {
 			auto-optimise-store = true;
+			builders-use-substitutes = true;
 			warn-dirty = false;
 			eval-cache = true;
 			experimental-features = ["nix-command" "flakes" "flake-self-attrs"];
@@ -21,5 +25,21 @@
 				"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
 			];
 		};
+	};
+	nixpkgs = {
+		config.allowUnfree = true;
+		overlays = with inputs; [
+			# jbr-wayland-nix.overlays.jbrOverlay
+			# (final: prev: {
+			# 		jetbrains = with prev;
+			# 			jetbrains
+			# 			// {
+			# 				vmopts = "-Dawt.toolkit.name=WLToolkit";
+			# 			};
+			# 	})
+			# jbr-wayland-nix.overlays.editorsOverlay
+			niri.overlays.niri
+			firefox-addons.overlays.default
+		];
 	};
 }
