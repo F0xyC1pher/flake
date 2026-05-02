@@ -45,7 +45,7 @@ in {
 			pipewire."10-low-latency" = {
 				"context.properties" = {
 					"default.clock.rate" = rate;
-					"default.clock.allowed-rates" = [44100 48000 88200 96000 192000];
+					"default.clock.allowed-rates" = [192000 96000 88200 48000 44100];
 
 					"default.clock.min-quantum" = minQuantum;
 					"default.clock.quantum" = quantum;

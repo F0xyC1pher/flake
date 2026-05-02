@@ -23,7 +23,8 @@
 				history.size = 10000;
 				# initContent =
 				# 	lib.mkBefore ''
-				# 		[[ ! -f /home/${vars.userName}/zsh/.p10k.zsh ]] || source /home/${vars.userName}/zsh/.p10k.zsh
+				# 		[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
 				# 	'';
 				# typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 				initContent = ''
@@ -98,7 +99,7 @@
 
 					tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
 
-					[[ ! -f /home/${vars.userName}/.config/.p10k.zsh ]] || source /home/${vars.userName}/.config/zsh/.p10k.zsh
+					[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 				'';
 				plugins = with inputs; [
 					{
@@ -143,16 +144,6 @@
 						src = zsh-autopair;
 					}
 				];
-				# zplug = {
-				# 	enable = true;
-				# 	plugins = [
-				# 		{name = "zsh-users/zsh-autosuggestions";} # Simple plugin installation
-				# 		{
-				# 			name = "romkatv/powerlevel10k";
-				# 			tags = ["as:theme" "depth:1"];
-				# 		} # Installations with additional options. For the list of options, please refer to Zplug README.
-				# 	];
-				# };
 			};
 		};
 	};

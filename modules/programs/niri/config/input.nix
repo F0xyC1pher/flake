@@ -12,7 +12,7 @@
 				    keyboard {
 				        xkb {
 				            layout "us,ru"
-				            options "grp:alt_shift_toggle"
+				            options "grp:lalt_lshift_toggle"
 				        }
 				        repeat-delay 200
 				        repeat-rate 40

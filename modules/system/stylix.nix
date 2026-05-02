@@ -7,9 +7,6 @@
 		stylix = {
 			polarity = "dark";
 			targets = {
-				micro.enable = true;
-				# vscode.enable = true;
-				# yazi.enable = true;
 				nixcord.enable = true;
 				fontconfig.enable = true;
 				fish.enable = true;
@@ -17,7 +14,6 @@
 				mangohud.enable = true;
 				# fuzzel.enable = true;
 				anki.enable = true;
-				swaync.enable = true;
 				qt = {
 					enable = true;
 					platform = "qtct";
