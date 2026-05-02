@@ -13,14 +13,14 @@
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
-		./irqbalance.nix
+		# ./irqbalance.nix
 		./locate.nix
-		./logind.nix
+		# ./logind.nix
 		# ./logmein-hamachi.nix
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
-		./playerctld.nix
+		# ./playerctld.nix
 		./resolved.nix
 		./swayidle.nix
 		./swaync.nix
