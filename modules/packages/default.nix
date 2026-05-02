@@ -111,7 +111,7 @@ in {
 			package-version-server
 			vscodium
 			zed-editor
-			jetbrains.clion
+			# jetbrains.clion
 			# micro-full
 			gemini-cli-bin
 			#gemini-cli
@@ -204,14 +204,17 @@ in {
 			discord-gamesdk
 			arrpc
 			rustdesk-flutter
-		]
-		++ (
-			if vars.hardware.nvidia.enable
-			then [
-				nvidia-vaapi-driver
-				libva-vdpau-driver
-				libvdpau-va-gl
-			]
-			else []
-		);
+			nvidia-vaapi-driver
+			libva-vdpau-driver
+			libvdpau-va-gl
+		];
+		# ++ (
+		# 	if vars.hardware.nvidia.enable
+		# 	then [
+		# 		nvidia-vaapi-driver
+		# 		libva-vdpau-driver
+		# 		libvdpau-va-gl
+		# 	]
+		# 	else []
+		# );
 }

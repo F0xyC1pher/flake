@@ -35,7 +35,7 @@
 					NoDefaultBookmarks = true;
 					# Access Restrictions
 					BlockAboutConfig = false;
-					BlockAboutProfiles = true;
+					BlockAboutProfiles = false;
 					BlockAboutSupport = false;
 
 					# UI and Behavior

@@ -12,53 +12,22 @@
 	};
 	security.pam.loginLimits = [
 		{
-			domain = "@audio";
-			type = "soft";
-			item = "rtprio";
-			value = "98";
-		}
-		{
-			domain = "@audio";
-			type = "hard";
-			item = "rtprio";
-			value = "98";
-		}
-		{
-			domain = "@audio";
-			type = "soft";
-			item = "memlock";
-			value = "unlimited";
-		}
-		{
-			domain = "@audio";
-			type = "hard";
-			item = "memlock";
-			value = "unlimited";
-		}
-		{
-			domain = "@audio";
-			type = "soft";
-			item = "nice";
-			value = "-11";
-		}
-		{
-			domain = "@audio";
-			type = "hard";
-			item = "nice";
-			value = "-11";
-		}
-		# Для всех пользователей
-		{
 			domain = "*";
 			type = "soft";
 			item = "nofile";
-			value = "65536";
+			value = "1048576";
 		}
 		{
 			domain = "*";
 			type = "hard";
 			item = "nofile";
-			value = "65536";
+			value = "1048576";
+		}
+		{
+			domain = "*";
+			type = "soft";
+			item = "nice";
+			value = "-20";
 		}
 	];
 }

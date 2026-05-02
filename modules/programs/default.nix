@@ -13,6 +13,7 @@
 		./vscodium
 		./waybar
 		./yazi
+		./zen-browser
 		./appimage.nix
 		./gamemode.nix
 		./home.nix
