@@ -8,9 +8,11 @@
 		users.${vars.userName} = {...}: {
 			programs.git = {
 				enable = true;
-				userName = "Foxy_Chipher";
-				userEmail = "ageev-eldar@mail.ru";
-				extraConfig = {
+				settings = {
+					user = {
+						name = "Foxy_Chipher";
+						email = "ageev-eldar@mail.ru";
+					};
 					init.defaultBranch = "master";
 					# pull.rebase = true;
 				};
