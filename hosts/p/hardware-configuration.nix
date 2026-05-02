@@ -19,8 +19,6 @@
 		device = "/dev/disk/by-uuid/741b96c0-c372-4136-adca-5c72b78370ca";
 		fsType = "btrfs";
 		options = ["subvol=@"];
-		# В systemd-initrd корень монтируется автоматически,
-		# но явное указание не повредит.
 	};
 
 	fileSystems."/home" = {

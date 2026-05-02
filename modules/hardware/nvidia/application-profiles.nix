@@ -1,36 +1,22 @@
-{...}: {
-	environment = {
-		etc = {
-			"nvidia/nvidia-application-profiles-rc.d/50-niri-limit-buffer-pool.json" = {
+{
+	vars,
+	inputs,
+	...
+}: {
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.userName} = {...}: {
+			home.file.".nv/nvidia-application-profiles-rc" = {
 				text = ''
 					{
 						"rules": [
 							{
-								"profile": "Limit Free Buffer Pool On Wayland Compositors"
+								"profile": "Limit_Free_Buffer"
 								"pattern": {
 									"feature": "procname",
 									"matches": "niri"
 								},
 							}
-						],
-						"profiles": [
-							{
-								"name": "Limit Free Buffer Pool On Wayland Compositors",
-								"settings": [
-									{
-										"key": "GLVidHeapReuseRatio",
-										"value": 0
-									}
-								]
-							}
-						]
-					}
-				'';
-			};
-			"nvidia/nvidia-application-profiles-rc.d/50-gl-threaded-optimizations-bug-fix.json" = {
-				text = ''
-					{
-						"rules": [
 							{
 								"profile": "openGL_fix"
 								"pattern": {
@@ -40,6 +26,15 @@
 							}
 						],
 						"profiles": [
+							{
+								"name": "Limit_Free_Buffer",
+								"settings": [
+									{
+										"key": "GLVidHeapReuseRatio",
+										"value": 0
+									}
+								]
+							}
 							{
 								"name": "openGL_fix",
 								"settings": [

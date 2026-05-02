@@ -3,12 +3,6 @@
 	vars,
 	...
 }: {
-	imports = [
-		./initLua.nix
-		./keymap.nix
-		./plugins.nix
-		./settings.nix
-	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {...}: {

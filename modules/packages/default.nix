@@ -42,7 +42,6 @@ in {
 		dnsutils
 		socat
 		libmtp
-		# mtpfs
 
 		# 📊 Monitoring & Resources (Мониторинг и анализ)
 		btoP
@@ -51,7 +50,7 @@ in {
 		fastfetch
 		powertop
 		duf
-		dua # space anal
+		dua
 		disktui
 		diskscan
 		diskus
@@ -59,22 +58,21 @@ in {
 		exiftool
 
 		# ⚡ Performance & Kernel (Производительность и тюнинг)
-		tuna
-		schedtool
-		scx.cscheds
-		cpufrequtils
-		irqbalance
-		numactl
+		# tuna
+		# schedtool
+		# scx.cscheds
+		# cpufrequtils
+		# irqbalance
+		# numactl
 		mesa-demos
 
 		# 🛠️ Terminal Tools & CLI (Терминальные утилиты)
-		zellij # Терминальный мультиплексор нового поколения
 		yazi
 		eza
 		bat
 		bat-extras.core
 		fd
-		rgrc
+		# rgrc
 		grc
 		ripgrep-all
 		fzf
@@ -88,9 +86,9 @@ in {
 		wget
 		aria2
 		lolcat
-		clolcat
-		dotacat
-		blahaj # embrace my femboy gayness
+		# clolcat
+		# dotacat
+		# blahaj
 		wayneko
 
 		# 📂 Disk & Filesystem (Диски и ФС)

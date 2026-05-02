@@ -12,7 +12,6 @@
 				fish.enable = true;
 				nixos-icons.enable = true;
 				mangohud.enable = true;
-				# fuzzel.enable = true;
 				anki.enable = true;
 				qt = {
 					enable = true;
