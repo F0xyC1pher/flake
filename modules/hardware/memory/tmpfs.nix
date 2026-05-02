@@ -1,4 +1,4 @@
 {...}: {
 	boot.tmp.useTmpfs = true;
-	boot.tmp.tmpfsSize = "25%";
+	boot.tmp.tmpfsSize = "2G";
 }

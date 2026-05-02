@@ -31,8 +31,8 @@
 					setopt automenu
 					setopt nobeep
 
-					export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-					export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
+					# export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+					# export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
 
 					#typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
@@ -98,7 +98,7 @@
 
 					tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
 
-					[[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
+					[[ ! -f /home/${vars.userName}/.p10k.zsh ]] || source /home/${vars.userName}/.p10k.zsh
 				'';
 				plugins = with inputs; [
 					{

@@ -11,6 +11,33 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		nur.url = "github:nix-community/NUR";
+		nix-gaming.url = "github:fufexan/nix-gaming";
+		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+		lsfg-vk-flake = {
+			url = "github:pabloaul/lsfg-vk-flake/main";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		noctalia = {
+			url = "github:noctalia-dev/noctalia-shell";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		betterfox = {
+			url = "github:yokoffing/Betterfox";
+			flake = false;
+		};
+
+		vimium-options.url = "github:uimataso/vimium-nixos";
+
+		lunar-client.url = "github:clonidine/lunar-client-flake";
+
+		zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+		zapret2.url = "github:dmfrpro/zapret2-flake";
+		tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
+
 		sops-nix.url = "github:Mic92/sops-nix";
 		sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -18,13 +45,18 @@
 			url = "github:nix-community/stylix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		nix-cursors = {
+			url = "github:LilleAila/nix-cursors";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 		nixcord.url = "github:FlameFlag/nixcord";
 
 		niri = {
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
+		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
 		scroll-flake = {
 			url = "github:Diax170/scroll-flake";
@@ -44,8 +76,12 @@
 		};
 
 		zen-browser = {
-			url = "github:youwen5/zen-browser-flake";
-			inputs.nixpkgs.follows = "nixpkgs";
+			url = "github:0xc000022070/zen-browser-flake";
+			inputs = {
+				# IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
+				nixpkgs.follows = "nixpkgs";
+				home-manager.follows = "home-manager";
+			};
 		};
 		firefox-addons = {
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -56,7 +92,65 @@
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nix-ld = {
+			url = "github:Mic92/nix-ld";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
+		yazi-plugins = {
+			url = "github:yazi-rs/plugins";
+			flake = false;
+		};
+
+		powerlevel10k = {
+			url = "github:romkatv/powerlevel10k";
+			flake = false;
+		};
+
+		zsh-autosuggestions = {
+			url = "github:zsh-users/zsh-autosuggestions";
+			flake = false;
+		};
+
+		zsh-syntax-highlighting = {
+			url = "github:zsh-users/zsh-syntax-highlighting";
+			flake = false;
+		};
+
+		fzf-tab = {
+			url = "github:Aloxaf/fzf-tab";
+			flake = false;
+		};
+
+		fzf-zsh-completions = {
+			url = "github:chitoku-k/fzf-zsh-completions";
+			flake = false;
+		};
+
+		zsh-history-substring-search = {
+			url = "github:zsh-users/zsh-history-substring-search";
+			flake = false;
+		};
+
+		zsh-auto-notify = {
+			url = "github:MichaelAquilina/zsh-auto-notify";
+			flake = false;
+		};
+
+		zsh-autopair = {
+			url = "github:hlissner/zsh-autopair";
+			flake = false;
+		};
+
+		tmux-tilish = {
+			url = "github:farzadmf/tmux-tilish";
+			flake = false;
+		};
+
+		tmux-continuum = {
+			url = "github:tmux-plugins/tmux-continuum";
+			flake = false;
+		};
 		# rmpc = {
 		# 	url = "github:mierak/rmpc";
 		# 	inputs.nixpkgs.follows = "nixpkgs";
@@ -124,6 +218,7 @@
 		niri,
 		scroll-flake,
 		nixcord,
+		zen-browser,
 		# jbr-wayland-nix,
 		# awww,
 		firefox-addons,
@@ -230,6 +325,7 @@
 							sharedModules = [
 								sops-nix.homeManagerModules.sops
 								nixcord.homeModules.nixcord
+								zen-browser.homeModules.twilight
 							];
 							users.${targetUser} = {...}: {
 								home.username = "${targetUser}";
