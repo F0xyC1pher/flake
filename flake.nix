@@ -11,7 +11,12 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		nur.url = "github:nix-community/NUR";
+		flake-utils.url = "github:numtide/flake-utils";
+
+		nur = {
+			url = "github:nix-community/NUR";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 		nix-gaming.url = "github:fufexan/nix-gaming";
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
@@ -216,6 +221,7 @@
 		sops-nix,
 		stylix,
 		niri,
+		nur,
 		scroll-flake,
 		nixcord,
 		zen-browser,
@@ -299,7 +305,7 @@
 					inherit inputs;
 					vars = hostVars; # Передаем сформированный объект
 				};
-				modules = [
+				modules = with inputs; [
 					./modules
 					./hosts/${hostName}
 					# inputs.hardware-configuration.outPath
@@ -308,6 +314,7 @@
 					niri.nixosModules.niri
 					scroll-flake.nixosModules.default
 					sops-nix.nixosModules.sops
+					nur.modules.nixos.default
 					(
 						{...}: {
 							nixpkgs.overlays = [overlay];
@@ -326,6 +333,8 @@
 								sops-nix.homeManagerModules.sops
 								nixcord.homeModules.nixcord
 								zen-browser.homeModules.twilight
+								noctalia.homeModules.default
+								system76-scheduler-niri.homeModules.default
 							];
 							users.${targetUser} = {...}: {
 								home.username = "${targetUser}";

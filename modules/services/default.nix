@@ -6,9 +6,9 @@
 		./cliphist.nix
 		./cups.nix
 		./dbus.nix
-		# ./dnscrypt-proxy.nix
+		./dnscrypt-proxy.nix
 		./dropbox.nix
-		./earlyloom.nix
+		# ./earlyloom.nix
 		./envfs.nix
 		./gnome.nix
 		./greetd.nix
@@ -20,7 +20,11 @@
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
+		./playerctld.nix
+		./resolved.nix
+		./swayidle.nix
 		./swaync.nix
+		./system76-scheduler-niri.nix
 		./udev.nix
 		./upower.nix
 		./userborn.nix
