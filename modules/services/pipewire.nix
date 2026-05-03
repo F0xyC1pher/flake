@@ -46,12 +46,12 @@ in {
 			pipewire."10-low-latency" = {
 				"context.properties" = {
 					"default.clock.rate" = rate;
-					"default.clock.allowed-rates" = [192000 96000 88200 48000 44100];
+					"default.clock.allowed-rates" = [192000 176400 96000 88200 48000 44100];
 
 					"default.clock.min-quantum" = minQuantum;
 					"default.clock.quantum" = quantum;
 					"default.clock.max-quantum" = maxQuantum;
-					"default.clock.quantum-limit" = 4096; # важно для стабильности
+					"default.clock.quantum-limit" = 4096;
 
 					"clock.power-of-two-quantum" = false;
 
@@ -70,12 +70,12 @@ in {
 					}
 				];
 			};
-			pipewire."99-rnnoise-pro" = {
+			pipewire."99-rnnoise" = {
 				"context.modules" = [
 					{
 						name = "libpipewire-module-filter-chain";
 						args = {
-							"node.description" = "🎤 RNNoise Pro | Noise Suppressor";
+							"node.description" = "RNNoise | Noise Suppressor";
 							"media.name" = "RNNoise Professional";
 
 							"filter.graph" = {
@@ -95,7 +95,7 @@ in {
 							};
 
 							"capture.props" = {
-								"node.name" = "capture.rnnoise_pro";
+								"node.name" = "capture.rnnoise";
 								"node.passive" = true;
 								# "audio.rate" = 48000;
 								"audio.channels" = 1;
@@ -105,23 +105,20 @@ in {
 							};
 
 							"playback.props" = {
-								"node.name" = "rnnoise_pro";
+								"node.name" = "rnnoise";
 								"media.class" = "Audio/Source";
 								# "audio.rate" = 48000;
 								"audio.channels" = 1;
 								"audio.position" = ["MONO"];
 
-								"node.nick" = "🎤 RNNoise Pro";
-								"node.description" = "AI Noise Cancelling Microphone";
-
-								# Высокий приоритет для сессии
+								"node.nick" = "RNNoise";
+								"node.description" = "Noise Cancelling";
 								"priority.driver" = 2000;
 								"priority.session" = 2000;
 								"node.priority" = 2000;
 								"node.group" = "audio-filter";
 
-								# Твои "Pro" метаданные
-								"application.name" = "PipeWire RNNoise Processor";
+								"application.name" = "PipeWire RNNoise";
 								"node.icon-name" = "microphone-sensitivity-high";
 							};
 						};
