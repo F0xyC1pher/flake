@@ -2,12 +2,7 @@
 	inputs,
 	vars,
 	...
-}:
-# let
-# 	waybarConfig = builtins.fromJSON (builtins.readFile ./config.json);
-# 	waybarCss = builtins.readFile ./style.css;
-# in
-{
+}: {
 	imports = [
 		./modules
 		./style.nix

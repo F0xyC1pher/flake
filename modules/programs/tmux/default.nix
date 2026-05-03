@@ -102,17 +102,6 @@ in {
 
 					set -g popup-border-lines "rounded"
 
-					set -g popup-style "fg=#${config.lib.stylix.colors.base0B}"
-					set -g popup-border-style "fg=#${config.lib.stylix.colors.base02}"
-					set -g pane-border-style "fg=#${config.lib.stylix.colors.base02}"
-					set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base03}"
-					set -g mode-style "bg=#${config.lib.stylix.colors.base00} fg=yellow"
-					set -g status-style bg=#${config.lib.stylix.colors.base00}
-
-					set -g @mode_indicator_prefix_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color13'
-					set -g @mode_indicator_copy_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color3'
-					set -g @mode_indicator_sync_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color14'
-					set -g @mode_indicator_empty_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color4'
 				'';
 			};
 		};

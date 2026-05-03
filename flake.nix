@@ -311,7 +311,7 @@
 					./hosts/${hostName}
 					# inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager
-					stylix.nixosModules.stylix
+					# stylix.nixosModules.stylix
 					niri.nixosModules.niri
 					scroll-flake.nixosModules.default
 					sops-nix.nixosModules.sops

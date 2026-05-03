@@ -15,15 +15,15 @@
 		./gvfs.nix
 		./irqbalance.nix
 		./locate.nix
-		./logind.nix
+		# ./logind.nix
 		# ./logmein-hamachi.nix
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
 		./playerctld.nix
 		./resolved.nix
+		./seatd.nix
 		./swayidle.nix
-		./swaync.nix
 		# ./system76-scheduler-niri.nix
 		./udev.nix
 		./upower.nix
