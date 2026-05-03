@@ -1,7 +1,7 @@
 {...}: {
 	imports = [
 		./swap.nix
-		# ./tmpfs.nix
+		./tmpfs.nix
 		./zram.nix
 		./zswap.nix
 	];
