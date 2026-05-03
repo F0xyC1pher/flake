@@ -31,6 +31,7 @@ in {
 
 	services.pipewire = {
 		enable = true;
+		audio.enable = true;
 		pulse.enable = true;
 		wireplumber.enable = true;
 		jack.enable = true;
@@ -39,7 +40,7 @@ in {
 			enable = true;
 			support32Bit = true;
 		};
-
+		extraLadspaPackages = [pkgs.rnnoise-plugin pkgs.ladspaPlugins];
 		extraConfig = {
 			# ==================== ГЛОБАЛЬНЫЕ НАСТРОЙКИ PIPEWIRE ====================
 			pipewire."10-low-latency" = {
@@ -52,9 +53,9 @@ in {
 					"default.clock.max-quantum" = maxQuantum;
 					"default.clock.quantum-limit" = 4096; # важно для стабильности
 
-					"clock.power-of-two-quantum" = true;
+					"clock.power-of-two-quantum" = false;
 
-					"log.level" = 0;
+					# "log.level" = 0;
 				};
 
 				"context.modules" = [
@@ -82,8 +83,7 @@ in {
 									{
 										type = "ladspa";
 										name = "rnnoise";
-										# Путь к плагину через переменную pkgs
-										plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+										plugin = "librnnoise_ladspa";
 										label = "noise_suppressor_mono";
 										control = {
 											"VAD Threshold (%)" = 95.0;

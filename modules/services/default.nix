@@ -9,7 +9,7 @@
 		./dnscrypt-proxy.nix
 		./dropbox.nix
 		# ./earlyloom.nix
-		./envfs.nix
+		# ./envfs.nix
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
