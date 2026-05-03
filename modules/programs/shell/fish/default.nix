@@ -7,7 +7,9 @@
 		enable = true;
 		useBabelfish = true;
 	};
-
+	imports = [
+		./theme.nix
+	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.userName} = {pkgs, ...}: {

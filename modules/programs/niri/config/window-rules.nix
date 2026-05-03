@@ -44,13 +44,8 @@
 						}
 						window-rule {
 							match app-id="codium"
+							// opacity 0.6
 							background-effect {
-								blur {
-								passes 3
-									offset 3
-									noise 0.02
-									saturation 1.5
-								}
 								blur true
 								xray false
 							}

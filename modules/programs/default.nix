@@ -1,17 +1,24 @@
 {...}: {
 	imports = [
+		./cursor
 		./firefox
+		./fonts
 		./fuzzel
+		./gtk
 		# ./hyprland
 		./kitty
+		./mangohud
 		./micro
 		./niri
 		./nixcord
+		./qt
 		./rmpc
 		./rofi
 		# ./scroll
 		./shell
+		./swaync
 		./tmux
+		./tty
 		./vscodium
 		./waybar
 		./yazi
@@ -20,7 +27,6 @@
 		./gamemode.nix
 		./git.nix
 		./home.nix
-		./mangohud.nix
 		./mpv.nix
 		./nh.nix
 		./obs-studio.nix

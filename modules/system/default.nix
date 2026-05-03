@@ -1,7 +1,6 @@
 {...}: {
 	imports = [
 		./etc.nix
-		./fonts.nix
 		./locale.nix
 		./mime.nix
 		./network.nix
@@ -10,7 +9,7 @@
 		./power.nix
 		./security.nix
 		./sops.nix
-		./stylix.nix
+		# ./stylix.nix
 		./systemd.nix
 		./users.nix
 		./variables.nix
