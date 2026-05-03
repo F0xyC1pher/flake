@@ -5,27 +5,18 @@
 	...
 }: let
 	rate = vars.hardware.sound.rate; # твоя переменная: 48000, 96000, 192000 и т.д.
+	quantumMap = {
+		"44100" = 512;
+		"48000" = 512;
+		"88200" = 1024;
+		"96000" = 1024;
+		"176400" = 2048;
+		"192000" = 2048;
+	};
+	quantum = quantumMap."${toString rate}" or 1024;
 
-	baseRate = 48000;
-	baseQuantum = 256; # ~5.33 мс при 48 кГц — хороший баланс
-
-	rawQuantum = builtins.ceil (baseQuantum * rate / baseRate);
-
-	quantum =
-		if rawQuantum <= 64
-		then 64
-		else if rawQuantum <= 128
-		then 128
-		else if rawQuantum <= 256
-		then 256
-		else if rawQuantum <= 512
-		then 512
-		else if rawQuantum <= 1024
-		then 1024
-		else 2048;
-
-	minQuantum = quantum / 2;
-	maxQuantum = quantum * 4;
+	minQuantum = quantum / 4;
+	maxQuantum = quantum;
 in {
 	security.rtkit.enable = lib.mkDefault true;
 
@@ -40,7 +31,10 @@ in {
 			enable = true;
 			support32Bit = true;
 		};
-		extraLadspaPackages = [pkgs.rnnoise-plugin pkgs.ladspaPlugins];
+		extraLadspaPackages = [
+			pkgs.rnnoise-plugin
+			pkgs.ladspaPlugins
+		];
 		extraConfig = {
 			# ==================== ГЛОБАЛЬНЫЕ НАСТРОЙКИ PIPEWIRE ====================
 			pipewire."10-low-latency" = {
@@ -62,8 +56,8 @@ in {
 					{
 						name = "libpipewire-module-rtkit";
 						args = {
-							"nice.level" = -11;
-							"rt.prio" = 88;
+							"nice.level" = -18;
+							"rt.prio" = 89;
 							"rt.time.soft" = 200000;
 							"rt.time.hard" = 200000;
 						};
@@ -86,8 +80,8 @@ in {
 										plugin = "librnnoise_ladspa";
 										label = "noise_suppressor_mono";
 										control = {
-											"VAD Threshold (%)" = 95.0;
-											"VAD Grace Period (ms)" = 250;
+											"VAD Threshold (%)" = 90.0;
+											"VAD Grace Period (ms)" = 200;
 											"Retroactive VAD Grace (ms)" = 30;
 										};
 									}
@@ -97,7 +91,7 @@ in {
 							"capture.props" = {
 								"node.name" = "capture.rnnoise";
 								"node.passive" = true;
-								# "audio.rate" = 48000;
+								"audio.rate" = 48000;
 								"audio.channels" = 1;
 								"audio.position" = ["MONO"];
 								"node.autoconnect" = true;
@@ -107,7 +101,7 @@ in {
 							"playback.props" = {
 								"node.name" = "rnnoise";
 								"media.class" = "Audio/Source";
-								# "audio.rate" = 48000;
+								"audio.rate" = 48000;
 								"audio.channels" = 1;
 								"audio.position" = ["MONO"];
 
@@ -166,11 +160,12 @@ in {
 					actions = {
 						update-props = {
 							"api.alsa.period-size" = minQuantum;
-							"api.alsa.period-num" = 2;
+							"api.alsa.period-num" = 3;
 							"session.suspend-timeout-seconds" = 0;
 							"device.suspend-timeout-seconds" = 0;
 							"audio.format" = "FLOAT32LE";
-							"resample.quality" = 5;
+							# "audio.format" = "S32LE";
+							"resample.quality" = 10;
 						};
 					};
 				}
