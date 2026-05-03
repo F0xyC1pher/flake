@@ -36,7 +36,7 @@ in {
 			pkgs.ladspaPlugins
 		];
 		extraConfig = {
-			# ==================== ГЛОБАЛЬНЫЕ НАСТРОЙКИ PIPEWIRE ====================
+			# ==================== глобальный конфиг пипеваре ====================
 			pipewire."10-low-latency" = {
 				"context.properties" = {
 					"default.clock.rate" = rate;
@@ -64,6 +64,7 @@ in {
 					}
 				];
 			};
+			# ==================== пипеваре глушение пердежа микрофона ====================
 			pipewire."99-rnnoise" = {
 				"context.modules" = [
 					{
@@ -119,25 +120,18 @@ in {
 					}
 				];
 			};
-			# ==================== ОПТИМИЗАЦИЯ ДЛЯ JACK ====================
+			# ==================== дрочка ====================
 			jack."10-low-latency" = {
 				"jack.properties" = {
-					# Основной buffer size (quantum) для всех JACK-клиентов
 					"jack.default-quantum" = quantum;
-
-					# Фиксируем quantum — очень важно для стабильности JACK-приложений
 					"node.lock-quantum" = true;
-
-					# Если хочешь жёстко зафиксировать (некоторые DAW любят это)
 					# "node.force-quantum" = quantum;
-
-					# Дополнительные полезные опции
-					"jack.show-monitor" = true; # показывает монитор в qpwgraph / catia
+					"jack.show-monitor" = true;
 					"jack.merge-monitor" = false;
 				};
 			};
 
-			# ==================== PIPEWIRE-PULSE ====================
+			# ==================== пипеваре-рельсотрон ====================
 			pipewire-pulse."10-low-latency" = {
 				"pulse.properties" = {
 					"pulse.min.req" = "${toString minQuantum}/${toString rate}";
@@ -152,7 +146,7 @@ in {
 			};
 		};
 
-		# ==================== WIREPLUMBER (ALSA) ====================
+		# ==================== марио (сальса) ====================
 		wireplumber.extraConfig."10-low-latency" = {
 			"monitor.alsa.rules" = [
 				{

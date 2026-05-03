@@ -198,7 +198,8 @@ in {
 		winetricks
 
 		# 📨 Communication (Мессенджеры)
-		ayugram-desktop
+		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+
 		discordo
 		discord-gamesdk
 		arrpc
