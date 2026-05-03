@@ -8,6 +8,8 @@
 
 		sound = {
 			rate = 192000;
+			format.prefix = "FLOAT"; # FLOAT S
+			format.name = 32;
 		};
 
 		nvidia = {
