@@ -53,7 +53,7 @@ in {
 					"default.clock.max-quantum" = maxQuantum;
 					"default.clock.quantum-limit" = 4096;
 
-					"clock.power-of-two-quantum" = false;
+					"clock.power-of-two-quantum" = true;
 
 					# "log.level" = 0;
 				};

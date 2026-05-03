@@ -4,14 +4,19 @@
 	...
 }: {
 	nix = {
-		package = pkgs.lix;
+		# package = pkgs.lix;
+		package = pkgs.nix;
 		settings = {
 			auto-optimise-store = true;
 			builders-use-substitutes = true;
 			warn-dirty = false;
 			eval-cache = true;
-			experimental-features = ["nix-command" "flakes" "flake-self-attrs"];
-			extra-deprecated-features = ["url-literals"];
+			experimental-features = [
+				"nix-command"
+				"flakes"
+				# "flake-self-attrs"
+			];
+			# extra-deprecated-features = ["url-literals"];
 			substituters = [
 				"https://cache.nixos.org/"
 				"https://nix-community.cachix.org"
@@ -39,7 +44,7 @@
 			# 	})
 			# jbr-wayland-nix.overlays.editorsOverlay
 			niri.overlays.niri
-			firefox-addons.overlays.default
+			nix-firefox-addons.overlays.default
 		];
 	};
 }
