@@ -9,11 +9,11 @@
 		./dnscrypt-proxy.nix
 		./dropbox.nix
 		./earlyloom.nix
-		# ./envfs.nix
+		./envfs.nix
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
-		# ./irqbalance.nix
+		./irqbalance.nix
 		./locate.nix
 		./logind.nix
 		# ./logmein-hamachi.nix
@@ -24,7 +24,7 @@
 		./resolved.nix
 		./swayidle.nix
 		./swaync.nix
-		./system76-scheduler-niri.nix
+		# ./system76-scheduler-niri.nix
 		./udev.nix
 		./upower.nix
 		./userborn.nix

@@ -45,7 +45,7 @@ in {
 					"default.clock.min-quantum" = minQuantum;
 					"default.clock.quantum" = quantum;
 					"default.clock.max-quantum" = maxQuantum;
-					"default.clock.quantum-limit" = 4096;
+					"default.clock.quantum-limit" = 8192;
 
 					"clock.power-of-two-quantum" = true;
 
