@@ -5,6 +5,9 @@
 	vars,
 	...
 }: {
+	imports = [
+		./tmp.nix
+	];
 	boot = {
 		#	==========	KERNEL	==========
 		kernelPackages = pkgs.linuxPackages_xanmod_latest;
