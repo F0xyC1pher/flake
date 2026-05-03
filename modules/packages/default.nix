@@ -129,6 +129,8 @@ in {
 		rnnoise-plugin
 		playerctl
 		mpdris2
+		pipewire
+		wireplumber
 
 		# 🎵 Media & Streaming (Медиа контент)
 		spotify
