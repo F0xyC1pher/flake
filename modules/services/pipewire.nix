@@ -4,7 +4,7 @@
 	pkgs,
 	...
 }: let
-	rate = vars.hardware.sound.rate; # твоя переменная: 48000, 96000, 192000 и т.д.
+	rate = vars.hardware.sound.rate;
 	quantumMap = {
 		"44100" = 512;
 		"48000" = 512;
