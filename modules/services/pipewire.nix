@@ -160,7 +160,8 @@ in {
 							"device.suspend-timeout-seconds" = 0;
 							# "audio.format" = "FLOAT32LE";
 							# "audio.format" = "S32LE";
-							"audio.format" = "S24LE";
+							# "audio.format" = "S24LE";
+							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.name}LE";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};

@@ -34,7 +34,7 @@
 				{
 					type = "pipewire";
 					name = "PipeWire Output";
-					format = "48000:32:2";
+					format = "${toString vars.hardware.sound.rate}:${toString vars.hardware.sound.format.name}:2";
 					# mixer_type = "software";
 					auto_resample = "no";
 					buffer_time = "50000";
