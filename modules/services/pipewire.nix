@@ -156,16 +156,32 @@ in {
 		wireplumber.extraConfig."10-low-latency" = {
 			"monitor.alsa.rules" = [
 				{
+					# правило для наушников
 					matches = [{"device.name" = "~alsa_card.*";}];
 					actions = {
 						update-props = {
-							"api.alsa.period-size" = minQuantum;
+							"api.alsa.period-size" = quantum / 2;
 							"api.alsa.period-num" = 3;
 							"session.suspend-timeout-seconds" = 0;
 							"device.suspend-timeout-seconds" = 0;
-							"audio.format" = "FLOAT32LE";
+							# "audio.format" = "FLOAT32LE";
 							# "audio.format" = "S32LE";
+							"audio.format" = "S24LE";
 							"resample.quality" = 10;
+							"audio.rate" = rate;
+						};
+					};
+				}
+				{
+					# правило для USB микрофона
+					matches = [{"device.name" = "~alsa_card.usb-Audio*";}];
+					actions = {
+						update-props = {
+							"audio.rate" = 48000;
+							"audio.format" = "S16LE";
+							"api.alsa.period-size" = 1024;
+							"api.alsa.period-num" = 3;
+							"api.alsa.headroom" = 512;
 						};
 					};
 				}
