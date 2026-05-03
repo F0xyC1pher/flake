@@ -1,9 +1,9 @@
 {...}: {
 	imports = [
-		./memory
+		./boot
 		./nvidia
+		./swap
 		./bluetooth.nix
-		./boot.nix
 		./parallels.nix
 		./redist.nix
 		./ssd.nix
