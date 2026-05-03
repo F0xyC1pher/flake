@@ -8,19 +8,19 @@
 		./dbus.nix
 		./dnscrypt-proxy.nix
 		./dropbox.nix
-		# ./earlyloom.nix
+		./earlyloom.nix
 		# ./envfs.nix
 		./gnome.nix
 		./greetd.nix
 		./gvfs.nix
 		# ./irqbalance.nix
 		./locate.nix
-		# ./logind.nix
+		./logind.nix
 		# ./logmein-hamachi.nix
 		./mpd.nix
 		./openssh.nix
 		./pipewire.nix
-		# ./playerctld.nix
+		./playerctld.nix
 		./resolved.nix
 		./swayidle.nix
 		./swaync.nix

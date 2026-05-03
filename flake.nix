@@ -92,7 +92,7 @@
 			url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -228,6 +228,7 @@
 		# jbr-wayland-nix,
 		# awww,
 		firefox-addons,
+		nix-firefox-addons,
 		# rmpc,
 		freesmlauncher,
 		rofi-polkit-agent,
