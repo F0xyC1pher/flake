@@ -10,7 +10,7 @@
 				enable = true;
 				settings = {
 					user = {
-						name = "Foxy_Chipher";
+						name = "FoxyChipher";
 						email = "ageev-eldar@mail.ru";
 					};
 					init.defaultBranch = "master";
