@@ -6,8 +6,8 @@
 	imports = [
 		./extensions.nix
 		./policies.nix
-		./settings.nix
 		./userChrome.nix
+		./userContent.nix
 		./userJS.nix
 	];
 

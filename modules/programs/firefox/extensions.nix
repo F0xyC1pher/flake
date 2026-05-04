@@ -11,6 +11,7 @@
 					extensions = {
 						force = true;
 						packages = with pkgs.firefoxAddons; [
+							russian-ru-language-pack
 							ublock-origin
 							sponsorblock
 							return-youtube-dislikes
@@ -18,6 +19,10 @@
 							violentmonkey
 							keepassxc-browser
 							sidebery
+							tap-to-tab
+							s3_translator
+							firefox-color
+							horizontal-scroll
 						];
 					};
 				};
