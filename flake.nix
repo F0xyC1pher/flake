@@ -308,6 +308,7 @@
 				};
 				modules = with inputs; [
 					./modules
+					./users
 					./hosts/${hostName}
 					# inputs.hardware-configuration.outPath
 					home-manager.nixosModules.home-manager

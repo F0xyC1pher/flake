@@ -55,9 +55,9 @@
 			};
 
 			defaultFonts = {
-				monospace = [vars.fontName "Noto Sans Mono"];
-				sansSerif = [vars.fontName "Noto Sans"];
-				serif = [vars.fontName "Noto Serif"];
+				monospace = [vars.fontName];
+				sansSerif = [vars.fontName];
+				serif = [vars.fontName];
 				emoji = ["Noto Color Emoji"];
 			};
 		};

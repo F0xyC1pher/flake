@@ -23,11 +23,11 @@
 			item = "nofile";
 			value = "1048576";
 		}
-		{
-			domain = "*";
-			type = "soft";
-			item = "nice";
-			value = "-20";
-		}
+		# {
+		# 	domain = "*";
+		# 	type = "soft";
+		# 	item = "nice";
+		# 	value = "-20";
+		# }
 	];
 }
