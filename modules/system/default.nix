@@ -6,12 +6,9 @@
 		./network.nix
 		./nix-init.nix
 		./nix.nix
-		./power.nix
 		./security.nix
 		./sops.nix
-		# ./stylix.nix
-		./systemd.nix
-		./users.nix
+		# ./systemd.nix
 		./variables.nix
 		./xdg.nix
 	];
