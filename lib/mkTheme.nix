@@ -5,26 +5,28 @@
 #
 # Themes live in subdirectories of this folder, auto-discovered by name:
 #
-#   lib/themes/<name>/colors.nix   — raw palette (any color names)
-#   lib/themes/<name>/default.nix  — role tree (locked contract)
+#   modules/theming/<name>/palette.nix   — chaos zone (any color names)
+#   modules/theming/<name>/default.nix   — role tree (locked contract)
 #
 # Pipeline:
-#   colors.nix ──┐
-#                ├──▶ recursiveUpdate ◀── colorOverrides
-#                ▼
-#           (effective colors)
-#                │
-#                ▼
-#           default.nix { colors = ... }
-#                │
-#                ▼
-#           (mapped role tree) ──▶ recursiveUpdate ◀── roleOverrides
-#                                         │
-#                                         ▼
-#                                     final theme
+#   palette.nix ──┐
+#                 ├──▶ recursiveUpdate ◀── colorOverrides
+#                 ▼
+#            (effective colors)
+#                 │
+#                 ▼
+#            default.nix { colors = ... }
+#                 │
+#                 ▼
+#            (mapped role tree) ──▶ recursiveUpdate ◀── roleOverrides
+#                                          │
+#                                          ▼
+#                                      final theme
 {lib}: let
-	themesDir = ./.;
+	themesDir = ../modules/themes;
 
+	# Auto-discover every subdirectory that contains both palette.nix and
+	# default.nix. Folder name = theme name. No central registry to maintain.
 	entries = builtins.readDir themesDir;
 	themeNames =
 		lib.filter
@@ -44,14 +46,14 @@
 in {
 	inherit themes themeNames;
 
-	# resolve { name, colorOverrides?, roleOverrides? } → { colors, theme }
+	# resolve { name, colorOverrides, roleOverrides } → { colors, theme }
 	resolve = {
 		name,
 		colorOverrides ? {},
 		roleOverrides ? {},
 	}: let
 		selected = themes.${name} or
-      (throw "theming: unknown theme \"${name}\". Available: ${lib.concatStringsSep ", " themeNames}");
+        (throw "theming: unknown theme \"${name}\". Available: ${lib.concatStringsSep ", " themeNames}");
 		effectiveColors = lib.recursiveUpdate selected.colors colorOverrides;
 		mappedTree = selected.themeFn {colors = effectiveColors;};
 		finalTree = lib.recursiveUpdate mappedTree roleOverrides;
