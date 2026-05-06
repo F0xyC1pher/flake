@@ -57,13 +57,22 @@ in {
 		mediainfo
 		exiftool
 
+		tree
+		treecat
+		treegen
+		treemd
+		tree-from-tags
+		# tree-sitter
+		# tree-sitter-grammars.
+		treefmt
+		treesheets
 		# ⚡ Performance & Kernel (Производительность и тюнинг)
-		# tuna
-		# schedtool
-		# scx.cscheds
-		# cpufrequtils
-		# irqbalance
-		# numactl
+		tuna
+		schedtool
+		scx.cscheds
+		cpufrequtils
+		irqbalance
+		numactl
 		mesa-demos
 
 		# 🛠️ Terminal Tools & CLI (Терминальные утилиты)
