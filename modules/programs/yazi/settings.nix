@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {config, ...}: {
+		users.${vars.user.name} = {config, ...}: {
 			programs.yazi = {
 				settings = {
 					opener = {

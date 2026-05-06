@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/misc.kdl".text = ''
 				// syntax: kdl
 

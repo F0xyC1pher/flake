@@ -4,16 +4,15 @@
 {
 	inputs,
 	vars,
-	lib,
 	...
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
+		users.${vars.user.name} = {
 			programs.fish = {
 				enable = true;
 				interactiveShellInit = let
-					t = vars.style.theme;
+					t = vars.theme.style;
 				in ''
 					# ── FoxyChipher fish colors — role-driven ─────────────────────────
 					set -g fish_color_normal           ${t.text.main}

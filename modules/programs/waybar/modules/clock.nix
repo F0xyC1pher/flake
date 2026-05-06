@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			xdg.configFile."waybar/modules/clock.json".text = ''
 				// syntax: json
 				{
@@ -20,10 +20,10 @@
 							"mode-mon-col": 3,
 							"weeks-pos": "right",
 							"format": {
-								"months": "<span color='${vars.style.theme.text.sub-main}'><b>{}</b></span>",
-								"days": "<span color='${vars.style.theme.text.main}'><b>{}</b></span>",
-								"weekdays": "<span color='${vars.style.colors.accent.yellow}'><b>{}</b></span>",
-								"today": "<span color='${vars.style.theme.accent}'><b><u>{}</u></b></span>",
+								"months": "<span color='${vars.theme.style.text.sub-main}'><b>{}</b></span>",
+								"days": "<span color='${vars.theme.style.text.main}'><b>{}</b></span>",
+								"weekdays": "<span color='${vars.theme.colors.accent.yellow}'><b>{}</b></span>",
+								"today": "<span color='${vars.theme.style.accent}'><b><u>{}</u></b></span>",
 							},
 						},
 					},

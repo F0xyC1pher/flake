@@ -1,4 +1,4 @@
-# ── Theme: theme — role mapping ──────────────────────────────────────────────
+# ── Theme: theMe — role mapping ──────────────────────────────────────────────
 #
 # ROLE LAYER. The shape of this attrset (ui.*, text.*, accent, text.syntax.*)
 # is a CONTRACT — every theme must produce these same keys with the same nesting.
@@ -23,7 +23,9 @@
 
 		border = {
 			active = colors.accent.red;
+			"1" = colors.accent.red;
 			inactive = colors.base."3";
+			"0" = colors.base."3";
 		};
 	};
 
@@ -43,8 +45,8 @@
 		highlight = colors.base."e";
 		heading = colors.base."f";
 
-		onAccent = colors.accent.green;
-		match = colors.accent.green;
+		# onAccent = colors.accent.green;
+		# match = colors.accent.green;
 
 		syntax = {
 			keyword = colors.accent.purple;

@@ -6,11 +6,12 @@
 		./network.nix
 		./nix-init.nix
 		./nix.nix
+		./portals.nix
 		./security.nix
 		./sops.nix
 		# ./systemd.nix
+		./terminal-exec.nix
 		./variables.nix
-		./xdg.nix
 	];
 
 	system.stateVersion = "26.05";

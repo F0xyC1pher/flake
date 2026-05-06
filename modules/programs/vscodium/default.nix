@@ -46,7 +46,7 @@ in {
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.user.name} = {pkgs, ...}: {
 			home.file.".vscode-oss/argv.json".text =
 				builtins.toJSON {
 					"disable-hardware-acceleration" = false;
@@ -94,7 +94,7 @@ in {
 						"window.zoomLevel" = 0;
 
 						# ── Editor ─────────────────────────────────────────────────────
-						"editor.fontFamily" = "${vars.fontName}";
+						"editor.fontFamily" = "${vars.theme.font.name}";
 						"editor.fontSize" = 14;
 						"editor.lineHeight" = 22;
 						"editor.fontLigatures" = true;
@@ -143,10 +143,10 @@ in {
 									# You can write arbitrary Nix expressions here, to produce valid "options" declaration result.
 									# Tip: for flake-based configuration, utilize `builtins.getFlake`
 									"nixos" = {
-										"expr" = "(builtins.getFlake \"/home/${vars.userName}/flake\").nixosConfigurations.${vars.hostName}.options";
+										"expr" = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host}.options";
 									};
 									"home-manager" = {
-										"expr" = "(builtins.getFlake \"/home/${vars.userName}/flake\").nixosConfigurations.${vars.hostName}.options.home-manager.users.type.getSubOptions []";
+										"expr" = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host}.options.home-manager.users.type.getSubOptions []";
 									};
 								};
 							};

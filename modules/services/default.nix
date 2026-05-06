@@ -24,6 +24,7 @@
 		./resolved.nix
 		./seatd.nix
 		./swayidle.nix
+		./swaync.nix
 		# ./system76-scheduler-niri.nix
 		./udev.nix
 		./upower.nix

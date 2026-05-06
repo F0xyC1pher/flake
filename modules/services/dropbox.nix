@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			services.dropbox.enable = true;
 			# Сервис Dropbox через Home Manager
 			# systemd.user.services.dropbox = {

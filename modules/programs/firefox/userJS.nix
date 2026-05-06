@@ -6,14 +6,14 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {lib, ...}: let
+		users.${vars.user.name} = {lib, ...}: let
 			ffVersion = config.programs.firefox.package.version;
 			rddEnabled = lib.versionOlder ffVersion "97.0.0";
-			t = vars.style.theme;
-			# c = vars.style.colors.accent;
+			t = vars.theme.style;
+			# c = vars.theme.colors.accent;
 		in {
 			programs.firefox = {
-				profiles.${vars.userFullName} = {
+				profiles.${vars.user.fullName} = {
 					settings = {
 						"browser.startup.homepage" = "about:blank";
 						"browser.newtabpage.enabled" = false;

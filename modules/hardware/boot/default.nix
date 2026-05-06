@@ -6,7 +6,7 @@
 	...
 }: {
 	imports = [
-		./tmp.nix
+		# ./tmp.nix
 	];
 	boot = {
 		#	==========	KERNEL	==========
@@ -15,11 +15,11 @@
 
 		kernelParams = [
 			"mitigations=off"
-			"preempt=full"
+			# "preempt=full"
 			"threadirqs"
 			"nmi_watchdog=0"
 			"nowatchdog"
-			"tsc=reliable"
+			# "tsc=reliable"
 			"split_lock_detect=off"
 			"transparent_hugepage=madvise"
 			"pcie_aspm=off"

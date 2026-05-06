@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/layer-rules.kdl".text = ''
 				// syntax: kdl
 				// ────────────── Layer Settings ──────────────

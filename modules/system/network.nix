@@ -8,7 +8,7 @@
 	boot.initrd.systemd.network.wait-online.enable = false;
 	networking = {
 		nftables.enable = true;
-		hostName = "${vars.hostName}";
+		hostName = "${vars.host}";
 		networkmanager = {
 			enable = true;
 			dns = "systemd-resolved";

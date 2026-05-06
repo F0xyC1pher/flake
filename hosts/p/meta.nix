@@ -1,6 +1,6 @@
 {
-	mainUser = "f";
-	hostName = "p";
+	user = "f";
+	host = "p";
 	bootLoader = "grub"; #GRUB LIMINE
 	hardware = {
 		bluetooth = true;
@@ -10,6 +10,7 @@
 			rate = 192000;
 			format.prefix = "FLOAT"; # FLOAT S
 			format.name = 32;
+			format.suffix = "LE";
 		};
 
 		nvidia = {

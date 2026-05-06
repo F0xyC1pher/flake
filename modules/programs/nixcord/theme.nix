@@ -8,9 +8,9 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {vars, ...}: let
-			t = vars.style.theme;
-			c = vars.style.colors.accent;
+		users.${vars.user.name} = {vars, ...}: let
+			t = vars.theme.style;
+			c = vars.theme.colors.accent;
 		in {
 			programs.nixcord = {
 				config = {
@@ -124,10 +124,10 @@
 					}
 
 					/* ── Status dots ─────────────────────────────────────────────── */
-					rect[fill="#23a55a"] { fill: ${c.green}  !important; }
-					rect[fill="#f0b232"] { fill: ${c.yellow} !important; }
-					rect[fill="#f23f43"] { fill: ${c.red}    !important; }
-					rect[fill="#80848e"] { fill: ${t.text.faint} !important; }
+					rect[fill="${c.green}"] { fill: "${c.green}"  !important; }
+					rect[fill="${c.yellow}"] { fill: "${c.yellow}" !important; }
+					rect[fill="${c.red}"] { fill: "${c.red}"    !important; }
+					rect[fill="${t.text.faint}"] { fill: "${t.text.faint}" !important; }
 				'';
 			};
 		};

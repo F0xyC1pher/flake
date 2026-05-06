@@ -13,11 +13,11 @@
 
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			programs.firefox = {
 				enable = true;
-				profiles.${vars.userFullName} = {
-					name = "${vars.userFullName}";
+				profiles.${vars.user.fullName} = {
+					name = "${vars.user.fullName}";
 					isDefault = true;
 					id = 0;
 				};

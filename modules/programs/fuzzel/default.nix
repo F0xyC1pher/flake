@@ -6,12 +6,12 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {lib, ...}: {
+		users.${vars.user.name} = {lib, ...}: {
 			programs.fuzzel = {
 				enable = true;
 				settings = {
 					main = {
-						font = lib.mkForce "${vars.fontName}:size=${toString vars.fontSize}";
+						font = lib.mkForce "${vars.theme.font.name}:size=${toString vars.theme.font.size}";
 						dpi-aware = true;
 						use-bold = false;
 						prompt = ">> ";
@@ -19,7 +19,7 @@
 						password-character = "*";
 						match-mode = "fzf";
 						sort-result = true;
-						terminal = vars.terminal;
+						terminal = vars.app.terminal;
 						list-executables-in-path = false;
 
 						anchor = "center";
@@ -39,17 +39,17 @@
 
 					colors =
 						lib.mkForce {
-							background = "${vars.style.theme.ui.deep}f0";
-							text = "${vars.style.theme.text.main}ff";
-							prompt = "${vars.style.theme.text.heading}ff";
-							placeholder = "${vars.style.theme.text.faint}ff";
-							input = "${vars.style.theme.text.main}ff";
-							match = "${vars.style.theme.text.match}ff";
-							selection = "${vars.style.theme.accent}ff";
-							selection-text = "${vars.style.theme.ui.deep}ff";
-							selection-match = "${vars.style.theme.text.match}ff";
-							counter = "${vars.style.theme.text.faint}ff";
-							border = "${vars.style.theme.accent}ff";
+							background = "${vars.theme.style.ui.deep}f0";
+							text = "${vars.theme.style.text.main}ff";
+							prompt = "${vars.theme.style.text.heading}ff";
+							placeholder = "${vars.theme.style.text.faint}ff";
+							input = "${vars.theme.style.text.main}ff";
+							match = "${vars.theme.style.text.match}ff";
+							selection = "${vars.theme.style.accent}ff";
+							selection-text = "${vars.theme.style.ui.deep}ff";
+							selection-match = "${vars.theme.style.text.match}ff";
+							counter = "${vars.theme.style.text.faint}ff";
+							border = "${vars.theme.style.accent}ff";
 						};
 
 					border = {

@@ -5,11 +5,11 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {vars, ...}: {
+		users.${vars.user.name} = {vars, ...}: {
 			programs.waybar.style = ''
 				/*css*/
 				* {
-				  font-family: ${vars.fontName}, "Source Han Sans JP";
+				  font-family: ${vars.theme.font.name}, "Source Han Sans JP";
 				  font-weight: 600;
 				  font-size: 14px;
 				  border-radius: 0px;
@@ -17,12 +17,12 @@
 
 				window#waybar {
 				  background: transparent;
-				  color: ${vars.style.theme.text.primary};
+				  color: ${vars.theme.style.text.primary};
 				}
 
 				window#waybar > box {
-				  background: alpha(${vars.style.theme.ui."0"}, 0.33);
-				  border-bottom: 1px solid ${vars.style.theme.ui."4"};
+				  background: alpha(${vars.theme.style.ui."0"}, 0.33);
+				  border-bottom: 1px solid ${vars.theme.style.ui."4"};
 				  padding: 0 6px;
 				}
 
@@ -43,9 +43,9 @@
 				#wireplumber,
 				#wireplumber.source
 				{
-				  border: 1px solid ${vars.style.theme.ui."4"};
-				  background: ${vars.style.theme.ui."3"};
-				  color: ${vars.style.theme.text.main};
+				  border: 1px solid ${vars.theme.style.ui."4"};
+				  background: ${vars.theme.style.ui."3"};
+				  color: ${vars.theme.style.text.main};
 				  padding: 0 10px;
 				  margin: 3px 2px;
 				  min-height: 28px;
@@ -68,9 +68,9 @@
 				#wireplumber:hover,
 				#wireplumber.source:hover
 				{
-				  border: 1px solid ${vars.style.theme.ui."5"};
-				  background: ${vars.style.theme.ui."5"};
-				  color: ${vars.style.theme.text.heading};
+				  border: 1px solid ${vars.theme.style.ui."5"};
+				  background: ${vars.theme.style.ui."5"};
+				  color: ${vars.theme.style.text.heading};
 				  transition: all 0.25s ease;
 				}
 
@@ -81,9 +81,9 @@
 				}
 
 				#workspaces button {
-				  border: 1px solid ${vars.style.theme.ui."4"};
-				  background: ${vars.style.theme.ui."3"};
-				  color: ${vars.style.theme.text.main};
+				  border: 1px solid ${vars.theme.style.ui."4"};
+				  background: ${vars.theme.style.ui."3"};
+				  color: ${vars.theme.style.text.main};
 				  margin: 0 2px;
 				  padding: 0 12px;
 				  min-height: 28px;
@@ -93,41 +93,41 @@
 				#workspaces button.empty {
 				  border: 1px solid transparent;
 				  background: transparent;
-				  color: ${vars.style.theme.text.comment};
+				  color: ${vars.theme.style.text.comment};
 				}
 
 				#workspaces button.active {
-				  border: 1px solid ${vars.style.theme.accent};
-				  background: ${vars.style.theme.accent};
-				  color: ${vars.style.theme.ui."0"};
+				  border: 1px solid ${vars.theme.style.accent};
+				  background: ${vars.theme.style.accent};
+				  color: ${vars.theme.style.ui."0"};
 				}
 
 				#workspaces button.active:hover {
-				  border: 1px solid ${vars.style.theme.text.heading};
-				  background: ${vars.style.theme.accent};
-				  color: ${vars.style.theme.ui."0"};
+				  border: 1px solid ${vars.theme.style.text.heading};
+				  background: ${vars.theme.style.accent};
+				  color: ${vars.theme.style.ui."0"};
 				}
 
 				#workspaces button:hover {
-				  border: 1px solid ${vars.style.theme.ui."5"};
-				  background: ${vars.style.theme.ui."5"};
-				  color: ${vars.style.theme.text.heading};
+				  border: 1px solid ${vars.theme.style.ui."5"};
+				  background: ${vars.theme.style.ui."5"};
+				  color: ${vars.theme.style.text.heading};
 				}
 
 				/* STATE COLORS */
 				#battery.warning {
-				  border-color: ${vars.style.theme.text.syntax.warning};
-				  color: ${vars.style.theme.text.syntax.warning};
+				  border-color: ${vars.theme.style.text.syntax.warning};
+				  color: ${vars.theme.style.text.syntax.warning};
 				}
 
 				#battery.critical {
-				  border-color: ${vars.style.theme.text.syntax.error};
-				  color: ${vars.style.theme.text.syntax.error};
+				  border-color: ${vars.theme.style.text.syntax.error};
+				  color: ${vars.theme.style.text.syntax.error};
 				}
 
 				#wireplumber.muted,
 				#wireplumber.source.muted {
-				  color: ${vars.style.theme.text.faint};
+				  color: ${vars.theme.style.text.faint};
 				}
 
 				#custom-notification {
@@ -135,8 +135,8 @@
 				}
 
 				#tray {
-				  border: 1px solid ${vars.style.theme.ui."4"};
-				  background: ${vars.style.theme.ui."3"};
+				  border: 1px solid ${vars.theme.style.ui."4"};
+				  background: ${vars.theme.style.ui."3"};
 				}
 
 				#clock {

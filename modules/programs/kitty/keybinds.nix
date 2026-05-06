@@ -6,7 +6,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			programs.kitty.keybindings = {
 				# Табы
 				"ctrl+shift+t" = "new_tab";

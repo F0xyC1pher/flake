@@ -17,10 +17,10 @@
 			./outputs.nix
 			./window-rules.nix
 		]
-		++ lib.optionals vars.blur.enable [./blur.nix];
+		++ lib.optionals vars.theme.blur.enable [./blur.nix];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/config.kdl".text = ''
 				// syntax: kdl
 				include "animations.kdl"
@@ -33,7 +33,7 @@
 				include "misc.kdl"
 				include "outputs.kdl"
 				include "window-rules.kdl"
-				    ${lib.optionalString vars.blur.enable ''include "blur.kdl"''}
+				    ${lib.optionalString vars.theme.blur.enable ''include "blur.kdl"''}
 			'';
 		};
 	};

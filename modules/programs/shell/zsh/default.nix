@@ -11,7 +11,7 @@
 	};
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.user.name} = {pkgs, ...}: {
 			# xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
 
 			programs.zsh = {

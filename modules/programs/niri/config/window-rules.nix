@@ -6,7 +6,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/window-rules.kdl".text = ''
 				// syntax: kdl
 				//
@@ -29,7 +29,7 @@
 
 				${
 					# Вставляем правило только если блюр включен, а xray специально выключен в vars
-					lib.optionalString (vars.blur.enable && !vars.blur.xray.enable) ''
+					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
 						window-rule {
 							background-effect {
 								xray false
@@ -85,7 +85,7 @@
 					match is-active=true
 
 					shadow {
-						color "${vars.style.theme.accent}a8"
+						color "${vars.theme.style.accent}a8"
 					}
 				}
 
