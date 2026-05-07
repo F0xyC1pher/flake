@@ -8,8 +8,8 @@
 	...
 }: let
 	hex = s: lib.removePrefix "#" s;
-	c = vars.style.colors.accent;
-	t = vars.style.theme;
+	c = vars.theme.colors.accent;
+	t = vars.theme.style;
 in {
 	console = {
 		font = "${pkgs.terminus_font}/share/consolefonts/ter-v14n.psf.gz";

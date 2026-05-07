@@ -1,4 +1,4 @@
-# ── VSCodium — workbench color customisations via vars.style.theme.* ─────────
+# ── VSCodium — workbench color customisations via vars.theme.style.* ─────────
 {
 	inputs,
 	vars,
@@ -6,12 +6,12 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
+		users.${vars.user.name} = {
 			vars,
 			lib,
 			...
 		}: let
-			t = vars.style.theme;
+			t = vars.theme.style;
 		in {
 			programs.vscode.profiles.default.userSettings = {
 				# ── Window ─────────────────────────────────────────────────────
@@ -20,7 +20,7 @@
 				"window.zoomLevel" = 0;
 
 				# ── Editor ─────────────────────────────────────────────────────
-				"editor.fontFamily" = lib.mkForce "${vars.fontName}";
+				"editor.fontFamily" = lib.mkForce "${vars.theme.font.name}";
 				"editor.fontSize" = 14;
 				"editor.lineHeight" = 22;
 				"editor.fontLigatures" = true;
@@ -116,20 +116,20 @@
 					"terminal.background" = t.ui.main;
 					"terminal.foreground" = t.text.main;
 					"terminal.ansiBlack" = t.ui.main;
-					"terminal.ansiRed" = vars.style.colors.accent.red;
-					"terminal.ansiGreen" = vars.style.colors.accent.green;
-					"terminal.ansiYellow" = vars.style.colors.accent.yellow;
-					"terminal.ansiBlue" = vars.style.colors.accent.blue;
-					"terminal.ansiMagenta" = vars.style.colors.accent.purple;
-					"terminal.ansiCyan" = vars.style.colors.accent.cyan;
+					"terminal.ansiRed" = vars.theme.colors.accent.red;
+					"terminal.ansiGreen" = vars.theme.colors.accent.green;
+					"terminal.ansiYellow" = vars.theme.colors.accent.yellow;
+					"terminal.ansiBlue" = vars.theme.colors.accent.blue;
+					"terminal.ansiMagenta" = vars.theme.colors.accent.purple;
+					"terminal.ansiCyan" = vars.theme.colors.accent.cyan;
 					"terminal.ansiWhite" = t.text.main;
 					"terminal.ansiBrightBlack" = t.ui.selection;
-					"terminal.ansiBrightRed" = vars.style.colors.accent.red;
-					"terminal.ansiBrightGreen" = vars.style.colors.accent.green;
-					"terminal.ansiBrightYellow" = vars.style.colors.accent.yellow;
-					"terminal.ansiBrightBlue" = vars.style.colors.accent.blue;
-					"terminal.ansiBrightMagenta" = vars.style.colors.accent.purple;
-					"terminal.ansiBrightCyan" = vars.style.colors.accent.cyan;
+					"terminal.ansiBrightRed" = vars.theme.colors.accent.red;
+					"terminal.ansiBrightGreen" = vars.theme.colors.accent.green;
+					"terminal.ansiBrightYellow" = vars.theme.colors.accent.yellow;
+					"terminal.ansiBrightBlue" = vars.theme.colors.accent.blue;
+					"terminal.ansiBrightMagenta" = vars.theme.colors.accent.purple;
+					"terminal.ansiBrightCyan" = vars.theme.colors.accent.cyan;
 					"terminal.ansiBrightWhite" = t.text.heading;
 					"terminalCursor.foreground" = t.accent;
 
@@ -177,7 +177,7 @@
 					"diffEditor.removedTextBackground" = "${t.text.syntax.error}33";
 
 					# ── Git decorations ────────────────────────────────────────
-					"gitDecoration.modifiedResourceForeground" = vars.style.colors.accent.orange;
+					"gitDecoration.modifiedResourceForeground" = vars.theme.colors.accent.orange;
 					"gitDecoration.deletedResourceForeground" = t.text.syntax.error;
 					"gitDecoration.addedResourceForeground" = t.text.syntax.success;
 					"gitDecoration.untrackedResourceForeground" = t.text.syntax.info;

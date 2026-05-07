@@ -1,6 +1,6 @@
 # ── Pointer cursor ────────────────────────────────────────────────────────────
 {vars, ...}: {
-	home-manager.users.${vars.userName} = {pkgs, ...}: {
+	home-manager.users.${vars.user.name} = {pkgs, ...}: {
 		home.pointerCursor = {
 			gtk.enable = true;
 			x11.enable = true;

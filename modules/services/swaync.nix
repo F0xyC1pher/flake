@@ -6,7 +6,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
+		users.${vars.user.name} = {
 			pkgs,
 			vars,
 			...
@@ -27,7 +27,7 @@
 					control-center-margin-right = 0;
 					control-center-margin-left = 0;
 					notification-2fa-action = true;
-					notification-inline-replies = false;
+					notification-inline-replies = true;
 					notification-icon-size = 48;
 					notification-body-image-height = 100;
 					notification-body-image-width = 200;
@@ -36,7 +36,7 @@
 					timeout-critical = 0;
 					fit-to-screen = true;
 					control-center-width = 350;
-					notification-window-width = 400;
+					notification-window-width = 100;
 					keyboard-shortcuts = true;
 					image-visibility = "when-available";
 					transition-time = 100;
@@ -64,95 +64,95 @@
 					/* ── Base ─────────────────────────────────────────────────────────── */
 					* {
 					  border-radius: 0;
-					  font-family:   "${vars.fontName}", monospace;
+					  font-family:   "${vars.theme.name}";
 					  font-size:     13px;
-					  color:         ${vars.style.theme.text.main};
+					  color:         ${vars.theme.style.text.main};
 					  transition:    none;
 					}
 
 					.notification-row { outline: none; }
 					.notification-row:focus,
 					.notification-row:hover {
-					  background: ${vars.style.theme.ui.surface};
+					  background: ${vars.theme.style.ui.surface};
 					}
 
 					.notification {
-					  background: ${vars.style.theme.ui.main};
-					  border:     1px solid ${vars.style.theme.ui.overlay};
+					  background: ${vars.theme.style.ui.main};
+					  border:     1px solid ${vars.theme.style.ui.overlay};
 					  padding:    12px;
 					  margin:     4px 8px;
 					}
 
 					.close-button {
 					  background: transparent;
-					  color:      ${vars.style.theme.accent};
+					  color:      ${vars.theme.style.accent};
 					  border:     none;
 					  box-shadow: none;
 					  padding:    4px;
 					}
-					.close-button:hover { background: ${vars.style.theme.ui.surface}; }
+					.close-button:hover { background: ${vars.theme.style.ui.surface}; }
 
 					.notification-default-action,
 					.notification-action {
-					  background: ${vars.style.theme.ui.surface};
-					  border:     1px solid ${vars.style.theme.ui.overlay};
-					  color:      ${vars.style.theme.text.main};
+					  background: ${vars.theme.style.ui.surface};
+					  border:     1px solid ${vars.theme.style.ui.overlay};
+					  color:      ${vars.theme.style.text.main};
 					  padding:    4px 12px;
 					}
 					.notification-default-action:hover,
 					.notification-action:hover {
-					  background: ${vars.style.theme.ui.overlay};
+					  background: ${vars.theme.style.ui.overlay};
 					}
 
 					/* ── Urgency levels ────────────────────────────────────────────── */
-					.low      { border-left: 3px solid ${vars.style.theme.text.syntax.success}; }
-					.normal   { border-left: 3px solid ${vars.style.colors.accent.orange};       }
+					.low      { border-left: 3px solid ${vars.theme.style.text.syntax.success}; }
+					.normal   { border-left: 3px solid ${vars.theme.colors.accent.orange};       }
 					.critical {
-					  border-left: 3px solid ${vars.style.theme.accent};
+					  border-left: 3px solid ${vars.theme.style.accent};
 					  animation:   shake 0.35s ease;
 					}
 
 					/* ── Control center ────────────────────────────────────────────── */
 					.control-center {
-					  background: ${vars.style.theme.ui.main};
-					  border:     1px solid ${vars.style.theme.ui.border.inactive};
+					  background: ${vars.theme.style.ui.main};
+					  border:     1px solid ${vars.theme.style.ui.border.inactive};
 					}
 
 					.widget-title {
-					  background:  ${vars.style.theme.ui.surface};
-					  color:       ${vars.style.theme.text.heading};
+					  background:  ${vars.theme.style.ui.surface};
+					  color:       ${vars.theme.style.text.heading};
 					  font-size:   15px;
 					  font-weight: bold;
 					  padding:     8px 12px;
 					}
 					.widget-title > button {
 					  font-size:  12px;
-					  color:      ${vars.style.theme.text.faint};
+					  color:      ${vars.theme.style.text.faint};
 					  background: transparent;
 					  border:     none;
 					}
 					.widget-title > button:hover {
-					  color:      ${vars.style.theme.accent};
+					  color:      ${vars.theme.style.accent};
 					  background: transparent;
 					}
 
 					.widget-dnd {
-					  background: ${vars.style.theme.ui.surface};
+					  background: ${vars.theme.style.ui.surface};
 					  padding:    4px 12px;
-					  border-top: 1px solid ${vars.style.theme.ui.overlay};
+					  border-top: 1px solid ${vars.theme.style.ui.overlay};
 					}
 					.widget-dnd > switch { border-radius: 0; }
-					.widget-dnd > switch:checked { background: ${vars.style.colors.accent.orange}; }
+					.widget-dnd > switch:checked { background: ${vars.theme.colors.accent.orange}; }
 
 					.widget-mpris {
-					  background: ${vars.style.theme.ui.surface};
+					  background: ${vars.theme.style.ui.surface};
 					  padding:    8px;
-					  border-top: 1px solid ${vars.style.theme.ui.overlay};
+					  border-top: 1px solid ${vars.theme.style.ui.overlay};
 					}
 
-					scrollbar        { background: ${vars.style.theme.ui.surface}; }
+					scrollbar        { background: ${vars.theme.style.ui.surface}; }
 					scrollbar slider {
-					  background:    ${vars.style.theme.ui.selection};
+					  background:    ${vars.theme.style.ui.selection};
 					  border-radius: 0;
 					}
 

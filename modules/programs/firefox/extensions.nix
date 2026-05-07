@@ -5,9 +5,9 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.user.name} = {pkgs, ...}: {
 			programs.firefox = {
-				profiles.${vars.userFullName} = {
+				profiles.${vars.user.fullName} = {
 					extensions = {
 						force = true;
 						packages = with pkgs.firefoxAddons; [

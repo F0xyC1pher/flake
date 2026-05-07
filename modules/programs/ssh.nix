@@ -1,11 +1,11 @@
 {vars, ...}: {
-	home-manager.users.${vars.userName} = {...}: {
+	home-manager.users.${vars.user.name} = {...}: {
 		#  programs.ssh = {
 		#    enable = true;
 		#    matchBlocks."github.com" = {
 		#      hostname = "github.com";
 		#      user = "git";
-		#       identityFile = "/home/${vars.userName}/.ssh/id_ed25519";
+		#       identityFile = "/home/${vars.user.name}/.ssh/id_ed25519";
 		#     };
 		#  };
 

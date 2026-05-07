@@ -1,10 +1,6 @@
 {vars, ...}: {
-	home-manager.users.${vars.userName} = {
-		vars,
-		lib,
-		...
-	}: let
-		t = vars.style.theme;
+	home-manager.users.${vars.user.name} = {vars, ...}: let
+		t = vars.theme.style;
 	in {
 		qt = {
 			enable = true;
@@ -21,8 +17,8 @@
 				};
 
 				Fonts = {
-					fixed = "\"${vars.fontName},${toString vars.fontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
-					general = "\"${vars.fontName},${toString vars.fontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
+					fixed = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
+					general = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
 				};
 
 				ColorScheme = {

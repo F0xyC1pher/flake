@@ -6,10 +6,10 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {vars, ...}: {
+		users.${vars.user.name} = {vars, ...}: {
 			programs.kitty.settings = let
-				t = vars.style.theme;
-				c = vars.style.colors.accent;
+				t = vars.theme.style;
+				c = vars.theme.colors.accent;
 			in {
 				# ── UI chrome ──────────────────────────────────────────────────────────
 				background = t.ui."0";

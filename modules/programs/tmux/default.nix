@@ -1,6 +1,5 @@
 {
 	inputs,
-	config,
 	pkgs,
 	vars,
 	...
@@ -36,7 +35,7 @@ with pkgs; let
 in {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			programs.tmux = {
 				enable = true;
 

@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {config, ...}: {
+		users.${vars.user.name} = {config, ...}: {
 			programs.rofi = {
 				theme = let
 					inherit (config.lib.formats.rasi) mkLiteral;
@@ -17,7 +17,7 @@
 
 					"window" = {
 						transparency = "real";
-						background-color = mkLiteral "${vars.style.theme.ui."0"}53";
+						background-color = mkLiteral "${vars.theme.style.ui."0"}53";
 					};
 
 					"mainbox" = {
@@ -30,7 +30,7 @@
 						spacing = mkLiteral "10px";
 						padding = mkLiteral "10px 0";
 						border = mkLiteral "1px";
-						border-color = mkLiteral "${vars.style.theme.accent}";
+						border-color = mkLiteral "${vars.theme.style.accent}";
 					};
 
 					"inputbar" = {
@@ -44,38 +44,38 @@
 					};
 
 					"prompt" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"textbox-prompt-colon" = {
 						expand = false;
 						str = mkLiteral "\":\"";
 						margin = mkLiteral "0 1ch 0 0";
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"entry" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"case-indicator" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"mode-switcher, message" = {
 						border = mkLiteral "1px 0";
-						border-color = mkLiteral "${vars.style.theme.accent}";
+						border-color = mkLiteral "${vars.theme.style.accent}";
 					};
 
 					"button, textbox" = {
-						background-color = mkLiteral "${vars.style.theme.ui."0"}";
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						background-color = mkLiteral "${vars.theme.style.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 						padding = mkLiteral "5px";
 					};
 
 					"button selected" = {
-						background-color = mkLiteral "${vars.style.theme.accent}";
-						text-color = mkLiteral "${vars.style.theme.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.accent}";
+						text-color = mkLiteral "${vars.theme.style.ui."0"}";
 					};
 
 					"listview" = {
@@ -84,11 +84,11 @@
 					};
 
 					"scrollbar" = {
-						background-color = mkLiteral "${vars.style.theme.ui."0"}";
-						handle-color = mkLiteral "${vars.style.theme.accent}";
+						background-color = mkLiteral "${vars.theme.style.ui."0"}";
+						handle-color = mkLiteral "${vars.theme.style.accent}";
 						handle-width = mkLiteral "10px";
 						border = mkLiteral "2 2px";
-						border-color = mkLiteral "${vars.style.theme.accent}";
+						border-color = mkLiteral "${vars.theme.style.accent}";
 						margin = mkLiteral "0 0 0 20px";
 					};
 
@@ -112,30 +112,30 @@
 					};
 
 					"element selected" = {
-						background-color = mkLiteral "${vars.style.theme.accent}";
-						text-color = mkLiteral "${vars.style.theme.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.accent}";
+						text-color = mkLiteral "${vars.theme.style.ui."0"}";
 					};
 
 					"element normal normal, element alternate normal" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"element selected urgent" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
-						background-color = mkLiteral "${vars.style.theme.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
+						background-color = mkLiteral "${vars.theme.style.ui."0"}";
 					};
 
 					"element normal urgent, element alternate urgent" = {
-						text-color = mkLiteral "${vars.style.theme.ui."0"}";
-						background-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"element selected active" = {
-						text-color = mkLiteral "${vars.style.theme.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.ui."0"}";
 					};
 
 					"element normal active, element alternate active" = {
-						text-color = mkLiteral "${vars.style.theme.text.main}";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					# Filebrowser settings - исправлено

@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.user.name} = {pkgs, ...}: {
 			# ========== HOME ==========
 			# gtk = {
 			# 	enable = true;

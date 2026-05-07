@@ -15,7 +15,7 @@
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
+		users.${vars.user.name} = {
 			pkgs,
 			lib,
 			...

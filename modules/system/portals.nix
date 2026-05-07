@@ -5,12 +5,6 @@
 	...
 }: {
 	xdg = {
-		terminal-exec = {
-			enable = true;
-			settings = {
-				default = ["kitty.desktop"];
-			};
-		};
 		portal = {
 			enable = true;
 			xdgOpenUsePortal = true;
@@ -54,7 +48,7 @@
 				#!${pkgs.bash}/bin/bash
 				set -eu
 
-				TERMCMD="${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+				TERMCMD="${pkgs.${vars.app.terminal}}/bin/${vars.app.terminal} -e"
 				multiple="$1"
 				directory="$2"
 				save="$3"
@@ -78,7 +72,7 @@
 		};
 	};
 
-	home-manager.users.${vars.userName} = {
+	home-manager.users.${vars.user.name} = {
 		pkgs,
 		lib,
 		...

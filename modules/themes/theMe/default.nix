@@ -23,7 +23,9 @@
 
 		border = {
 			active = colors.accent.red;
+			"1" = colors.accent.red;
 			inactive = colors.base."3";
+			"0" = colors.base."3";
 		};
 	};
 

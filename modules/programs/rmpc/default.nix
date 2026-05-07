@@ -9,14 +9,14 @@
 {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {pkgs, ...}: {
+		users.${vars.user.name} = {pkgs, ...}: {
 			programs.rmpc = {
 				enable = true;
 				package = pkgs.rmpc;
 				config = ''
 					(
 						address: "/tmp/mpd_socket",
-						cache_dir: Some("/home/${vars.userName}/Music/yt-dlp"),
+						cache_dir: Some("/home/${vars.user.name}/Music"),
 						extra_yt_dlp_args: "yt-dlp -x --embed-thumbnail --embed-metadata -f bestaudio --convert-thumbnails jpg {} --output <path> <url>",
 						on_song_change: None,
 						volume_step: 5,

@@ -7,21 +7,21 @@
 }: {
 	imports = [
 		./keybinds.nix
-		./tab_bar.nix
+		# ./tab_bar.nix
 		./theme.nix
 	];
 
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			programs.kitty = {
 				enable = true;
 				enableGitIntegration = true;
 				shellIntegration.enableFishIntegration = true;
 
 				font = {
-					name = vars.fontName;
-					size = vars.fontSize;
+					name = vars.theme.font.name;
+					size = vars.theme.font.size;
 				};
 
 				settings = {
@@ -46,7 +46,7 @@
 					confirm_os_window_close = "0";
 
 					background_opacity = "0.6";
-					background_blur = lib.mkIf (vars.blur.enable) 16;
+					background_blur = lib.mkIf (vars.theme.blur.enable) 16;
 
 					# ── Tab bar ────────────────────────────────────────────────────────
 					tab_bar_edge = "top";

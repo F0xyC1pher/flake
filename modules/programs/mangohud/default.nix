@@ -8,14 +8,14 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {
+		users.${vars.user.name} = {
 			lib,
 			vars,
 			...
 		}: let
 			hex = s: lib.removePrefix "#" s;
-			t = vars.style.theme;
-			c = vars.style.colors.accent;
+			t = vars.theme.style;
+			c = vars.theme.colors.accent;
 		in {
 			programs.mangohud = {
 				enable = true;
@@ -40,7 +40,7 @@
 					network = false;
 					pci_dev = 0;
 					position = "top-left";
-					font_size = vars.fontSize;
+					font_size = vars.theme.font.size;
 					font_scale = 1.0;
 					round_corners = 0; # square mode
 					background_alpha = 0.7;

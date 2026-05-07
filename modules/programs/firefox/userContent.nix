@@ -5,12 +5,11 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: let
-			t = vars.style.theme;
-			c = vars.style.colors.accent;
+		users.${vars.user.name} = {...}: let
+			t = vars.theme.style;
 		in {
 			programs.firefox = {
-				profiles.${vars.userFullName} = {
+				profiles.${vars.user.fullName} = {
 					userContent = ''
 						/* ── Page defaults ──────────────────────────────────────────── */
 						@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {

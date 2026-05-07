@@ -1,5 +1,5 @@
 # GTK3 + GTK4 with enhanced CSS, focus indicators, backdrop states,
-# and optional dark/light switching. Uses the resolved theme from `vars.style.theme`.
+# and optional dark/light switching. Uses the resolved theme from `vars.theme.style`.
 {
 	pkgs,
 	vars,
@@ -7,7 +7,10 @@
 	config,
 	...
 }: let
-	t = vars.style.theme; # comes from `resolve` called in flake.nix
+	t = vars.theme.style; # resolved role tree
+	dark = vars.theme.dark or true;
+	fontName = vars.theme.font.name or "Inter";
+	fontSize = vars.theme.font.size or 11;
 
 	# Common CSS color definitions (role‑based)
 	colorDefs = ''
@@ -307,7 +310,7 @@
 
 	fullCss = colorDefs + baseCss;
 in {
-	home-manager.users.${vars.userName} = {
+	home-manager.users.${vars.user.name} = {
 		vars,
 		lib,
 		...

@@ -1,11 +1,11 @@
 {vars, ...}: {
 	services.mpd = {
 		enable = true;
-		user = "${vars.userName}";
+		user = "${vars.user.name}";
 		openFirewall = true;
 		startWhenNeeded = true;
 		settings = {
-			music_directory = "/home/${vars.userName}/Music";
+			music_directory = "/home/${vars.user.name}/Music";
 			# playlist_directory = "/home/${vars.userName}/.config/mpd/playlists";  # лучше явно
 			# db_file = "/home/${vars.userName}/.config/mpd/database";
 			# state_file = "/home/${vars.userName}/.config/mpd/state";

@@ -8,7 +8,7 @@
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.userName} = {...}: {
+		users.${vars.user.name} = {...}: {
 			programs.nixcord = {
 				enable = true;
 				vesktop.enable = false;

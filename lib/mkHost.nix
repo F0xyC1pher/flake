@@ -1,57 +1,58 @@
-# ── mkHost ───────────────────────────────────────────────────────────────────
-#
-# Reads hosts/<name>/meta.nix and users/<mainUser>/default.nix as pure data,
-# resolves the chosen theme, and bundles everything into a single `vars`
-# attrset that every NixOS / HM module receives via specialArgs.
-#
-# To add a new host: create hosts/<name>/default.nix (+ meta.nix).
-# No changes to flake.nix are needed — hosts are auto-discovered.
+# mkHost.nix — reads host meta and user settings, resolves theme, builds vars
 {
 	lib,
 	inputs,
 	system,
 	themes,
 	overlay,
-}: hostName: let
-	hostMeta = import (../hosts + "/${hostName}/meta.nix");
-	targetUser = hostMeta.mainUser;
+}: host: let
+	hostMeta = import (../hosts + "/${host}/meta.nix");
 
-	userSettings = import (../users + "/${targetUser}/default.nix") {inherit lib;};
+	userSettings = import (../users + "/${vars.user.name}/default.nix") {inherit lib;};
 
+	# resolve theme using userSettings.theme
 	resolved =
 		themes.resolve {
-			name = userSettings.theme;
-			colorOverrides = userSettings.colorOverrides or {};
-			roleOverrides = userSettings.roleOverrides  or {};
+			name = userSettings.theme.name;
+			colorOverrides = userSettings.theme.colorOverrides or {};
+			roleOverrides = userSettings.theme.roleOverrides or {};
 		};
 
 	vars = {
-		# identity
-		userName = targetUser;
-		userFullName = userSettings.userFullName;
-		userPassword = userSettings.userPassword or null;
-
-		# appearance
-		fontName = userSettings.fontName;
-		fontSize = userSettings.fontSize;
-		shell = userSettings.shell;
-		terminal = userSettings.terminal;
-		blur =
-			userSettings.blur or {
-				enable = false;
-				xray.enable = false;
-			};
-
-		# style bundle
-		style = {
-			colors = resolved.colors;
-			theme = resolved.theme;
+		# user identity
+		user = {
+			name = hostMeta.user;
+			fullName = userSettings.user.fullName;
+			password = userSettings.user.password or null;
+			shell = userSettings.user.shell;
+		};
+		app = {
+			browser = userSettings.app.browser;
+			file-manager = userSettings.app.file-manager;
+			launcher = userSettings.app.launcher;
+			terminal = userSettings.app.terminal;
 		};
 
-		# host
-		hostName = hostMeta.hostName;
-		bootLoader = hostMeta.bootLoader or null;
-		hardware = hostMeta.hardware   or {};
+		# theme settings (original config + resolved style)
+		theme = {
+			name = userSettings.theme.name;
+			dark = userSettings.theme.dark or true;
+			font = userSettings.theme.font;
+			blur =
+				userSettings.theme.blur or {
+					enable = false;
+					xray.enable = false;
+				};
+			colorOverrides = userSettings.theme.colorOverrides or {};
+			roleOverrides = userSettings.theme.roleOverrides or {};
+			style = resolved.theme;
+			colors = resolved.colors;
+		};
+
+		# host info
+		host = hostMeta.host;
+		bootLoader = hostMeta.bootLoader;
+		hardware = hostMeta.hardware;
 	};
 
 	inherit
@@ -73,7 +74,7 @@ in
 		modules = [
 			../modules/default.nix
 			../users/default.nix
-			../hosts/${hostName}
+			../hosts/${host}
 
 			home-manager.nixosModules.home-manager
 			niri.nixosModules.niri
@@ -96,9 +97,9 @@ in
 						noctalia.homeModules.default
 						system76-scheduler-niri.homeModules.default
 					];
-					users.${targetUser} = {...}: {
-						home.username = targetUser;
-						home.homeDirectory = "/home/${targetUser}";
+					users.${vars.user.name} = {...}: {
+						home.username = vars.user.name;
+						home.homeDirectory = "/home/${vars.user.name}";
 						home.stateVersion = "26.05";
 					};
 				};

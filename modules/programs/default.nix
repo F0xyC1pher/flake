@@ -16,7 +16,6 @@
 		./rofi
 		# ./scroll
 		./shell
-		./swaync
 		./tmux
 		./tty
 		./vscodium
