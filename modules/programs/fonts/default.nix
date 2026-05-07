@@ -62,38 +62,4 @@
 			};
 		};
 	};
-
-	# ── HM fontconfig ────────────────────────────────────────────────────────────
-	home-manager.users.${vars.userName} = {...}: {
-		fonts.fontconfig.enable = true;
-
-		xdg.configFile."fontconfig/conf.d/10-foxychipherx.conf".text = ''
-			<?xml version="1.0"?>
-			<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-			<fontconfig>
-			  <!-- Prefer main font for every generic family -->
-			  <alias>
-			    <family>monospace</family>
-			    <prefer><family>${vars.fontName}</family></prefer>
-			  </alias>
-			  <alias>
-			    <family>sans-serif</family>
-			    <prefer><family>${vars.fontName}</family></prefer>
-			  </alias>
-			  <alias>
-			    <family>serif</family>
-			    <prefer><family>${vars.fontName}</family></prefer>
-			  </alias>
-
-			  <!-- Global rendering tweaks -->
-			  <match target="font">
-			    <edit name="antialias"  mode="assign"><bool>true</bool></edit>
-			    <edit name="hinting"    mode="assign"><bool>true</bool></edit>
-			    <edit name="hintstyle"  mode="assign"><const>hintslight</const></edit>
-			    <edit name="rgba"       mode="assign"><const>rgb</const></edit>
-			    <edit name="lcdfilter" mode="assign"><const>lcddefault</const></edit>
-			  </match>
-			</fontconfig>
-		'';
-	};
 }

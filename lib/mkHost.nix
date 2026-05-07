@@ -71,8 +71,8 @@ in
 		inherit system;
 		specialArgs = {inherit inputs vars;};
 		modules = [
-			../modules
-			../users
+			../modules/default.nix
+			../users/default.nix
 			../hosts/${hostName}
 
 			home-manager.nixosModules.home-manager

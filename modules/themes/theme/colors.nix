@@ -1,4 +1,4 @@
-# ── Theme: theme — colors (organized chaos) ───────────────────────────────────────
+# ── Theme: theMe — colors (organized chaos) ───────────────────────────────────────
 #
 # Pure color set. Names here can be ANYTHING — base."0", red, maroon, hellfire.
 # This file does NOT define UI semantics. It only declares which hex values

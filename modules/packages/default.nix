@@ -21,6 +21,10 @@ in {
 	];
 	environment.systemPackages = with pkgs;
 	with inputs; [
+		libsForQt5.qt5ct
+		qt6Packages.qt6ct
+		papirus-icon-theme
+
 		# 🖥️ Core & System Essentials (Основа системы)
 		glib
 		gvfs

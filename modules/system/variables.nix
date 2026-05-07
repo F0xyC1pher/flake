@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
 	environment.sessionVariables = {
 		# === Wayland session ===
 		XDG_SESSION_TYPE = "wayland";
@@ -20,11 +20,14 @@
 
 		# === Qt ===
 		QT_QPA_PLATFORM = "wayland;xcb";
+		QT_QPA_PLATFORMTHEME = "qt6ct";
+		QT_STYLE_OVERRIDE = lib.mkForce "fusion";
 
 		# === GTK / GDK ===
 		NO_AT_BRIDGE = "1";
 		GTK_A11Y = "none";
 		GTK_USE_PORTAL = "1";
+		GTK_THEME = "Adwaita-dark";
 		GDK_DEBUG = "portals";
 		GDK_BACKEND = "wayland,x11,*";
 
