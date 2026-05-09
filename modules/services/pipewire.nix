@@ -181,6 +181,37 @@ in {
 					};
 				}
 			];
+			"monitor.bluez.rules" = [
+				{
+					matches = [
+						{"device.name" = "~bluez_card.*";}
+					];
+					actions = {
+						update-props = {
+							# Убираем засыпание для BT, чтобы не было лага при начале звука
+							"session.suspend-timeout-seconds" = 0;
+							# Для BT важен кодек, но мы можем форсировать частоту
+							"audio.rate" = rate;
+							# Улучшаем качество ресемпла, если кодек BT не совпадает с системным
+							"resample.quality" = 10;
+						};
+					};
+				}
+				{
+					# Конкретно для вывода звука (Sinks) на BT
+					matches = [
+						{"node.name" = "~bluez_output.*";}
+					];
+					actions = {
+						update-props = {
+							"node.latency" = "${toString quantum}/${toString rate}";
+							"node.lock-quantum" = true;
+							# Важно для BT: предотвращает разрыв звука при низких квантах
+							"api.bluez5.hw-volume" = true;
+						};
+					};
+				}
+			];
 		};
 	};
 }

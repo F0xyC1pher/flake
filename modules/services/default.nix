@@ -6,7 +6,7 @@
 		./cliphist.nix
 		./cups.nix
 		./dbus.nix
-		./dnscrypt-proxy.nix
+		# ./dnscrypt-proxy.nix
 		./dropbox.nix
 		# ./earlyloom.nix
 		# ./envfs.nix
