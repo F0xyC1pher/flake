@@ -161,7 +161,7 @@ in {
 							# "audio.format" = "FLOAT32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.name}LE";
+							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.value}${toString vars.hardware.sound.format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};
@@ -177,6 +177,37 @@ in {
 							"api.alsa.period-size" = 1024;
 							"api.alsa.period-num" = 3;
 							"api.alsa.headroom" = 512;
+						};
+					};
+				}
+			];
+			"monitor.bluez.rules" = [
+				{
+					matches = [
+						{"device.name" = "~bluez_card.*";}
+					];
+					actions = {
+						update-props = {
+							# Убираем засыпание для BT, чтобы не было лага при начале звука
+							"session.suspend-timeout-seconds" = 0;
+							# Для BT важен кодек, но мы можем форсировать частоту
+							"audio.rate" = rate;
+							# Улучшаем качество ресемпла, если кодек BT не совпадает с системным
+							"resample.quality" = 10;
+						};
+					};
+				}
+				{
+					# Конкретно для вывода звука (Sinks) на BT
+					matches = [
+						{"node.name" = "~bluez_output.*";}
+					];
+					actions = {
+						update-props = {
+							"node.latency" = "${toString quantum}/${toString rate}";
+							"node.lock-quantum" = true;
+							# Важно для BT: предотвращает разрыв звука при низких квантах
+							"api.bluez5.hw-volume" = true;
 						};
 					};
 				}

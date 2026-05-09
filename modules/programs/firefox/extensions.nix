@@ -12,17 +12,19 @@
 						force = true;
 						packages = with pkgs.firefoxAddons; [
 							russian-ru-language-pack
-							ublock-origin
-							sponsorblock
-							return-youtube-dislikes
-							stylus
-							violentmonkey
-							keepassxc-browser
 							sidebery
 							tap-to-tab
+							ublock-origin
+							violentmonkey
+							v3-get-old-youtube-layout
+							dont-touch-my-selection
+							return-youtube-dislikes
 							s3_translator
-							firefox-color
+							keepassxc-browser
 							horizontal-scroll
+							firefox-color
+							sponsorblock
+							# stylus
 						];
 					};
 				};

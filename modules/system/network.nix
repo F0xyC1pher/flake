@@ -13,7 +13,7 @@
 			enable = true;
 			dns = "systemd-resolved";
 			# dns = "none";
-			insertNameservers = ["127.0.0.1"];
+			# insertNameservers = ["127.0.0.1"];
 			# insertNameservers = ["1.1.1.1"];
 		};
 		useDHCP = false;
