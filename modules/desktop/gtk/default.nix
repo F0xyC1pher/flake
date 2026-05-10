@@ -3,36 +3,31 @@
 {
 	pkgs,
 	vars,
-	lib,
-	config,
 	...
 }: let
-	t = vars.theme.style; # resolved role tree
-	dark = vars.theme.dark or true;
-	fontName = vars.theme.font.name or "Inter";
-	fontSize = vars.theme.font.size or 11;
-
+	ui = vars.theme.style.ui; # ui tree
+	text = vars.theme.style.text; # text tree
 	# Common CSS color definitions (role‑based)
 	colorDefs = ''
 		/* ── Color definitions (from theMe roles) ────────────────────── */
-		@define-color bg_deep        ${t.ui.deep};
-		@define-color bg_main        ${t.ui.main};
-		@define-color bg_surface     ${t.ui.surface};
-		@define-color bg_overlay     ${t.ui.overlay};
-		@define-color bg_selection   ${t.ui.selection};
-		@define-color bg_highlight   ${t.ui.highlight};
-		@define-color fg_main        ${t.text.main};
-		@define-color fg_heading     ${t.text.heading};
-		@define-color fg_faint       ${t.text.faint};
-		@define-color fg_dimmed      ${t.text.dimmed};
-		@define-color accent_color   ${t.accent};
-		@define-color accent_fg      ${t.text.onAccent};
-		@define-color border_active  ${t.ui.border.active};
-		@define-color border_inact   ${t.ui.border.inactive};
-		@define-color sem_error      ${t.text.syntax.error};
-		@define-color sem_warning    ${t.text.syntax.warning};
-		@define-color sem_success    ${t.text.syntax.success};
-		@define-color sem_info       ${t.text.syntax.info};
+		@define-color bg_deep        ${ui.deep};
+		@define-color bg_main        ${ui.main};
+		@define-color bg_surface     ${ui.surface};
+		@define-color bg_overlay     ${ui.overlay};
+		@define-color bg_selection   ${ui.selection};
+		@define-color bg_highlight   ${ui.highlight};
+		@define-color fg_main        ${text.main};
+		@define-color fg_heading     ${text.heading};
+		@define-color fg_faint       ${text.faint};
+		@define-color fg_dimmed      ${text.dimmed};
+		@define-color accent_color   ${vars.theme.style.accent};
+		@define-color accent_fg      ${text.onAccent};
+		@define-color border_active  ${ui.border.active};
+		@define-color border_inact   ${ui.border.inactive};
+		@define-color sem_error      ${text.syntax.error};
+		@define-color sem_warning    ${text.syntax.warning};
+		@define-color sem_success    ${text.syntax.success};
+		@define-color sem_info       ${text.syntax.info};
 	'';
 
 	# Main CSS (square corners, full widget coverage, accessibility)
@@ -318,19 +313,19 @@ in {
 		gtk = {
 			enable = true;
 			font = {
-				name = vars.fontName or "Inter";
-				size = vars.fontSize or 11;
+				name = vars.theme.font.name;
+				size = vars.theme.font.size;
 			};
 			theme = {
 				name =
-					if vars.useDarkTheme or true
+					if vars.theme.dark
 					then "Adwaita-dark"
 					else "Adwaita";
 				package = pkgs.gnome-themes-extra;
 			};
 			iconTheme = {
 				name =
-					if vars.useDarkTheme or true
+					if vars.theme.dark
 					then "Papirus-Dark"
 					else "Papirus";
 				package = pkgs.papirus-icon-theme;
@@ -341,7 +336,7 @@ in {
 
 			gtk3.extraConfig = {
 				gtk-application-prefer-dark-theme =
-					if vars.useDarkTheme or true
+					if vars.theme.dark
 					then 1
 					else 0;
 				gtk-decoration-layout = "menu:";
@@ -350,7 +345,7 @@ in {
 			};
 			gtk4.extraConfig = {
 				gtk-application-prefer-dark-theme =
-					if vars.useDarkTheme or true
+					if vars.theme.dark
 					then 1
 					else 0;
 				gtk-decoration-layout = "menu:";

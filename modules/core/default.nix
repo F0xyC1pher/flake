@@ -1,16 +1,16 @@
 {...}: {
 	imports = [
+		./security
+		./xdg
 		./etc.nix
 		./locale.nix
-		./mime.nix
 		./network.nix
 		./nix-init.nix
 		./nix.nix
-		./portals.nix
-		./security.nix
-		./sops.nix
+		./ssh.nix
 		# ./systemd.nix
-		./terminal-exec.nix
+		./time.nix
+		./tty.nix
 		./variables.nix
 	];
 

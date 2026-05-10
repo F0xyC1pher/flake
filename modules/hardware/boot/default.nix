@@ -1,6 +1,5 @@
 {
 	lib,
-	config,
 	pkgs,
 	vars,
 	...
@@ -74,24 +73,25 @@
 		};
 		#	==========	BOOTLOADER	==========
 		loader = let
-			lowerLoader = lib.toLower vars.bootLoader;
+			lowerLoader = lib.toLower vars.hardware.boot.loader;
 		in
 			if lowerLoader == "grub"
 			then {
 				grub.enable = true;
-				grub.device = config.fileSystems."/boot".device;
+				grub.device = vars.hardware.boot.device;
 				limine.enable = false;
+				
 			}
 			else if lowerLoader == "limine"
 			then {
 				limine.enable = true;
-				limine.biosDevice = config.fileSystems."/boot".device;
+				limine.biosDevice = vars.hardware.boot.device;
 				limine.enableEditor = true;
 				limine.extraConfig = ''
 					remember_last_entry: yes
 				'';
 				grub.enable = false;
 			}
-			else throw "Unknown boot loader: ${vars.bootLoader}";
+			else throw "Unknown boot loader: ${vars.hardware.boot}";
 	};
 }
