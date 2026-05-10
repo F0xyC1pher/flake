@@ -27,10 +27,18 @@
 			shell = userSettings.user.shell;
 		};
 		app = {
-			browser = userSettings.app.browser;
-			file-manager = userSettings.app.file-manager;
-			launcher = userSettings.app.launcher;
+			gui = {
+				browser = userSettings.app.gui.browser; #firefox floorp zen ungoogled-chromium chrome
+				file-manager = userSettings.app.gui.file-manager; #nautilus nemo
+				launcher = userSettings.app.gui.launcher; #fuzzel rofi
+				text-editor = userSettings.app.gui.text-editor; # vscodium zed
+			};
 			terminal = userSettings.app.terminal;
+			tui = {
+				browser = userSettings.app.tui.browser; #lyx
+				file-manager = userSettings.app.tui.file-manager; #yazi ranger
+				text-editor = userSettings.app.tui.text-editor; # micro nano
+			};
 		};
 
 		# theme settings (original config + resolved style)
@@ -51,7 +59,6 @@
 
 		# host info
 		host = hostMeta.host;
-		bootLoader = hostMeta.bootLoader;
 		hardware = hostMeta.hardware;
 	};
 

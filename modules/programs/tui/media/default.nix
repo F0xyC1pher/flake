@@ -1,0 +1,6 @@
+{...}: {
+	imports = [
+		./rmpc
+		./mpv.nix
+	];
+}

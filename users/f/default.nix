@@ -2,6 +2,9 @@
 	theme = {
 		name = "theMe";
 		dark = true;
+		# gaps = 8;
+		# border = 2;
+
 		# Optional — override raw palette values BEFORE the role mapping runs.
 		# colorOverrides = {
 		# 	accent.red = "#f67676";
@@ -10,6 +13,7 @@
 		# roleOverrides = {
 		# 	accent = "#f67676";
 		# 	ui.border.active = "#f67676";
+
 		# };
 
 		font = {
@@ -27,10 +31,22 @@
 		password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
 		shell = "fish"; # fish zsh bash brush
 	};
+	system = {
+		modKey = "Mod4"; # Super
+	};
 	app = {
-		browser = "firefox"; #firefox floorp zen ungoogled-chromium chrome
-		file-manager = "yazi"; #yazi nautilus nemo
-		launcher = "fuzzel"; #fuzzel rofi
+		gui = {
+			browser = "firefox"; #firefox floorp zen ungoogled-chromium chrome
+			file-manager = "yazi"; #nautilus nemo
+			launcher = "fuzzel"; #fuzzel rofi
+			text-editor = "vscodium"; # vscodium zed
+		};
 		terminal = "kitty";
+		tui = {
+			browser = "lyx"; #lyx
+			file-manager = "yazi"; #yazi ranger
+			# launcher = "fuzzel"; #fuzzel rofi
+			text-editor = "micro"; # micro nano
+		};
 	};
 }

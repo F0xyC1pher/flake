@@ -202,7 +202,7 @@ in {
 		mangohud
 		yetris
 		inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-
+		jdk25
 		# 🍷 Wine & Compatibility (Совместимость с Windows)
 		wineWow64Packages.stagingFull
 		wineWow64Packages.waylandFull

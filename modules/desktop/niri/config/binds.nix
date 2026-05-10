@@ -33,9 +33,9 @@
 				    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
 					  Mod+Y hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "yazi"; }
 				    // Mod+R hotkey-overlay-title="Application Launcher: rofi" { spawn "rofi" "-show" "drun"; }
-				    Alt+space hotkey-overlay-title="Application Launcher: ${vars.app.launcher}" { spawn "${vars.app.launcher}" ${lib.optionalString (vars.app.launcher == "rofi") ''"-show" "drun"''} ; }
-				    Mod+R hotkey-overlay-title="Application Launcher: ${vars.app.launcher}" { spawn "${vars.app.launcher}" ${lib.optionalString (vars.app.launcher == "rofi") ''"-show" "drun"''} ; }
-				    Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.launcher}" { spawn "cliphist-${vars.app.launcher}-img"; }
+				    Alt+space hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
+				    Mod+R hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
+				    Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.gui.launcher}" { spawn "cliphist-${vars.app.gui.launcher}-img"; }
 				    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
 				    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

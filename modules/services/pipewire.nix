@@ -4,7 +4,7 @@
 	pkgs,
 	...
 }: let
-	rate = vars.hardware.sound.rate;
+	rate = vars.hardware.audio.rate;
 	quantumMap = {
 		"44100" = 512;
 		"48000" = 512;
@@ -161,7 +161,7 @@ in {
 							# "audio.format" = "FLOAT32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.value}${toString vars.hardware.sound.format.suffix}";
+							"audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${toString vars.hardware.audio.format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};

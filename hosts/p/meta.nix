@@ -1,16 +1,27 @@
 {
 	user = "f";
 	host = "p";
-	bootLoader = "grub"; #GRUB LIMINE
 	hardware = {
+		boot = {
+			loader = "grub"; #GRUB LIMINE
+				# Диск для загрузчика (весь диск, не раздел)
+	# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
+			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798";
+		};
 		bluetooth = true;
 		wifi = true;
+		zram.enable = true;
+		cpu.governor = "performance";
+		kernel.type = "xanmod"; # xanmod, zen, hardened, default
 
-		sound = {
+		audio = {
+			noiseCancellation = true;
 			rate = 192000;
-			format.prefix = "FLOAT"; # FLOAT S
-			format.value = 32;
-			format.suffix = "LE";
+			format = {
+				prefix = "FLOAT"; # FLOAT S
+				value = 32;
+				suffix = "LE";
+			};
 		};
 
 		nvidia = {
