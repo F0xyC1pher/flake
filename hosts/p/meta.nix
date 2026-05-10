@@ -9,7 +9,7 @@
 		sound = {
 			rate = 192000;
 			format.prefix = "FLOAT"; # FLOAT S
-			format.name = 32;
+			format.value = 32;
 			format.suffix = "LE";
 		};
 

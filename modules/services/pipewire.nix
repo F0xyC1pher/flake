@@ -161,7 +161,7 @@ in {
 							# "audio.format" = "FLOAT32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.name}LE";
+							"audio.format" = "${vars.hardware.sound.format.prefix}${toString vars.hardware.sound.format.value}${toString vars.hardware.sound.format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};
