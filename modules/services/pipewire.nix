@@ -13,10 +13,10 @@
 		"176400" = 2048;
 		"192000" = 2048;
 	};
-	quantum = quantumMap."${toString rate}" or 1024;
 
-	minQuantum = quantum / 4;
-	maxQuantum = quantum;
+	quantum = quantumMap."${toString rate}";
+	minQuantum = quantum / 2;
+	maxQuantum = quantum * 2;
 in {
 	security.rtkit.enable = lib.mkDefault true;
 
@@ -37,7 +37,7 @@ in {
 		];
 		extraConfig = {
 			# ==================== глобальный конфиг пипеваре ====================
-			pipewire."10-low-latency" = {
+			pipewire."98-low-latency" = {
 				"context.properties" = {
 					"default.clock.rate" = rate;
 					"default.clock.allowed-rates" = [192000 176400 96000 88200 48000 44100];
@@ -65,7 +65,7 @@ in {
 				];
 			};
 			# ==================== пипеваре глушение пердежа микрофона ====================
-			pipewire."99-rnnoise" = {
+			pipewire."98-rnnoise" = {
 				"context.modules" = [
 					{
 						name = "libpipewire-module-filter-chain";
@@ -121,22 +121,24 @@ in {
 				];
 			};
 			# ==================== дрочка ====================
-			jack."10-low-latency" = {
+			jack."98-low-latency" = {
 				"jack.properties" = {
 					"jack.default-quantum" = quantum;
 					"node.lock-quantum" = true;
-					# "node.force-quantum" = quantum;
+					"node.force-quantum" = quantum;
 					"jack.show-monitor" = true;
 					"jack.merge-monitor" = false;
 				};
 			};
 
 			# ==================== пипеваре-рельсотрон ====================
-			pipewire-pulse."10-low-latency" = {
+			pipewire-pulse."98-low-latency" = {
 				"pulse.properties" = {
 					"pulse.min.req" = "${toString minQuantum}/${toString rate}";
 					"pulse.default.req" = "${toString quantum}/${toString rate}";
 					"pulse.max.req" = "${toString maxQuantum}/${toString rate}";
+					"pulse.min.quantum" = "${toString minQuantum}/${toString rate}";
+					"pulse.max.quantum" = "${toString maxQuantum}/${toString rate}";
 				};
 
 				"stream.properties" = {
@@ -147,21 +149,21 @@ in {
 		};
 
 		# ==================== марио (сальса) ====================
-		wireplumber.extraConfig."10-low-latency" = {
+		wireplumber.extraConfig."98-low-latency" = {
 			"monitor.alsa.rules" = [
 				{
 					# правило для наушников
-					matches = [{"device.name" = "~alsa_card.*";}];
+					matches = [{"device.name" = "~alsa_output.*";}];
 					actions = {
 						update-props = {
 							"api.alsa.period-size" = quantum / 2;
-							"api.alsa.period-num" = 3;
+							"api.alsa.period-num" = 2;
 							"session.suspend-timeout-seconds" = 0;
 							"device.suspend-timeout-seconds" = 0;
-							# "audio.format" = "FLOAT32LE";
+							# "audio.format" = "F32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							"audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${toString vars.hardware.audio.format.suffix}";
+							"audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${vars.hardware.audio.format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};
@@ -175,7 +177,7 @@ in {
 							"audio.rate" = 48000;
 							"audio.format" = "S16LE";
 							"api.alsa.period-size" = 1024;
-							"api.alsa.period-num" = 3;
+							"api.alsa.period-num" = 2;
 							"api.alsa.headroom" = 512;
 						};
 					};
