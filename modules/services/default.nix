@@ -2,6 +2,8 @@
 	imports = [
 		./polkit-service
 		./arrpc.nix
+		./awww.nix
+		./cliphist.nix
 		./cups.nix
 		./dbus.nix
 		# ./dnscrypt-proxy.nix
