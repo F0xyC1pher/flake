@@ -41,6 +41,14 @@
 						volumeBooster.enable = true;
 						waitForSlot.enable = true;
 						webScreenShareFixes.enable = true;
+						questify = {
+							newExcludedQuestAlertVolume = 1.0;
+							newQuestAlertVolume = 1.0;
+							questButtonBadgeColor = 1.0;
+							questButtonBadgeCount = 1.0;
+							questCompletedAlertVolume = 1.0;
+							questFetchInterval = 1.0;
+						};
 					};
 				};
 			};

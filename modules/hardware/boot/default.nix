@@ -14,11 +14,11 @@
 
 		kernelParams = [
 			"mitigations=off"
-			# "preempt=full"
+			"preempt=voluntary"
 			"threadirqs"
 			"nmi_watchdog=0"
 			"nowatchdog"
-			# "tsc=reliable"
+			"tsc=reliable"
 			"split_lock_detect=off"
 			"transparent_hugepage=madvise"
 			"pcie_aspm=off"
@@ -80,7 +80,6 @@
 				grub.enable = true;
 				grub.device = vars.hardware.boot.device;
 				limine.enable = false;
-				
 			}
 			else if lowerLoader == "limine"
 			then {

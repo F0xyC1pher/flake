@@ -54,7 +54,7 @@ in {
 					"locale" = "ru";
 					"password-store" = "basic";
 				};
-			programs.vscode = {
+			programs.vscodium = {
 				enable = true;
 				package = pkgs.vscodium;
 

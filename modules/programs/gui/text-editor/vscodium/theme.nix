@@ -13,7 +13,7 @@
 		}: let
 			t = vars.theme.style;
 		in {
-			programs.vscode.profiles.default.userSettings = {
+			programs.vscodium.profiles.default.userSettings = {
 				# ── Window ─────────────────────────────────────────────────────
 				"window.titleBarStyle" = "custom";
 				"window.menuBarVisibility" = "toggle";
