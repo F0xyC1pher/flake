@@ -9,13 +9,16 @@
   ];
   system.stateVersion = "26.05";
 
-  # Модули для загрузки
-  boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "usbhid" "sd_mod"];
+  boot.initrd.availableKernelModules = [
+    "ehci_pci"
+    "ahci"
+    "usbhid"
+    # "sd_mod"
+  ];
   boot.initrd.kernelModules = ["overlay"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  # Корень (Btrfs)
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/741b96c0-c372-4136-adca-5c72b78370ca";
     fsType = "btrfs";
@@ -44,7 +47,6 @@
     fsType = "btrfs";
   };
 
-  # Тот самый overlay для /etc
   fileSystems."/etc" = {
     device = "overlay";
     fsType = "overlay";
