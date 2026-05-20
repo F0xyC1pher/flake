@@ -1,14 +1,15 @@
 {...}: {
-	imports = [
-		./gayming
-		./gui
-		./shell
-		./terminal
-		./tui
-		./appimage.nix
-		./nh.nix
-		# ./uwsm.nix
-		./xwayland.nix
-		./zoxide.nix
-	];
+  imports = [
+    ./gayming
+    ./gui
+    ./shell
+    ./terminal
+    ./tui
+    ./appimage.nix
+    ./nh.nix
+    # ./nix-ld.nix
+    # ./uwsm.nix
+    ./xwayland.nix
+    # ./zoxide.nix
+  ];
 }
