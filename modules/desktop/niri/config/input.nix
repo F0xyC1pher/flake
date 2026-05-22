@@ -18,14 +18,39 @@
 				        repeat-rate 40
 				        track-layout "global"
 				    }
-
-				    // Next sections include libinput settings.
-				    // Omitting settings disables them, or leaves them at their default values.
-				    // All commented-out settings here are examples, not defaults.
-				    touchpad {
-				        off
-				    }
-
+					trackpoint {
+						// off
+						// natural-scroll
+						// accel-speed 0.2
+						// accel-profile "flat"
+						// scroll-method "on-button-down"
+						// scroll-button 273
+						// scroll-button-lock
+						// left-handed
+						// middle-emulation
+					}
+					touchpad {
+						// off
+						tap
+						// dwt
+						dwtp
+						drag true
+						drag-lock
+						natural-scroll
+						// accel-speed 0.2
+						// accel-profile "flat"
+						// scroll-factor 1.0
+						// scroll-factor vertical=1.0 horizontal=-2.0
+						// scroll-method "two-finger"
+						// scroll-button 273
+						// scroll-button-lock
+						tap-button-map "left-middle-right"
+						// click-method "clickfinger"
+						click-method "button-areas"
+						// left-handed
+						// disabled-on-external-mouse
+						// middle-emulation
+					}
 				    mouse {
 				        // off
 				        // accel-speed 0.2

@@ -42,12 +42,12 @@
 						waitForSlot.enable = true;
 						webScreenShareFixes.enable = true;
 						questify = {
-							newExcludedQuestAlertVolume = 1.0;
-							newQuestAlertVolume = 1.0;
-							questButtonBadgeColor = 1.0;
-							questButtonBadgeCount = 1.0;
-							questCompletedAlertVolume = 1.0;
-							questFetchInterval = 1.0;
+							newExcludedQuestAlertVolume = 1;
+							newQuestAlertVolume = 1;
+							questButtonBadgeColor = 1;
+							questButtonBadgeCount = 1;
+							questCompletedAlertVolume = 1;
+							questFetchInterval = 1;
 						};
 					};
 				};
