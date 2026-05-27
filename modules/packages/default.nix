@@ -197,18 +197,18 @@ in {
     android-translation-layer
     extract-dtb
 
-    # 🎮 Gaming (Игры)
-    r2modman
-    mangohud
-    yetris
-    # inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-    jdk25
-    # 🍷 Wine & Compatibility (Совместимость с Windows)
-    wineWow64Packages.stagingFull
-    wineWow64Packages.waylandFull
-    wineWow64Packages.fonts
-    wineasio
-    winetricks
+		# 🎮 Gaming (Игры)
+		r2modman
+		mangohud
+		yetris
+		inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+		jdk25
+		# 🍷 Wine & Compatibility (Совместимость с Windows)
+		wineWow64Packages.stagingFull
+		wineWow64Packages.waylandFull
+		wineWow64Packages.fonts
+		wineasio
+		winetricks
 
     # 📨 Communication (Мессенджеры)
     inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
