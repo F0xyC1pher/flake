@@ -8,12 +8,12 @@
 			# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
 			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798";
 		};
-		bluetooth = true;
-		wifi = true;
+		bluetooth.enable = true;
+		wifi.enable = true;
 		zram.enable = true;
 		cpu.governor = "performance";
 		kernel.type = "xanmod"; # xanmod, zen, hardened, default
-
+		parallels.enable = true;
 		audio = {
 			noiseCancellation = true;
 			rate = 192000;
