@@ -1,12 +1,17 @@
-{...}: {
+{vars,...}: {
 	imports = [
 		./boot
 		./nvidia
 		./swap
 		./bluetooth.nix
-#		./parallels.nix
 		./power.nix
 		./redist.nix
 		./ssd.nix
-	];
+	]++(
+	if vars.hardware.parallels.enable
+	then 
+		[./parallels.nix] 
+	else
+		[]
+	);
 }

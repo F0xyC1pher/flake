@@ -8,12 +8,12 @@
 			# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
 			device = "/dev/disk/by-id/ata-WDC_WD3200LPVT-08G33T1_WD-WX41A5342859";
 		};
-		bluetooth = true;
-		wifi = true;
+		bluetooth.enable = true;
+		wifi.enable = true;
 		zram.enable = true;
 		cpu.governor = "performance";
 		kernel.type = "xanmod"; # xanmod, zen, hardened, default
-
+		parallels.enable = true;
 		audio = {
 			noiseCancellation = true;
 			rate = 192000;
