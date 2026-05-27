@@ -1,45 +1,18 @@
-# ── VSCodium — workbench color customisations via vars.theme.style.* ─────────
 {
   inputs,
   vars,
+  lib,
   ...
-}: {
+}: let
+  t = vars.theme.style;
+in {
   home-manager = {
     extraSpecialArgs = {inherit inputs vars;};
     users.${vars.user.name} = {
-      vars,
-      lib,
-      ...
-    }: let
-      t = vars.theme.style;
-    in {
       programs.vscodium.profiles.default.userSettings = {
-        # ── Window ─────────────────────────────────────────────────────
-        "window.titleBarStyle" = "custom";
-        "window.menuBarVisibility" = "toggle";
-        "window.zoomLevel" = 0;
-
-        # ── Editor ─────────────────────────────────────────────────────
-        "editor.fontFamily" = lib.mkForce "${vars.theme.font.name}";
-        "editor.fontSize" = 14;
-        "editor.lineHeight" = 22;
-        "editor.fontLigatures" = true;
-        "editor.tabSize" = 4;
-        "editor.insertSpaces" = false;
-        "editor.renderWhitespace" = "boundary";
-        "editor.cursorStyle" = "block";
-        "editor.cursorBlinking" = "phase";
-        "editor.minimap.enabled" = true;
-        "editor.scrollBeyondLastLine" = false;
-        "editor.smoothScrolling" = true;
-        "editor.bracketPairColorization.enabled" = true;
-        "editor.guides.bracketPairs" = true;
-
-        # ── Workbench ──────────────────────────────────────────────────
         "workbench.colorTheme" = "Dark Modern";
-        "workbench.startupEditor" = "none";
+        # "workbench.tree.indent" = 14;
         "workbench.iconTheme" = "material-icon-theme";
-        "workbench.tree.indent" = 14;
 
         "workbench.colorCustomizations" = {
           # ── Editor core ────────────────────────────────────────────
@@ -190,19 +163,7 @@
           "icon.foreground" = t.text.main;
         };
 
-        # ── Telemetry ────────────────────────────────────────────────────
-        "telemetry.telemetryLevel" = "off";
-        "update.mode" = "none";
-
-        # ── Files ────────────────────────────────────────────────────────
-        # "files.autoSave" = "afterDelay";
-        # "files.autoSaveDelay" = 500;
-        "files.trimTrailingWhitespace" = false;
-        "files.insertFinalNewline" = false;
-
-        # ── Nix ──────────────────────────────────────────────────────────
-        # "nix.enableLanguageServer" = true;
-        # "nix.serverPath" = "nixd";
+        # ── Переопределять ничего больше не нужно, остальные настройки берутся из основного файла ──
       };
     };
   };

@@ -38,7 +38,7 @@
   };
 in {
   imports = [
-    ./theme.nix
+    ./theme.nix # ← подключаем тему
   ];
   home-manager = {
     extraSpecialArgs = {inherit inputs vars;};
@@ -80,22 +80,25 @@ in {
           ];
 
           userSettings = {
+            # ── System ─────────────────────────────────────────────────
             "http.systemCertificatesNode" = true;
             "geminicodeassist.project" = "gen-lang-client-0845042642";
             "security.workspace.trust.untrustedFiles" = "open";
-            # ── Window ─────────────────────────────────────────────────────
+
+            # ── Window ─────────────────────────────────────────────────
             "window.titleBarStyle" = "custom";
             "window.menuBarVisibility" = "toggle";
             "window.zoomLevel" = 0;
 
-            # ── Editor ─────────────────────────────────────────────────────
-            "editor.fontFamily" = "${vars.theme.font.name}";
+            # ── Editor ─────────────────────────────────────────────────
+            "editor.fontFamily" = vars.theme.font.name;
             "editor.fontSize" = 14;
             "editor.lineHeight" = 22;
             "editor.fontLigatures" = true;
             "editor.tabSize" = 4;
             "editor.indentSize" = 4;
             "editor.insertSpaces" = false;
+            "editor.detectIndentation" = false;
             "editor.renderWhitespace" = "boundary";
             "editor.cursorStyle" = "block";
             "editor.cursorBlinking" = "phase";
@@ -104,17 +107,13 @@ in {
             "editor.smoothScrolling" = true;
             "editor.bracketPairColorization.enabled" = true;
             "editor.guides.bracketPairs" = true;
-            "editor.detectIndentation" = false;
             "editor.useTabStops" = true;
             "editor.formatOnSave" = true;
-            # "editor.formatOnSaveMode"= "modifications";
 
-            # ── Workbench ──────────────────────────────────────────────────
-            # "workbench.colorTheme" = "Default Dark Modern";
+            # ── Workbench ──────────────────────────────────────────────
             "workbench.startupEditor" = "none";
-            "workbench.iconTheme" = "material-icon-theme";
-            # "workbench.tree.indent" = 14;
 
+            # ── Nix embedded languages ─────────────────────────────────
             "nix-embedded-languages.include" = {
               "KDL|kdl" = {
                 "name" = "KDL/kdl";
@@ -122,21 +121,17 @@ in {
               };
             };
 
+            # ── Nix language server ────────────────────────────────────
             "[nix]" = {
               "editor.tabSize" = 4;
               "editor.insertSpaces" = false;
             };
             "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nixd"; # or "nil", or ["executable", "argument1", ...]
-            # LSP config can be passed via the ``nix.serverSettings.{lsp}`` as shown below.
+            "nix.serverPath" = "nixd";
             "nix.serverSettings" = {
-              # check https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md for all nixd config
               "nixd" = {
                 "formatting"."command" = ["alejandra"];
                 "options" = {
-                  # By default, this entry will be read from `import <nixpkgs> { }`.
-                  # You can write arbitrary Nix expressions here, to produce valid "options" declaration result.
-                  # Tip: for flake-based configuration, utilize `builtins.getFlake`
                   "nixos" = {
                     "expr" = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host}.options";
                   };
@@ -147,11 +142,11 @@ in {
               };
             };
 
-            # ── Telemetry ────────────────────────────────────────────────────
+            # ── Telemetry & updates ────────────────────────────────────
             "telemetry.telemetryLevel" = "off";
             "update.mode" = "none";
 
-            # ── Files ────────────────────────────────────────────────────────
+            # ── Files ──────────────────────────────────────────────────
             "files.autoSave" = "off";
             "files.trimTrailingWhitespace" = false;
             "files.insertFinalNewline" = false;
