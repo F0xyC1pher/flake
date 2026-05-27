@@ -68,11 +68,6 @@
 		system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
-		scroll-flake = {
-			url = "github:Diax170/scroll-flake";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-
 		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
 		spicetify-nix = {
@@ -191,7 +186,7 @@
 
 		# ── Binary tarballs ──────────────────────────────────────────────────────
 		nekobox = {
-			url = "https://github.com/qr243vbi/nekobox/releases/download/5.11.2/nekobox-5.11.2-linux-amd64.tar.gz";
+			url = "https://github.com/qr243vbi/nekobox/releases/download/5.11.15/nekobox-5.11.15-linux-amd64.tar.gz";
 			flake = false;
 		};
 		nekobox-git = {
