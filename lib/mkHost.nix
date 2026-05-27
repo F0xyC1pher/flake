@@ -71,7 +71,6 @@
 		zen-browser
 		noctalia
 		system76-scheduler-niri
-		scroll-flake
 		niri
 		;
 in
@@ -85,7 +84,6 @@ in
 
 			home-manager.nixosModules.home-manager
 			niri.nixosModules.niri
-			scroll-flake.nixosModules.default
 			sops-nix.nixosModules.sops
 			nur.modules.nixos.default
 

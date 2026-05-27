@@ -21,7 +21,7 @@ in {
   ];
   environment.systemPackages = with pkgs;
   with inputs; [
-    libsForQt5.qt5ct
+    # libsForQt5.qt5ct
     qt6Packages.qt6ct
     papirus-icon-theme
 
@@ -69,7 +69,7 @@ in {
     # tree-sitter
     # tree-sitter-grammars.
     treefmt
-    treesheets
+    # treesheets
     # ⚡ Performance & Kernel (Производительность и тюнинг)
     tuna
     schedtool
@@ -108,6 +108,7 @@ in {
     parted
     gparted-full
     mtools
+    ntfs3g
 
     # 💻 Development & Editors (Разработка и редакторы)
     obsidian
@@ -121,15 +122,17 @@ in {
     package-version-server
     vscodium
     zed-editor
+    neovim
+    neovide
     # jetbrains.clion
     # micro-full
-    gemini-cli-bin
+    # gemini-cli-bin
     #gemini-cli
     #lagrange-tui
-    tuios
+    # tuios
 
     # 🌐 Networking & VPN (Сеть)
-    sniffglue
+    # sniffglue
     qbittorrent
     dropbox
     dropbox-cli
@@ -194,27 +197,26 @@ in {
     # 📱 Mobile & Android (Мобильные устройства)
     android-tools
     android-file-transfer
-    android-translation-layer
     extract-dtb
 
-		# 🎮 Gaming (Игры)
-		r2modman
-		mangohud
-		yetris
-		inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-		jdk25
-		# 🍷 Wine & Compatibility (Совместимость с Windows)
-		wineWow64Packages.stagingFull
-		wineWow64Packages.waylandFull
-		wineWow64Packages.fonts
-		wineasio
-		winetricks
+    # 🎮 Gaming (Игры)
+    r2modman
+    mangohud
+    yetris
+    # inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
+    jdk25
+    # 🍷 Wine & Compatibility (Совместимость с Windows)
+    wineWow64Packages.stagingFull
+    wineWow64Packages.waylandFull
+    wineWow64Packages.fonts
+    wineasio
+    winetricks
 
     # 📨 Communication (Мессенджеры)
-    inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+    # inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 
     discordo
-    discord-gamesdk
+    # discord-gamesdk
     arrpc
     rustdesk-flutter
 
@@ -222,8 +224,8 @@ in {
     libva-vdpau-driver
     libvdpau-va-gl
 
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
+    # gpu-screen-recorder
+    # gpu-screen-recorder-gtk
     niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
   ];
   # ++ (
