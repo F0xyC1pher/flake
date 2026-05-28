@@ -3,7 +3,8 @@
   pkgs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     # ./tmp.nix
   ];
@@ -24,12 +25,12 @@
       "pcie_aspm=off"
     ];
     kernel.sysctl = {
-      # "kernel.sched_child_runs_first" = 0;
-      # "kernel.sched_autogroup_enabled" = 1;
-      # "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-      # "kernel.sched_latency_ns" = 4000000;
-      # "kernel.sched_min_granularity_ns" = 500000;
-      # "kernel.sched_wakeup_granularity_ns" = 1000000;
+      "kernel.sched_child_runs_first" = 0;
+      "kernel.sched_autogroup_enabled" = 1;
+      "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+      "kernel.sched_latency_ns" = 4000000;
+      "kernel.sched_min_granularity_ns" = 500000;
+      "kernel.sched_wakeup_granularity_ns" = 1000000;
       "vm.swappiness" = 10;
       "vm.vfs_cache_pressure" = 50;
       "vm.dirty_ratio" = 6;
@@ -72,25 +73,27 @@
       "fs.file-max" = 2097152;
     };
     #	==========	BOOTLOADER	==========
-    loader = let
-      lowerLoader = lib.toLower vars.hardware.boot.loader;
-    in
-      if lowerLoader == "grub"
-      then {
-        grub.enable = true;
-        grub.device = vars.hardware.boot.device;
-        limine.enable = false;
-      }
-      else if lowerLoader == "limine"
-      then {
-        limine.enable = true;
-        limine.biosDevice = vars.hardware.boot.device;
-        limine.enableEditor = true;
-        limine.extraConfig = ''
-          remember_last_entry: yes
-        '';
-        grub.enable = false;
-      }
-      else throw "Unknown boot loader: ${vars.hardware.boot}";
+    loader =
+      let
+        lowerLoader = lib.toLower vars.hardware.boot.loader;
+      in
+      if lowerLoader == "grub" then
+        {
+          grub.enable = true;
+          grub.device = vars.hardware.boot.device;
+          limine.enable = false;
+        }
+      else if lowerLoader == "limine" then
+        {
+          limine.enable = true;
+          limine.biosDevice = vars.hardware.boot.device;
+          limine.enableEditor = true;
+          limine.extraConfig = ''
+            remember_last_entry: yes
+          '';
+          grub.enable = false;
+        }
+      else
+        throw "Unknown boot loader: ${vars.hardware.boot}";
   };
 }

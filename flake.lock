@@ -653,6 +653,19 @@
         "type": "github"
       }
     },
+    "husi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779632553,
+        "narHash": "sha256-3aOMfam8lWc8xNqGhx32feCXQ4AKgYvD6zdvpUWLaJ8=",
+        "type": "tarball",
+        "url": "https://codeberg.org/xchacha20-poly1305/husi/releases/download/v1.2.2/fr.husi-1.2.2-1-x86_64.pkg.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/xchacha20-poly1305/husi/releases/download/v1.2.2/fr.husi-1.2.2-1-x86_64.pkg.tar.zst"
+      }
+    },
     "jbr-wayland-nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -1498,6 +1511,7 @@
         "fzf-tab": "fzf-tab",
         "fzf-zsh-completions": "fzf-zsh-completions",
         "home-manager": "home-manager",
+        "husi": "husi",
         "jbr-wayland-nix": "jbr-wayland-nix",
         "lsfg-vk-flake": "lsfg-vk-flake",
         "lunar-client": "lunar-client",

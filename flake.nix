@@ -185,6 +185,10 @@
     };
 
     # ── Binary tarballs ──────────────────────────────────────────────────────
+    husi = {
+      url = "https://codeberg.org/xchacha20-poly1305/husi/releases/download/v1.2.2/fr.husi-1.2.2-1-x86_64.pkg.tar.zst";
+      flake = false;
+    };
     nekobox = {
       url = "https://github.com/qr243vbi/nekobox/releases/download/5.11.15/nekobox-5.11.15-linux-amd64.tar.gz";
       flake = false;
