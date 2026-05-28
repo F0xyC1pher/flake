@@ -1,3 +1,4 @@
-{...}: {
-	services.seatd.enable = true;
+{ ... }:
+{
+  services.seatd.enable = true;
 }

@@ -1,4 +1,5 @@
-{vars, ...}: {
+{ vars, lib, ... }:
+{
   services.mpd = {
     enable = true;
     user = "${vars.user.name}";
@@ -34,7 +35,15 @@
         {
           type = "pipewire";
           name = "PipeWire Output";
-          format = "${toString vars.hardware.audio.rate}:${toString vars.hardware.audio.format.value}:2";
+          # format = "${toString vars.hardware.audio.rate}:${toString vars.hardware.audio.format.value}:*";
+          format = "${toString vars.hardware.audio.rate}:${
+            if
+              lib.toLower vars.hardware.audio.format.prefix == "f" && vars.hardware.audio.format.value == 32
+            then
+              "f"
+            else
+              toString vars.hardware.audio.value
+          }:*";
           # mixer_type = "software";
           # auto_resample = "no";
           buffer_time = "50000";
