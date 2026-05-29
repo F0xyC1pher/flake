@@ -124,6 +124,7 @@ in
       obsidian
       git
       gitui
+      github-cli
       git-credential-keepassxc
       color-lsp
       nixd
@@ -240,7 +241,7 @@ in
       # gpu-screen-recorder-gtk
       niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 
-      husi
+      # husi
     ]
     # ;
     ++ (
