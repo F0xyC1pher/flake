@@ -19,6 +19,7 @@
         publicShare = "/home/${vars.user.name}/PublicShare";
         templates = "/home/${vars.user.name}/Templates";
         videos = "/home/${vars.user.name}/Videos";
+
         extraConfig = {
           MISC = "/home/${vars.user.name}/Misc";
         };
