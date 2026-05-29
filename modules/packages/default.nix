@@ -134,7 +134,6 @@ in
       vscodium
       zed-editor
       neovim
-      neovide
       # jetbrains.clion
       # micro-full
       # gemini-cli-bin
@@ -160,11 +159,17 @@ in
       wireplumber
 
       # 🎵 Media & Streaming (Медиа контент)
-      spotify
+      # spotify
       youtube-tui
       termusic
       ytermusic
       yt-dlp
+      yt-dlg
+      ytalk
+      ytdl-sub
+      ytdownloader
+      ytfzf
+      ytmdesktop
       ffmpeg-full
       ffmpegthumbnailer
       poppler
@@ -194,7 +199,6 @@ in
       swaynotificationcenter
       cmd-polkit
       tuigreet
-
       # 🔐 Security (Безопасность)
       keepassxc
       sops

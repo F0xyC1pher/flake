@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./polkit-service
     ./arrpc.nix
@@ -10,7 +11,7 @@
     ./dropbox.nix
     # ./earlyloom.nix
     # ./envfs.nix
-    ./greetd.nix
+    # ./greetd.nix
     ./gvfs.nix
     # ./irqbalance.nix
     ./locate.nix
@@ -22,6 +23,7 @@
     ./playerctld.nix
     ./resolved.nix
     ./seatd.nix
+    ./sysc-greet.nix
     ./udev.nix
     ./upower.nix
     ./userborn.nix
