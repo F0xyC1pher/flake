@@ -33,7 +33,7 @@
 		# 	"94.131.119.22" = [ "grok.com" "x.ai" "accounts.x.ai" "gemini.google.com/app"];
 		# };
 		wireless = {
-			enable = true;
+			enable = vars.hardware.wifi;
 			userControlled = true;
 		};
 	};
