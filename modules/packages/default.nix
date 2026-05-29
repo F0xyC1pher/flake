@@ -180,7 +180,6 @@ in
       # 🖼️ Wayland & Graphics (Графическая среда)
       wayland-utils
       xdg-utils
-      xdg-user-dirs
       wlr-randr
       wev
       slurp
@@ -244,7 +243,8 @@ in
       # gpu-screen-recorder
       # gpu-screen-recorder-gtk
       niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
-
+      niri-unstable
+      xwayland-satellite-unstable
       # husi
     ]
     # ;

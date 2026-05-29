@@ -20,17 +20,17 @@
       "nmi_watchdog=0"
       "nowatchdog"
       # "tsc=reliable"
-      "split_lock_detect=off"
+      # "split_lock_detect=off"
       "transparent_hugepage=madvise"
-      "pcie_aspm=off"
+      # "pcie_aspm=off"
     ];
     kernel.sysctl = {
-      "kernel.sched_child_runs_first" = 0;
-      "kernel.sched_autogroup_enabled" = 1;
-      "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-      "kernel.sched_latency_ns" = 4000000;
-      "kernel.sched_min_granularity_ns" = 500000;
-      "kernel.sched_wakeup_granularity_ns" = 1000000;
+      # "kernel.sched_child_runs_first" = 0;
+      # "kernel.sched_autogroup_enabled" = 1;
+      # "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+      # "kernel.sched_latency_ns" = 4000000;
+      # "kernel.sched_min_granularity_ns" = 500000;
+      # "kernel.sched_wakeup_granularity_ns" = 1000000;
       "vm.swappiness" = 10;
       "vm.vfs_cache_pressure" = 50;
       "vm.dirty_ratio" = 6;
