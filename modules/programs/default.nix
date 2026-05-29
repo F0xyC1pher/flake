@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./gayming
     ./gui
@@ -8,7 +9,6 @@
     ./appimage.nix
     ./nh.nix
     # ./nix-ld.nix
-    # ./uwsm.nix
     ./xwayland.nix
     # ./zoxide.nix
   ];
