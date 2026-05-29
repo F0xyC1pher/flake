@@ -228,7 +228,7 @@ in
       winetricks
 
       # 📨 Communication (Мессенджеры)
-      inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+      # inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 
       discordo
       # discord-gamesdk
