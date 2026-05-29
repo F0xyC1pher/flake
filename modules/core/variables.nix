@@ -31,7 +31,7 @@ in
     # === Редакторы ===
     EDITOR = "micro";
     SUDO_EDITOR = "micro";
-    VISUAL = "zed";
+    VISUAL = "zeditor";
 
     # === Kitty ===
     KITTY_ENABLE_WAYLAND = "1";
