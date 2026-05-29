@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+	vars,
+	pkgs,
+	...
+}: {
 	# ========== BLUETOOTH ==========
 	hardware = {
-		xpadneo.enable = true;
-		xone.enable = true;
-		uinput.enable = true;
+		# xpadneo.enable = true;
+		# xone.enable = true;
+		# uinput.enable = true;
 		bluetooth = {
-			enable = true;
+			enable = vars.hardware.bluetooth;
 			powerOnBoot = true;
 			package = pkgs.bluez-experimental;
 			settings = {
