@@ -24,6 +24,8 @@ let
     user = {
       name = hostMeta.user;
       fullName = userSettings.user.fullName;
+      gitName = userSettings.user.gitName;
+      mail = userSettings.user.mail;
       password = userSettings.user.password or null;
       shell = userSettings.user.shell;
     };
