@@ -38,7 +38,10 @@
 
     vimium-options.url = "github:uimataso/vimium-nixos";
     lunar-client.url = "github:clonidine/lunar-client-flake";
-
+    sysc-greet = {
+      url = "github:Nomadcxx/sysc-greet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     zapret2.url = "github:dmfrpro/zapret2-flake";
     tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
