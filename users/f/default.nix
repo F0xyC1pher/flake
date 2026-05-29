@@ -29,6 +29,8 @@
   };
   user = {
     fullName = "Foxy_Chipher";
+    mail = "ageev-eldar@mail.ru";
+    gitName = "FoxyChipher";
     password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
     shell = "fish"; # fish zsh bash brush
   };

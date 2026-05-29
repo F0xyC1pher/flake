@@ -1,4 +1,5 @@
 {
+  vars,
   inputs,
   pkgs,
   ...
@@ -16,6 +17,11 @@
         "nix-command"
         "flakes"
         # "flake-self-attrs"
+      ];
+      trusted-users = [
+        "${vars.user.name}"
+        "root"
+        "@wheel"
       ];
       # extra-deprecated-features = ["url-literals"];
       substituters = [

@@ -29,8 +29,8 @@
       "mpd"
       "cdrom"
       "disk"
-      "floppy"
-      "kmem"
+      # "floppy"
+      # "kmem"
     ];
   };
 }
