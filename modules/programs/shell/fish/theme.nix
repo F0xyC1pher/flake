@@ -52,11 +52,11 @@
 				'';
 
 				shellAliases = {
-					ls = "eza --icons";
-					ll = "eza -la --icons";
-					lt = "eza --tree --icons";
-					cat = "bat";
-					grep = "rg";
+					# ls = "eza --icons";
+					# ll = "eza -la --icons";
+					# lt = "eza --tree --icons";
+					# cat = "bat";
+					# grep = "rg";
 					yy = "yazi";
 					gs = "git status";
 					gl = "git log --oneline";
