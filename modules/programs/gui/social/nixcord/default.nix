@@ -10,12 +10,12 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {...}: {
 			programs.nixcord = {
-				enable = true;
+				enable = false;
 				vesktop.enable = false;
-				# equibop.enable = true;
+				equibop.enable = true;
 				discord = {
-					enable = true;
-					equicord.enable = true;
+					enable = false;
+					equicord.enable = false;
 					vencord.enable = false;
 					openASAR.enable = true;
 					autoscroll.enable = false;

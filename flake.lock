@@ -145,6 +145,21 @@
         "url": "https://github.com/sentriz/cliphist"
       }
     },
+    "ferrix": {
+      "locked": {
+        "lastModified": 1761331410,
+        "narHash": "sha256-NFmP5KQ7M0NKPuV6qqGlD7T9d/n9+hnaL0280lKNoPA=",
+        "owner": "ryanccn",
+        "repo": "ferrix",
+        "rev": "c0fa128ca47c1c117a05b8f8f390ca42cfd3ebf8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryanccn",
+        "repo": "ferrix",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "nixpkgs": [
@@ -1440,6 +1455,27 @@
         "type": "github"
       }
     },
+    "nyoom": {
+      "inputs": {
+        "ferrix": "ferrix",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771676081,
+        "narHash": "sha256-XuNwRr749SGiz5QwsavvGp/nztCjeQV5CBE75KeftPU=",
+        "owner": "ryanccn",
+        "repo": "nyoom",
+        "rev": "6c88a713115b1c04f69839c6e25354d3c7c74758",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryanccn",
+        "repo": "nyoom",
+        "type": "github"
+      }
+    },
     "pawbar": {
       "inputs": {
         "flake-utils": "flake-utils_5",
@@ -1548,6 +1584,7 @@
         "nixpkgs": "nixpkgs_9",
         "noctalia": "noctalia",
         "nur": "nur",
+        "nyoom": "nyoom",
         "pawbar": "pawbar",
         "powerlevel10k": "powerlevel10k",
         "queercat": "queercat",

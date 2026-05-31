@@ -25,15 +25,17 @@ in
 
   services.pipewire = {
     enable = true;
+    systemWide = true;
     audio.enable = true;
+
     pulse.enable = true;
     wireplumber.enable = true;
     jack.enable = true;
-
     alsa = {
       enable = true;
       support32Bit = true;
     };
+
     extraLadspaPackages = [
       pkgs.rnnoise-plugin
       pkgs.ladspaPlugins
@@ -61,7 +63,8 @@ in
 
           # "log.level" = 0;
         };
-
+      };
+      pipewire."98-rt-priority" = {
         "context.modules" = [
           {
             name = "libpipewire-module-rtkit";
@@ -163,6 +166,12 @@ in
         };
       };
     };
+    wireplumber.extraConfig = {
+      "99-crackling-fix" = {
+        "api.alsa.period-size" = 1024;
+        "api.alsa.headroom" = 8192;
+      };
+    };
     wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
         alsa_monitor.rules = {
@@ -173,15 +182,34 @@ in
               ["audio.rate"] = "${toString rate}", -- for USB soundcards it should be twice your desired rate
               ["resample.quality"] = 10,
               ["api.alsa.period-size"] = ${toString (quantum / 2)}, -- defaults to 1024, tweak by trial-and-error
-              ["api.alsa.period-num"] = 2,
-              -- ["api.alsa.disable-batch"] = true, -- generally, USB soundcards use the batch mode
-              ["session.suspend-timeout-seconds"] = 0,
-              ["device.suspend-timeout-seconds"] = 0,
+              ["api.alsa.period-num"] = 512,
+              ["api.alsa.disable-batch"] = false, -- generally, USB soundcards use the batch mode
             },
           },
         }
       '')
     ];
+    # Disable suspend of Toslink output to prevent audio popping.
+    wireplumber.extraConfig."99-disable-suspend" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "node.name" = "~alsa_input.*";
+            }
+            {
+              "node.name" = "~alsa_output.*";
+            }
+          ];
+          actions = {
+            update-props = {
+              "session.suspend-timeout-seconds" = 0;
+              "device.suspend-timeout-seconds" = 0;
+            };
+          };
+        }
+      ];
+    };
     # ==================== марио (сальса) ====================
     # wireplumber.extraConfig."99-low-latency" = {
     # "monitor.alsa.rules" = [

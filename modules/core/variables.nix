@@ -36,6 +36,9 @@ in
     # === Kitty ===
     KITTY_ENABLE_WAYLAND = "1";
 
+    # === Micro ===
+
+    MICRO_TRUECOLOR = "1";
     # === Qt ===
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_QPA_PLATFORMTHEME = "qt6ct";

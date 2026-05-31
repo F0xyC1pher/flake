@@ -29,7 +29,7 @@
         config.services.zerotierone.port
       ];
     };
-    # proxy.default = "";
+    # proxy.default = "socks5://10.190.198.131:10808";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     # nameservers = [
     # 	"1.1.1.1#one.one.one.one"
