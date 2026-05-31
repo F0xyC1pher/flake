@@ -12,15 +12,15 @@
     wifi.enable = true;
     zram.enable = false;
     cpu.governor = "performance";
-    kernel.type = "xanmod"; # xanmod, zen, hardened, default
+    kernel.type = "xanmod"; # xanmod, zen, hardened, latest
     parallels.enable = true;
     audio = {
       noiseCancellation = true;
-      rate = 192000;
+      rate = 48000;
       format = {
         prefix = "F"; # F S
         value = 32;
-        suffix = "LE"; # LE P
+        suffix = "P"; # LE P
       };
     };
 
