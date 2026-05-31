@@ -3,10 +3,8 @@
 }:  {
 	imports = [
 		./hardware-configuration.nix
-		# ./tailscale.nix
-		# ./zerotierone.nix
 	];
-
+	system.stateVersion = "26.05";
 	hardware.cpu.intel.updateMicrocode = true;
 	services.openssh.enable = true;
 }

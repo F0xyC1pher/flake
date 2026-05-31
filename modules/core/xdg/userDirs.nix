@@ -12,7 +12,7 @@
         createDirectories = true;
         desktop = "/home/${vars.user.name}/Desktop";
         documents = "/home/${vars.user.name}/Documents";
-        download = "/home/${vars.user.name}/Download";
+        download = "/home/${vars.user.name}/Downloads";
         music = "/home/${vars.user.name}/Music";
         pictures = "/home/${vars.user.name}/Pictures";
         projects = "/home/${vars.user.name}/Projects";

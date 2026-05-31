@@ -92,6 +92,10 @@
     };
 
     nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+    nyoom = {
+      url = "github:ryanccn/nyoom";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     freesmlauncher = {
       url = "github:FreesmTeam/FreesmLauncher";

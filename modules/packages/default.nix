@@ -227,13 +227,14 @@ in
       winetricks
 
       # 📨 Communication (Мессенджеры)
-      # inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
-
+      inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+      # ayugram-desktop
       discordo
       # discord-gamesdk
       arrpc
       rustdesk-flutter
 
+      # inputs.nyoom.packages.${pkgs.system}.nyoom
       #   nvidia-vaapi-driver
       #   libva-vdpau-driver
       #   libvdpau-va-gl
