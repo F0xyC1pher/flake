@@ -2,12 +2,12 @@
 {
   imports = [
     ./cursor
+    ./dms
     ./fonts
-    ./gtk
+    # ./gtk
     ./hyprland
     ./niri
-    ./qt
-    ./waybar
+    # ./qt
     ./no-gnome.nix
     ./swayidle.nix
     ./swaync.nix

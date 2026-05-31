@@ -1,14 +1,22 @@
 { ... }:
 {
   imports = [
+    ./browser
+    ./file-manager
     ./gayming
-    ./gui
+    ./launcher
+    ./media
     ./shell
+    ./social
     ./terminal
-    ./tui
+    ./text-editor
+    ./tmux
+    # ./waybar
     ./appimage.nix
+    ./git.nix
     ./nh.nix
     # ./nix-ld.nix
+    ./throne.nix
     ./xwayland.nix
     # ./zoxide.nix
   ];

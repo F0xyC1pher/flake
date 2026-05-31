@@ -38,7 +38,7 @@
                   								xray false
                   							}
                   						}
-                  						/-window-rule {
+                  						window-rule {
                   							match app-id="dev.zed.Zed"
                   							background-effect {
                   								blur true
@@ -84,7 +84,7 @@
           				}
 
           				// Indicate active windows with red colors.
-          				window-rule {
+          				/-window-rule {
           					match is-active=true
 
           					shadow {

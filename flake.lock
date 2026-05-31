@@ -145,6 +145,28 @@
         "url": "https://github.com/sentriz/cliphist"
       }
     },
+    "dms": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1777431599,
+        "narHash": "sha256-g6r/Gx8PTDzO3jCNzzySA+Ff1lmLF9nDlMCNyyoQjoE=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "eb5afcdc40ea5446c27e18552ff4a19f9daf9484",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "ref": "stable",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
     "ferrix": {
       "locked": {
         "lastModified": 1761331410,
@@ -1159,22 +1181,6 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1767379071,
-        "narHash": "sha256-EgE0pxsrW9jp9YFMkHL9JMXxcqi/OoumPJYwf+Okucw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "fb7944c166a3b630f177938e478f0378e64ce108",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_13": {
-      "locked": {
         "lastModified": 1775710090,
         "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
         "owner": "NixOS",
@@ -1189,7 +1195,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_14": {
+    "nixpkgs_13": {
       "locked": {
         "lastModified": 1745930157,
         "narHash": "sha256-y3h3NLnzRSiUkYpnfvnS669zWZLoqqI6NprtLQ+5dck=",
@@ -1205,7 +1211,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_15": {
+    "nixpkgs_14": {
       "locked": {
         "lastModified": 1779560665,
         "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
@@ -1221,7 +1227,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_16": {
+    "nixpkgs_15": {
       "locked": {
         "lastModified": 1774386573,
         "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
@@ -1534,6 +1540,28 @@
         "url": "https://github.com/Elsa002/queercat"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "dms",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776854048,
+        "narHash": "sha256-lLbV66V3RMNp1l8/UelmR4YzoJ5ONtgvEtiUMJATH/o=",
+        "ref": "refs/heads/master",
+        "rev": "783c953987dc56ff0601abe6845ed96f1d00495a",
+        "revCount": 806,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "rev": "783c953987dc56ff0601abe6845ed96f1d00495a",
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
     "rofi-polkit-agent": {
       "flake": false,
       "locked": {
@@ -1558,6 +1586,7 @@
         "ayugram-desktop": "ayugram-desktop",
         "betterfox": "betterfox",
         "cliphist": "cliphist",
+        "dms": "dms",
         "firefox-addons": "firefox-addons",
         "flake-utils": "flake-utils",
         "freesmlauncher": "freesmlauncher",
@@ -1593,7 +1622,6 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "sysc-greet": "sysc-greet",
-        "system76-scheduler-niri": "system76-scheduler-niri",
         "tg-ws-proxy": "tg-ws-proxy",
         "tmux-continuum": "tmux-continuum",
         "tmux-tilish": "tmux-tilish",
@@ -1745,24 +1773,6 @@
       "original": {
         "owner": "Nomadcxx",
         "repo": "sysc-greet",
-        "type": "github"
-      }
-    },
-    "system76-scheduler-niri": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_12"
-      },
-      "locked": {
-        "lastModified": 1777139849,
-        "narHash": "sha256-W9OFej3iM5okSG50EGEYkiGzDyOnFNu1laCqCdy0Kxw=",
-        "owner": "Kirottu",
-        "repo": "system76-scheduler-niri",
-        "rev": "2a184809783920bd00cee16167cd942653fea9e0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kirottu",
-        "repo": "system76-scheduler-niri",
         "type": "github"
       }
     },
@@ -1933,7 +1943,7 @@
     },
     "tg-ws-proxy": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13",
+        "nixpkgs": "nixpkgs_12",
         "tg-ws-proxy-src": "tg-ws-proxy-src"
       },
       "locked": {
@@ -2107,7 +2117,7 @@
     },
     "vimium-options": {
       "inputs": {
-        "nixpkgs": "nixpkgs_14"
+        "nixpkgs": "nixpkgs_13"
       },
       "locked": {
         "lastModified": 1746118178,
@@ -2175,7 +2185,7 @@
     "zapret-discord-youtube": {
       "inputs": {
         "flake-utils": "flake-utils_8",
-        "nixpkgs": "nixpkgs_15",
+        "nixpkgs": "nixpkgs_14",
         "zapret-flowseal": "zapret-flowseal"
       },
       "locked": {
@@ -2210,7 +2220,7 @@
     },
     "zapret2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_16"
+        "nixpkgs": "nixpkgs_15"
       },
       "locked": {
         "lastModified": 1775988490,
