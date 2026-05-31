@@ -162,16 +162,11 @@ in
 
         "stream.properties" = {
           "node.latency" = "${toString quantum}/${toString rate}";
-          "resample.quality" = 10;
+          # "resample.quality" = 10;
         };
       };
     };
-    wireplumber.extraConfig = {
-      "99-crackling-fix" = {
-        "api.alsa.period-size" = 1024;
-        "api.alsa.headroom" = 8192;
-      };
-    };
+
     wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
         alsa_monitor.rules = {
@@ -182,7 +177,8 @@ in
               ["audio.rate"] = "${toString rate}", -- for USB soundcards it should be twice your desired rate
               ["resample.quality"] = 10,
               ["api.alsa.period-size"] = ${toString (quantum / 2)}, -- defaults to 1024, tweak by trial-and-error
-              ["api.alsa.period-num"] = 512,
+              ["api.alsa.headroom"] = 8192;
+              -- ["api.alsa.period-num"] = 512,
               ["api.alsa.disable-batch"] = false, -- generally, USB soundcards use the batch mode
             },
           },

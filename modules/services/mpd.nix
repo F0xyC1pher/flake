@@ -42,7 +42,7 @@
             then
               "f"
             else
-              toString vars.hardware.audio.value
+              toString vars.hardware.audio.format.value
           }:*";
           # mixer_type = "software";
           # auto_resample = "no";
