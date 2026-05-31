@@ -71,8 +71,9 @@ let
     nur
     nixcord
     zen-browser
+    dms
     noctalia
-    system76-scheduler-niri
+    # system76-scheduler-niri
     niri
     sysc-greet
     ;
@@ -86,7 +87,7 @@ lib.nixosSystem {
     ../hosts/${host}
 
     home-manager.nixosModules.home-manager
-    niri.nixosModules.niri
+    # niri.nixosModules.niri
     sops-nix.nixosModules.sops
     nur.modules.nixos.default
     sysc-greet.nixosModules.default
@@ -108,7 +109,9 @@ lib.nixosSystem {
           nixcord.homeModules.nixcord
           zen-browser.homeModules.twilight
           noctalia.homeModules.default
-          system76-scheduler-niri.homeModules.default
+          dms.homeModules.dank-material-shell
+          # dms.homeModules.niri
+          # system76-scheduler-niri.homeModules.default
         ];
         users.${vars.user.name} =
           { ... }:

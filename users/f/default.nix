@@ -18,7 +18,7 @@
     # };
 
     font = {
-      name = "FiraCode Nerd Font Mono";
+      name = "Monocraft";
       size = 14;
     };
 
@@ -36,6 +36,7 @@
   };
   system = {
     modKey = "Mod4"; # Super
+    desktopShell = "dms"; # custom dms noctalia
   };
   app = {
     gui = {

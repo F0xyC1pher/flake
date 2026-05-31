@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;
@@ -68,7 +73,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
+    # system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
     niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
     nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";

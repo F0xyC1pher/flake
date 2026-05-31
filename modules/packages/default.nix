@@ -218,7 +218,8 @@ in
       mangohud
       yetris
       # inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-      jdk25
+      # jdk25
+      javaPackages.compiler.temurin-bin.jdk-25
       # 🍷 Wine & Compatibility (Совместимость с Windows)
       wineWow64Packages.stagingFull
       wineWow64Packages.waylandFull
@@ -244,9 +245,16 @@ in
       # gpu-screen-recorder
       # gpu-screen-recorder-gtk
       niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
-      niri-unstable
-      xwayland-satellite-unstable
+      niri
+      xwayland-satellite
+
       # husi
+
+      accountsservice
+      power-profiles-daemon
+      cups-pk-helper
+      i2c-tools
+
     ]
     # ;
     ++ (
