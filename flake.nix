@@ -25,9 +25,12 @@
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    driftwm = {
+      url = "github:malbiruk/driftwm";
+    };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+    neu-nix = {
+      url = "github:ricardomaps/neu-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,21 +46,18 @@
 
     vimium-options.url = "github:uimataso/vimium-nixos";
     lunar-client.url = "github:clonidine/lunar-client-flake";
+
     sysc-greet = {
       url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     zapret2.url = "github:dmfrpro/zapret2-flake";
     tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
