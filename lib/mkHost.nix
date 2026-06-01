@@ -66,16 +66,16 @@ let
   };
 
   inherit (inputs)
+    nur
     home-manager
     sops-nix
-    nur
-    nixcord
-    zen-browser
-    dms
-    noctalia
-    # system76-scheduler-niri
-    niri
     sysc-greet
+    dms
+    neu-nix
+    zen-browser
+    nixcord
+    # system76-scheduler-niri
+    # niri
     ;
 in
 lib.nixosSystem {
@@ -108,7 +108,6 @@ lib.nixosSystem {
           sops-nix.homeManagerModules.sops
           nixcord.homeModules.nixcord
           zen-browser.homeModules.twilight
-          noctalia.homeModules.default
           dms.homeModules.dank-material-shell
           # dms.homeModules.niri
           # system76-scheduler-niri.homeModules.default

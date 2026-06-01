@@ -24,6 +24,7 @@ let
 in
 {
   imports = [
+    ./neu-nix.nix
   ];
   environment.systemPackages =
     with pkgs;
@@ -235,7 +236,7 @@ in
       arrpc
       rustdesk-flutter
 
-      # inputs.nyoom.packages.${pkgs.system}.nyoom
+      inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
       #   nvidia-vaapi-driver
       #   libva-vdpau-driver
       #   libvdpau-va-gl
@@ -255,6 +256,7 @@ in
       cups-pk-helper
       i2c-tools
 
+      driftwm.packages.x86_64-linux.default
     ]
     # ;
     ++ (

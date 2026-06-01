@@ -5,7 +5,7 @@
     ./dms
     ./fonts
     # ./gtk
-    ./hyprland
+    # ./hyprland
     ./niri
     # ./qt
     ./no-gnome.nix

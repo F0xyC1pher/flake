@@ -45,6 +45,13 @@
                   								xray false
                   							}
                   						}
+                       	      window-rule {
+                   							match app-id="^zen-twilight$"
+                  							background-effect {
+                  								blur true
+                  								xray false
+                  							}
+                  						}
                   						window-rule {
                   							match app-id="codium"
                   							// opacity 0.6
