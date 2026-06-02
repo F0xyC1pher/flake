@@ -13,236 +13,244 @@
 			xdg.configFile."niri/binds.kdl".text = ''
 				// syntax: kdl
 				binds {
-				    // Keys consist of modifiers separated by + signs, followed by an XKB key name
-				    // in the end. To find an XKB name for a particular key, you may use a program
-				    // like wev.
-				    //
-				    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
-				    // when running as a winit window.
-				    //
-				    // Most actions that you can bind here can also be invoked programmatically with
-				    // `niri msg action do-something`.
+					// Keys consist of modifiers separated by + signs, followed by an XKB key name
+					// in the end. To find an XKB name for a particular key, you may use a program
+					// like wev.
+					//
+					// "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
+					// when running as a winit window.
+					//
+					// Most actions that you can bind here can also be invoked programmatically with
+					// `niri msg action do-something`.
 
-				    // Mod-Shift-/, which is usually the same as Mod-?,
-				    // shows a list of important hotkeys.
-				    Mod+Shift+Slash { show-hotkey-overlay; }
+					// Mod-Shift-/, which is usually the same as Mod-?,
+					// shows a list of important hotkeys.
+					Mod+Shift+Slash { show-hotkey-overlay; }
 
-				    // Suggested binds for running programs: terminal, app launcher, screen locker.
-				    // Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-				    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-				    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-					  Mod+Y hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "yazi"; }
-				    // Mod+R hotkey-overlay-title="Application Launcher: rofi" { spawn "rofi" "-show" "drun"; }
-				    Alt+space hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
-				    Mod+R hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
-				    Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.gui.launcher}" { spawn "cliphist-${vars.app.gui.launcher}-img"; }
-				    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+					// Suggested binds for running programs: terminal, app launcher, screen locker.
+					// Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+					Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+					Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+					Mod+Y hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "yazi"; }
+					// Mod+R hotkey-overlay-title="Application Launcher: rofi" { spawn "rofi" "-show" "drun"; }
+					Alt+space hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
+					Mod+R hotkey-overlay-title="Application Launcher: ${vars.app.gui.launcher}" { spawn "${vars.app.gui.launcher}" ${lib.optionalString (vars.app.gui.launcher == "rofi") ''"-show" "drun"''} ; }
+					Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.gui.launcher}" { spawn "cliphist-${vars.app.gui.launcher}-img"; }
+					Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-				    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-				    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-				    // For example, this is a standard bind to toggle the screen reader (orca).
-				    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+					// Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
+					// Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
+					// For example, this is a standard bind to toggle the screen reader (orca).
+					Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-				    // Example volume keys mappings for PipeWire & WirePlumber.
-				    // The allow-when-locked=true property makes them work even when the session is locked.
-				    // Using spawn-sh allows to pass multiple arguments together with the command.
-				    // "-l 1.0" limits the volume to 100%.
-				    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-				    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-				    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-				    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+					// Example volume keys mappings for PipeWire & WirePlumber.
+					// The allow-when-locked=true property makes them work even when the session is locked.
+					// Using spawn-sh allows to pass multiple arguments together with the command.
+					// "-l 1.0" limits the volume to 100%.
+					XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+					XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+					XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+					XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-				    // Example media keys mapping using playerctl.
-				    // This will work with any MPRIS-enabled media player.
-				    XF86AudioPlay        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl play-pause"; }
-				    XF86AudioStop        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl stop"; }
-				    XF86AudioPrev        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl previous"; }
-				    XF86AudioNext        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl next"; }
+					// Example media keys mapping using playerctl.
+					// This will work with any MPRIS-enabled media player.
+					XF86AudioPlay        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl play-pause"; }
+					XF86AudioStop        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl stop"; }
+					XF86AudioPrev        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl previous"; }
+					XF86AudioNext        allow-when-locked=true { spawn-sh "${pkgs.playerctl}/bin/playerctl next"; }
 
-				    // Example brightness key mappings for brightnessctl.
-				    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
-				    // but you need to manually put each argument in separate "" quotes.
-				    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-				    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+					// Example brightness key mappings for brightnessctl.
+					// You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+					// but you need to manually put each argument in separate "" quotes.
+					XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+					XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-				    // Open/close the Overview: a zoomed-out view of workspaces and windows.
-				    // You can also move the mouse into the top-left hot corner,
-				    // or do a four-finger swipe up on a touchpad.
-				    Mod+Tab repeat=false { toggle-overview; }
+					// Open/close the Overview: a zoomed-out view of workspaces and windows.
+					// You can also move the mouse into the top-left hot corner,
+					// or do a four-finger swipe up on a touchpad.
+					Mod+Tab repeat=false { toggle-overview; }
 
-				    Mod+Q repeat=false { close-window; }
+					Mod+Q repeat=false { close-window; }
 
-				    Mod+Up			{ focus-window-or-workspace-up; }
-				    Mod+Down		{ focus-window-or-workspace-down; }
-				    Mod+Left		{ focus-column-left; }
-				    Mod+Right		{ focus-column-right; }
+					Mod+Up			{ focus-window-or-workspace-up; }
+					Mod+Down		{ focus-window-or-workspace-down; }
+					Mod+Left		{ focus-column-left; }
+					Mod+Right		{ focus-column-right; }
 
-				    Mod+K     { focus-window-or-workspace-up; }
-				    Mod+J     { focus-window-or-workspace-down; }
+					Mod+K     { focus-window-or-workspace-up; }
+					Mod+J     { focus-window-or-workspace-down; }
 					Mod+H     { focus-column-left; }
-				    Mod+L     { focus-column-right; }
+					Mod+L     { focus-column-right; }
 
-				    Mod+Shift+Up	{ move-window-up-or-to-workspace-up; }
-				    Mod+Shift+Down	{ move-window-down-or-to-workspace-down; }
-				    Mod+Shift+Left	{ move-column-left; }
-				    Mod+Shift+Right	{ move-column-right; }
+					Mod+Shift+Up	{ move-window-up-or-to-workspace-up; }
+					Mod+Shift+Down	{ move-window-down-or-to-workspace-down; }
+					Mod+Shift+Left	{ move-column-left; }
+					Mod+Shift+Right	{ move-column-right; }
 
 					Mod+Shift+H     { move-column-left; }
-				    Mod+Shift+K     { move-window-up-or-to-workspace-up; }
-				    Mod+Shift+J     { move-window-down-or-to-workspace-down; }
-				    Mod+Shift+L     { move-column-right; }
+					Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+					Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+					Mod+Shift+L     { move-column-right; }
 
-				    Mod+Home { focus-column-first; }
-				    Mod+End  { focus-column-last; }
-				    Mod+Shift+Home { move-column-to-first; }
-				    Mod+Shift+End  { move-column-to-last; }
+					Mod+Home { focus-column-first; }
+					Mod+End  { focus-column-last; }
+					Mod+Shift+Home { move-column-to-first; }
+					Mod+Shift+End  { move-column-to-last; }
 
-				    Mod+Page_Up        { focus-workspace-up; }
-				    Mod+Page_Down      { focus-workspace-down; }
-				    Mod+I              { focus-workspace-up; }
-				    Mod+U              { focus-workspace-down; }
+					Mod+Page_Up        { focus-workspace-up; }
+					Mod+Page_Down      { focus-workspace-down; }
+					Mod+I              { focus-workspace-up; }
+					Mod+U              { focus-workspace-down; }
 
 					Mod+Shift+Page_Up   { move-column-to-workspace-up; }
-				    Mod+Shift+Page_Down { move-column-to-workspace-down; }
+					Mod+Shift+Page_Down { move-column-to-workspace-down; }
 					Mod+Shift+I         { move-column-to-workspace-up; }
-				    Mod+Shift+U         { move-column-to-workspace-down; }
+					Mod+Shift+U         { move-column-to-workspace-down; }
 
 
-				    Mod+Ctrl+Page_Up   { move-workspace-up; }
-				    Mod+Ctrl+Page_Down { move-workspace-down; }
+					Mod+Ctrl+Page_Up   { move-workspace-up; }
+					Mod+Ctrl+Page_Down { move-workspace-down; }
 
-				    // You can bind mouse wheel scroll ticks using the following syntax.
-				    // These binds will change direction based on the natural-scroll setting.
-				    //
-				    // To avoid scrolling through workspaces really fast, you can use
-				    // the cooldown-ms property. The bind will be rate-limited to this value.
-				    // You can set a cooldown on any bind, but it's most useful for the wheel.
-				    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-				    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-				    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
-				    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+					// You can bind mouse wheel scroll ticks using the following syntax.
+					// These binds will change direction based on the natural-scroll setting.
+					//
+					// To avoid scrolling through workspaces really fast, you can use
+					// the cooldown-ms property. The bind will be rate-limited to this value.
+					// You can set a cooldown on any bind, but it's most useful for the wheel.
+					Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+					Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+					Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+					Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
 
-				    Mod+WheelScrollRight      { focus-column-right; }
-				    Mod+WheelScrollLeft       { focus-column-left; }
-				    Mod+Ctrl+WheelScrollRight { move-column-right; }
-				    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+					Mod+WheelScrollRight      { focus-column-right; }
+					Mod+WheelScrollLeft       { focus-column-left; }
+					Mod+Ctrl+WheelScrollRight { move-column-right; }
+					Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-				    // Usually scrolling up and down with Shift in applications results in
-				    // horizontal scrolling; these binds replicate that.
-				    Mod+Shift+WheelScrollDown      { focus-column-right; }
-				    Mod+Shift+WheelScrollUp        { focus-column-left; }
-				    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-				    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+					// Usually scrolling up and down with Shift in applications results in
+					// horizontal scrolling; these binds replicate that.
+					Mod+Shift+WheelScrollDown      { focus-column-right; }
+					Mod+Shift+WheelScrollUp        { focus-column-left; }
+					Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+					Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-				    Mod+1 { focus-workspace 1; }
-				    Mod+2 { focus-workspace 2; }
-				    Mod+3 { focus-workspace 3; }
-				    Mod+4 { focus-workspace 4; }
-				    Mod+5 { focus-workspace 5; }
-				    Mod+6 { focus-workspace 6; }
-				    Mod+7 { focus-workspace 7; }
-				    Mod+8 { focus-workspace 8; }
-				    Mod+9 { focus-workspace 9; }
-				    Mod+Shift+1 { move-column-to-workspace 1; }
-				    Mod+Shift+2 { move-column-to-workspace 2; }
-				    Mod+Shift+3 { move-column-to-workspace 3; }
-				    Mod+Shift+4 { move-column-to-workspace 4; }
-				    Mod+Shift+5 { move-column-to-workspace 5; }
-				    Mod+Shift+6 { move-column-to-workspace 6; }
-				    Mod+Shift+7 { move-column-to-workspace 7; }
-				    Mod+Shift+8 { move-column-to-workspace 8; }
-				    Mod+Shift+9 { move-column-to-workspace 9; }
+					Mod+1 { focus-workspace 1; }
+					Mod+2 { focus-workspace 2; }
+					Mod+3 { focus-workspace 3; }
+					Mod+4 { focus-workspace 4; }
+					Mod+5 { focus-workspace 5; }
+					Mod+6 { focus-workspace 6; }
+					Mod+7 { focus-workspace 7; }
+					Mod+8 { focus-workspace 8; }
+					Mod+9 { focus-workspace 9; }
+					Mod+Shift+1 { move-column-to-workspace 1; }
+					Mod+Shift+2 { move-column-to-workspace 2; }
+					Mod+Shift+3 { move-column-to-workspace 3; }
+					Mod+Shift+4 { move-column-to-workspace 4; }
+					Mod+Shift+5 { move-column-to-workspace 5; }
+					Mod+Shift+6 { move-column-to-workspace 6; }
+					Mod+Shift+7 { move-column-to-workspace 7; }
+					Mod+Shift+8 { move-column-to-workspace 8; }
+					Mod+Shift+9 { move-column-to-workspace 9; }
 
-				    // Alternatively, there are commands to move just a single window:
-				    // Mod+Ctrl+1 { move-window-to-workspace 1; }
+					// Alternatively, there are commands to move just a single window:
+					// Mod+Ctrl+1 { move-window-to-workspace 1; }
 
-				    // Switches focus between the current and the previous workspace.
-				    // Mod+Tab { focus-workspace-previous; }
+					// Switches focus between the current and the previous workspace.
+					// Mod+Tab { focus-workspace-previous; }
 
-				    // The following binds move the focused window in and out of a column.
-				    // If the window is alone, they will consume it into the nearby column to the side.
-				    // If the window is already in a column, they will expel it out.
-				    Mod+BracketLeft  { consume-or-expel-window-left; }
-				    Mod+BracketRight { consume-or-expel-window-right; }
+					// The following binds move the focused window in and out of a column.
+					// If the window is alone, they will consume it into the nearby column to the side.
+					// If the window is already in a column, they will expel it out.
+					Mod+BracketLeft  { consume-or-expel-window-left; }
+					Mod+BracketRight { consume-or-expel-window-right; }
 
-				    // Consume one window from the right to the bottom of the focused column.
-				    Mod+Comma  { consume-window-into-column; }
-				    // Expel the bottom window from the focused column to the right.
-				    Mod+Period { expel-window-from-column; }
+					// Consume one window from the right to the bottom of the focused column.
+					Mod+Comma  { consume-window-into-column; }
+					// Expel the bottom window from the focused column to the right.
+					Mod+Period { expel-window-from-column; }
 
-				    // Mod+D { switch-preset-column-width; }
-				    // Cycling through the presets in reverse order is also possible.
-				    // Mod+D { switch-preset-column-width-back; }
-				    // Mod+Shift+D { switch-preset-window-height; }
-				    // Mod+Ctrl+D { reset-window-height; }
-				    // Mod+F { maximize-column; }
-				    Mod+F { fullscreen-window; }
-				    Mod+Shift+F { toggle-windowed-fullscreen; }
+					// Mod+D { switch-preset-column-width; }
+					// Cycling through the presets in reverse order is also possible.
+					// Mod+D { switch-preset-column-width-back; }
+					// Mod+Shift+D { switch-preset-window-height; }
+					// Mod+Ctrl+D { reset-window-height; }
+					// Mod+F { maximize-column; }
+					Mod+F { fullscreen-window; }
+					Mod+Shift+F { toggle-windowed-fullscreen; }
 					Mod+Ctrl+Shift+F { maximize-window-to-edges; }
 
-				    // Expand the focused column to space not taken up by other fully visible columns.
-				    // Makes the column "fill the rest of the space".
-				    Mod+Ctrl+F { expand-column-to-available-width; }
+					// Expand the focused column to space not taken up by other fully visible columns.
+					// Makes the column "fill the rest of the space".
+					Mod+Ctrl+F { expand-column-to-available-width; }
 
-				    Mod+C { center-column; }
+					Mod+C { center-column; }
 
-				    // Center all fully visible columns on screen.
-				    Mod+Ctrl+C { center-visible-columns; }
+					// Center all fully visible columns on screen.
+					Mod+Ctrl+C { center-visible-columns; }
 
-				    // Finer width adjustments.
-				    // This command can also:
-				    // * set width in pixels: "1000"
-				    // * adjust width in pixels: "-5" or "+5"
-				    // * set width as a percentage of screen width: "25%"
-				    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-				    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-				    // set-column-width "100" will make the column occupy 200 physical screen pixels.
-				    Mod+Minus { set-column-width "-10%"; }
-				    Mod+Equal { set-column-width "+10%"; }
+					// Finer width adjustments.
+					// This command can also:
+					// * set width in pixels: "1000"
+					// * adjust width in pixels: "-5" or "+5"
+					// * set width as a percentage of screen width: "25%"
+					// * adjust width as a percentage of screen width: "-10%" or "+10%"
+					// Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+					// set-column-width "100" will make the column occupy 200 physical screen pixels.
+					Mod+Minus { set-column-width "-10%"; }
+					Mod+Equal { set-column-width "+10%"; }
 
-				    // Finer height adjustments when in column with other windows.
-				    Mod+Shift+Minus { set-window-height "-10%"; }
-				    Mod+Shift+Equal { set-window-height "+10%"; }
+					// Finer height adjustments when in column with other windows.
+					Mod+Shift+Minus { set-window-height "-10%"; }
+					Mod+Shift+Equal { set-window-height "+10%"; }
 
-				    // Move the focused window between the floating and the tiling layout.
-				    Mod+space       { toggle-window-floating; }
-				    Mod+Shift+space { switch-focus-between-floating-and-tiling; }
+					// Move the focused window between the floating and the tiling layout.
+					Mod+space       { toggle-window-floating; }
+					Mod+Shift+space { switch-focus-between-floating-and-tiling; }
 
-				    // Toggle tabbed column display mode.
-				    // Windows in this column will appear as vertical tabs,
-				    // rather than stacked on top of each other.
-				    Mod+W { toggle-column-tabbed-display; }
+					// Toggle tabbed column display mode.
+					// Windows in this column will appear as vertical tabs,
+					// rather than stacked on top of each other.
+					Mod+W { toggle-column-tabbed-display; }
 
-				    // Actions to switch layouts.
-				    // Note: if you uncomment these, make sure you do NOT have
-				    // a matching layout switch hotkey configured in xkb options above.
-				    // Having both at once on the same hotkey will break the switching,
-				    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-				    // Mod+Space       { switch-layout "next"; }
-				    // Mod+Shift+Space { switch-layout "prev"; }
+					// Actions to switch layouts.
+					// Note: if you uncomment these, make sure you do NOT have
+					// a matching layout switch hotkey configured in xkb options above.
+					// Having both at once on the same hotkey will break the switching,
+					// since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+					// Mod+Space       { switch-layout "next"; }
+					// Mod+Shift+Space { switch-layout "prev"; }
 
-				    Print { screenshot; }
-				    Ctrl+Print { screenshot-screen; }
-				    Alt+Print { screenshot-window; }
+					Print { screenshot; }
+					Ctrl+Print { screenshot-screen; }
+					Alt+Print { screenshot-window; }
 
-				    // Applications such as remote-desktop clients and software KVM switches may
-				    // request that niri stops processing the keyboard shortcuts defined here
-				    // so they may, for example, forward the key presses as-is to a remote machine.
-				    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-				    // so a buggy application can't hold your session hostage.
-				    //
-				    // The allow-inhibiting=false property can be applied to other binds as well,
-				    // which ensures niri always processes them, even when an inhibitor is active.
-				    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+					// Applications such as remote-desktop clients and software KVM switches may
+					// request that niri stops processing the keyboard shortcuts defined here
+					// so they may, for example, forward the key presses as-is to a remote machine.
+					// It's a good idea to bind an escape hatch to toggle the inhibitor,
+					// so a buggy application can't hold your session hostage.
+					//
+					// The allow-inhibiting=false property can be applied to other binds as well,
+					// which ensures niri always processes them, even when an inhibitor is active.
+					Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-				    // The quit action will show a confirmation dialog to avoid accidental exits.
-				    Mod+Shift+E { quit; }
+					// The quit action will show a confirmation dialog to avoid accidental exits.
+					Mod+Shift+E { quit; }
 					Ctrl+Mod+Alt+Q { quit; }
-				    Ctrl+Alt+Delete { quit; }
+					Ctrl+Alt+Delete { quit; }
 
-				    // Powers off the monitors. To turn them back on, do any input like
-				    // moving the mouse or pressing any other key.
-				    Mod+Shift+P { power-off-monitors; }
+					// Powers off the monitors. To turn them back on, do any input like
+					// moving the mouse or pressing any other key.
+					Mod+Shift+P { power-off-monitors; }
+				}
+				recent-windows {
+					/-binds {
+						Mod+Tab         { next-window scope="output"; }
+						Mod+Shift+Tab   { previous-window scope="output"; }
+						Mod+grave       { next-window filter="app-id" scope="output"; }
+						Mod+Shift+grave { previous-window filter="app-id" scope="output"; }
+					}
 				}
 			'';
 		};
