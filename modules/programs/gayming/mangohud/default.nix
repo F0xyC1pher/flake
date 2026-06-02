@@ -27,23 +27,22 @@
 					ram = true;
 					vram = true;
 					fps = true;
-					frametime = true;
+					frametime = false;
 					frame_timing = 1;
-					battery = false;
+					battery = true;
 					gamemode = true;
 					wine = true;
 					vulkan_driver = true;
 					histogram = false;
 					fps_limit = 0;
 					vsync = 0;
-					io_stats = false;
 					network = false;
 					pci_dev = 0;
 					position = "top-left";
 					font_size = vars.theme.font.size;
 					font_scale = 1.0;
 					round_corners = 0; # square mode
-					background_alpha = 0.7;
+					background_alpha = 0.6;
 
 					# ── Colors — all from role tree ─────────────────────────────────
 					# Format: RRGGBB (no #)
@@ -56,16 +55,10 @@
 					battery_color = hex t.text.syntax.warning; # warning
 					text_color = hex t.text.main;
 					media_player_color = hex t.text.faint;
-					wine_color = hex c.orange;
+					wine_color = hex t.text.syntax.number;
 					engine_color = hex t.text.syntax.string;
 
-					# FPS thresholds: ok (success) → warning → error
-					fps_color_1 = hex t.text.syntax.success;
-					fps_color_2 = hex t.text.syntax.warning;
-					fps_color_3 = hex t.text.syntax.error;
-
 					background_color = hex t.ui.main;
-					border_color = hex t.ui.border.active;
 				};
 			};
 		};

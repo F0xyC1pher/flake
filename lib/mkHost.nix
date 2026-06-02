@@ -72,6 +72,7 @@ let
     sysc-greet
     dms
     neu-nix
+    alejandra
     zen-browser
     nixcord
     # system76-scheduler-niri

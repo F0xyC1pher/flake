@@ -1,4 +1,3 @@
-{ ... }:
-{
-  documentation.man.enable = false;
+{...}: {
+	documentation.man.enable = false;
 }
