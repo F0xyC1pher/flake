@@ -106,7 +106,7 @@
 
 					/* ── Urgency levels ────────────────────────────────────────────── */
 					.low      { border-left: 3px solid ${vars.theme.style.text.syntax.success}; }
-					.normal   { border-left: 3px solid ${vars.theme.colors.accent.orange};       }
+					.normal   { border-left: 3px solid ${vars.theme.style.text.syntax.number};       }
 					.critical {
 					  border-left: 3px solid ${vars.theme.style.accent};
 					  animation:   shake 0.35s ease;
@@ -142,7 +142,7 @@
 					  border-top: 1px solid ${vars.theme.style.ui.overlay};
 					}
 					.widget-dnd > switch { border-radius: 0; }
-					.widget-dnd > switch:checked { background: ${vars.theme.colors.accent.orange}; }
+					.widget-dnd > switch:checked { background: ${vars.theme.style.text.syntax.number}; }
 
 					.widget-mpris {
 					  background: ${vars.theme.style.ui.surface};

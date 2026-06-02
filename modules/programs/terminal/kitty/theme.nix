@@ -34,27 +34,27 @@
 
 				# ── Normal (0-7) ───────────────────────────────────────────────────────
 				color0 = t.ui."0";
-				color1 = c.red;
-				color2 = c.green;
-				color3 = c.yellow;
-				color4 = c.blue;
-				color5 = c.purple;
-				color6 = c.cyan;
+				color1 = c."0";
+				color2 = c."c";
+				color3 = c."6";
+				color4 = c."l";
+				color5 = c."r";
+				color6 = c."i";
 				color7 = t.text.main;
 
 				# ── Bright (8-15) ──────────────────────────────────────────────────────
 				color8 = t.ui."4";
-				color9 = c.red;
-				color10 = c.green;
-				color11 = c.yellow;
-				color12 = c.blue;
-				color13 = c.purple;
-				color14 = c.cyan;
+				color9 = c."0";
+				color10 = c."c";
+				color11 = c."6";
+				color12 = c."l";
+				color13 = c."r";
+				color14 = c."i";
 				color15 = t.text.heading;
 
 				# ── Extended base16 (16-21) ────────────────────────────────────────────
-				color16 = c.orange;
-				color17 = c.pink;
+				color16 = c."3";
+				color17 = c."x";
 				color18 = t.ui."2";
 				color19 = t.ui."4";
 				color20 = t.text.faint;
