@@ -14,8 +14,8 @@
 							layout "us,ru"
 							options "grp:lalt_lshift_toggle"
 						}
-						repeat-delay 250
-						repeat-rate 35
+						repeat-delay 200
+						repeat-rate 40
 						track-layout "global"
 					}
 					trackpoint {
@@ -55,7 +55,7 @@
 						// off
 						// accel-speed 0.2
 						accel-profile "flat"
-						scroll-factor vertical=1.3 horizontal=1.3
+						scroll-factor vertical=1.0 horizontal=1.0
 						// scroll-factor vertical=1.0 horizontal=-2.0
 					}
 					// Uncomment this to make the mouse warp to the center of newly focused windows.
