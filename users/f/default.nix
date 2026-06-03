@@ -17,8 +17,13 @@
 		# };
 
 		font = {
+<<<<<<< HEAD
 			name = "Monocraft";
 			size = 12;
+=======
+			name = "Pixel Code";
+			size = 14;
+>>>>>>> e9cbb45529992e7bbc5619404837fa81bd161654
 		};
 
 		blur = {
