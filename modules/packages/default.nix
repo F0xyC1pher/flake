@@ -216,8 +216,12 @@ in {
 			mangohud
 			yetris
 			# inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
-			# jdk25
 			javaPackages.compiler.temurin-bin.jdk-25
+			javaPackages.compiler.temurin-bin.jdk-21
+			javaPackages.compiler.temurin-bin.jdk-17
+			# javaPackages.compiler.temurin-bin.jdk-11
+			javaPackages.compiler.temurin-bin.jdk-8
+
 			# 🍷 Wine & Compatibility (Совместимость с Windows)
 			wineWow64Packages.stagingFull
 			wineWow64Packages.waylandFull
