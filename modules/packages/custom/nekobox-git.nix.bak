@@ -13,7 +13,7 @@ in
 		pname = "nekobox-git";
 		version = "git";
 
-		src = inputs.nekobox-git;
+		# src = inputs.nekobox-git;
 
 		unpackPhase = ''
 			runHook preUnpack
