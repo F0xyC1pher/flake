@@ -34,16 +34,6 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		dms = {
-			url = "github:AvengeMedia/DankMaterialShell/stable";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-
-		betterfox = {
-			url = "github:yokoffing/Betterfox";
-			flake = false;
-		};
-
 		vimium-options.url = "github:uimataso/vimium-nixos";
 
 		lunar-client.url = "github:clonidine/lunar-client-flake";
@@ -73,6 +63,10 @@
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		dms = {
+			url = "github:AvengeMedia/DankMaterialShell/stable";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
@@ -84,23 +78,32 @@
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
 
-		zen-browser = {
-			url = "github:0xc000022070/zen-browser-flake";
-			inputs = {
-				nixpkgs.follows = "nixpkgs";
-				home-manager.follows = "home-manager";
-			};
+		betterfox = {
+			url = "github:yokoffing/Betterfox";
+			flake = false;
+		};
+		firefox-nightly = {
+			url = "github:nix-community/flake-firefox-nightly";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
 		# firefox-addons = {
 		# 	url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
-
 		nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+
 		nyoom = {
 			url = "github:ryanccn/nyoom";
 			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		zen-browser = {
+			url = "github:0xc000022070/zen-browser-flake";
+			inputs = {
+				nixpkgs.follows = "nixpkgs";
+				home-manager.follows = "home-manager";
+			};
 		};
 
 		freesmlauncher = {
