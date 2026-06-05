@@ -14,8 +14,8 @@
 							layout "us,ru"
 							options "grp:lalt_lshift_toggle"
 						}
-						repeat-delay 200
-						repeat-rate 40
+						repeat-delay 250
+						repeat-rate 60
 						track-layout "global"
 					}
 					trackpoint {
@@ -55,18 +55,18 @@
 						// off
 						// accel-speed 0.2
 						accel-profile "flat"
-						scroll-factor vertical=1.0 horizontal=1.0
+						// scroll-factor vertical=1.0 horizontal=1.0
 						// scroll-factor vertical=1.0 horizontal=-2.0
 					}
 					// Uncomment this to make the mouse warp to the center of newly focused windows.
-					//warp-mouse-to-focus
+					warp-mouse-to-focus
 					// disable-power-key-handling
 
 					// Focus windows and outputs automatically when moving the mouse into them.
 					// Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
 					// focus-follows-mouse max-scroll-amount="0%"
 					focus-follows-mouse
-					workspace-auto-back-and-forth
+					// workspace-auto-back-and-forth
 				}
 			'';
 		};

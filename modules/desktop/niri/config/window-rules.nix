@@ -88,13 +88,13 @@
 				}
 
 				// Indicate active windows with red colors.
-				/-window-rule {
-					match is-active=true
+				// window-rule {
+				//	match is-active=true
 
-					shadow {
-						color "${vars.theme.style.accent}a8"
-					}
-				}
+					// shadow {
+						// color "${vars.theme.style.accent}a8"
+					// }
+				// }
 
 				/-window-rule {
 					match title="TrayControl" app-id="AIMP"
