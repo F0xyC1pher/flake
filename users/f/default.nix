@@ -1,7 +1,8 @@
 {...}: {
 	theme = {
 		name = "attheMe";
-		dark = true;
+		# dark = true;
+		accent = "0";
 		# gaps = 8;
 		# border = 2;
 
