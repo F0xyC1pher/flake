@@ -1,12 +1,7 @@
-# mkTheme.nix — match выбирается из accent.* по близости оттенка к accent_hue+120
-{lib}: let
+{lib, ...}: let
 	themesDir = ../modules/themes;
 
-	# helpers
-	absVal = x:
-		if x < 0
-		then -x
-		else x;
+	# Пользовательские min/max/abs
 	maxVal = a: b:
 		if a > b
 		then a
@@ -15,9 +10,12 @@
 		if a < b
 		then a
 		else b;
-	modFloat = x: y: x - y * builtins.floor (x / y);
+	absVal = x:
+		if x < 0
+		then -x
+		else x;
 
-	# hex conversion
+	# HEX conversion
 	hexCharVal = ch:
 		{
 			"0" = 0;
@@ -54,20 +52,6 @@
 		b = hex2Dec (builtins.substring 5 2 hex);
 	};
 
-	rgbToHex = {
-		r,
-		g,
-		b,
-	}: let
-		toHex = x: let
-			h = lib.toHexString x;
-		in
-			if builtins.stringLength h == 1
-			then "0${h}"
-			else h;
-	in "#${toHex r}${toHex g}${toHex b}";
-
-	# RGB -> HSL
 	rgbToHsl = {
 		r,
 		g,
@@ -102,86 +86,26 @@
 		l = lightness;
 	};
 
-	# функцию hslToRgb для полноты (может не понадобиться для выбора)
-	hslToRgb = {
-		h,
-		s,
-		l,
-	}: let
-		c = (1 - absVal (2 * l - 1)) * s;
-		hPrime = h / 60;
-		sector = builtins.floor hPrime;
-		odd = sector - 2 * builtins.floor (sector / 2);
-		x = c * (1 - absVal (odd - 1));
-		m = l - c / 2;
-		pair =
-			if sector == 0
-			then {
-				r = c;
-				g = x;
-				b = 0;
-			}
-			else if sector == 1
-			then {
-				r = x;
-				g = c;
-				b = 0;
-			}
-			else if sector == 2
-			then {
-				r = 0;
-				g = c;
-				b = x;
-			}
-			else if sector == 3
-			then {
-				r = 0;
-				g = x;
-				b = c;
-			}
-			else if sector == 4
-			then {
-				r = x;
-				g = 0;
-				b = c;
-			}
-			else {
-				r = c;
-				g = 0;
-				b = x;
-			};
-	in {
-		r = builtins.floor ((pair.r + m) * 255);
-		g = builtins.floor ((pair.g + m) * 255);
-		b = builtins.floor ((pair.b + m) * 255);
-	};
+	luminance = hex: let rgb = hexToRgb hex; in (rgb.r + rgb.g + rgb.b) / (3.0 * 255.0);
 
-	# ---- выбор match среди accent-цветов ----
-	# целевой оттенок = hue(accent) + 120 (mod 360)
-	# среди всех значений colors.accent (аттрибутов) выбираем тот, чей hue ближе к целевому
-	# (можно также учитывать насыщенность/яркость, но для простоты только оттенок)
-	hueDifference = h1: h2: let
+	hueDiff = h1: h2: let
 		d = absVal (h1 - h2);
 	in
 		if d > 180
 		then 360 - d
 		else d;
 
-	pickMatchFromAccents = accentHex: accentAttrs: let
-		accentHsl = rgbToHsl (hexToRgb accentHex);
-		targetHue = modFloat (accentHsl.h + 120) 360;
-		# преобразуем attrset accentAttrs в список { name, hex, hsl }
-		accentColors = builtins.attrNames accentAttrs;
-		accentList =
+	modFloat = x: y: x - y * builtins.floor (x / y);
+
+	pickClosestByHue = targetHue: attrs: let
+		items = builtins.attrNames attrs;
+		withDiff =
 			map (name: {
 					inherit name;
-					hex = accentAttrs.${name};
-					hsl = rgbToHsl (hexToRgb accentAttrs.${name});
+					hex = attrs.${name};
+					diff = hueDiff (rgbToHsl (hexToRgb attrs.${name})).h targetHue;
 				})
-			accentColors;
-		# для каждого вычисляем разницу hue с targetHue
-		withDiff = map (c: c // {diff = hueDifference c.hsl.h targetHue;}) accentList;
-		# сортируем по возрастанию diff (можно использовать foldl для поиска минимума)
+			items;
 		best =
 			builtins.foldl' (a: b:
 					if b.diff < a.diff
@@ -190,34 +114,6 @@
 	in
 		best.hex;
 
-	# ---- выбор onAccent среди base (самый контрастный по яркости) ----
-	# простая ярность как среднее RGB
-	luminance = hex: let
-		rgb = hexToRgb hex;
-		avg = (rgb.r + rgb.g + rgb.b) / (3.0 * 255.0);
-	in
-		avg;
-
-	# из списка base цветов выбрать тот, чья яркость максимально далека от яркости фона
-	pickOnAccentFromBase = bgHex: baseAttrs: let
-		bgLum = luminance bgHex;
-		baseColors = builtins.attrValues baseAttrs;
-		# для каждого вычисляем разницу яркости (чем больше, тем контрастнее)
-		withContrast =
-			map (hex: {
-					inherit hex;
-					diff = absVal (luminance hex - bgLum);
-				})
-			baseColors;
-		best =
-			builtins.foldl' (a: b:
-					if b.diff > a.diff
-					then b
-					else a) (builtins.head withContrast) (builtins.tail withContrast);
-	in
-		best.hex;
-
-	# ---- остальное: валидация, автодискавери ----
 	validateColor = str:
 		if ! builtins.isString str
 		then throw "not a string"
@@ -234,7 +130,7 @@
 		then validateColor value
 		else value;
 
-	# ---- автообнаружение тем ----
+	# Автообнаружение тем
 	entries = builtins.readDir themesDir;
 	themeNames =
 		lib.filter (
@@ -248,40 +144,51 @@
 	loadTheme = name: {
 		colors = import (themesDir + "/${name}/colors.nix");
 		themeFn = import (themesDir + "/${name}/default.nix");
+		defaultAccent = (import (themesDir + "/${name}/default.nix")).defaultAccent or "0";
 	};
 
 	themes = lib.genAttrs themeNames loadTheme;
 in {
 	inherit themes themeNames;
+
 	resolve = {
 		name,
 		colorOverrides ? {},
 		roleOverrides ? {},
+		accentName ? null,
 	}: let
 		selected = themes.${name} or (throw "Unknown theme: ${name}");
 		mergedColors = lib.recursiveUpdate selected.colors colorOverrides;
 		validatedColors = validateColors mergedColors;
 
+		finalAccentName =
+			if accentName != null
+			then accentName
+			else if (roleOverrides.accentName or null) != null
+			then roleOverrides.accentName
+			else selected.defaultAccent;
+
+		# Проверка существования ключей
+		_check =
+			if ! builtins.hasAttr finalAccentName validatedColors.accent
+			then throw "Theme ${name} has no accent key '${finalAccentName}'"
+			else if ! builtins.hasAttr finalAccentName validatedColors.onAccent
+			then throw "Theme ${name} has no onAccent key '${finalAccentName}'"
+			else true;
+
 		mappedTree =
 			selected.themeFn {
 				colors = validatedColors;
 				lib = lib;
+				accentName = finalAccentName;
 			};
-		withUserOverrides = lib.recursiveUpdate mappedTree roleOverrides;
 
-		accentColor = withUserOverrides.accent;
+		withUserOverrides = lib.recursiveUpdate mappedTree (removeAttrs roleOverrides ["accentName"]);
 
-		# Выбираем match из accent-цветов темы (используя validatedColors.accent)
-		matchColor =
-			if (roleOverrides ? text && roleOverrides.text ? match)
-			then roleOverrides.text.match
-			else pickMatchFromAccents accentColor validatedColors.accent;
-
-		# Выбираем onAccent из base-цветов темы
-		onAccentColor =
-			if (roleOverrides ? text && roleOverrides.text ? onAccent)
-			then roleOverrides.text.onAccent
-			else pickOnAccentFromBase accentColor validatedColors.base;
+		accentHex = validatedColors.accent.${finalAccentName};
+		accentHsl = rgbToHsl (hexToRgb accentHex);
+		targetMatchHue = modFloat (accentHsl.h + 120) 360;
+		matchColor = pickClosestByHue targetMatchHue validatedColors.accent;
 
 		finalTree =
 			withUserOverrides
@@ -289,12 +196,16 @@ in {
 				text =
 					withUserOverrides.text
 					// {
-						onAccent = onAccentColor;
 						match = matchColor;
+						onAccent = withUserOverrides.text.onAccent or validatedColors.onAccent.${finalAccentName};
 					};
 			};
+
+		bgHex = finalTree.ui.deep or validatedColors.base."0";
+		isDark = luminance bgHex < 0.5;
 	in {
 		colors = validatedColors;
 		theme = finalTree;
+		inherit isDark finalAccentName;
 	};
 }
