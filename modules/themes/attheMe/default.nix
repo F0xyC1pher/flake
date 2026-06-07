@@ -1,5 +1,6 @@
 # modules/themes/theMe/default.nix
 {
+	lib,
 	colors,
 	accentName ? "0",
 }: let
@@ -57,6 +58,7 @@ in {
 			info = colors.accent."l";
 			warning = colors.accent."6";
 			success = colors.accent."u";
+			match = colors.accent."r";
 		};
 	};
 }
