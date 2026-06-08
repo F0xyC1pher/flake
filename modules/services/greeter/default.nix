@@ -1,5 +1,5 @@
 {...}: {
 	imports = [
-		./nixcord
+		./dms-greeter.nix
 	];
 }

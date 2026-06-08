@@ -1,7 +1,7 @@
-{ ... }:
-{
-  imports = [
-    ./micro
-    # ./vscodium
-  ];
+{...}: {
+	imports = [
+		./micro
+		# ./vscodium
+		./zed-editor
+	];
 }

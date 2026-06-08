@@ -46,8 +46,8 @@
 					hide_window_decorations = true;
 					confirm_os_window_close = "0";
 
-					background_opacity = "0.6";
-					background_blur = lib.mkIf (vars.theme.blur.enable) 16;
+					background_opacity = "0.5";
+					background_blur = lib.mkIf (vars.theme.blur.enable) 1;
 
 					# ── Tab bar ────────────────────────────────────────────────────────
 					tab_bar_edge = "top";

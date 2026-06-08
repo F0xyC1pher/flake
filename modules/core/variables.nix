@@ -12,15 +12,9 @@
 	quantum = quantumMap."${toString rate}";
 in {
 	environment.sessionVariables = {
-		# === Wayland session ===
-		XDG_SESSION_TYPE = "wayland";
-		XDG_SESSION_DESKTOP = "niri";
-		XDG_CURRENT_DESKTOP = "niri";
-
 		# === Терминал ===
 		TERMINAL = "kitty";
 		TERMCMD = "kitty";
-		# TERM = "kitty-256color";
 
 		# === Редакторы ===
 		EDITOR = "micro";
@@ -31,8 +25,8 @@ in {
 		KITTY_ENABLE_WAYLAND = "1";
 
 		# === Micro ===
-
 		MICRO_TRUECOLOR = "1";
+
 		# === Qt ===
 		QT_QPA_PLATFORM = "wayland;xcb";
 		QT_QPA_PLATFORMTHEME = "qt6ct";
@@ -109,8 +103,10 @@ in {
 		DXVK_ENABLE_NVAPI = "1";
 		STAGING_SHARED_MEMORY = "1"; # Wine
 		GLFW_IM_MODULE = "none";
+
 		#Pipewire
 		PIPEWIRE_LATENCY = "${toString quantum}/${toString rate}";
+
 		# Telegram Desktop
 		TDESKTOP_USE_GTK_FILE_DIALOG = "1";
 		TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";

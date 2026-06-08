@@ -4,11 +4,13 @@
 		# ./dms
 		./fonts
 		# ./gtk
-		# ./hyprland
+		./hyprland
 		./niri
 		# ./qt
+		./waybar
 		./no-gnome.nix
 		./swayidle.nix
 		./swaync.nix
+		./xwayland.nix
 	];
 }

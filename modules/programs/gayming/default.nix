@@ -1,8 +1,9 @@
 {...}: {
-  imports = [
-    ./mangohud
-    ./gamemode.nix
-    ./prismlauncher.nix
-    ./steam.nix
-  ];
+	imports = [
+		./nixcord
+		./mangohud.nix
+		./gamemode.nix
+		./prismlauncher.nix
+		./steam.nix
+	];
 }
