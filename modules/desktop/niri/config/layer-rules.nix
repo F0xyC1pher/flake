@@ -22,14 +22,14 @@
 					match namespace="^wallpaper$"
 					place-within-backdrop true
 				}
-				layer-rule {
+				/-layer-rule {
 					match namespace="rofi"
 					match namespace="fuzzel"
 					match namespace="waybar"
 					match namespace="noctalia-shell"
 
 					shadow {
-						on
+						// on
 						softness 40
 						spread 10
 						draw-behind-window true

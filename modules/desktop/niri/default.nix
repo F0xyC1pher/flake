@@ -24,11 +24,11 @@
         #   package = pkgs.niri-unstable;
         # };
 
-        # home.activation.reloadNiri = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        #   					if command -v niri >/dev/null 2>&1; then
-        #   					niri msg action reload-config 2>/dev/null || true
-        #   					fi
-        #   				'';
+        home.activation.reloadNiri = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          					if command -v niri >/dev/null 2>&1; then
+          					niri msg action reload-config 2>/dev/null || true
+          					fi
+          				'';
       };
   };
 }
