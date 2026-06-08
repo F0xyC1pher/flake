@@ -14,15 +14,9 @@
 				// Window rules let you adjust behavior for individual windows.
 				// Find more information on the wiki:
 				// https://yalter.github.io/niri/Configuration:-Window-Rules
-
-				// Example: enable rounded corners for all windows.
-				// (This example rule is commented out with a "/-" in front.)
 				window-rule {
 					geometry-corner-radius 0
 					clip-to-geometry true
-				}
-
-				window-rule {
 					open-maximized true
 					draw-border-with-background false
 				}
@@ -51,7 +45,6 @@
 						}
 						window-rule {
 							match app-id="codium"
-							// opacity 0.6
 							background-effect {
 								blur true
 								xray false
@@ -80,11 +73,6 @@
 					max-width 391
 					min-height 155
 					max-height 155
-				}
-
-				/-window-rule {
-					match app-id="mpv"
-					max-height 779
 				}
 
 				// Indicate active windows with red colors.

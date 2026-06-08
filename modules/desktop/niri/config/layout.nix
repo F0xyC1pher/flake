@@ -61,7 +61,7 @@
 
 					// You can enable drop shadows for windows.
 					shadow {
-						on
+						// on
 						draw-behind-window false
 						// You can change how shadows look. The values below are in logical
 						// pixels and match the CSS box-shadow properties.
