@@ -7,20 +7,17 @@
 	# ── NixOS-level font configuration ──────────────────────────────────────────
 	fonts = {
 		packages = with pkgs; [
+			noto-fonts-color-emoji
 			monocraft
-			fira-code-symbols
-			font-awesome
-			material-symbols
-			inter
-			nerd-fonts.caskaydia-cove
+			pixel-code
 			cozette
 			lilex
-			pixel-code
+			nerd-fonts.caskaydia-cove
 			nerd-fonts.fira-code
-			nerd-fonts.departure-mono
+			fira-code-symbols
 			nerd-fonts.symbols-only
-			# noto-fonts-cjk-sans
-			noto-fonts-color-emoji
+			material-symbols
+			font-awesome
 		];
 
 		fontconfig = {

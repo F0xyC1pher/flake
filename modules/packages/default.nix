@@ -126,11 +126,7 @@ in {
 			nixd
 			nil
 			package-version-server
-			vscodium
-			zed-editor
 			neovim
-			# jetbrains.clion
-			# micro-full
 			# gemini-cli-bin
 			#gemini-cli
 			#lagrange-tui

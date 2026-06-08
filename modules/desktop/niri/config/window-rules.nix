@@ -36,8 +36,15 @@
 								xray false
 							}
 						}
-						      window-rule {
-								match app-id="^zen-twilight$"
+						window-rule {
+							match app-id="^firefox-nightly$"
+							background-effect {
+								blur true
+								xray false
+							}
+						}
+						window-rule {
+							match app-id="^zen-twilight$"
 							background-effect {
 								blur true
 								xray false
@@ -77,7 +84,7 @@
 
 				// Indicate active windows with red colors.
 				// window-rule {
-				//	match is-active=true
+					//	match is-active=true
 
 					// shadow {
 						// color "${vars.theme.style.accent}a8"

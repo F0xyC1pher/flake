@@ -15,7 +15,6 @@
 		}: let
 			hex = s: lib.removePrefix "#" s;
 			t = vars.theme.style;
-			c = vars.theme.colors.accent;
 		in {
 			programs.mangohud = {
 				enable = true;
