@@ -50,11 +50,10 @@
 						"browser.preferences.defaultPerformanceSettings.enabled" = false;
 						"gfx.webgpu.ignore-blocklist" = true;
 						"gfx.webrender.all" = true;
-						"gfx.webrender.compositor" = true;
-						"gfx.webrender.compositor.force-enabled" = true;
+
 						"gfx.webrender.enabled" = true;
 						"gfx.webrender.svg-filter-effects" = true;
-						"gfx.webrender.svg-filter-effects.also-convert-css-filters" = true;
+						"gfx.webrender.svg-filter-effects.also-convert-css-filters" = false;
 						"gfx.webrender.svg-filter-effects.also-use-for-docshell-fecolormatrix" = false;
 						"gfx.webrender.svg-filter-effects.feblend" = true;
 						"gfx.webrender.svg-filter-effects.fecolormatrix" = true;
@@ -80,7 +79,6 @@
 						"gfx.webrender.unaccelerated-widget.force" = false;
 						"gfx.webrender.use-optimized-shaders" = true;
 						"gfx.x11-egl.force-enabled" = true;
-						"layers.acceleration.force-enabled" = true;
 						"media.ffmpeg.vaapi.enabled" = true;
 						"media.hardware-video-decoding.force-enabled" = true;
 						"media.rdd-ffmpeg.enabled" = rddEnabled;

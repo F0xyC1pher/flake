@@ -22,7 +22,6 @@
 							s3_translator
 							keepassxc-browser
 							horizontal-scroll
-							firefox-color
 							sponsorblock
 							# stylus
 						];
