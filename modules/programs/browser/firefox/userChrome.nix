@@ -11,7 +11,7 @@
 			programs.firefox = {
 				profiles.${vars.user.fullName} = {
 					userChrome = ''
-						/* Тотальный сброс мусора (фоны, тени, рамки) */
+						/* Тотальный сброс всего */
 						* {
 							background-color: transparent !important;
 							background-image: none !important;
@@ -19,20 +19,17 @@
 							border: none !important;
 							border-radius: 0px !important;
 						}
-
+						/* Прозрачное окно контента */
 						browser[type="content"] {
 							background: rgba(6, 6, 6, 0.5) !important;
 						}
-
+						/* Прозрачная панель навигации */
 						#nav-bar,
 						#PersonalToolbar {
 							background: rgba(6, 6, 6, 0.5) !important;
 							padding: 4px 0 !important;
 						}
-
-						/* ==========================================================================
-						   5. ВСПЛЫВАЮЩИЕ ОКНА (МЕНЮ, ПАНЕЛИ, ПОДСКАЗКИ)
-						   ========================================================================== */
+						/* Всплывающие окна (меню, панели, подсказки) */
 						menupopup,
 						panel,
 						.panel-arrowcontent,
@@ -46,10 +43,7 @@
 						menu[_focused="true"] {
 							background-color: rgba(6, 6, 6, 0.5) !important;
 						}
-
-						/* ==========================================================================
-						   6. SIDEBERY – АБСОЛЮТНО ПРОЗРАЧНЫЙ (фон окна просвечивает)
-						   ========================================================================== */
+						/* Прозрачный Sideberry */
 						#sidebar-box,
 						#sidebar,
 						.sidebar-panel,
@@ -57,8 +51,7 @@
 							background: transparent !important;
 							background-color: transparent !important;
 						}
-
-						/* Полностью убираем разделитель (сплиттер) – никакой полосы */
+						/* Разделитель между контентом и боковой панелью цвета фона*/
 						#sidebar-splitter {
 							background-color: rgba(6, 6, 6, 0.5) !important;
 							width: 2px !important;
@@ -67,9 +60,7 @@
 							padding: 0 !important;
 						}
 
-						/* ==========================================================================
-						   7. ТЕКСТ, ИКОНКИ, СКРЫТИЕ ДЕФОЛТНЫХ ЭЛЕМЕНТОВ
-						   ========================================================================== */
+						/* Текст, иконки, скрытие дефолтных элементов*/
 						.urlbar-input,
 						.urlbar-input::placeholder,
 						menuitem,
@@ -80,16 +71,14 @@
 							color: #d6d6d6 !important;
 							fill: #d6d6d6 !important;
 						}
-
+						/* Скрытие заголовка тулбара*/
 						#TabsToolbar {
 							visibility: collapse !important;
 						}
 						#sidebar-header {
 							display: none !important;
 						}
-						/* ==========================================================================
-						   ФИКС АДРЕСНОЙ СТРОКИ И ПОДСКАЗОК (ЧИТАЕМЫЙ ФОН)
-						   ========================================================================== */
+						/* Адресная строка */
 						#urlbar {
 							background-color: rgba(6, 6, 6, 0.5) !important;
 						}
@@ -109,8 +98,6 @@
 						.urlbarView-title strong {
 							color: #f6f6f6 !important;
 						}
-
-						/* Поле ввода */
 						.urlbar-input {
 							color: #d6d6d6 !important;
 							background: rgba(6, 6, 6, 0.3) !important;
