@@ -102,6 +102,10 @@
 							color: #d6d6d6 !important;
 							background: rgba(6, 6, 6, 0.3) !important;
 						}
+						/*Скрытие индикатора WebRTC*/
+						#webrtcIndicator {
+							display: none !important;
+						}
 					'';
 				};
 			};

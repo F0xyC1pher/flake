@@ -7,14 +7,6 @@
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {lib, ...}: let
-			# false = {
-			# 	Value = false;
-			# 	Status = "locked";
-			# };
-			# true = {
-			# 	Value = true;
-			# 	Status = "locked";
-			# };
 			ffVersion = config.programs.firefox.package.version;
 			rddEnabled =
 				if (lib.versionOlder ffVersion "97.0.0")
@@ -24,20 +16,11 @@
 			programs.firefox = {
 				profiles.${vars.user.fullName} = {
 					settings = {
-						# --- Истинно Индусы и Интеграции ---
-						"browser.ai.control.linkPreviewKeyPoints" = "blocked";
-						"browser.ai.control.pdfjsAltText" = "blocked";
-						"browser.ai.control.smartTabGroups" = "blocked";
-						"browser.ai.control.translations" = "blocked";
-						"browser.ml.chat.page.footerBadge" = false;
-						"browser.ml.chat.page.menuBadge" = false;
+						# --- Персонализация ИИ-провайдера ---
 						"browser.ml.chat.provider" = "https://gemini.google.com";
-						"browser.ml.chat.shortcuts" = false;
-						"browser.ml.linkPreview.enabled" = false;
 						"extensions.pocket.enabled" = false;
 
 						# --- Внешний вид и темы ---
-						"browser.compactmode.show" = true;
 						"browser.settings-redesign.promo.dismissed" = true;
 						"browser.smartwindow.nova.enabled" = false;
 						"browser.tabs.allow_transparent_browser" = true;
@@ -67,11 +50,10 @@
 						"browser.preferences.defaultPerformanceSettings.enabled" = false;
 						"gfx.webgpu.ignore-blocklist" = true;
 						"gfx.webrender.all" = true;
-						"gfx.webrender.compositor" = true;
-						"gfx.webrender.compositor.force-enabled" = true;
+
 						"gfx.webrender.enabled" = true;
 						"gfx.webrender.svg-filter-effects" = true;
-						"gfx.webrender.svg-filter-effects.also-convert-css-filters" = true;
+						"gfx.webrender.svg-filter-effects.also-convert-css-filters" = false;
 						"gfx.webrender.svg-filter-effects.also-use-for-docshell-fecolormatrix" = false;
 						"gfx.webrender.svg-filter-effects.feblend" = true;
 						"gfx.webrender.svg-filter-effects.fecolormatrix" = true;
@@ -97,7 +79,6 @@
 						"gfx.webrender.unaccelerated-widget.force" = false;
 						"gfx.webrender.use-optimized-shaders" = true;
 						"gfx.x11-egl.force-enabled" = true;
-						"layers.acceleration.force-enabled" = true;
 						"media.ffmpeg.vaapi.enabled" = true;
 						"media.hardware-video-decoding.force-enabled" = true;
 						"media.rdd-ffmpeg.enabled" = rddEnabled;
@@ -123,14 +104,16 @@
 						"browser.startup.homepage" = "about:blank";
 						"browser.topsites.contile.enabled" = false;
 
-						# --- Конфиденциальность и Защита ---
+						# --- Конфиденциальность и Защита (Свободные флаги) ---
 						"browser.aboutConfig.showWarning" = false;
-						"browser.contentblocking.category" = {
-							Value = "strict";
-							Status = "locked";
-						};
 						"extensions.screenshots.disabled" = true;
 						"privacy.donottrackheader.enabled" = true;
+						"datareporting.healthreport.uploadEnabled" = false;
+						"datareporting.policy.dataSubmissionEnabled" = false;
+						"toolkit.telemetry.enabled" = false;
+						"toolkit.telemetry.unified" = false;
+						"app.normandy.enabled" = false;
+						"app.shield.optoutstudies.enabled" = false;
 
 						# --- Боковая Панель ---
 						"sidebar.main.tools" = "none";
@@ -139,12 +122,8 @@
 						"sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
 						"sidebar.visibility" = "hide-sidebar";
 
-						# --- Переводчик ---
-						"browser.translations.automaticallyPopup" = false;
-						"browser.translations.enable" = false;
-
 						# --- Адресная строка и поиск ---
-						"browser.ctrlTab.sortByRecentlyUsed" = true;
+						"browser.ctrlTab.sortByRecentlyUsed" = false;
 						"browser.search.defaultenginename" = "DuckDuckGo";
 						"browser.search.suggest.enabled" = true;
 						"browser.search.suggest.enabled.private" = false;
@@ -152,11 +131,8 @@
 						"browser.urlbar.showSearchSuggestionsFirst" = false;
 						"browser.urlbar.suggest.searches" = false;
 
-						# --- Wayland и Управление Окнами ---
-						"widget.dmabuf.force-enabled" = true;
+						# --- Интерфейс Wayland ---
 						"widget.gtk.rounded-bottom-corners.enabled" = true;
-						"widget.transparent-windows" = true;
-						"widget.wayland.opaque-by-default" = false;
 					};
 				};
 			};
