@@ -16,9 +16,9 @@
 		parallels.enable = true;
 		audio = {
 			noiseCancellation = true;
-			rate.value = 48000;
+			rate.value = 192000;
 			format = {
-				prefix = "F"; # F S
+				prefix = "S"; # F S
 				value = 32;
 				suffix = "P"; # LE P
 			};

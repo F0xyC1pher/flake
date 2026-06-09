@@ -11,15 +11,14 @@
 			programs.firefox = {
 				profiles.${vars.user.fullName} = {
 					userContent = ''
-						/* ── Page defaults ──────────────────────────────────────────── */
-						@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
-						  body {
-						    background-color: ${t.ui.main} !important;
-						    color:            ${t.text.main} !important;
+						/* ── Полный сброс холста для всех внешних сайтов ───────────── */
+						@-moz-document regexp("^(?!moz-extension://|about:).*$") {
+						  :root, :root::before, :root::after, html, body {
+						    background-color: transparent !important;
+						    background-image: none !important;
 						  }
 						}
-
-						/* ── Scrollbar ──────────────────────────────────────────────── */
+						/* ── Скроллбар под стиль системы ────────────────────────────── */
 						* {
 						  scrollbar-color: ${t.ui.selection} ${t.ui.main} !important;
 						}
