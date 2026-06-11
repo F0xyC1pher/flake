@@ -4,6 +4,7 @@
 		./gayming
 		./launcher
 		./media
+		./nixcord
 		./shell
 		./terminal
 		./text-editor

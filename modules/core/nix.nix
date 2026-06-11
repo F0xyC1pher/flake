@@ -44,6 +44,28 @@
 		niri.overlays.niri
 		nix-firefox-addons.overlays.default
 		(final: prev: {
+				freesmlauncher =
+					freesmlauncher.packages.${system}.freesmlauncher.override {
+						additionalPrograms = with pkgs; [ffmpeg gamemode];
+
+						jdks = with pkgs; [
+							graalvmPackages.graalvm-ce
+							javaPackages.compiler.temurin-bin.jdk-26
+							javaPackages.compiler.temurin-bin.jdk-25
+							javaPackages.compiler.temurin-bin.jdk-21
+							javaPackages.compiler.temurin-bin.jdk-17
+							javaPackages.compiler.temurin-bin.jdk-8
+						];
+
+						additionalLibs = with pkgs; [libGL glfw openal];
+
+						msaClientID = null;
+						gamemodeSupport = true;
+						controllerSupport = true;
+						textToSpeechSupport = false;
+					};
+			})
+		(final: prev: {
 				kitty =
 					prev.kitty.overrideAttrs (oldAttrs: {
 							postPatch =

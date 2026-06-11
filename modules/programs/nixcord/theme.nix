@@ -124,9 +124,9 @@
 					}
 
 					/* ── Status dots ─────────────────────────────────────────────── */
-					rect[fill="${c.green}"] { fill: "${c.green}"  !important; }
-					rect[fill="${c.yellow}"] { fill: "${c.yellow}" !important; }
-					rect[fill="${c.red}"] { fill: "${c.red}"    !important; }
+					rect[fill="${c."9"}"] { fill: "${c."9"}"  !important; }
+					rect[fill="${c."6"}"] { fill: "${c."6"}" !important; }
+					rect[fill="${c."0"}"] { fill: "${c."0"}"    !important; }
 					rect[fill="${t.text.faint}"] { fill: "${t.text.faint}" !important; }
 				'';
 			};

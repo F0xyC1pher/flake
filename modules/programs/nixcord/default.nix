@@ -1,7 +1,7 @@
 {
-  inputs,
-  vars,
-  ...
+	inputs,
+	vars,
+	...
 }: {
 	imports = [
 		./theme.nix
@@ -10,12 +10,12 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {...}: {
 			programs.nixcord = {
-				enable = false;
+				enable = true;
 				vesktop.enable = false;
 				equibop.enable = true;
 				discord = {
-					enable = false;
-					equicord.enable = false;
+					enable = true;
+					equicord.enable = true;
 					vencord.enable = false;
 					openASAR.enable = true;
 					autoscroll.enable = false;
@@ -24,11 +24,11 @@
 					transparent = true;
 					frameless = true;
 					plugins = {
-						BlurNSFW.enable = true;
-						ClearURLs.enable = true;
-						IRememberYou.enable = true;
-						PinDMs.enable = true;
-						SaveFavoriteGIFs.enable = true;
+						blurNsfw.enable = true;
+						clearUrls.enable = true;
+						iRememberYou.enable = true;
+						pinDms.enable = true;
+						saveFavoriteGifs.enable = true;
 						betterGifPicker.enable = true;
 						betterSettings.enable = true;
 						betterSettings.eagerLoad = true;
