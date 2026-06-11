@@ -64,6 +64,7 @@ in {
 
 		# === Java ===
 		_JAVA_AWT_WM_NONREPARENTING = "1";
+		_JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
 
 		# === GStreamer (NVIDIA декодеры) ===
 		GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";

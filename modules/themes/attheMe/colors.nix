@@ -26,16 +26,16 @@
 	};
 
 	accent = {
-		"0" = "#f69696"; # Светло-коралловый / Light Coral |
+		"0" = "#f69696"; # Светло-коралловый / Light Coral | red
 		"1" = "#f6a696"; # Лососевый / Salmon
 		"2" = "#f6b696"; # Темно-персиковый / Deep Peach
-		"3" = "#f6c696"; # Пастельно-оранжевый / Pastel Orange |
+		"3" = "#f6c696"; # Пастельно-оранжевый / Pastel Orange | orange
 		"4" = "#f6d696"; # Навахо / Navajo White
 		"5" = "#f6e696"; # Светло-хаки / Light Khaki
-		"6" = "#f6f696"; # Светло-желтый / Light Yellow |
+		"6" = "#f6f696"; # Светло-желтый / Light Yellow | yellow
 		"7" = "#e6f696"; # Желто-зеленый / Green-Yellow
 		"8" = "#d6f696"; # Сияющий лайм / Mindaro
-		"9" = "#c6f696"; # Ярко-лаймовый / Light Green |
+		"9" = "#c6f696"; # Ярко-лаймовый / Light Green | green
 		"a" = "#b6f696"; # Светло-зеленый / Pale Green
 		"b" = "#a6f696"; # Пастельно-зеленый / Pastel Green
 		"c" = "#96f696"; # Мятно-зеленый / Mint Green |
@@ -44,19 +44,19 @@
 		"f" = "#96f6c6"; # Мятный / Mint |
 		"g" = "#96f6d6"; # Аквамарин / Aquamarine
 		"h" = "#96f6e6"; # Бледный сине-зеленый / Pale Turquoise
-		"i" = "#96f6f6"; # Светло-циановый / Light Cyan |
+		"i" = "#96f6f6"; # Светло-циановый / Light Cyan | циан
 		"j" = "#96e6f6"; # Небесно-голубой / Sky Blue
 		"k" = "#96d6f6"; # Светло-васильковый / Light Cornflower
-		"l" = "#96c6f6"; # Детский голубой / Baby Blue |
+		"l" = "#96c6f6"; # Детский голубой / Baby Blue | голубой
 		"m" = "#96b6f6"; # Сизый / Vista Blue
 		"n" = "#96a6f6"; # Светлый барвинок / Periwinkle
-		"o" = "#9696f6"; # Неоновый барвинок / Medium Slate Blue |
+		"o" = "#9696f6"; # Неоновый барвинок / Medium Slate Blue | синий
 		"p" = "#a696f6"; # Светло-фиолетовый / Rich Lavender
 		"q" = "#b696f6"; # Яркая лаванда / Medium Purple
-		"r" = "#c696f6"; # Светло-пурпурный / Helio |
+		"r" = "#c696f6"; # Светло-пурпурный / Helio | фиолетовый
 		"s" = "#d696f6"; # Светлая орхидея / Orchid
 		"t" = "#e696f6"; # Крокус / Crocus
-		"u" = "#f696f6"; # Светлая маджента / Light Magenta |
+		"u" = "#f696f6"; # Светлая маджента / Light Magenta | магента
 		"v" = "#f696e6"; # Горячий розовый / Hot Pink
 		"w" = "#f696d6"; # Гвоздика / Carnation Pink
 		"x" = "#f696c6"; # Неоново-розовый / Tangelo Pink |
