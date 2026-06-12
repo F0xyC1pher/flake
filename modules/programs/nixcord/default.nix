@@ -12,7 +12,7 @@
 			programs.nixcord = {
 				enable = true;
 				vesktop.enable = false;
-				equibop.enable = true;
+				equibop.enable = false;
 				discord = {
 					enable = true;
 					equicord.enable = true;
