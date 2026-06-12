@@ -18,9 +18,9 @@
 			noiseCancellation = true;
 			rate.value = 192000;
 			format = {
-				prefix = "S"; # F S
+				prefix = "F"; # F S
 				value = 32;
-				suffix = "P"; # LE P
+				suffix = "LE"; # LE P
 			};
 		};
 

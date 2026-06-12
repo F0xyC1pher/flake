@@ -211,7 +211,7 @@ in {
 			r2modman
 			mangohud
 			yetris
-			freesmlauncher
+			freesmlauncher-custom
 
 			# 🍷 Wine & Compatibility (Совместимость с Windows)
 			wineWow64Packages.stagingFull
