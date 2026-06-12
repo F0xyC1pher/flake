@@ -12,13 +12,11 @@
 			programs.nixcord = {
 				enable = true;
 				vesktop.enable = false;
-				equibop.enable = false;
 				discord = {
 					enable = true;
 					equicord.enable = true;
 					vencord.enable = false;
 					openASAR.enable = true;
-					autoscroll.enable = false;
 				};
 				config = {
 					transparent = true;

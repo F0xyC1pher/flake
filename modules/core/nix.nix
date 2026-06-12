@@ -45,20 +45,14 @@
 		nix-firefox-addons.overlays.default
 		(final: prev: {
 				freesmlauncher =
-					freesmlauncher.packages.${system}.freesmlauncher.override {
-						additionalPrograms = with pkgs; [ffmpeg gamemode];
-
+					freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 						jdks = with pkgs; [
-							graalvmPackages.graalvm-ce
 							javaPackages.compiler.temurin-bin.jdk-26
-							javaPackages.compiler.temurin-bin.jdk-25
-							javaPackages.compiler.temurin-bin.jdk-21
-							javaPackages.compiler.temurin-bin.jdk-17
+							graalvmPackages.graalvm-ce
+							graalvmPackages.graalvm-oracle_25
+							graalvmPackages.graalvm-oracle_17
 							javaPackages.compiler.temurin-bin.jdk-8
 						];
-
-						additionalLibs = with pkgs; [libGL glfw openal];
-
 						msaClientID = null;
 						gamemodeSupport = true;
 						controllerSupport = true;
