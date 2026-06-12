@@ -28,8 +28,8 @@
 			buffer_before_play = "10%";
 
 			# ReplayGain для единообразия громкости
-			replaygain = "album";
-			replaygain_preamp = "0";
+			# replaygain = "album";
+			# replaygain_preamp = "0";
 
 			# Качество ресемплинга MPD (если вдруг понадобится)
 			# Но лучше доверить это PipeWire

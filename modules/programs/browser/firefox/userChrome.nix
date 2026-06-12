@@ -36,8 +36,8 @@
 						tooltip,
 						.tooltip,
 						#ContentSelectDropdown {
-							background-color: rgba(6, 6, 6, 0.5) !important;
-							border: 1px solid rgba(26, 26, 26, 0.3) !important;
+							background-color: rgba(6, 6, 6, 0.7) !important;
+							border: 1px solid rgba(26, 26, 26, 0.5) !important;
 						}
 						menuitem[_focused="true"],
 						menu[_focused="true"] {
@@ -93,7 +93,7 @@
 							color: #d6d6d6 !important;
 						}
 						.urlbarView-row:hover {
-							background-color: rgba(255, 255, 255, 0.1) !important;
+							background-color: rgba(56, 56, 56, 0.7) !important;
 						}
 						.urlbarView-title strong {
 							color: #f6f6f6 !important;
