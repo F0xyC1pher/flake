@@ -40,12 +40,12 @@
 		};
 	};
 	nixpkgs.config.allowUnfree = true;
-	nixpkgs.overlays = with inputs; [
-		niri.overlays.niri
-		nix-firefox-addons.overlays.default
+	nixpkgs.overlays = [
+		inputs.niri.overlays.niri
+		inputs.nix-firefox-addons.overlays.default
 		(final: prev: {
-				freesmlauncher =
-					freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
+				freesmlauncher-custom =
+					inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 						jdks = with pkgs; [
 							javaPackages.compiler.temurin-bin.jdk-26
 							graalvmPackages.graalvm-ce

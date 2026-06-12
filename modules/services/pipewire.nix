@@ -16,7 +16,7 @@
 	};
 
 	quantum = quantumMap."${toString rate}";
-	minQuantum = quantum / 2;
+	minQuantum = quantum;
 	maxQuantum = quantum * 2;
 in {
 	security.rtkit.enable = lib.mkDefault true;
@@ -172,12 +172,11 @@ in {
 					    matches = {{{ "node.name", "matches", "alsa_output.*" }}};
 					    apply_properties = {
 					      ["audio.format"] = "${format.prefix}${toString format.value}${format.suffix}",
-					      ["audio.rate"] = "${toString rate}", -- for USB soundcards it should be twice your desired rate
+					      ["audio.rate"] = "${toString rate}",
 					      ["resample.quality"] = 10,
 					      ["api.alsa.period-size"] = ${toString (quantum / 2)}, -- defaults to 1024, tweak by trial-and-error
 					      ["api.alsa.headroom"] = 8192;
-					      -- ["api.alsa.period-num"] = 512,
-					      ["api.alsa.disable-batch"] = false, -- generally, USB soundcards use the batch mode
+					      -- ["api.alsa.disable-batch"] = false, -- generally, USB soundcards use the batch mode
 					    },
 					  },
 					}
