@@ -208,9 +208,9 @@ in {
 			"monitor.alsa.rules" = [
 				{
 					# правило для наушников
-					matches = [{"device.name" = "alsa_output.*";}];
+					matches = [{"node.name" = "alsa_output.*";}];
 					actions = {
-						apply-props = {
+						update-props = {
 							"api.alsa.period-size" = quantum / 2;
 							"api.alsa.period-num" = 20;
 							"session.suspend-timeout-seconds" = 0;
@@ -227,7 +227,7 @@ in {
 				}
 				{
 					# правило для USB микрофона
-					matches = [{"device.name" = "~alsa_card.usb-Audio*";}];
+					matches = [{"node.name" = "alsa_input.usb*";}];
 					actions = {
 						update-props = {
 							"audio.rate" = 48000;

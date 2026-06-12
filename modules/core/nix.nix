@@ -47,8 +47,7 @@
 				freesmlauncher-custom =
 					inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 						jdks = with pkgs; [
-							javaPackages.compiler.temurin-bin.jdk-26
-							graalvmPackages.graalvm-ce
+							# graalvmPackages.graalvm-ce
 							graalvmPackages.graalvm-oracle_25
 							graalvmPackages.graalvm-oracle_17
 							javaPackages.compiler.temurin-bin.jdk-8
@@ -56,7 +55,7 @@
 						msaClientID = null;
 						gamemodeSupport = true;
 						controllerSupport = true;
-						textToSpeechSupport = false;
+						textToSpeechSupport = true;
 					};
 			})
 		(final: prev: {
