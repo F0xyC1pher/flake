@@ -160,28 +160,10 @@ in {
 
 				"stream.properties" = {
 					"node.latency" = "${toString quantum}/${toString rate}";
-					# "resample.quality" = 10;
+					"resample.quality" = 10;
 				};
 			};
 		};
-
-		# wireplumber.configPackages = [
-		# 	(pkgs.writeTextDir "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
-		# 			alsa_monitor.rules = {
-		# 			  {
-		# 			    matches = {{{ "node.name", "matches", "alsa_output.*" }}};
-		# 			    apply_properties = {
-		# 			      ["audio.format"] = "${format.prefix}${toString format.value}${format.suffix}",
-		# 			      ["audio.rate"] = "${toString rate}",
-		# 			      ["resample.quality"] = 10,
-		# 			      ["api.alsa.period-size"] = ${toString (quantum / 2)}, -- defaults to 1024, tweak by trial-and-error
-		# 			      ["api.alsa.headroom"] = 8192;
-		# 			      -- ["api.alsa.disable-batch"] = false, -- generally, USB soundcards use the batch mode
-		# 			    },
-		# 			  },
-		# 			}
-		# 		'')
-		# ];
 		# Disable suspend of Toslink output to prevent audio popping.
 		wireplumber.extraConfig."99-disable-suspend" = {
 			"monitor.alsa.rules" = [
@@ -213,10 +195,6 @@ in {
 							"api.alsa.period-size" = quantum / 2;
 							"api.alsa.period-num" = 3;
 							"session.suspend-timeout-seconds" = 0;
-							"device.suspend-timeout-seconds" = 0;
-							# "audio.format" = "F32LE";
-							# "audio.format" = "S32LE";
-							# "audio.format" = "S24LE";
 							"audio.format" = "${format.prefix}${toString format.value}${format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
