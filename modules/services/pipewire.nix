@@ -197,7 +197,6 @@ in {
 					actions = {
 						update-props = {
 							"session.suspend-timeout-seconds" = 0;
-							"device.suspend-timeout-seconds" = 0;
 						};
 					};
 				}
@@ -208,18 +207,16 @@ in {
 			"monitor.alsa.rules" = [
 				{
 					# правило для наушников
-					matches = [{"node.name" = "alsa_output.*";}];
+					matches = [{"node.name" = "~alsa_output.*";}];
 					actions = {
 						update-props = {
 							"api.alsa.period-size" = quantum / 2;
-							"api.alsa.period-num" = 20;
+							"api.alsa.period-num" = 3;
 							"session.suspend-timeout-seconds" = 0;
 							"device.suspend-timeout-seconds" = 0;
 							# "audio.format" = "F32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							# "audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${vars.hardware.audio.format.suffix}";
-							# "audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}";
 							"audio.format" = "${format.prefix}${toString format.value}${format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
@@ -228,7 +225,7 @@ in {
 				}
 				{
 					# правило для USB микрофона
-					matches = [{"node.name" = "alsa_input.usb*";}];
+					matches = [{"node.name" = "~alsa_input.usb*";}];
 					actions = {
 						update-props = {
 							"audio.rate" = 48000;
