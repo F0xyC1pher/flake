@@ -218,8 +218,9 @@ in {
 							# "audio.format" = "F32LE";
 							# "audio.format" = "S32LE";
 							# "audio.format" = "S24LE";
-							"audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${vars.hardware.audio.format.suffix}";
+							# "audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}${vars.hardware.audio.format.suffix}";
 							# "audio.format" = "${vars.hardware.audio.format.prefix}${toString vars.hardware.audio.format.value}";
+							"audio.format" = "${format.prefix}${toString format.value}${format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};
