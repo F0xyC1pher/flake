@@ -195,7 +195,7 @@ in {
 							"api.alsa.period-size" = quantum / 2;
 							"api.alsa.period-num" = 3;
 							"session.suspend-timeout-seconds" = 0;
-							"audio.format" = "${format.prefix}${toString format.value}${format.suffix}";
+							"audio.format" = "${format.prefix}${toString format.value}_${format.suffix}";
 							"resample.quality" = 10;
 							"audio.rate" = rate;
 						};
@@ -207,7 +207,7 @@ in {
 					actions = {
 						update-props = {
 							"audio.rate" = 48000;
-							"audio.format" = "S16LE";
+							"audio.format" = "S16_LE";
 							"api.alsa.period-size" = 1024;
 							"api.alsa.period-num" = 4;
 							"api.alsa.headroom" = 512;
