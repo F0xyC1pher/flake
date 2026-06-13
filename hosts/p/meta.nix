@@ -15,12 +15,22 @@
 		kernel.type = "xanmod"; # xanmod, zen, hardened, latest
 		parallels.enable = true;
 		audio = {
-			noiseCancellation = true;
-			rate.value = 192000;
-			format = {
-				prefix = "F"; # F S
-				value = 32;
-				suffix = "LE"; # LE P
+			input = {
+				noiseCancellation = true;
+				rate.value = 48000;
+				format = {
+					prefix = "S"; # F S
+					value = 16;
+					suffix = "LE"; # LE P
+				};
+			};
+			output = {
+				rate.value = 192000;
+				format = {
+					prefix = "S"; # F S
+					value = 32;
+					suffix = "P"; # LE P
+				};
 			};
 		};
 

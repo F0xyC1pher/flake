@@ -15,7 +15,7 @@
 				package = pkgs.rmpc;
 				config = ''
 					(
-						address: "/tmp/mpd_socket",
+						address: "/home/${vars.user.name}/.local/share/mpd/socket",
 						cache_dir: Some("/home/${vars.user.name}/Music"),
 						extra_yt_dlp_args: "yt-dlp -x --embed-thumbnail --embed-metadata -f bestaudio --convert-thumbnails jpg {} --output <path> <url>",
 						on_song_change: None,
