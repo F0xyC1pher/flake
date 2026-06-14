@@ -23,7 +23,6 @@ in {
 	];
 	services.displayManager.sessionPackages = [driftwm pkgs.niri];
 	environment.systemPackages = with pkgs;
-	with inputs;
 		[
 			# libsForQt5.qt5ct
 			qt6Packages.qt6ct
@@ -230,7 +229,7 @@ in {
 
 			# gpu-screen-recorder
 			# gpu-screen-recorder-gtk
-			niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
+			inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 			niri
 			xwayland-satellite
 
@@ -248,9 +247,9 @@ in {
 			cups-pk-helper
 			i2c-tools
 
-			driftwm.packages.x86_64-linux.default
+			driftwm
 
-			alejandra.defaultPackage.${stdenv.hostPlatform.system}
+			inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
 		]
 		++ (
 			if vars.hardware.nvidia.enable
