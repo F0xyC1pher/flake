@@ -25,10 +25,10 @@
 			url = "github:pabloaul/lsfg-vk-flake/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
 		driftwm = {
 			url = "github:malbiruk/driftwm";
 		};
-
 		neu-nix = {
 			url = "github:ricardomaps/neu-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -37,11 +37,6 @@
 		vimium-options.url = "github:uimataso/vimium-nixos";
 
 		lunar-client.url = "github:clonidine/lunar-client-flake";
-
-		sysc-greet = {
-			url = "github:Nomadcxx/sysc-greet";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
 
 		zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
 		zapret2.url = "github:dmfrpro/zapret2-flake";
@@ -59,10 +54,6 @@
 
 		nixcord.url = "github:FlameFlag/nixcord";
 
-		niri = {
-			url = "github:sodiboo/niri-flake";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
 		dms = {
 			url = "github:AvengeMedia/DankMaterialShell/stable";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -96,14 +87,6 @@
 		nyoom = {
 			url = "github:ryanccn/nyoom";
 			inputs.nixpkgs.follows = "nixpkgs";
-		};
-
-		zen-browser = {
-			url = "github:0xc000022070/zen-browser-flake";
-			inputs = {
-				nixpkgs.follows = "nixpkgs";
-				home-manager.follows = "home-manager";
-			};
 		};
 
 		freesmlauncher = {
@@ -218,8 +201,6 @@
 		#   flake = false;
 		#   submodules = true;
 		# };
-
-		# jbr-wayland-nix.url = "github:BananchickPasha/jbr-wayland-nix";
 	};
 
 	outputs = {
