@@ -1,10 +1,7 @@
-{
-	...
-}:  {
+{...}: {
 	imports = [
 		./hardware-configuration.nix
 	];
-	system.stateVersion = "26.05";
+	system.stateVersion = "26.11";
 	hardware.cpu.intel.updateMicrocode = true;
-	services.openssh.enable = true;
 }
