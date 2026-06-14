@@ -1,6 +1,6 @@
 {...}: {
 	imports = [
-		./browser
+		./firefox
 		./gayming
 		./launcher
 		./media

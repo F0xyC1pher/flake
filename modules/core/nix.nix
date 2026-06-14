@@ -41,7 +41,7 @@
 	};
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
-		inputs.niri.overlays.niri
+		# inputs.niri.overlays.niri
 		inputs.nix-firefox-addons.overlays.default
 		(final: prev: {
 				freesmlauncher-custom =
