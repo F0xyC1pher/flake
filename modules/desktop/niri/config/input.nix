@@ -59,7 +59,7 @@
 						// scroll-factor vertical=1.0 horizontal=-2.0
 					}
 					// Uncomment this to make the mouse warp to the center of newly focused windows.
-					warp-mouse-to-focus
+					// warp-mouse-to-focus
 					// disable-power-key-handling
 
 					// Focus windows and outputs automatically when moving the mouse into them.

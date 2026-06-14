@@ -1,5 +1,8 @@
 {vars, ...}: let
-	rate = vars.hardware.audio.rate.value;
+	outCfg = vars.hardware.audio.output;
+	rateStr = toString outCfg.rate.value;
+
+	# Числовые значения для карты квантов
 	quantumMap = {
 		"44100" = 512;
 		"48000" = 512;
@@ -9,7 +12,10 @@
 		"192000" = 2048;
 	};
 
-	quantum = quantumMap."${toString rate}";
+	quantum =
+		if quantumMap ? ${rateStr}
+		then quantumMap.${rateStr}
+		else 1024;
 in {
 	environment.sessionVariables = {
 		# === Терминал ===
@@ -30,13 +36,11 @@ in {
 		# === Qt ===
 		QT_QPA_PLATFORM = "wayland;xcb";
 		QT_QPA_PLATFORMTHEME = "qt6ct";
-		# QT_STYLE_OVERRIDE = lib.mkForce "fusion";
 
 		# === GTK / GDK ===
 		NO_AT_BRIDGE = "1";
 		GTK_A11Y = "none";
 		GTK_USE_PORTAL = "1";
-		# GTK_THEME = "Adwaita-dark";
 		GDK_DEBUG = "portals";
 		GDK_BACKEND = "wayland,x11,*";
 
@@ -75,10 +79,6 @@ in {
 		PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
 		PROTON_HIDE_NVIDIA_GPU = "0";
 
-		# === MangoHud ===
-		# MANGOHUD = "1";
-		# MANGOHUD_DLSYM = "1";
-
 		# === Отключение VSync глобально ===
 		MESA_VK_WSI_PRESENT_MODE = "immediate";
 		__GL_SYNC_TO_VBLANK = "0";
@@ -94,19 +94,17 @@ in {
 		__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "0";
 		__GL_ExperimentalPerfStrategy = "1";
 		__GL_ConformantBlitFramebufferScissor = "1";
-
-		# Старые/дополнительные NVIDIA переменные
 		__GL_ALLOW_FXAA = "0";
 		__GL_THREADED_OPTIMIZATIONS = "0";
 
 		# === Дополнительно ===
 		DXVK_SHADER_OPTIMIZE = "1";
 		DXVK_ENABLE_NVAPI = "1";
-		STAGING_SHARED_MEMORY = "1"; # Wine
+		STAGING_SHARED_MEMORY = "1";
 		GLFW_IM_MODULE = "none";
 
-		#Pipewire
-		PIPEWIRE_LATENCY = "${toString quantum}/${toString rate}";
+		# Pipewire Латентность
+		PIPEWIRE_LATENCY = "${toString quantum}/${rateStr}";
 
 		# Telegram Desktop
 		TDESKTOP_USE_GTK_FILE_DIALOG = "1";

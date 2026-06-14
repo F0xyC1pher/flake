@@ -1,64 +1,43 @@
 {
+	inputs,
 	vars,
-	lib,
 	...
 }: {
-	services.mpd = {
-		enable = true;
-		user = "${vars.user.name}";
-		openFirewall = true;
-		startWhenNeeded = true;
-		settings = {
-			music_directory = "/home/${vars.user.name}/Music";
-			# playlist_directory = "/home/${vars.userName}/.config/mpd/playlists";  # лучше явно
-			# db_file = "/home/${vars.userName}/.config/mpd/database";
-			# state_file = "/home/${vars.userName}/.config/mpd/state";
-			# sticker_file = "/home/${vars.userName}/.config/mpd/sticker.sql";
+	home-manager = {
+		extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.user.name} = {lib, ...}: let
+			outCfg = vars.hardware.audio.output;
+			format = outCfg.format;
+			rateStr = toString outCfg.rate.value;
 
-			bind_to_address = "/tmp/mpd_socket"; # если хочешь разрешить подключения не только с localhost
-			# port = 6600;
+			mpdFormatStr = let
+				isFloat32 = (lib.toLower format.prefix == "f") && (format.value == 32);
+				fmtVal =
+					if isFloat32
+					then "f"
+					else toString format.value;
+			in "${rateStr}:${fmtVal}:*";
+		in {
+			services.mpd = {
+				enable = true;
+				musicDirectory = "/home/${vars.user.name}/Music";
 
-			# Основные настройки
-			restore_paused = "yes";
-			max_playlist_length = "16384";
-			auto_update = "yes";
-			# auto_update_depth = "3";
+				extraConfig = ''
+					bind_to_address "/home/${vars.user.name}/.local/share/mpd/socket"
 
-			# Настройки буферизации
-			buffer_before_play = "10%";
+					restore_paused "yes"
+					max_playlist_length "16384"
+					auto_update "yes"
+					buffer_before_play "10%"
 
-			# ReplayGain для единообразия громкости
-			# replaygain = "album";
-			# replaygain_preamp = "0";
-
-			# Качество ресемплинга MPD (если вдруг понадобится)
-			# Но лучше доверить это PipeWire
-			# samplerate_converter = "soxr very high";
-			audio_output = [
-				{
-					type = "pipewire";
-					name = "PipeWire Output";
-					# format = "${toString vars.hardware.audio.rate.value}:${toString vars.hardware.audio.format.value}:*";
-					format = "${toString vars.hardware.audio.rate.value}:${
-						if lib.toLower vars.hardware.audio.format.prefix == "f" && vars.hardware.audio.format.value == 32
-						then "f"
-						else toString vars.hardware.audio.format.value
-					}:*";
-					# mixer_type = "software";
-					# auto_resample = "no";
-					buffer_time = "50000";
-					period_time = "16384";
-					# Оптимизация для низкой задержки
-					# sync = "no";  # если нужна минимальная задержка
-				}
-			];
-		};
-	};
-	systemd.services.mpd = {
-		environment = {
-			# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-			XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
-			# PIPEWIRE_RUNTIME_DIR = "/run/user/1000";
+					audio_output {
+					    type "pipewire"
+					    name "PipeWire Output"
+					    auto_resample "no"
+					    format "${mpdFormatStr}"
+					}
+				'';
+			};
 		};
 	};
 }
