@@ -185,6 +185,7 @@ in {
 			rofi-polkit-agent
 			swaynotificationcenter
 			cmd-polkit
+
 			# 🔐 Security (Безопасность)
 			keepassxc
 			sops
@@ -221,9 +222,7 @@ in {
 			rustdesk-flutter
 
 			inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
-			#   nvidia-vaapi-driver
-			#   libva-vdpau-driver
-			#   libvdpau-va-gl
+
 			libva-vdpau-driver
 			libvdpau-va-gl
 
@@ -233,7 +232,6 @@ in {
 			niri
 			xwayland-satellite
 
-			# husi
 			adw-gtk3
 			adwsteamgtk
 			indicator-application-gtk3
