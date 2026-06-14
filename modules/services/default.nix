@@ -1,6 +1,6 @@
 {...}: {
 	imports = [
-		./greeter
+		./displayManager
 		./polkit-service
 		./arrpc.nix
 		./awww.nix
