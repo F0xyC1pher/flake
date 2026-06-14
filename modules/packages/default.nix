@@ -16,10 +16,12 @@
 		else if vars.hardware.amd.enable
 		then nvtopPackages.amd
 		else nvtopPackages.full;
+	driftwm = inputs.driftwm.packages.x86_64-linux.default;
 in {
 	imports = [
 		./neu-nix.nix
 	];
+	services.displayManager.sessionPackages = [driftwm pkgs.niri];
 	environment.systemPackages = with pkgs;
 	with inputs;
 		[
@@ -127,10 +129,6 @@ in {
 			nil
 			package-version-server
 			neovim
-			# gemini-cli-bin
-			#gemini-cli
-			#lagrange-tui
-			# tuios
 
 			# 🌐 Networking & VPN (Сеть)
 			# sniffglue
@@ -143,11 +141,8 @@ in {
 			alsa-utils
 			alsa-tools
 			jack-example-tools
-			rnnoise-plugin
 			playerctl
 			mpdris2
-			pipewire
-			wireplumber
 
 			# 🎵 Media & Streaming (Медиа контент)
 			# spotify
@@ -191,7 +186,6 @@ in {
 			rofi-polkit-agent
 			swaynotificationcenter
 			cmd-polkit
-			tuigreet
 			# 🔐 Security (Безопасность)
 			keepassxc
 			sops
@@ -199,7 +193,6 @@ in {
 			swaylock
 
 			# 🔵 Bluetooth
-			bluetui
 			bluetuith
 
 			# 📱 Mobile & Android (Мобильные устройства)
