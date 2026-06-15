@@ -105,6 +105,10 @@
 			url = "git+https://codeberg.org/LGFae/awww";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		rmpc = {
+			url = "github:mierak/rmpc";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 		# ── Non-flake sources ────────────────────────────────────────────────────
 		yazi-plugins = {
 			url = "github:yazi-rs/plugins";
