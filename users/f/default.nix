@@ -38,19 +38,18 @@
 		modKey = "Mod4"; # Super
 		desktopShell = "dms"; # custom dms noctalia
 	};
-	app = {
-		gui = {
-			browser = "firefox"; # firefox floorp zen ungoogled-chromium chrome
-			file-manager = "yazi"; # nautilus nemo
-			launcher = "fuzzel"; # fuzzel rofi
-			text-editor = "vscodium"; # vscodium zed
-		};
-		terminal = "kitty";
-		tui = {
-			browser = "lyx"; # lyx
-			file-manager = "yazi"; # yazi ranger
-			# launcher = "fuzzel"; #fuzzel rofi
-			text-editor = "micro"; # micro nano
-		};
-	};
+	programs = [
+		"firefox"
+		"cli"
+		"desktop"
+		"dev"
+		"gayming"
+		# "cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
+		"gui"
+		"media"
+		"fish"
+		"kitty"
+		"appimage"
+		"throne"
+	];
 }

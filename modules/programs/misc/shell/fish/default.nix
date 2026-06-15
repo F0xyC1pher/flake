@@ -1,5 +1,6 @@
 {
 	inputs,
+	pkgs,
 	vars,
 	...
 }: {
@@ -9,6 +10,9 @@
 	};
 	imports = [
 		./theme.nix
+	];
+	environment.shells = with pkgs; [
+		fish
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
