@@ -12,7 +12,7 @@
 		users.${vars.user.name} = {pkgs, ...}: {
 			programs.rmpc = {
 				enable = true;
-				package = pkgs.rmpc;
+				package = inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default;
 				config = ''
 					(
 						address: "/home/${vars.user.name}/.local/share/mpd/socket",
