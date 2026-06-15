@@ -1,4 +1,9 @@
 {pkgs, ...}: {
+	environment.systemPackages = with pkgs; [
+		rofi-polkit-agent
+		cmd-polkit
+		jq
+	];
 	systemd.user.services.rofi-polkit-agent = {
 		description = "Rofi Polkit Agent";
 
