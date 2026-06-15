@@ -127,7 +127,6 @@
 		swaylock
 		bluetuith
 		android-tools
-		android-file-transfer
 		extract-dtb
 		r2modman
 		yetris
