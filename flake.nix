@@ -85,6 +85,7 @@
 		nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
 
 		nyoom = {
+			#странный менеджер ксс для лисы
 			url = "github:ryanccn/nyoom";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};

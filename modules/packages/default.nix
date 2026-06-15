@@ -125,7 +125,6 @@
 		wl-clip-persist
 		cliphist
 		cliphist-fuzzel-img
-		inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
 		rofi-polkit-agent
 		swaynotificationcenter
 		cmd-polkit
@@ -145,23 +144,23 @@
 		wineWow64Packages.fonts
 		wineasio
 		winetricks
-		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		discordo
 		discord-gamesdk
 		arrpc
 		rustdesk-flutter
-		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		libva-vdpau-driver
 		libvdpau-va-gl
 		gpu-screen-recorder
 		gpu-screen-recorder-gtk
-		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 		niri
 		xwayland-satellite
 		adw-gtk3
 		adwsteamgtk
+		rmtrash
+		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
+		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 		inputs.driftwm.packages.x86_64-linux.default
 		inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
-		rmtrash
 	];
 }

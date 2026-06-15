@@ -41,11 +41,15 @@
 	programs = [
 		"firefox"
 		"cli"
-		"desktop"
+		"niri"
+		"no-gnome"
+		"xwayland"
 		"dev"
 		"gayming"
-		# "cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
-		"gui"
+		"cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
+		"fonts"
+		"fuzzel"
+		"waybar"
 		"media"
 		"fish"
 		"kitty"
