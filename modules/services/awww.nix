@@ -8,7 +8,7 @@
 		users.${vars.user.name} = {pkgs, ...}: {
 			services.awww = {
 				enable = true;
-				package = pkgs.awww;
+				package = inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww;
 				extraArgs = [
 					"--layer"
 					"background"
