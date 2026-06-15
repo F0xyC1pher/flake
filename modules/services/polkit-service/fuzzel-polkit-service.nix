@@ -1,4 +1,9 @@
 {pkgs, ...}: {
+	environment.systemPackages = with pkgs; [
+		fuzzel-polkit-agent
+		cmd-polkit
+		jq
+	];
 	systemd.user.services.fuzzel-polkit-agent = {
 		description = "Fuzzel Polkit Agent";
 

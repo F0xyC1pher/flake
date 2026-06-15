@@ -48,7 +48,6 @@
 		exiftool
 		tree
 		treecat
-		treegen
 		treemd
 		tree-from-tags
 		tuna
@@ -122,12 +121,7 @@
 		slurp
 		wl-clipboard
 		wl-clipboard-x11
-		wl-clip-persist
-		cliphist
 		cliphist-fuzzel-img
-		rofi-polkit-agent
-		swaynotificationcenter
-		cmd-polkit
 		keepassxc
 		sops
 		swaylock
@@ -136,7 +130,6 @@
 		android-file-transfer
 		extract-dtb
 		r2modman
-		mangohud
 		yetris
 		freesmlauncher-custom
 		wineWow64Packages.stagingFull
@@ -146,13 +139,11 @@
 		winetricks
 		discordo
 		discord-gamesdk
-		arrpc
 		rustdesk-flutter
 		libva-vdpau-driver
 		libvdpau-va-gl
 		gpu-screen-recorder
 		gpu-screen-recorder-gtk
-		niri
 		xwayland-satellite
 		adw-gtk3
 		adwsteamgtk
