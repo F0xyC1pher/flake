@@ -3,7 +3,6 @@
 	vars,
 	...
 }: {
-	# systemd.user.services.niri-flake-polkit.enable = false;
 	programs.niri.enable = true;
 	imports = [
 		./config

@@ -1,13 +1,13 @@
 {vars, ...}: {
 	imports =
 		[
-			./boot
 			./nvidia
-			./swap
 			./bluetooth.nix
+			./boot.nix
 			./power.nix
 			./redist.nix
 			./ssd.nix
+			./swap.nix
 		]
 		++ (
 			if vars.hardware.parallels.enable

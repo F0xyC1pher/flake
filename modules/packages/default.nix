@@ -28,6 +28,8 @@
 			then "amd"
 			else "full"
 		}
+		mcpelauncher-client
+		mcpelauncher-ui-qt
 		qt6Packages.qt6ct
 		papirus-icon-theme
 		unzip

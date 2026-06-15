@@ -215,8 +215,8 @@
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 
-		# Pure helpers — no side effects, safe to call at eval time
-		overlay = import ./lib/overlay.nix {inherit lib inputs;};
+		utils = import ./lib/utils.nix {inherit lib;};
+
 		mkHost =
 			import ./lib/mkHost.nix {
 				inherit
@@ -225,11 +225,14 @@
 					system
 					themes
 					overlay
+					utils
 					;
 			};
+
+		overlay = import ./lib/overlay.nix {inherit lib inputs;};
+
 		themes = import ./lib/mkTheme.nix {inherit lib;};
 
-		# Auto-discover every subdirectory of hosts/ that has a default.nix
 		hostDirs = builtins.readDir ./hosts;
 		hostNames =
 			builtins.filter (

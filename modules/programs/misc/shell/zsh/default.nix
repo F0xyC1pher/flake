@@ -1,5 +1,6 @@
 {
 	inputs,
+	pkgs,
 	vars,
 	...
 }: {
@@ -9,6 +10,9 @@
 	programs.zsh = {
 		enable = true;
 	};
+	environment.shells = with pkgs; [
+		zsh
+	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {pkgs, ...}: {

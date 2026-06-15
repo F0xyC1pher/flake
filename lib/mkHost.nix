@@ -1,67 +1,81 @@
-# mkHost.nix — reads host meta and user settings, resolves theme, builds vars
+# lib/mkHost.nix
 {
 	lib,
 	inputs,
 	system,
 	themes,
 	overlay,
-}: host: let
-	hostMeta = import (../hosts + "/${host}/meta.nix");
+	utils,
+}: hostName: let
+	hostPath = ./../hosts + "/${hostName}";
+	hostMeta = import (hostPath + "/meta.nix");
 
-	userSettings = import (../users + "/${vars.user.name}/default.nix") {inherit lib;};
+	userName = hostMeta.user; # fix: было mainUser
 
-	# resolve theme using userSettings.theme
-	resolved =
+	userCfg = import (./../users + "/${userName}/default.nix") {inherit lib;};
+
+	resolvedTheme =
 		themes.resolve {
-			name = userSettings.theme.name;
-			colorOverrides = userSettings.theme.colorOverrides or {};
-			roleOverrides = userSettings.theme.roleOverrides or {};
+			name = userCfg.theme.name or "theMe";
+			accentName = userCfg.theme.accent or null; # fix: было accent (неверное имя арг)
+			colorOverrides = userCfg.theme.colorOverrides or {};
+			roleOverrides = userCfg.theme.roleOverrides or {};
 		};
+
+	modulesBase = ./../modules;
+	programsBase = modulesBase + "/programs";
+
+	programModules = utils.importPrograms programsBase (userCfg.programs or []);
 
 	vars = {
-		# user identity
 		user = {
-			name = hostMeta.user;
-			fullName = userSettings.user.fullName;
-			gitName = userSettings.user.gitName;
-			mail = userSettings.user.mail;
-			password = userSettings.user.password or null;
-			shell = userSettings.user.shell;
-		};
-		app = {
-			gui = {
-				browser = userSettings.app.gui.browser; # firefox floorp zen ungoogled-chromium chrome
-				file-manager = userSettings.app.gui.file-manager; # nautilus nemo
-				launcher = userSettings.app.gui.launcher; # fuzzel rofi
-				text-editor = userSettings.app.gui.text-editor; # vscodium zed
-			};
-			terminal = userSettings.app.terminal;
-			tui = {
-				browser = userSettings.app.tui.browser; # lyx
-				file-manager = userSettings.app.tui.file-manager; # yazi ranger
-				text-editor = userSettings.app.tui.text-editor; # micro nano
-			};
+			name = userName;
+			fullName = userCfg.user.fullName or userCfg.userFullName or userName;
+			gitName = userCfg.user.gitName or (userCfg.user.fullName or userName);
+			mail = userCfg.user.mail or "";
+			password = userCfg.user.password or userCfg.userPassword or null;
+			shell = userCfg.user.shell or userCfg.shell or "fish";
 		};
 
-		# theme settings (original config + resolved style)
+		# Fallback для модулей, которые ещё используют vars.app.*
+		app =
+			userCfg.app or {
+				gui = {
+					browser = "firefox";
+					file-manager = "yazi";
+					launcher = "fuzzel";
+					text-editor = "vscodium";
+				};
+				terminal = "kitty";
+				tui = {
+					browser = "lyx";
+					file-manager = "yazi";
+					text-editor = "micro";
+				};
+			};
+
 		theme = {
-			name = userSettings.theme.name;
-			dark = userSettings.theme.dark or true;
-			font = userSettings.theme.font;
+			name = userCfg.theme.name or "theMe";
+			dark = userCfg.theme.dark or true;
+			font =
+				userCfg.theme.font or {
+					name = "JetBrains Mono";
+					size = 12;
+				};
 			blur =
-				userSettings.theme.blur or {
+				userCfg.theme.blur or {
 					enable = false;
 					xray.enable = false;
 				};
-			colorOverrides = userSettings.theme.colorOverrides or {};
-			roleOverrides = userSettings.theme.roleOverrides or {};
-			style = resolved.theme;
-			colors = resolved.colors;
+			colorOverrides = userCfg.theme.colorOverrides or {};
+			roleOverrides = userCfg.theme.roleOverrides or {};
+			style = resolvedTheme.theme;
+			colors = resolvedTheme.colors;
 		};
 
-		# host info
-		host = hostMeta.host;
-		hardware = hostMeta.hardware;
+		host = hostMeta.host; # fix: было hostMeta (весь сет), нужна строка
+		hardware = hostMeta.hardware; # fix: отсутствовало
+		system = userCfg.system or {};
 	};
 
 	inherit
@@ -70,47 +84,46 @@
 		home-manager
 		sops-nix
 		dms
-		neu-nix
 		alejandra
 		nixcord
-		# system76-scheduler-niri
 		;
 in
 	lib.nixosSystem {
 		inherit system;
+
 		specialArgs = {inherit inputs vars;};
-		modules = [
-			../modules/default.nix
-			../users/default.nix
-			../hosts/${host}
 
-			home-manager.nixosModules.home-manager
-			sops-nix.nixosModules.sops
-			nur.modules.nixos.default
-			(
-				{...}: {
-					nixpkgs.overlays = [overlay];
-				}
-			)
+		modules =
+			[
+				modulesBase
+				./../users/default.nix # создание системного пользователя
+				hostPath
+			]
+			++ programModules
+			++ [
+				{nixpkgs.overlays = [overlay];}
 
-			{
-				home-manager = {
-					extraSpecialArgs = {inherit inputs vars;};
-					useGlobalPkgs = true;
-					useUserPackages = true;
-					backupFileExtension = "backup";
-					sharedModules = [
-						sops-nix.homeManagerModules.sops
-						nixcord.homeModules.nixcord
-						dms.homeModules.dank-material-shell
-						# system76-scheduler-niri.homeModules.default
-					];
-					users.${vars.user.name} = {...}: {
-						home.username = vars.user.name;
-						home.homeDirectory = "/home/${vars.user.name}";
-						home.stateVersion = "26.05";
+				nur.modules.nixos.default
+				sops-nix.nixosModules.sops
+
+				home-manager.nixosModules.home-manager
+				{
+					home-manager = {
+						useGlobalPkgs = true;
+						useUserPackages = true;
+						backupFileExtension = "backup";
+						extraSpecialArgs = {inherit inputs vars;}; # fix: vars отсутствовал
+						sharedModules = [
+							sops-nix.homeManagerModules.sops
+							nixcord.homeModules.nixcord
+							dms.homeModules.dank-material-shell
+						];
+						users.${userName} = {...}: {
+							home.username = userName;
+							home.homeDirectory = "/home/${userName}";
+							home.stateVersion = "26.05";
+						};
 					};
-				};
-			}
-		];
+				}
+			];
 	}

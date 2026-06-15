@@ -1,5 +1,5 @@
 {lib, ...}: let
-	themesDir = ../modules/themes;
+	themesDir = ../themes;
 
 	# Пользовательские min/max/abs
 	maxVal = a: b:
