@@ -107,6 +107,21 @@
 │         "url": "https://github.com/sentriz/cliphist"
 │       }
 │     },
+│     "crane": {
+│       "locked": {
+│         "lastModified": 1773189535,
+│         "narHash": "sha256-E1G/Or6MWeP+L6mpQ0iTFLpzSzlpGrITfU2220Gq47g=",
+│         "owner": "ipetkov",
+│         "repo": "crane",
+│         "rev": "6fa2fb4cf4a89ba49fc9dd5a3eb6cde99d388269",
+│         "type": "github"
+│       },
+│       "original": {
+│         "owner": "ipetkov",
+│         "repo": "crane",
+│         "type": "github"
+│       }
+│     },
 │     "dms": {
 │       "inputs": {
 │         "nixpkgs": [
@@ -467,6 +482,24 @@
 │     "flake-utils_6": {
 │       "inputs": {
 │         "systems": "systems_6"
+│       },
+│       "locked": {
+│         "lastModified": 1731533236,
+│         "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+│         "owner": "numtide",
+│         "repo": "flake-utils",
+│         "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+│         "type": "github"
+│       },
+│       "original": {
+│         "owner": "numtide",
+│         "repo": "flake-utils",
+│         "type": "github"
+│       }
+│     },
+│     "flake-utils_7": {
+│       "inputs": {
+│         "systems": "systems_7"
 │       },
 │       "locked": {
 │         "lastModified": 1731533236,
@@ -1280,6 +1313,28 @@
 │         "url": "https://git.outfoxxed.me/quickshell/quickshell"
 │       }
 │     },
+│     "rmpc": {
+│       "inputs": {
+│         "crane": "crane",
+│         "flake-utils": "flake-utils_6",
+│         "nixpkgs": [
+│           "nixpkgs"
+│         ]
+│       },
+│       "locked": {
+│         "lastModified": 1781353009,
+│         "narHash": "sha256-xYcvU8v4q6LK/T2Z2WSnV5yjxQb7Mbn5Ss7obudcRV8=",
+│         "owner": "mierak",
+│         "repo": "rmpc",
+│         "rev": "4707c99cb8351b1f71a93e2319f26b6883307bd6",
+│         "type": "github"
+│       },
+│       "original": {
+│         "owner": "mierak",
+│         "repo": "rmpc",
+│         "type": "github"
+│       }
+│     },
 │     "rofi-polkit-agent": {
 │       "flake": false,
 │       "locked": {
@@ -1330,6 +1385,7 @@
 │         "nur": "nur",
 │         "nyoom": "nyoom",
 │         "powerlevel10k": "powerlevel10k",
+│         "rmpc": "rmpc",
 │         "rofi-polkit-agent": "rofi-polkit-agent",
 │         "sops-nix": "sops-nix",
 │         "tg-ws-proxy": "tg-ws-proxy",
@@ -1517,6 +1573,21 @@
 │         "type": "github"
 │       }
 │     },
+│     "systems_7": {
+│       "locked": {
+│         "lastModified": 1681028828,
+│         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+│         "owner": "nix-systems",
+│         "repo": "default",
+│         "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+│         "type": "github"
+│       },
+│       "original": {
+│         "owner": "nix-systems",
+│         "repo": "default",
+│         "type": "github"
+│       }
+│     },
 │     "tg-ws-proxy": {
 │       "inputs": {
 │         "nixpkgs": "nixpkgs_11",
@@ -1641,7 +1712,7 @@
 │     },
 │     "zapret-discord-youtube": {
 │       "inputs": {
-│         "flake-utils": "flake-utils_6",
+│         "flake-utils": "flake-utils_7",
 │         "nixpkgs": "nixpkgs_13",
 │         "zapret-flowseal": "zapret-flowseal"
 │       },
@@ -1884,6 +1955,10 @@
 │ 		};
 │ 		awww = {
 │ 			url = "git+https://codeberg.org/LGFae/awww";
+│ 			inputs.nixpkgs.follows = "nixpkgs";
+│ 		};
+│ 		rmpc = {
+│ 			url = "github:mierak/rmpc";
 │ 			inputs.nixpkgs.follows = "nixpkgs";
 │ 		};
 │ 		# ── Non-flake sources ────────────────────────────────────────────────────
@@ -7869,7 +7944,6 @@
 │   │   │ 		./firefox
 │   │   │ 		./gayming
 │   │   │ 		./launcher
-│   │   │ 		./media
 │   │   │ 		./nixcord
 │   │   │ 		./rmpc
 │   │   │ 		./shell
@@ -12010,6 +12084,21 @@
 │ │         "url": "https://github.com/sentriz/cliphist"
 │ │       }
 │ │     },
+│ │     "crane": {
+│ │       "locked": {
+│ │         "lastModified": 1773189535,
+│ │         "narHash": "sha256-E1G/Or6MWeP+L6mpQ0iTFLpzSzlpGrITfU2220Gq47g=",
+│ │         "owner": "ipetkov",
+│ │         "repo": "crane",
+│ │         "rev": "6fa2fb4cf4a89ba49fc9dd5a3eb6cde99d388269",
+│ │         "type": "github"
+│ │       },
+│ │       "original": {
+│ │         "owner": "ipetkov",
+│ │         "repo": "crane",
+│ │         "type": "github"
+│ │       }
+│ │     },
 │ │     "dms": {
 │ │       "inputs": {
 │ │         "nixpkgs": [
@@ -12370,6 +12459,24 @@
 │ │     "flake-utils_6": {
 │ │       "inputs": {
 │ │         "systems": "systems_6"
+│ │       },
+│ │       "locked": {
+│ │         "lastModified": 1731533236,
+│ │         "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+│ │         "owner": "numtide",
+│ │         "repo": "flake-utils",
+│ │         "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+│ │         "type": "github"
+│ │       },
+│ │       "original": {
+│ │         "owner": "numtide",
+│ │         "repo": "flake-utils",
+│ │         "type": "github"
+│ │       }
+│ │     },
+│ │     "flake-utils_7": {
+│ │       "inputs": {
+│ │         "systems": "systems_7"
 │ │       },
 │ │       "locked": {
 │ │         "lastModified": 1731533236,
@@ -13183,6 +13290,28 @@
 │ │         "url": "https://git.outfoxxed.me/quickshell/quickshell"
 │ │       }
 │ │     },
+│ │     "rmpc": {
+│ │       "inputs": {
+│ │         "crane": "crane",
+│ │         "flake-utils": "flake-utils_6",
+│ │         "nixpkgs": [
+│ │           "nixpkgs"
+│ │         ]
+│ │       },
+│ │       "locked": {
+│ │         "lastModified": 1781353009,
+│ │         "narHash": "sha256-xYcvU8v4q6LK/T2Z2WSnV5yjxQb7Mbn5Ss7obudcRV8=",
+│ │         "owner": "mierak",
+│ │         "repo": "rmpc",
+│ │         "rev": "4707c99cb8351b1f71a93e2319f26b6883307bd6",
+│ │         "type": "github"
+│ │       },
+│ │       "original": {
+│ │         "owner": "mierak",
+│ │         "repo": "rmpc",
+│ │         "type": "github"
+│ │       }
+│ │     },
 │ │     "rofi-polkit-agent": {
 │ │       "flake": false,
 │ │       "locked": {
@@ -13233,6 +13362,7 @@
 │ │         "nur": "nur",
 │ │         "nyoom": "nyoom",
 │ │         "powerlevel10k": "powerlevel10k",
+│ │         "rmpc": "rmpc",
 │ │         "rofi-polkit-agent": "rofi-polkit-agent",
 │ │         "sops-nix": "sops-nix",
 │ │         "tg-ws-proxy": "tg-ws-proxy",
@@ -13420,6 +13550,21 @@
 │ │         "type": "github"
 │ │       }
 │ │     },
+│ │     "systems_7": {
+│ │       "locked": {
+│ │         "lastModified": 1681028828,
+│ │         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+│ │         "owner": "nix-systems",
+│ │         "repo": "default",
+│ │         "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+│ │         "type": "github"
+│ │       },
+│ │       "original": {
+│ │         "owner": "nix-systems",
+│ │         "repo": "default",
+│ │         "type": "github"
+│ │       }
+│ │     },
 │ │     "tg-ws-proxy": {
 │ │       "inputs": {
 │ │         "nixpkgs": "nixpkgs_11",
@@ -13544,7 +13689,7 @@
 │ │     },
 │ │     "zapret-discord-youtube": {
 │ │       "inputs": {
-│ │         "flake-utils": "flake-utils_6",
+│ │         "flake-utils": "flake-utils_7",
 │ │         "nixpkgs": "nixpkgs_13",
 │ │         "zapret-flowseal": "zapret-flowseal"
 │ │       },
@@ -13787,6 +13932,10 @@
 │ │ 		};
 │ │ 		awww = {
 │ │ 			url = "git+https://codeberg.org/LGFae/awww";
+│ │ 			inputs.nixpkgs.follows = "nixpkgs";
+│ │ 		};
+│ │ 		rmpc = {
+│ │ 			url = "github:mierak/rmpc";
 │ │ 			inputs.nixpkgs.follows = "nixpkgs";
 │ │ 		};
 │ │ 		# ── Non-flake sources ────────────────────────────────────────────────────
@@ -19772,7 +19921,6 @@
 │ │   │   │ 		./firefox
 │ │   │   │ 		./gayming
 │ │   │   │ 		./launcher
-│ │   │   │ 		./media
 │ │   │   │ 		./nixcord
 │ │   │   │ 		./rmpc
 │ │   │   │ 		./shell
