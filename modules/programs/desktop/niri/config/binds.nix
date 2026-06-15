@@ -245,7 +245,7 @@
 					Mod+Shift+P { power-off-monitors; }
 				}
 				recent-windows {
-					/-binds {
+					binds {
 						Mod+Tab         { next-window scope="output"; }
 						Mod+Shift+Tab   { previous-window scope="output"; }
 						Mod+grave       { next-window filter="app-id" scope="output"; }
