@@ -3,7 +3,6 @@
 		./firefox
 		./gayming
 		./launcher
-		./media
 		./nixcord
 		./rmpc
 		./shell
