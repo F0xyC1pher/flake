@@ -86,6 +86,7 @@
 		dms
 		alejandra
 		nixcord
+		skwd-wall
 		;
 in
 	lib.nixosSystem {
@@ -105,6 +106,8 @@ in
 
 				nur.modules.nixos.default
 				sops-nix.nixosModules.sops
+
+				skwd-wall.nixosModules.default
 
 				home-manager.nixosModules.home-manager
 				{

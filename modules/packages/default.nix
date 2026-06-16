@@ -114,7 +114,6 @@
 		ytdl-sub
 		ytfzf
 		obs-studio-plugins.obs-vaapi
-		kew
 		wayland-utils
 		wlr-randr
 		wev

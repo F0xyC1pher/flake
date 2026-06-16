@@ -106,6 +106,7 @@
 			url = "git+https://codeberg.org/LGFae/awww";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		skwd-wall.url = "github:liixini/skwd-wall";
 		rmpc = {
 			url = "github:mierak/rmpc";
 			inputs.nixpkgs.follows = "nixpkgs";

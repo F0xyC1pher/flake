@@ -55,5 +55,6 @@
 		"kitty"
 		"appimage"
 		"throne"
+		"skwd-wall"
 	];
 }
