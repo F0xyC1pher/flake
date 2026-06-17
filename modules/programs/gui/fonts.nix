@@ -11,7 +11,6 @@
 			monocraft
 			pixel-code
 			cozette
-			lilex
 			nerd-fonts.caskaydia-cove
 			nerd-fonts.fira-code
 			fira-code-symbols
