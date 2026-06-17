@@ -44,7 +44,7 @@
 					browser = "firefox";
 					file-manager = "yazi";
 					launcher = "fuzzel";
-					text-editor = "vscodium";
+					text-editor = "zeditor";
 				};
 				terminal = "kitty";
 				tui = {
@@ -59,7 +59,7 @@
 			dark = userCfg.theme.dark or true;
 			font =
 				userCfg.theme.font or {
-					name = "JetBrains Mono";
+					name = "FiraCode Nerd Mono";
 					size = 12;
 				};
 			blur =
@@ -84,7 +84,6 @@
 		home-manager
 		sops-nix
 		dms
-		alejandra
 		nixcord
 		skwd-wall
 		;

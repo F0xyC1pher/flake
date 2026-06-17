@@ -36,7 +36,7 @@
 	};
 	system = {
 		modKey = "Mod4"; # Super
-		desktopShell = "dms"; # custom dms noctalia
+		desktopShell = "custom"; # custom dms noctalia
 	};
 	programs = [
 		"firefox"
