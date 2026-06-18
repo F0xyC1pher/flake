@@ -5,7 +5,7 @@
 	system,
 	themes,
 	overlay,
-	utils,
+	mkModules,
 }: hostName: let
 	hostPath = ./../hosts + "/${hostName}";
 	hostMeta = import (hostPath + "/meta.nix");
@@ -25,7 +25,7 @@
 	modulesBase = ./../modules;
 	programsBase = modulesBase + "/programs";
 
-	programModules = utils.importPrograms programsBase (userCfg.programs or []);
+	programModules = mkModules.importPrograms programsBase (userCfg.programs or []);
 
 	vars = {
 		user = {
