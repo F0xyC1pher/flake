@@ -217,7 +217,7 @@
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 
-		utils = import ./lib/utils.nix {inherit lib;};
+		mkModules = import ./lib/mkModules.nix {inherit lib;};
 
 		mkHost =
 			import ./lib/mkHost.nix {
@@ -227,7 +227,7 @@
 					system
 					themes
 					overlay
-					utils
+					mkModules
 					;
 			};
 
