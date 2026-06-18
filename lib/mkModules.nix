@@ -6,9 +6,7 @@
 		asFile = basePath + "/${name}.nix";
 
 		directMatches =
-			lib.optional
-			(builtins.pathExists asDir && builtins.pathExists "${asDir}/default.nix")
-			"${asDir}/default.nix"
+			lib.optional (builtins.pathExists asDir && builtins.pathExists "${asDir}/default.nix") "${asDir}/default.nix"
 			++ lib.optional (builtins.pathExists asFile) asFile;
 
 		subdirs =
@@ -30,25 +28,16 @@
 
 	importCategoryDir = dirPath: let
 		entries = builtins.readDir dirPath;
-
 		nixFiles =
 			lib.filterAttrs (
 				name: type:
-					type
-					== "regular"
-					&& lib.hasSuffix ".nix" name
-					&& name != "default.nix"
-					&& !(lib.hasPrefix "_" name)
+					type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix" && !(lib.hasPrefix "_" name)
 			)
 			entries;
-
 		subdirs =
 			lib.filterAttrs (
 				name: type:
-					type
-					== "directory"
-					&& builtins.pathExists "${dirPath}/${name}/default.nix"
-					&& !(lib.hasPrefix "_" name)
+					type == "directory" && builtins.pathExists "${dirPath}/${name}/default.nix" && !(lib.hasPrefix "_" name)
 			)
 			entries;
 	in
@@ -72,7 +61,6 @@
 					else findDeep programsBase item
 			)
 			items;
-
 		uniquePaths = lib.unique allPaths;
 	in
 		map (path: import path) uniquePaths;
