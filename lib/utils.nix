@@ -1,6 +1,4 @@
 {lib, ...}: rec {
-	# Рекурсивный поиск модуля по имени.
-	# Если в поддиректории найден default.nix, глубокий поиск внутри неё прекращается.
 	findDeep = basePath: name: let
 		entries = builtins.readDir basePath;
 
@@ -13,8 +11,6 @@
 			"${asDir}/default.nix"
 			++ lib.optional (builtins.pathExists asFile) asFile;
 
-		# Фильтруем директории для рекурсии: исключаем саму искомую 'name'
-		# и пропускаем те папки, которые содержат собственный default.nix (чтобы избежать заглядывания внутрь изолированных модулей)
 		subdirs =
 			lib.filterAttrs (
 				n: t:
@@ -32,7 +28,6 @@
 	in
 		directMatches ++ subMatches;
 
-	# Возвращает список путей файлов/модулей внутри конкретной категории
 	importCategoryDir = dirPath: let
 		entries = builtins.readDir dirPath;
 
@@ -60,7 +55,6 @@
 		(map (name: "${dirPath}/${name}") (builtins.attrNames nixFiles))
 		++ (map (name: "${dirPath}/${name}/default.nix") (builtins.attrNames subdirs));
 
-	# Основная функция импорта программ с жесткой дедупликацией путей
 	importPrograms = programsBase: items: let
 		allPaths =
 			lib.concatMap (
@@ -75,9 +69,7 @@
 						else importCategoryDir directDir
 					else if builtins.pathExists directFile
 					then [directFile]
-					else
-						# Если прямой путь не найден, запускаем контролируемый findDeep
-						findDeep programsBase item
+					else findDeep programsBase item
 			)
 			items;
 
