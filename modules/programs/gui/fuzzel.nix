@@ -44,10 +44,10 @@
 							prompt = "${vars.theme.style.text.heading}ff";
 							placeholder = "${vars.theme.style.text.faint}ff";
 							input = "${vars.theme.style.text.main}ff";
-							match = "${vars.theme.style.text.match}ff";
+							match = "${vars.theme.style.text.heading}ff";
 							selection = "${vars.theme.style.accent}ff";
 							selection-text = "${vars.theme.style.ui.deep}ff";
-							selection-match = "${vars.theme.style.text.match}ff";
+							selection-match = "${vars.theme.style.text.heading}ff";
 							counter = "${vars.theme.style.text.faint}ff";
 							border = "${vars.theme.style.accent}ff";
 						};
