@@ -21,12 +21,12 @@
 						}
 						/* Прозрачное окно контента */
 						browser[type="content"] {
-							background: rgba(6, 6, 6, 0.5) !important;
+							background: rgba(36, 6, 6, 0.5) !important;
 						}
 						/* Прозрачная панель навигации */
 						#nav-bar,
 						#PersonalToolbar {
-							background: rgba(6, 6, 6, 0.5) !important;
+							background: rgba(36, 6, 6, 0.5) !important;
 							padding: 4px 0 !important;
 						}
 						/* Всплывающие окна (меню, панели, подсказки) */
@@ -36,12 +36,12 @@
 						tooltip,
 						.tooltip,
 						#ContentSelectDropdown {
-							background-color: rgba(6, 6, 6, 0.7) !important;
+							background-color: rgba(36, 6, 6, 0.7) !important;
 							border: 1px solid rgba(26, 26, 26, 0.5) !important;
 						}
 						menuitem[_focused="true"],
 						menu[_focused="true"] {
-							background-color: rgba(6, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.5) !important;
 						}
 						/* Прозрачный Sideberry */
 						#sidebar-box,
@@ -53,7 +53,7 @@
 						}
 						/* Разделитель между контентом и боковой панелью цвета фона*/
 						#sidebar-splitter {
-							background-color: rgba(6, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.5) !important;
 							width: 2px !important;
 							border: none !important;
 							margin: 0 !important;
@@ -79,29 +79,26 @@
 							display: none !important;
 						}
 						/* Адресная строка */
-						#urlbar {
-							background-color: rgba(6, 6, 6, 0.5) !important;
-						}
 						#urlbarView {
-							background-color: rgba(6, 6, 6, 0.6) !important;
-							border-color: rgba(26, 26, 26, 0.6) !important;
+							background-color: rgba(36, 6, 6, 0.5) !important;
+							border-color: rgba(26, 26, 26, 0.5) !important;
 						}
 						.urlbarView {
-							background-color: rgba(6, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.5) !important;
 						}
 						.urlbarView-row {
 							color: #d6d6d6 !important;
 						}
 						.urlbarView-row:hover {
-							background-color: rgba(56, 56, 56, 0.7) !important;
+							background-color: rgba(36, 6, 6, 0.7) !important;
 						}
 						.urlbarView-title strong {
 							color: #f6f6f6 !important;
 						}
 						.urlbar-input {
 							color: #d6d6d6 !important;
-							background: rgba(6, 6, 6, 0.3) !important;
 						}
+
 						/*Скрытие индикатора WebRTC*/
 						#webrtcIndicator {
 							display: none !important;

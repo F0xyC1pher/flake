@@ -54,8 +54,8 @@
 				}
 				gestures {
 					hot-corners {
-						bottom-left
-						bottom-right
+						top-left
+						top-right
 					}
 				}
 				screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

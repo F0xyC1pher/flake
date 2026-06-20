@@ -41,16 +41,16 @@
 	};
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
-		# inputs.niri.overlays.niri
 		inputs.nix-firefox-addons.overlays.default
 		(final: prev: {
 				freesmlauncher-custom =
 					inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 						jdks = with pkgs; [
-							# graalvmPackages.graalvm-ce
-							graalvmPackages.graalvm-oracle_25
-							graalvmPackages.graalvm-oracle_17
-							javaPackages.compiler.temurin-bin.jdk-8
+							temurin-jre-bin-26
+							temurin-jre-bin-25
+							temurin-jre-bin-21
+							temurin-jre-bin-17
+							temurin-jre-bin-8
 						];
 						msaClientID = null;
 						gamemodeSupport = true;
