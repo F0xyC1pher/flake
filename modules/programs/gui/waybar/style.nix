@@ -7,23 +7,23 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {vars, ...}: {
 			programs.waybar.style = ''
-				/*css*/
+								/*css*/
 				* {
-				  font-family: ${vars.theme.font.name}, "Source Han Sans JP";
-				  font-weight: 600;
-				  font-size: 14px;
-				  border-radius: 0px;
+									font-family: "Monocraft";
+									font-weight: 600;
+									font-size: 14px;
+									border-radius: 0px;
 				}
 
 				window#waybar {
-				  background: transparent;
-				  color: ${vars.theme.style.text.primary};
+									background: transparent;
+									color: #d6d6d6;
 				}
 
 				window#waybar > box {
-				  background: alpha(${vars.theme.style.ui."0"}, 0.33);
-				  border-bottom: 1px solid ${vars.theme.style.ui."4"};
-				  padding: 0 6px;
+									background: alpha(#360606, 0.33);
+									border-bottom: 2px solid #f69696;
+									padding: 0 6px;
 				}
 
 				/* COMMON MODULE STYLE */
@@ -41,14 +41,13 @@
 				#language,
 				#tray,
 				#wireplumber,
-				#wireplumber.source
-				{
-				  border: 1px solid ${vars.theme.style.ui."4"};
-				  background: ${vars.theme.style.ui."3"};
-				  color: ${vars.theme.style.text.main};
-				  padding: 0 10px;
-				  margin: 3px 2px;
-				  min-height: 28px;
+				#wireplumber.source {
+									border: none;
+									background: none;
+									color: #d6d6d6;
+									padding: 0 10px;
+									margin: 3px 2px;
+									min-height: 28px;
 				}
 
 				/* Hover */
@@ -66,86 +65,86 @@
 				#language:hover,
 				#tray:hover,
 				#wireplumber:hover,
-				#wireplumber.source:hover
-				{
-				  border: 1px solid ${vars.theme.style.ui."5"};
-				  background: ${vars.theme.style.ui."5"};
-				  color: ${vars.theme.style.text.heading};
-				  transition: all 0.25s ease;
+				#wireplumber.source:hover {
+									/*border: 1px solid #764646;*/
+									/*background: #763636;*/
+									color: #f6f6f6;
+									transition: all 666ms ease;
 				}
 
 				/* WORKSPACES */
 				#workspaces {
-				  background: transparent;
-				  margin: 3px 2px;
+									background: transparent;
+									margin: 3px 2px;
 				}
 
 				#workspaces button {
-				  border: 1px solid ${vars.theme.style.ui."4"};
-				  background: ${vars.theme.style.ui."3"};
-				  color: ${vars.theme.style.text.main};
-				  margin: 0 2px;
-				  padding: 0 12px;
-				  min-height: 28px;
-				  font-size: 17px;
+									border: none;
+									background: none;
+									color: #f69696;
+									margin: 0 2px;
+									padding: 0 12px;
+									min-height: 28px;
+									font-size: 17px;
 				}
 
 				#workspaces button.empty {
-				  border: 1px solid transparent;
-				  background: transparent;
-				  color: ${vars.theme.style.text.comment};
+									border: none;
+									background: transparent;
+									color: #666666;
 				}
 
 				#workspaces button.active {
-				  border: 1px solid ${vars.theme.style.accent};
-				  background: ${vars.theme.style.accent};
-				  color: ${vars.theme.style.ui."0"};
+									border: none;
+									background: #f69696;
+									color: #360606;
 				}
 
 				#workspaces button.active:hover {
-				  border: 1px solid ${vars.theme.style.text.heading};
-				  background: ${vars.theme.style.accent};
-				  color: ${vars.theme.style.ui."0"};
+									border: none;
+									background: #f6f6f6;
+									color: #360606;
 				}
 
 				#workspaces button:hover {
-				  border: 1px solid ${vars.theme.style.ui."5"};
-				  background: ${vars.theme.style.ui."5"};
-				  color: ${vars.theme.style.text.heading};
+									border: none;
+									background: none;
+									color: #f6f6f6;
 				}
 
 				/* STATE COLORS */
 				#battery.warning {
-				  border-color: ${vars.theme.style.text.syntax.warning};
-				  color: ${vars.theme.style.text.syntax.warning};
+									border-color: #f6f696;
+									color: #f6f696;
 				}
 
 				#battery.critical {
-				  border-color: ${vars.theme.style.text.syntax.error};
-				  color: ${vars.theme.style.text.syntax.error};
+									border-color: #96f6f6;
+									color: #96f6f6;
 				}
 
 				#wireplumber.muted,
 				#wireplumber.source.muted {
-				  color: ${vars.theme.style.text.faint};
+									color: #a6a6a6;
 				}
 
 				#custom-notification {
-				  font-size: 17px;
+									font-size: 17px;
 				}
 
 				#tray {
-				  border: 1px solid ${vars.theme.style.ui."4"};
-				  background: ${vars.theme.style.ui."3"};
+									border: none;
+									background: none;
 				}
 
 				#clock {
-				   min-width: 80px;
+									min-width: 80px;
 				}
 				#cpu,
 				#memory {
-					 min-width: 50px;
+									min-width: 50px;
 				}
+
 			'';
 		};
 	};
