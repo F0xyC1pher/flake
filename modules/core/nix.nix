@@ -46,11 +46,11 @@
 				freesmlauncher-custom =
 					inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 						jdks = with pkgs; [
-							temurin-jre-bin-26
-							temurin-jre-bin-25
-							temurin-jre-bin-21
-							temurin-jre-bin-17
-							temurin-jre-bin-8
+							javaPackages.compiler.temurin-bin.jdk-26
+							javaPackages.compiler.temurin-bin.jdk-25
+							javaPackages.compiler.temurin-bin.jdk-21
+							javaPackages.compiler.temurin-bin.jdk-17
+							javaPackages.compiler.temurin-bin.jdk-8
 						];
 						msaClientID = null;
 						gamemodeSupport = true;
