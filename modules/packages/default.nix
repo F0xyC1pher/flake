@@ -147,6 +147,7 @@
 		adw-gtk3
 		adwsteamgtk
 		rmtrash
+		tor-browser
 		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default

@@ -11,6 +11,7 @@
 		./dropbox.nix
 		./earlyloom.nix
 		# ./envfs.nix
+		./flatpak.nix
 		./gvfs.nix
 		# ./irqbalance.nix
 		./locate.nix
