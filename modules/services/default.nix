@@ -9,7 +9,7 @@
 		./dbus.nix
 		# ./dnscrypt-proxy.nix
 		./dropbox.nix
-		# ./earlyloom.nix
+		./earlyloom.nix
 		# ./envfs.nix
 		./gvfs.nix
 		# ./irqbalance.nix
@@ -21,6 +21,7 @@
 		./pipewire.nix
 		./playerctld.nix
 		./resolved.nix
+		./scx-loader.nix
 		./seatd.nix
 		./udev.nix
 		./upower.nix
