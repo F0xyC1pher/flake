@@ -86,6 +86,7 @@
 		dms
 		nixcord
 		skwd-wall
+		nix-flatpak
 		;
 in
 	lib.nixosSystem {
@@ -109,6 +110,7 @@ in
 				skwd-wall.nixosModules.default
 
 				home-manager.nixosModules.home-manager
+
 				{
 					home-manager = {
 						useGlobalPkgs = true;
@@ -119,6 +121,7 @@ in
 							sops-nix.homeManagerModules.sops
 							nixcord.homeModules.nixcord
 							dms.homeModules.dank-material-shell
+							nix-flatpak.homeManagerModules.nix-flatpak
 						];
 						users.${userName} = {...}: {
 							home.username = userName;

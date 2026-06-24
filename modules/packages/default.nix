@@ -29,6 +29,8 @@
 			then "amd"
 			else "full"
 		}
+		curl-impersonate
+		curlFull
 		mcpelauncher-client
 		mcpelauncher-ui-qt
 		qt6Packages.qt6ct
@@ -147,6 +149,7 @@
 		adw-gtk3
 		adwsteamgtk
 		rmtrash
+		tor-browser
 		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
