@@ -10,14 +10,14 @@
 	hostPath = ./../hosts + "/${hostName}";
 	hostMeta = import (hostPath + "/meta.nix");
 
-	userName = hostMeta.user; # fix: было mainUser
+	userName = hostMeta.user;
 
 	userCfg = import (./../users + "/${userName}/default.nix") {inherit lib;};
 
 	resolvedTheme =
 		themes.resolve {
 			name = userCfg.theme.name or "theMe";
-			accentName = userCfg.theme.accent or null; # fix: было accent (неверное имя арг)
+			accentName = userCfg.theme.accent or null;
 			colorOverrides = userCfg.theme.colorOverrides or {};
 			roleOverrides = userCfg.theme.roleOverrides or {};
 		};
