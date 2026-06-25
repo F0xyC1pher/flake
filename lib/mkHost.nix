@@ -111,7 +111,6 @@ in
 
 				home-manager.nixosModules.home-manager
 
-				nix-flatpak.nixosModules.nix-flatpak
 				{
 					home-manager = {
 						useGlobalPkgs = true;
@@ -122,6 +121,7 @@ in
 							sops-nix.homeManagerModules.sops
 							nixcord.homeModules.nixcord
 							dms.homeModules.dank-material-shell
+							nix-flatpak.homeManagerModules.nix-flatpak
 						];
 						users.${userName} = {...}: {
 							home.username = userName;
