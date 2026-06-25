@@ -86,6 +86,7 @@
 		dms
 		nixcord
 		skwd-wall
+		nix-flatpak
 		;
 in
 	lib.nixosSystem {
@@ -109,6 +110,8 @@ in
 				skwd-wall.nixosModules.default
 
 				home-manager.nixosModules.home-manager
+
+				nix-flatpak.nixosModules.nix-flatpak
 				{
 					home-manager = {
 						useGlobalPkgs = true;

@@ -28,6 +28,7 @@
 			"mpd"
 			"cdrom"
 			"disk"
+			"flatpak"
 		];
 	};
 }
