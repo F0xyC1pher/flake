@@ -1,6 +1,6 @@
 {...}: {
 	theme = {
-		name = "attheMe";
+		name = "theMe";
 		# dark = true;
 		accent = "0";
 		# gaps = 8;
@@ -52,10 +52,10 @@
 		"waybar"
 		"media"
 		"fish"
+		"zsh"
 		"kitty"
 		"appimage"
 		"throne"
-		"misc"
 		"skwd-wall"
 	];
 }

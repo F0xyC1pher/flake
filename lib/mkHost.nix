@@ -87,6 +87,7 @@
 		nixcord
 		skwd-wall
 		nix-flatpak
+		proxy-suite
 		;
 in
 	lib.nixosSystem {
@@ -108,7 +109,7 @@ in
 				sops-nix.nixosModules.sops
 
 				skwd-wall.nixosModules.default
-
+				proxy-suite.nixosModules.default
 				home-manager.nixosModules.home-manager
 
 				{
