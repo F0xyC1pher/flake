@@ -1,12 +1,15 @@
-# ── Theme: theMe — role mapping ──────────────────────────────────────────────
-#
-# ROLE LAYER. The shape of this attrset (ui.*, text.*, accent, text.syntax.*)
-# is a CONTRACT — every theme must produce these same keys with the same nesting.
-# Only the color values change between themes.
-#
-# Adding a new role here means adding it to every other theme too.
-# Renaming a role breaks every consumer module.
-{colors, ...}: {
+# modules/themes/theMe/default.nix
+{
+	lib,
+	colors,
+	accentName ? "0",
+}: let
+	accentHex = colors.accent.${accentName};
+	onAccentHex = colors.onAccent.${accentName};
+in {
+	# Экспортируем акцент по умолчанию для автовыбора
+	defaultAccent = "0";
+
 	ui = {
 		deep = colors.base."0";
 		"0" = colors.base."0";
@@ -22,20 +25,19 @@
 		"5" = colors.base."5";
 
 		border = {
-			active = colors.accent.red;
-			"1" = colors.accent.red;
+			active = accentHex;
+			"1" = accentHex;
 			inactive = colors.base."3";
 			"0" = colors.base."3";
 		};
 	};
 
-	accent = colors.accent.red;
+	accent = accentHex;
 
 	text = {
 		comment = colors.base."6";
 		separator = colors.base."7";
 		indent = colors.base."8";
-
 		submerged = colors.base."9";
 		faint = colors.base."a";
 		sub-main = colors.base."b";
@@ -45,19 +47,18 @@
 		highlight = colors.base."e";
 		heading = colors.base."f";
 
-		# onAccent = colors.accent.green;
-		# match = colors.accent.green;
+		onAccent = onAccentHex;
 
 		syntax = {
-			keyword = colors.accent.purple;
-			number = colors.accent.orange;
-			function = colors.accent.blue;
-			string = colors.accent.green;
-			error = colors.accent.cyan;
-			info = colors.accent.blue;
-			warning = colors.accent.yellow;
-			success = colors.accent.pink;
-			match = colors.accent.purple;
+			keyword = colors.accent."r";
+			number = colors.accent."3";
+			function = colors.accent."l";
+			string = colors.accent."c";
+			error = colors.accent."i";
+			info = colors.accent."l";
+			warning = colors.accent."6";
+			success = colors.accent."u";
+			match = colors.accent."r";
 		};
 	};
 }

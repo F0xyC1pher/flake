@@ -20,7 +20,7 @@
 
 		nix-gaming.url = "github:fufexan/nix-gaming";
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
+		proxy-suite.url = "github:FUFSoB/proxy-suite-flake";
 		lsfg-vk-flake = {
 			url = "github:pabloaul/lsfg-vk-flake/main";
 			inputs.nixpkgs.follows = "nixpkgs";
