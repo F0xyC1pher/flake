@@ -31,8 +31,6 @@
 		}
 		curl-impersonate
 		curlFull
-		mcpelauncher-client
-		mcpelauncher-ui-qt
 		qt6Packages.qt6ct
 		papirus-icon-theme
 		unzip
@@ -53,9 +51,8 @@
 		treecat
 		treemd
 		tree-from-tags
-		tuna
-		scx.cscheds
-		numactl
+		# tuna
+		# numactl
 		mesa-demos
 		eza
 		bat
