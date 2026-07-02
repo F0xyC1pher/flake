@@ -1,6 +1,6 @@
 {
 	user = "alice";
-	host = "inWonderLand";
+	host = "WonderLand";
 	hardware = {
 		boot = {
 			loader = "limine"; # GRUB LIMINE
