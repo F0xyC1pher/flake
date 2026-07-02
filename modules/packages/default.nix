@@ -116,6 +116,12 @@
 		yt-dlg
 		ytdl-sub
 		ytfzf
+
+		video-downloader
+		parabolic
+		media-downloader
+		tartube-yt-dlp
+
 		obs-studio-plugins.obs-vaapi
 		wayland-utils
 		wlr-randr
@@ -150,6 +156,7 @@
 		adwsteamgtk
 		rmtrash
 		tor-browser
+		teamspeak6-client
 		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
