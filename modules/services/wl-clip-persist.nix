@@ -12,7 +12,7 @@
 				# A Wayland session
 				systemdTargets = ["graphical-session.target"];
 
-				clipboardType = "both";
+				clipboardType = "regular";
 			};
 		};
 	};
