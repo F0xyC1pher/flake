@@ -17,8 +17,8 @@
 			"nmi_watchdog=0"
 			"nowatchdog"
 			"transparent_hugepage=madvise"
-			"intel_idle.max_cstate=1"
-			"intel_pstate=passive"
+			# "intel_idle.max_cstate=1"
+			# "intel_pstate=passive"
 		];
 
 		kernel.sysctl = {
