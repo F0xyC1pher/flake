@@ -110,14 +110,9 @@
 		termusic
 		ytermusic
 		yt-dlp
-		yt-dlg
 		ytdl-sub
 		ytfzf
-
-		video-downloader
 		parabolic
-		media-downloader
-		tartube-yt-dlp
 
 		obs-studio-plugins.obs-vaapi
 		wayland-utils
