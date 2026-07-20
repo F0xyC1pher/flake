@@ -34,11 +34,11 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		vimium-options.url = "github:uimataso/vimium-nixos";
+		# vimium-options.url = "github:uimataso/vimium-nixos";
 
-		lunar-client.url = "github:clonidine/lunar-client-flake";
+		# lunar-client.url = "github:clonidine/lunar-client-flake";
 
-		zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+		# zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
 		zapret2.url = "github:dmfrpro/zapret2-flake";
 		tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
 
@@ -54,15 +54,15 @@
 
 		nixcord.url = "github:FlameFlag/nixcord";
 
-		dms = {
-			url = "github:AvengeMedia/DankMaterialShell/stable";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+		# dms = {
+		# 	url = "github:AvengeMedia/DankMaterialShell/stable";
+		# 	inputs.nixpkgs.follows = "nixpkgs";
+		# };
 
 		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
-		nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+		# nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
 		# spicetify-nix = {
 		# 	url = "github:Gerg-L/spicetify-nix";
@@ -116,46 +116,46 @@
 			url = "github:yazi-rs/plugins";
 			flake = false;
 		};
-		powerlevel10k = {
-			url = "github:romkatv/powerlevel10k";
-			flake = false;
-		};
-		zsh-autosuggestions = {
-			url = "github:zsh-users/zsh-autosuggestions";
-			flake = false;
-		};
-		zsh-syntax-highlighting = {
-			url = "github:zsh-users/zsh-syntax-highlighting";
-			flake = false;
-		};
-		fzf-tab = {
-			url = "github:Aloxaf/fzf-tab";
-			flake = false;
-		};
-		fzf-zsh-completions = {
-			url = "github:chitoku-k/fzf-zsh-completions";
-			flake = false;
-		};
-		zsh-history-substring-search = {
-			url = "github:zsh-users/zsh-history-substring-search";
-			flake = false;
-		};
-		zsh-auto-notify = {
-			url = "github:MichaelAquilina/zsh-auto-notify";
-			flake = false;
-		};
-		zsh-autopair = {
-			url = "github:hlissner/zsh-autopair";
-			flake = false;
-		};
-		tmux-tilish = {
-			url = "github:farzadmf/tmux-tilish";
-			flake = false;
-		};
-		tmux-continuum = {
-			url = "github:tmux-plugins/tmux-continuum";
-			flake = false;
-		};
+		# powerlevel10k = {
+		# 	url = "github:romkatv/powerlevel10k";
+		# 	flake = false;
+		# };
+		# zsh-autosuggestions = {
+		# 	url = "github:zsh-users/zsh-autosuggestions";
+		# 	flake = false;
+		# };
+		# zsh-syntax-highlighting = {
+		# 	url = "github:zsh-users/zsh-syntax-highlighting";
+		# 	flake = false;
+		# };
+		# fzf-tab = {
+		# 	url = "github:Aloxaf/fzf-tab";
+		# 	flake = false;
+		# };
+		# fzf-zsh-completions = {
+		# 	url = "github:chitoku-k/fzf-zsh-completions";
+		# 	flake = false;
+		# };
+		# zsh-history-substring-search = {
+		# 	url = "github:zsh-users/zsh-history-substring-search";
+		# 	flake = false;
+		# };
+		# zsh-auto-notify = {
+		# 	url = "github:MichaelAquilina/zsh-auto-notify";
+		# 	flake = false;
+		# };
+		# zsh-autopair = {
+		# 	url = "github:hlissner/zsh-autopair";
+		# 	flake = false;
+		# };
+		# tmux-tilish = {
+		# 	url = "github:farzadmf/tmux-tilish";
+		# 	flake = false;
+		# };
+		# tmux-continuum = {
+		# 	url = "github:tmux-plugins/tmux-continuum";
+		# 	flake = false;
+		# };
 
 		# ── Git sources with submodules ──────────────────────────────────────────
 		# queercat = {

@@ -40,7 +40,10 @@
 	};
 	programs = [
 		"firefox"
-		"cli"
+		"yazi"
+		"git"
+		"micro"
+		"nh"
 		"niri"
 		"no-gnome"
 		"xwayland"
@@ -52,7 +55,6 @@
 		"waybar"
 		"media"
 		"fish"
-		"zsh"
 		"kitty"
 		"appimage"
 		"throne"
