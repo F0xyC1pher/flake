@@ -83,7 +83,7 @@
 		nur
 		home-manager
 		sops-nix
-		dms
+		# dms
 		nixcord
 		skwd-wall
 		nix-flatpak
@@ -117,11 +117,11 @@ in
 						useGlobalPkgs = true;
 						useUserPackages = true;
 						backupFileExtension = "backup";
-						extraSpecialArgs = {inherit inputs vars;}; # fix: vars отсутствовал
+						extraSpecialArgs = {inherit inputs vars;};
 						sharedModules = [
 							sops-nix.homeManagerModules.sops
 							nixcord.homeModules.nixcord
-							dms.homeModules.dank-material-shell
+							# dms.homeModules.dank-material-shell
 							nix-flatpak.homeManagerModules.nix-flatpak
 						];
 						users.${userName} = {...}: {
