@@ -42,6 +42,8 @@
 		zapret2.url = "github:dmfrpro/zapret2-flake";
 		tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
 
+		happ-nix.url = "github:DaHL-gh/happ-nix";
+
 		sops-nix = {
 			url = "github:Mic92/sops-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
