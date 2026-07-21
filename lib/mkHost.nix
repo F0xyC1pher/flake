@@ -88,6 +88,7 @@
 		skwd-wall
 		nix-flatpak
 		proxy-suite
+		happ-nix
 		;
 in
 	lib.nixosSystem {
@@ -110,6 +111,7 @@ in
 
 				skwd-wall.nixosModules.default
 				proxy-suite.nixosModules.default
+				happ-nix.nixosModules.default
 				home-manager.nixosModules.home-manager
 
 				{
