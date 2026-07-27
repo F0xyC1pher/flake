@@ -58,7 +58,7 @@
 		"kitty"
 		"appimage"
 		"throne"
-		"happ"
+		"swaylock"
 		"skwd-wall"
 	];
 }

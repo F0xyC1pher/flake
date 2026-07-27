@@ -2,6 +2,7 @@
 {vars, ...}: {
 	home-manager.users.${vars.user.name} = {pkgs, ...}: {
 		home.pointerCursor = {
+			enable = true;
 			gtk.enable = true;
 			x11.enable = true;
 			package = pkgs.posy-cursors;
