@@ -149,6 +149,7 @@
 		rmtrash
 		tor-browser
 		teamspeak6-client
+		sillytavern
 		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default

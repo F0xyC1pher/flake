@@ -18,12 +18,16 @@
 		# ./logind.nix
 		# ./logmein-hamachi.nix
 		./mpd.nix
+		./ollama.nix
 		./openssh.nix
 		./pipewire.nix
 		./playerctld.nix
 		./resolved.nix
 		./scx-loader.nix
 		./seatd.nix
+		./swayidle.nix
+		./swaync.nix
+		./tlp.nix
 		./udev.nix
 		./upower.nix
 		./userborn.nix
