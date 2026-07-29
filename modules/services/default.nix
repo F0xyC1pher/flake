@@ -18,7 +18,7 @@
 		# ./logind.nix
 		# ./logmein-hamachi.nix
 		./mpd.nix
-		./ollama.nix
+		# ./ollama.nix
 		./openssh.nix
 		./pipewire.nix
 		./playerctld.nix
