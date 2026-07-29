@@ -20,7 +20,8 @@
 						}
 						/* Скроллбар под стиль системы */
 						* {
-						  scrollbar-color: ${t.ui.selection} ${t.ui.main} !important;
+							scrollbar-color: ${t.ui.selection} ${t.ui.main} !important;
+							border-radius: 0px !important;
 						}
 					'';
 				};
