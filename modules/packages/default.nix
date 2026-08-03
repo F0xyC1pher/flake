@@ -32,7 +32,12 @@
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
+		qt6Packages.qtstyleplugin-kvantum
+		themix-gui
 		papirus-icon-theme
+		glycin-loaders
+		librsvg
+		gdk-pixbuf
 		unzip
 		zip
 		p7zip
