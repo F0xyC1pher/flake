@@ -8,7 +8,7 @@
 		./neu-nix.nix
 		./jdk.nix
 	];
-	services.displayManager.sessionPackages = [inputs.driftwm.packages.x86_64-linux.default pkgs.niri];
+	# services.displayManager.sessionPackages = [inputs.driftwm.packages.x86_64-linux.default pkgs.niri];
 	environment.systemPackages = with pkgs; [
 		(
 			if vars.hardware.nvidia.enable
