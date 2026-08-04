@@ -89,6 +89,7 @@
 		nix-flatpak
 		proxy-suite
 		happ-nix
+		driftwm
 		;
 in
 	lib.nixosSystem {
@@ -112,6 +113,9 @@ in
 				skwd-wall.nixosModules.default
 				proxy-suite.nixosModules.default
 				happ-nix.nixosModules.default
+
+				driftwm.nixosModules.default
+
 				home-manager.nixosModules.home-manager
 
 				{

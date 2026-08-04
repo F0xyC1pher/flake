@@ -25,6 +25,7 @@
 			url = "github:pabloaul/lsfg-vk-flake/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		hyprland.url = "github:hyprwm/Hyprland";
 
 		driftwm = {
 			url = "github:malbiruk/driftwm";
