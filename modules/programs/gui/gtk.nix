@@ -32,7 +32,7 @@
 
 	# Main CSS (square corners, full widget coverage, accessibility)
 	baseCss = ''
-		/* ── Square mode (no rounded corners) ───────────────────────── */
+		/* ── (no rounded corners) ───────────────────────── */
 		* {
 		  border-radius: 0;
 		  -gtk-outline-radius: 0;
@@ -288,7 +288,6 @@
 		}
 	'';
 
-	# GTK4‑only additions
 	gtk4Only = ''
 		/* GTK4 specific */
 		.dropdown, popover list, .popover list {
@@ -319,16 +318,16 @@ in {
 			theme = {
 				name =
 					if vars.theme.dark
-					then "Adwaita-dark"
-					else "Adwaita";
-				package = pkgs.gnome-themes-extra;
+					then "adw-gtk3-dark"
+					else "adw-gtk3";
+				package = pkgs.adw-gtk3-theme; # пакет из nixpkgs
 			};
 			iconTheme = {
 				name =
 					if vars.theme.dark
-					then "Papirus-Dark"
-					else "Papirus";
-				package = pkgs.papirus-icon-theme;
+					then "Flat-Remix-Blue-Dark"
+					else "Flat-Remix-Blue";
+				package = pkgs.flat-remix-icon-theme;
 			};
 
 			gtk3.extraCss = lib.mkForce fullCss;

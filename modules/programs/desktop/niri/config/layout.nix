@@ -39,19 +39,19 @@
 					default-column-width {}
 
 					focus-ring {
-						// off
+						off
 						width 2
 						active-color "${vars.theme.style.accent}"
-						inactive-color "${vars.theme.style.ui."3"}"
+						inactive-color "${vars.theme.style.accent}76"
 					}
 
 					// You can also add a border. It's similar to the focus ring, but always visible.
 					border {
-						off
+						on
 						width 2
 						active-color "${vars.theme.style.accent}"
-						inactive-color "${vars.theme.style.ui."3"}"
-						urgent-color "#9b0000"
+						inactive-color "${vars.theme.style.accent}76"
+						urgent-color "#b676f6"
 						// Gradients can use a few different interpolation color spaces.
 						// For example, this is a pastel rainbow gradient via in="oklch longer hue".
 						//
@@ -61,18 +61,18 @@
 
 					// You can enable drop shadows for windows.
 					shadow {
-						// on
+						on
 						draw-behind-window false
 						// You can change how shadows look. The values below are in logical
 						// pixels and match the CSS box-shadow properties.
 						// Softness controls the shadow blur radius.
-						softness 40
+						softness 16
 						// Spread expands the shadow.
-						spread 10
+						spread 1
 						// Offset moves the shadow relative to the window.
 						offset x=0 y=0
 						// You can also change the shadow color and opacity.
-						color "${vars.theme.style.ui."2"}"
+						color "${vars.theme.style.ui."0"}"
 					}
 
 					// Struts shrink the area occupied by windows, similarly to layer-shell panels.

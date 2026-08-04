@@ -31,26 +31,8 @@
 						}
 						window-rule {
 							match app-id="dev.zed.Zed"
-							background-effect {
-								blur true
-								xray false
-							}
-						}
-						window-rule {
 							match app-id="^firefox-nightly$"
-							background-effect {
-								blur true
-								xray false
-							}
-						}
-						window-rule {
 							match app-id="^zen-twilight$"
-							background-effect {
-								blur true
-								xray false
-							}
-						}
-						window-rule {
 							match app-id="codium"
 							background-effect {
 								blur true
@@ -83,13 +65,17 @@
 				}
 
 				// Indicate active windows with red colors.
-				// window-rule {
-					//	match is-active=true
+				 window-rule {
+						match is-active=true
 
-					// shadow {
-						// color "${vars.theme.style.accent}a8"
-					// }
-				// }
+					shadow {
+						on
+						color "${vars.theme.style.accent}76"
+						softness 16
+						spread 1
+						draw-behind-window false
+					}
+				}
 
 				/-window-rule {
 					match title="TrayControl" app-id="AIMP"
