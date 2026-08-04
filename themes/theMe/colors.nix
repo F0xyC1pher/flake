@@ -25,14 +25,14 @@
 		"f" = "#f6f6f6"; # чистый свет — заголовки
 	};
 	accent1 = {
-		red = "#f67676";
-		orange = "#f6b676";
-		yellow = "#f6f676";
-		green = "#76f676";
-		cyan = "#76f6f6";
-		blue = "#76a6f6";
-		purple = "#b676f6";
-		pink = "#f676b6";
+		red = "#f69696";
+		orange = "#f6c696";
+		yellow = "#f6f696";
+		green = "#96f696";
+		cyan = "#96f6f6";
+		blue = "#96c6f6";
+		purple = "#c696f6";
+		magenta = "#f696f6";
 	};
 	accent = {
 		"0" = "#f69696"; # Светло-коралловый / Light Coral | red
