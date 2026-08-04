@@ -21,7 +21,7 @@
 				enable = true;
 				interactiveShellInit = ''
 					tput cup (tput lines) 0
-					set -gx fish_greeting # Disable greeting
+					set -gx fish_greeting
 				'';
 				plugins = [
 					# Enable a plugin (here grc for colorized command output) from nixpkgs
