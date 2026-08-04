@@ -39,7 +39,7 @@
 
 					colors =
 						lib.mkForce {
-							background = "${vars.theme.style.ui.deep}f0";
+							background = "${vars.theme.style.ui.deep}76";
 							text = "${vars.theme.style.text.main}ff";
 							prompt = "${vars.theme.style.text.heading}ff";
 							placeholder = "${vars.theme.style.text.faint}ff";

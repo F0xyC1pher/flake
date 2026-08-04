@@ -1,4 +1,5 @@
 {
+	lib,
 	inputs,
 	vars,
 	...
@@ -11,7 +12,9 @@
 				// ────────────── Layer Settings ──────────────
 				layer-rule {
 					match at-startup=true
-					match namespace="waybar"
+					match namespace="^waybar$"
+					match namespace="^launcher$"
+					match namespace="^wallpaper$"
 					match namespace="^slapper$"
 					match namespace="^mpvpaper$"
 					match namespace="^awww-daemon$"
@@ -19,23 +22,30 @@
 					match namespace="^noctalia-overview*"
 					match namespace="^quickshell$"
 					match namespace="dms:blurwallpaper"
-					match namespace="^wallpaper$"
 					place-within-backdrop true
 				}
-				/-layer-rule {
-					match namespace="rofi"
-					match namespace="fuzzel"
-					match namespace="waybar"
-					match namespace="noctalia-shell"
-
+				layer-rule {
+					match namespace="^launcher$"
+					match namespace="^waybar$"
 					shadow {
-						// on
-						softness 40
-						spread 10
-						draw-behind-window true
+						on
+						color "#f6969676"
+						softness 16
+						spread 1
+						draw-behind-window false
 					}
-
-					place-within-backdrop true
+				}
+				${
+					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
+						layer-rule {
+							match namespace="^launcher$"
+							match namespace="^waybar$"
+							background-effect {
+								blur true
+								xray false
+							}
+						}
+					''
 				}
 			'';
 		};
