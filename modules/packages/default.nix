@@ -29,6 +29,8 @@
 			then "amd"
 			else "full"
 		}
+		bunnyfetch
+
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct

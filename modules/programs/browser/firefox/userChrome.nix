@@ -21,12 +21,12 @@
 						}
 						/* Прозрачное окно контента */
 						browser[type="content"] {
-							background: rgba(36, 6, 6, 0.5) !important;
+							background: rgba(36, 6, 6, 0.4627) !important;
 						}
 						/* Прозрачная панель навигации */
 						#nav-bar,
 						#PersonalToolbar {
-							background: rgba(36, 6, 6, 0.5) !important;
+							background: rgba(36, 6, 6, 0.4627) !important;
 							padding: 4px 0 !important;
 						}
 						/* Всплывающие окна (меню, панели, подсказки) */
@@ -37,11 +37,11 @@
 						.tooltip,
 						#ContentSelectDropdown {
 							background-color: rgba(36, 6, 6, 0.7) !important;
-							border: 1px solid rgba(26, 26, 26, 0.5) !important;
+							border: 1px solid rgba(26, 26, 26, 0.4627) !important;
 						}
 						menuitem[_focused="true"],
 						menu[_focused="true"] {
-							background-color: rgba(36, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.4627) !important;
 						}
 						/* Прозрачный Sideberry */
 						#sidebar-box,
@@ -53,7 +53,7 @@
 						}
 						/* Разделитель между контентом и боковой панелью цвета фона*/
 						#sidebar-splitter {
-							background-color: rgba(36, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.4627) !important;
 							width: 2px !important;
 							border: none !important;
 							margin: 0 !important;
@@ -80,11 +80,11 @@
 						}
 						/* Адресная строка */
 						#urlbarView {
-							background-color: rgba(36, 6, 6, 0.5) !important;
-							border-color: rgba(26, 26, 26, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.4627) !important;
+							border-color: rgba(26, 26, 26, 0.4627) !important;
 						}
 						.urlbarView {
-							background-color: rgba(36, 6, 6, 0.5) !important;
+							background-color: rgba(36, 6, 6, 0.4627) !important;
 						}
 						.urlbarView-row {
 							color: #d6d6d6 !important;

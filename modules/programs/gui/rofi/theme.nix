@@ -17,7 +17,7 @@
 
 					"window" = {
 						transparency = "real";
-						background-color = mkLiteral "${vars.theme.style.ui."0"}53";
+						background-color = mkLiteral "${vars.theme.style.ui."0"}76";
 					};
 
 					"mainbox" = {

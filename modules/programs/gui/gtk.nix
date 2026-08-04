@@ -320,7 +320,7 @@ in {
 					if vars.theme.dark
 					then "adw-gtk3-dark"
 					else "adw-gtk3";
-				package = pkgs.adw-gtk3-theme; # пакет из nixpkgs
+				package = pkgs.adw-gtk3-theme;
 			};
 			iconTheme = {
 				name =
