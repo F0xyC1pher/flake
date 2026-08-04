@@ -45,6 +45,7 @@
 		"micro"
 		"nh"
 		"niri"
+		"hyprland"
 		"no-gnome"
 		"xwayland"
 		"dev"
