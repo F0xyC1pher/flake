@@ -7,23 +7,23 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {vars, ...}: {
 			programs.waybar.style = ''
-								/*css*/
+				/*css*/
 				* {
-									font-family: "Monocraft";
-									font-weight: 600;
-									font-size: 14px;
-									border-radius: 0px;
+					font-family: "${vars.theme.font.name}";
+					font-weight: 400;
+					font-size: 14pt;
+					border-radius: 0px;
 				}
 
 				window#waybar {
-									background: transparent;
-									color: #d6d6d6;
+					background: transparent;
+					color: #d6d6d6;
 				}
 
 				window#waybar > box {
-									background: alpha(#360606, 0.33);
-									border-bottom: 2px solid #f69696;
-									padding: 0 6px;
+					background: alpha(#360606, 0.4627);
+					border-bottom: 2px solid #f69696;
+					padding: 0 6px;
 				}
 
 				/* COMMON MODULE STYLE */
@@ -42,12 +42,12 @@
 				#tray,
 				#wireplumber,
 				#wireplumber.source {
-									border: none;
-									background: none;
-									color: #d6d6d6;
-									padding: 0 10px;
-									margin: 3px 2px;
-									min-height: 28px;
+					border: none;
+					background: none;
+					color: #d6d6d6;
+					padding: 0 10px;
+					margin: 3px 2px;
+					min-height: 28px;
 				}
 
 				/* Hover */
@@ -66,85 +66,84 @@
 				#tray:hover,
 				#wireplumber:hover,
 				#wireplumber.source:hover {
-									/*border: 1px solid #764646;*/
-									/*background: #763636;*/
-									color: #f6f6f6;
-									transition: all 666ms ease;
+					/*border: 1px solid #764646;*/
+					/*background: #763636;*/
+					color: #f6f6f6;
+					transition: all 666ms ease;
 				}
 
 				/* WORKSPACES */
 				#workspaces {
-									background: transparent;
-									margin: 3px 2px;
+					background: transparent;
+					margin: 3px 2px;
 				}
 
 				#workspaces button {
-									border: none;
-									background: none;
-									color: #f69696;
-									margin: 0 2px;
-									padding: 0 12px;
-									min-height: 28px;
-									font-size: 17px;
+					border: none;
+					background: none;
+					color: #f69696;
+					margin: 0 2px;
+					padding: 0 12px;
+					min-height: 28px;
+					font-size: 17px;
 				}
 
 				#workspaces button.empty {
-									border: none;
-									background: transparent;
-									color: #666666;
+					border: none;
+					background: transparent;
+					color: #666666;
 				}
 
 				#workspaces button.active {
-									border: none;
-									background: #f69696;
-									color: #360606;
+					border: none;
+					background: #f69696;
+					color: #360606;
 				}
 
 				#workspaces button.active:hover {
-									border: none;
-									background: #f6f6f6;
-									color: #360606;
+					border: none;
+					background: #f6f6f6;
+					color: #360606;
 				}
 
 				#workspaces button:hover {
-									border: none;
-									background: none;
-									color: #f6f6f6;
+					border: none;
+					background: none;
+					color: #f6f6f6;
 				}
 
 				/* STATE COLORS */
 				#battery.warning {
-									border-color: #f6f696;
-									color: #f6f696;
+					border-color: #f6f696;
+					color: #f6f696;
 				}
 
 				#battery.critical {
-									border-color: #96f6f6;
-									color: #96f6f6;
+					border-color: #96f6f6;
+					color: #96f6f6;
 				}
 
 				#wireplumber.muted,
 				#wireplumber.source.muted {
-									color: #a6a6a6;
+					color: #a6a6a6;
 				}
 
 				#custom-notification {
-									font-size: 17px;
+					font-size: 17px;
 				}
 
 				#tray {
-									border: none;
-									background: none;
+					border: none;
+					background: none;
 				}
 
 				#clock {
-									min-width: 80px;
+					min-width: 80px;
 				}
 				#cpu,
 				#memory {
-									min-width: 50px;
+					min-width: 50px;
 				}
-
 			'';
 		};
 	};
