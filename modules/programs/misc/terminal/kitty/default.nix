@@ -25,14 +25,14 @@
 				};
 
 				settings = {
-					font_features = "${vars.theme.font.name} +liga +calt";
+					# font_features = "${vars.theme.font.name} +liga +calt";
 					sync_to_monitor = true;
 					pixel_scroll = true;
 					mouse_hide_wait = 0;
 					detect_urls = true;
 					show_hyperlink_targets = true;
-					repaint_delay = 5;
-					input_delay = 0;
+					repaint_delay = 10;
+					input_delay = 3;
 					enable_audio_bell = true;
 					remember_window_size = false;
 					remember_window_position = false;
@@ -58,7 +58,7 @@
 					bell_on_tab = "no";
 					tab_bar_margin_width = "0.0";
 					tab_bar_margin_height = "0.0 0.0";
-					tab_title_template = "{f'{title[:30]}…' if title.rindex(title[-1]) + 1 > 30 else (title.center(6) if (title.rindex(title[-1]) + 1) % 2 == 0 else title.center(5))}";
+					# tab_title_template = "{f'{title[:30]}…' if title.rindex(title[-1]) + 1 > 30 else (title.center(6) if (title.rindex(title[-1]) + 1) % 2 == 0 else title.center(5))}";
 					active_tab_font_style = "bold";
 				};
 			};
