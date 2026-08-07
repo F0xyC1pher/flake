@@ -18,7 +18,7 @@
 		# };
 
 		font = {
-			name = "Monocraft";
+			name = "CaskaydiaCove Nerd Font Mono";
 			size = 14;
 		};
 
