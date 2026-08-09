@@ -3,7 +3,10 @@
 
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+		nix-logo-svg = {
+			url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg";
+			flake = false;
+		};
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 		home-manager = {
@@ -34,6 +37,7 @@
 			url = "github:ricardomaps/neu-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		shojiwm.url = "github:bea4dev/ShojiWM";
 
 		# vimium-options.url = "github:uimataso/vimium-nixos";
 
