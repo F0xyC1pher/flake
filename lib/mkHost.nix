@@ -90,6 +90,7 @@
 		proxy-suite
 		happ-nix
 		driftwm
+		shojiwm
 		;
 in
 	lib.nixosSystem {
@@ -115,7 +116,7 @@ in
 				happ-nix.nixosModules.default
 
 				driftwm.nixosModules.default
-
+				shojiwm.nixosModules.default
 				home-manager.nixosModules.home-manager
 
 				{
