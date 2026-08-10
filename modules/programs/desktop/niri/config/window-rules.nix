@@ -34,6 +34,7 @@
 							match app-id="^firefox-nightly$"
 							match app-id="^zen-twilight$"
 							match app-id="codium"
+							match app-id="discord"
 							background-effect {
 								blur true
 								xray false
