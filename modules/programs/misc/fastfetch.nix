@@ -4,11 +4,7 @@
 	pkgs,
 	...
 }: let
-	nixLogoSvg =
-		pkgs.fetchurl {
-			url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg";
-			hash = "sha256-42kGThoV8Rk9L5UeX3tS7Vn7I2G0k3R8gJ/N+4T1Jyo=";
-		};
+	nixLogoSvg = inputs.nix-logo-svg;
 	nixLogoPng =
 		pkgs.runCommand "nix-logo.png" {
 			nativeBuildInputs = [pkgs.imagemagick];
@@ -24,12 +20,7 @@ in {
 				settings = {
 					logo = {
 						source = "${nixLogoPng}";
-						type = "kitty";
-						width = 32;
-						height = 16;
-						padding = {
-							right = 2;
-						};
+						type = "kitty-direct";
 					};
 				};
 			};

@@ -69,6 +69,7 @@
 		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 		niri-screenshare.url = "github:pantarune/niri-screenshare";
+		niri-glass.url = "github:yigexuanmu/Niri-glass";
 
 		# nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
