@@ -43,6 +43,20 @@
 							background-effect {
 								blur true
 								xray false
+								liquid-glass {
+									refraction-strength 1
+									power-factor 1
+									refraction-power 1
+									glow-weight 0
+									edge-lighting 1
+									saturation 1.1
+									vibrancy 1.666
+									adaptive-dim 0
+									adaptive-boost 0
+									physical-refraction 1
+									lens-distortion 1
+									fringing 1
+								}
 							}
 						}
 					''
