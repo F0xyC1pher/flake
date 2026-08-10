@@ -30,7 +30,7 @@
 			else "full"
 		}
 		bunnyfetch
-
+		anydesk
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
@@ -58,8 +58,6 @@
 		treecat
 		treemd
 		tree-from-tags
-		# tuna
-		# numactl
 		mesa-demos
 		eza
 		bat

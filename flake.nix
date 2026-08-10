@@ -68,13 +68,9 @@
 
 		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
+		niri-screenshare.url = "github:pantarune/niri-screenshare";
 
 		# nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
-
-		# spicetify-nix = {
-		# 	url = "github:Gerg-L/spicetify-nix";
-		# 	inputs.nixpkgs.follows = "nixpkgs";
-		# };
 
 		betterfox = {
 			url = "github:yokoffing/Betterfox";
@@ -89,6 +85,7 @@
 		# 	url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
+		#
 		nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
 
 		nyoom = {
