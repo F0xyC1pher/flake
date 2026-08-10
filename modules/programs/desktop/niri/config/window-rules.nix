@@ -30,11 +30,11 @@
 							}
 						}
 						window-rule {
-							match app-id="dev.zed.Zed"
+							match app-id="^dev.zed.Zed$"
 							match app-id="^firefox-nightly$"
 							match app-id="^zen-twilight$"
-							match app-id="codium"
-							match app-id="discord"
+							match app-id="^codium$"
+							match app-id="^discord$"
 							background-effect {
 								blur true
 								xray false
@@ -101,7 +101,7 @@
 					// - host Firefox (app-id is "firefox")
 					// - Flatpak Firefox (app-id is "org.mozilla.firefox")
 					match title="^Картинка в картинке$"
-					match title="Picture-in-Picture"
+					match title="^Picture-in-Picture$"
 					open-focused false
 					open-floating true
 					default-floating-position x=20 y=20 relative-to="bottom-right"
