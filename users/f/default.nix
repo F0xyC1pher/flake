@@ -58,6 +58,7 @@
 		"fish"
 		"kitty"
 		"appimage"
+		"fastfetch"
 		"throne"
 		"swaylock"
 		"skwd-wall"

@@ -91,6 +91,7 @@
 		happ-nix
 		driftwm
 		shojiwm
+		niri-glass
 		;
 in
 	lib.nixosSystem {
