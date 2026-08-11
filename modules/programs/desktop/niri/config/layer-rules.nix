@@ -50,7 +50,7 @@
 									glow-weight 0
 									edge-lighting 1
 									saturation 1.1
-									vibrancy 1.666
+									vibrancy 1
 									adaptive-dim 0
 									adaptive-boost 0
 									physical-refraction 1
