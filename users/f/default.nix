@@ -57,6 +57,8 @@
 		"media"
 		"fish"
 		"kitty"
+		"ghostty"
+		"wezterm"
 		"appimage"
 		"fastfetch"
 		"throne"
