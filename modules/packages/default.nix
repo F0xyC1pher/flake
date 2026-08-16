@@ -3,12 +3,15 @@
 	inputs,
 	pkgs,
 	...
-}: {
+}: let
+	freesmlauncher = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher;
+	jvmPack = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack;
+in {
 	imports = [
 		./neu-nix.nix
 		./jdk.nix
 	];
-	# services.displayManager.sessionPackages = [inputs.driftwm.packages.x86_64-linux.default pkgs.niri];
+	services.displayManager.sessionPackages = [inputs.driftwm.packages.x86_64-linux.default inputs.niri-glass.packages.x86_64-linux.default];
 	environment.systemPackages = with pkgs; [
 		(
 			if vars.hardware.nvidia.enable
@@ -135,7 +138,13 @@
 		extract-dtb
 		r2modman
 		yetris
-		freesmlauncher-custom
+
+		# inputs.freesmlauncher.packages.${stdenv.hostPlatform.system}.freesmlauncher
+		(
+			freesmlauncher.override {
+				jdks = jvmPack.temurin;
+			}
+		)
 		wineWow64Packages.stagingFull
 		wineWow64Packages.waylandFull
 		wineWow64Packages.fonts

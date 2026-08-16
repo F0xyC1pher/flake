@@ -2,6 +2,7 @@
 	imports = [
 		./displayManager
 		./polkit-service
+		./accounts-daemon.nix
 		./arrpc.nix
 		./awww.nix
 		./cliphist.nix
@@ -31,6 +32,7 @@
 		./udev.nix
 		./upower.nix
 		./userborn.nix
+		./wl-clip-persist.nix
 		./xserver.nix
 	];
 }

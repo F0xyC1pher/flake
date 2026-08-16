@@ -34,7 +34,6 @@ in {
 
 	services.pipewire = {
 		enable = true;
-		systemWide = true;
 		audio.enable = true;
 
 		pulse.enable = true;
@@ -220,6 +219,9 @@ in {
 							"node.lock-quantum" = true;
 							"node.force-quantum" = outQuantum;
 							"node.force-rate" = outCfg.rate.value;
+
+							"api.alsa.period-size" = outQuantum;
+							"api.alsa.buffer-size" = outQuantum * 2;
 
 							"api.alsa.disable-mmap" = false;
 							"api.alsa.use-acp" = false;

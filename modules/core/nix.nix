@@ -36,6 +36,8 @@
 				"https://nix-community.cachix.org"
 				"https://niri.cachix.org"
 				"https://cache.nixos.org"
+				"https://cache.garnix.io"
+				"https://freesmlauncher.cachix.org"
 			];
 			trusted-public-keys = [
 				"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -43,28 +45,15 @@
 				"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 				"niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
 				"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+				"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+				"freesmlauncher.cachix.org-1:Jcp5Q9wiLL+EDv8Mh7c6L9xGk+lXr7/otpKxMOuBuDs="
 			];
 		};
 	};
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
 		inputs.nix-firefox-addons.overlays.default
-		(final: prev: {
-				freesmlauncher-custom =
-					inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
-						jdks = with pkgs; [
-							javaPackages.compiler.temurin-bin.jdk-26
-							javaPackages.compiler.temurin-bin.jdk-25
-							javaPackages.compiler.temurin-bin.jdk-21
-							javaPackages.compiler.temurin-bin.jdk-17
-							javaPackages.compiler.temurin-bin.jdk-8
-						];
-						msaClientID = null;
-						gamemodeSupport = true;
-						controllerSupport = true;
-						textToSpeechSupport = true;
-					};
-			})
+
 		(final: prev: {
 				kitty =
 					prev.kitty.overrideAttrs (oldAttrs: {
