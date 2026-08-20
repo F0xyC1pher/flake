@@ -23,10 +23,49 @@
 
 				${
 					# Вставляем правило только если блюр включен, а xray специально выключен в vars
+					lib.optionalString (vars.theme.blur.enable) ''
+						window-rule {
+							match app-id="^dev.zed.Zed$"
+							match app-id="^firefox-nightly$"
+							match app-id="^zen-twilight$"
+							match app-id="^codium$"
+							match app-id="^discord$"
+							background-effect {
+								blur true
+							}
+						}
+					''
+				}
+				${
+					# Вставляем правило только если блюр включен, а xray специально выключен в vars
 					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
 						window-rule {
 							background-effect {
 								xray false
+							}
+						}
+						window-rule {
+							match app-id="^dev.zed.Zed$"
+							match app-id="^firefox-nightly$"
+							match app-id="^zen-twilight$"
+							match app-id="^codium$"
+							match app-id="^discord$"
+							background-effect {
+								xray false
+							}
+						}
+					''
+				}
+				${
+					lib.optionalString (vars.theme.liquid-glass.enable) ''
+						window-rule {
+							match app-id="^dev.zed.Zed$"
+							match app-id="^firefox-nightly$"
+							match app-id="^zen-twilight$"
+							match app-id="^codium$"
+							match app-id="^discord$"
+							match app-id="^kitty$"
+							background-effect {
 								liquid-glass {
 									refraction-strength 1
 									power-factor 1
@@ -43,20 +82,8 @@
 								}
 							}
 						}
-						window-rule {
-							match app-id="^dev.zed.Zed$"
-							match app-id="^firefox-nightly$"
-							match app-id="^zen-twilight$"
-							match app-id="^codium$"
-							match app-id="^discord$"
-							background-effect {
-								blur true
-								xray false
-							}
-						}
 					''
 				}
-
 				// Steam Notifications in right-down corner and without focus
 				window-rule {
 					match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#

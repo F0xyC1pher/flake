@@ -67,6 +67,7 @@
 					enable = false;
 					xray.enable = false;
 				};
+			liquid-glass = userCfg.theme.liquid-glass;
 			colorOverrides = userCfg.theme.colorOverrides or {};
 			roleOverrides = userCfg.theme.roleOverrides or {};
 			style = resolvedTheme.theme;
