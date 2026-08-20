@@ -26,6 +26,7 @@
 			enable = true;
 			xray.enable = false;
 		};
+		liquid-glass.enable = true;
 	};
 	user = {
 		fullName = "Foxy_Chipher";
