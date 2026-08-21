@@ -3,10 +3,7 @@
 	inputs,
 	pkgs,
 	...
-}: let
-	freesmlauncher = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher;
-	jvmPack = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack;
-in {
+}: {
 	imports = [
 		./neu-nix.nix
 		./jdk.nix
@@ -32,17 +29,11 @@ in {
 			then "amd"
 			else "full"
 		}
-		bunnyfetch
-		anydesk
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
 		qt6Packages.qtstyleplugin-kvantum
 		themix-gui
-		papirus-icon-theme
-		glycin-loaders
-		librsvg
-		gdk-pixbuf
 		unzip
 		zip
 		p7zip
@@ -81,13 +72,10 @@ in {
 		imagemagick
 		wget
 		aria2
-		lolcat
-		clolcat
 		dotacat
 		blahaj
 		wayneko
 		kittysay
-		pixcat
 		parted
 		gparted-full
 		mtools
@@ -121,7 +109,6 @@ in {
 		ytdl-sub
 		ytfzf
 		parabolic
-
 		obs-studio-plugins.obs-vaapi
 		wayland-utils
 		wlr-randr
@@ -132,17 +119,14 @@ in {
 		cliphist-fuzzel-img
 		keepassxc
 		sops
-		swaylock
 		bluetuith
 		android-tools
 		extract-dtb
 		r2modman
 		yetris
-
-		# inputs.freesmlauncher.packages.${stdenv.hostPlatform.system}.freesmlauncher
 		(
-			freesmlauncher.override {
-				jdks = jvmPack.temurin;
+			inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
+				jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
 			}
 		)
 		wineWow64Packages.stagingFull
@@ -163,8 +147,7 @@ in {
 		rmtrash
 		tor-browser
 		teamspeak6-client
-		sillytavern
-		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+		# inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 		inputs.driftwm.packages.x86_64-linux.default
