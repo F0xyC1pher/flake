@@ -24,7 +24,7 @@
 					set -g fish_color_error            ${t.text.syntax.error}
 					set -g fish_color_param            ${t.text.main}
 					set -g fish_color_valid_path       ${t.text.syntax.info} --underline
-					set -g fish_color_option           ${t.text.sub-main}
+					set -g fish_color_option           ${t.text.submerged}
 					set -g fish_color_comment          ${t.text.comment}
 					set -g fish_color_selection        --background=${t.ui.selection}
 					set -g fish_color_search_match     --background=${t.ui.overlay}
@@ -50,17 +50,6 @@
 					set -g fish_pager_color_selected_prefix     ${t.accent}
 					set -g fish_pager_color_selected_completion ${t.text.heading}
 				'';
-
-				shellAliases = {
-					# ls = "eza --icons";
-					# ll = "eza -la --icons";
-					# lt = "eza --tree --icons";
-					# cat = "bat";
-					# grep = "rg";
-					yy = "yazi";
-					gs = "git status";
-					gl = "git log --oneline";
-				};
 			};
 		};
 	};

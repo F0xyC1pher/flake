@@ -30,6 +30,8 @@
 							match app-id="^zen-twilight$"
 							match app-id="^codium$"
 							match app-id="^discord$"
+							match app-id="^(org|com).*gram.desktop$"
+							match app-id="^com.mitchellh.ghostty$"
 							background-effect {
 								blur true
 							}
@@ -44,16 +46,6 @@
 								xray false
 							}
 						}
-						window-rule {
-							match app-id="^dev.zed.Zed$"
-							match app-id="^firefox-nightly$"
-							match app-id="^zen-twilight$"
-							match app-id="^codium$"
-							match app-id="^discord$"
-							background-effect {
-								xray false
-							}
-						}
 					''
 				}
 				${
@@ -64,7 +56,10 @@
 							match app-id="^zen-twilight$"
 							match app-id="^codium$"
 							match app-id="^discord$"
+							match app-id="^(org|com).*gram.desktop$"
 							match app-id="^kitty$"
+							match app-id="^com.mitchellh.ghostty$"
+							match app-id="^rio$"
 							background-effect {
 								liquid-glass {
 									refraction-strength 1

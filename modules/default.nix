@@ -3,6 +3,5 @@
 		./core
 		./hardware
 		./packages
-		./services
 	];
 }

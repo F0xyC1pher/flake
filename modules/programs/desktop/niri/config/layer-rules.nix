@@ -29,11 +29,22 @@
 					match namespace="^waybar$"
 					shadow {
 						on
-						color "#f6969676"
+						color "${vars.theme.style.accent}76"
 						softness 16
 						spread 1
 						draw-behind-window false
 					}
+				}
+				${
+					lib.optionalString (vars.theme.blur.enable) ''
+						layer-rule {
+							match namespace="^launcher$"
+							match namespace="^waybar$"
+							background-effect {
+								blur true
+							}
+						}
+					''
 				}
 				${
 					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
@@ -41,8 +52,17 @@
 							match namespace="^launcher$"
 							match namespace="^waybar$"
 							background-effect {
-								blur true
 								xray false
+							}
+						}
+					''
+				}
+				${
+					lib.optionalString (vars.theme.liquid-glass.enable) ''
+						layer-rule {
+							match namespace="^launcher$"
+							match namespace="^waybar$"
+							background-effect {
 								liquid-glass {
 									refraction-strength 1
 									power-factor 1

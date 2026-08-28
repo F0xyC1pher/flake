@@ -29,6 +29,9 @@
 			then "amd"
 			else "full"
 		}
+
+		telegram-desktop
+
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
@@ -147,7 +150,7 @@
 		rmtrash
 		tor-browser
 		teamspeak6-client
-		# inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 		inputs.driftwm.packages.x86_64-linux.default

@@ -44,12 +44,12 @@
 		(map (name: "${dirPath}/${name}") (builtins.attrNames nixFiles))
 		++ (map (name: "${dirPath}/${name}/default.nix") (builtins.attrNames subdirs));
 
-	importPrograms = programsBase: items: let
+	importModules = modulesBase: items: let
 		allPaths =
 			lib.concatMap (
 				item: let
-					directDir = programsBase + "/${item}";
-					directFile = programsBase + "/${item}.nix";
+					directDir = modulesBase + "/${item}";
+					directFile = modulesBase + "/${item}.nix";
 				in
 					if builtins.pathExists directDir
 					then
@@ -58,10 +58,13 @@
 						else importCategoryDir directDir
 					else if builtins.pathExists directFile
 					then [directFile]
-					else findDeep programsBase item
+					else findDeep modulesBase item
 			)
 			items;
 		uniquePaths = lib.unique allPaths;
 	in
 		map (path: import path) uniquePaths;
+
+	importPrograms = importModules;
+	importServices = importModules;
 }

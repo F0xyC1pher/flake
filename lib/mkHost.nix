@@ -17,15 +17,18 @@
 	resolvedTheme =
 		themes.resolve {
 			name = userCfg.theme.name or "theMe";
-			accentName = userCfg.theme.accent or null;
+			accentLevel = userCfg.theme.accentLevel or userCfg.theme.level or null;
+			accentColor = userCfg.theme.accentColor or userCfg.theme.color or userCfg.theme.accent or null;
 			colorOverrides = userCfg.theme.colorOverrides or {};
 			roleOverrides = userCfg.theme.roleOverrides or {};
 		};
 
 	modulesBase = ./../modules;
+	servicesBase = modulesBase + "/services";
 	programsBase = modulesBase + "/programs";
 
 	programModules = mkModules.importPrograms programsBase (userCfg.programs or []);
+	serviceModules = mkModules.importServices servicesBase (userCfg.services or []);
 
 	vars = {
 		user = {
@@ -56,10 +59,12 @@
 
 		theme = {
 			name = userCfg.theme.name or "theMe";
+			accentLevel = resolvedTheme.accentLevel;
+			accentColor = resolvedTheme.accentColor;
 			dark = userCfg.theme.dark or true;
 			font =
 				userCfg.theme.font or {
-					name = "FiraCode Nerd Mono";
+					name = "FiraCode Nerd Font Mono";
 					size = 12;
 				};
 			blur =
@@ -67,15 +72,15 @@
 					enable = false;
 					xray.enable = false;
 				};
-			liquid-glass = userCfg.theme.liquid-glass;
+			liquid-glass = userCfg.theme.liquid-glass or false;
 			colorOverrides = userCfg.theme.colorOverrides or {};
 			roleOverrides = userCfg.theme.roleOverrides or {};
 			style = resolvedTheme.theme;
 			colors = resolvedTheme.colors;
 		};
 
-		host = hostMeta.host; # fix: было hostMeta (весь сет), нужна строка
-		hardware = hostMeta.hardware; # fix: отсутствовало
+		host = hostMeta.host;
+		hardware = hostMeta.hardware;
 		system = userCfg.system or {};
 	};
 
@@ -107,6 +112,7 @@ in
 				hostPath
 			]
 			++ programModules
+			++ serviceModules
 			++ [
 				{nixpkgs.overlays = [overlay];}
 
