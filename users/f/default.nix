@@ -2,7 +2,9 @@
 	theme = {
 		name = "theMe";
 		# dark = true;
-		accent = "0";
+		accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+		accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+
 		# gaps = 8;
 		# border = 2;
 
@@ -60,10 +62,41 @@
 		"kitty"
 		"ghostty"
 		"wezterm"
+		"rio"
 		"appimage"
 		"fastfetch"
 		"throne"
 		"swaylock"
 		"skwd-wall"
+	];
+	services = [
+		"displayManager"
+		"polkit-service"
+		"accounts-daemon"
+		"arrpc"
+		"awww"
+		"cliphist"
+		"cups"
+		"dbus"
+		"dropbox"
+		"earlyloom"
+		"flatpak"
+		"gvfs"
+		"locate"
+		"mpd"
+		"openssh"
+		"pipewire"
+		"playerctld"
+		"resolved"
+		"scx-loader"
+		"seatd"
+		"swayidle"
+		"swaync"
+		"tlp"
+		"udev"
+		"upower"
+		"userborn"
+		"wl-clip-persist"
+		"xserver"
 	];
 }

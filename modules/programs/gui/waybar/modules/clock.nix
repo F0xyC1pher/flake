@@ -20,9 +20,9 @@
 							"mode-mon-col": 3,
 							"weeks-pos": "right",
 							"format": {
-								"months": "<span color='${vars.theme.style.text.sub-main}'><b>{}</b></span>",
+								"months": "<span color='${vars.theme.style.text.submerged}'><b>{}</b></span>",
 								"days": "<span color='${vars.theme.style.text.main}'><b>{}</b></span>",
-								"weekdays": "<span color='${vars.theme.colors.accent."6"}'><b>{}</b></span>",
+								"weekdays": "<span color='${vars.theme.colors.accent.bg.bright.yellow}'><b>{}</b></span>",
 								"today": "<span color='${vars.theme.style.accent}'><b><u>{}</u></b></span>",
 							},
 						},

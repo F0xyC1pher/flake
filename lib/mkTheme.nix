@@ -1,7 +1,7 @@
 {lib, ...}: let
 	themesDir = ../themes;
 
-	# Пользовательские min/max/abs
+	# Вспомогательные функции для расчета HSL (сохранены без изменений)
 	maxVal = a: b:
 		if a > b
 		then a
@@ -15,7 +15,6 @@
 		then -x
 		else x;
 
-	# HEX conversion
 	hexCharVal = ch:
 		{
 			"0" = 0;
@@ -144,7 +143,12 @@
 	loadTheme = name: {
 		colors = import (themesDir + "/${name}/colors.nix");
 		themeFn = import (themesDir + "/${name}/default.nix");
-		defaultAccent = (import (themesDir + "/${name}/default.nix")).defaultAccent or "0";
+		# Дефолтный акцент теперь структура { level; color; }
+		defaultAccent =
+			(import (themesDir + "/${name}/default.nix")).defaultAccent or {
+				level = "normal";
+				color = "red";
+			};
 	};
 
 	themes = lib.genAttrs themeNames loadTheme;
@@ -155,40 +159,59 @@ in {
 		name,
 		colorOverrides ? {},
 		roleOverrides ? {},
-		accentName ? null,
+		accentLevel ? null,
+		accentColor ? null,
 	}: let
 		selected = themes.${name} or (throw "Unknown theme: ${name}");
 		mergedColors = lib.recursiveUpdate selected.colors colorOverrides;
 		validatedColors = validateColors mergedColors;
 
-		finalAccentName =
-			if accentName != null
-			then accentName
-			else if (roleOverrides.accentName or null) != null
-			then roleOverrides.accentName
-			else selected.defaultAccent;
+		# Определение итоговых значений уровня и цвета акцента
+		finalAccentLevel =
+			if accentLevel != null
+			then accentLevel
+			else if (roleOverrides.accentLevel or null) != null
+			then roleOverrides.accentLevel
+			else selected.defaultAccent.level or "normal";
 
-		# Проверка существования ключей
-		_check =
-			if ! builtins.hasAttr finalAccentName validatedColors.accent
-			then throw "Theme ${name} has no accent key '${finalAccentName}'"
-			else if ! builtins.hasAttr finalAccentName validatedColors.onAccent
-			then throw "Theme ${name} has no onAccent key '${finalAccentName}'"
+		finalAccentColor =
+			if accentColor != null
+			then accentColor
+			else if (roleOverrides.accentColor or null) != null
+			then roleOverrides.accentColor
+			else selected.defaultAccent.color or "red";
+
+		# Проверка наличия ключей в объекте цветов
+		_checkBg =
+			if ! (builtins.hasAttr finalAccentLevel validatedColors.accent.bg && builtins.hasAttr finalAccentColor validatedColors.accent.bg.${finalAccentLevel})
+			then throw "Theme ${name} has no accent.bg key '${finalAccentLevel}.${finalAccentColor}'"
 			else true;
 
+		_checkFg =
+			if ! (builtins.hasAttr finalAccentLevel validatedColors.accent.fg && builtins.hasAttr finalAccentColor validatedColors.accent.fg.${finalAccentLevel})
+			then throw "Theme ${name} has no accent.fg key '${finalAccentLevel}.${finalAccentColor}'"
+			else true;
+
+		# Вызов генератора темы с передачей обновленных акцентов
 		mappedTree =
 			selected.themeFn {
 				colors = validatedColors;
 				lib = lib;
-				accentName = finalAccentName;
+				accentLevel = finalAccentLevel;
+				accentColor = finalAccentColor;
 			};
 
-		withUserOverrides = lib.recursiveUpdate mappedTree (removeAttrs roleOverrides ["accentName"]);
+		# Исключаем служебные переопределения из roleOverrides при наложении
+		cleanRoleOverrides = removeAttrs roleOverrides ["accentLevel" "accentColor" "accentName"];
+		withUserOverrides = lib.recursiveUpdate mappedTree cleanRoleOverrides;
 
-		accentHex = validatedColors.accent.${finalAccentName};
+		# Динамический расчет цвета подсвечивания (match) на основе выбранного уровня
+		accentHex = validatedColors.accent.bg.${finalAccentLevel}.${finalAccentColor};
 		accentHsl = rgbToHsl (hexToRgb accentHex);
 		targetMatchHue = modFloat (accentHsl.h + 120) 360;
-		matchColor = pickClosestByHue targetMatchHue validatedColors.accent;
+
+		# Поиск ближайшего цвета среди ярких акцентов темы
+		matchColor = pickClosestByHue targetMatchHue validatedColors.accent.bg.bright;
 
 		finalTree =
 			withUserOverrides
@@ -197,7 +220,7 @@ in {
 					withUserOverrides.text
 					// {
 						match = matchColor;
-						onAccent = withUserOverrides.text.onAccent or validatedColors.onAccent.${finalAccentName};
+						onAccent = withUserOverrides.text.onAccent or validatedColors.accent.fg.${finalAccentLevel}.${finalAccentColor};
 					};
 			};
 
@@ -206,6 +229,8 @@ in {
 	in {
 		colors = validatedColors;
 		theme = finalTree;
-		inherit isDark finalAccentName;
+		inherit isDark;
+		accentLevel = finalAccentLevel;
+		accentColor = finalAccentColor;
 	};
 }

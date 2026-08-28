@@ -21,8 +21,8 @@
 				}
 
 				window#waybar > box {
-					background: alpha(#360606, 0.4627);
-					border-bottom: 2px solid #f69696;
+					background: alpha(${vars.theme.style.ui."0"}, 0.4627);
+					border-bottom: 2px solid ${vars.theme.style.accent};
 					padding: 0 6px;
 				}
 
@@ -68,7 +68,7 @@
 				#wireplumber.source:hover {
 					/*border: 1px solid #764646;*/
 					/*background: #763636;*/
-					color: #f6f6f6;
+					color: #f6e6e6;
 					transition: all 666ms ease;
 				}
 
@@ -129,7 +129,7 @@
 				}
 
 				#custom-notification {
-					font-size: 17px;
+					font-size: 20px;
 				}
 
 				#tray {

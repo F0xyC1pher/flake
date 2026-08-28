@@ -23,6 +23,16 @@
 					tput cup (tput lines) 0
 					set -gx fish_greeting
 				'';
+				shellAliases = {
+					# ls = "eza --icons";
+					# ll = "eza -la --icons";
+					# lt = "eza --tree --icons";
+					# cat = "bat";
+					# grep = "rg";
+					yy = "yazi";
+					gs = "git status";
+					gl = "git log --oneline";
+				};
 				plugins = [
 					# Enable a plugin (here grc for colorized command output) from nixpkgs
 

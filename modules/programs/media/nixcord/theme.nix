@@ -10,7 +10,8 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {vars, ...}: let
 			t = vars.theme.style;
-			c = vars.theme.colors.accent;
+			c.a = vars.theme.colors.accent.bg.normal;
+			c.b = vars.theme.colors.base;
 		in {
 			programs.nixcord = {
 				config = {
@@ -124,9 +125,9 @@
 					}
 
 					/* ── Status dots ─────────────────────────────────────────────── */
-					rect[fill="${c."9"}"] { fill: "${c."9"}"  !important; }
-					rect[fill="${c."6"}"] { fill: "${c."6"}" !important; }
-					rect[fill="${c."0"}"] { fill: "${c."0"}"    !important; }
+					rect[fill="${c.a.green}"] { fill: "${c.a.green}"  !important; }
+					rect[fill="${c.a.yellow}"] { fill: "${c.a.yellow}" !important; }
+					rect[fill="${c.b."0"}"] { fill: "${c.b."0"}"    !important; }
 					rect[fill="${t.text.faint}"] { fill: "${t.text.faint}" !important; }
 				'';
 			};
