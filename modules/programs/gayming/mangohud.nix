@@ -40,8 +40,8 @@
 					position = "top-left";
 					font_size = vars.theme.font.size;
 					font_scale = 1.0;
-					round_corners = 0; # square mode
-					background_alpha = 0.6;
+					round_corners = 0;
+					background_alpha = 0.4627;
 
 					# ── Colors — all from role tree ─────────────────────────────────
 					# Format: RRGGBB (no #)
@@ -53,11 +53,11 @@
 					network_color = hex t.text.syntax.match; # match
 					battery_color = hex t.text.syntax.warning; # warning
 					text_color = hex t.text.main;
-					media_player_color = hex t.text.faint;
+					media_player_color = hex t.text.dimmed;
 					wine_color = hex t.text.syntax.number;
 					engine_color = hex t.text.syntax.string;
 
-					background_color = hex t.ui.main;
+					background_color = hex t.ui.bg;
 				};
 			};
 		};

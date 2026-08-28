@@ -1,10 +1,15 @@
 {...}: {
 	theme = {
-		name = "theMe";
+		name = "catppuccin-mocha";
 		# dark = true;
-		accent = "0";
+		accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+		accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+
 		# gaps = 8;
-		# border = 2;
+		border = {
+			width = 2;
+			radius = 0;
+		};
 
 		# Optional — override raw palette values BEFORE the role mapping runs.
 		# colorOverrides = {
@@ -22,11 +27,14 @@
 			size = 14;
 		};
 
+		opacity = 1.0; # 0.4627
+
 		blur = {
-			enable = true;
+			enable = false;
 			xray.enable = false;
 		};
-		liquid-glass.enable = true;
+
+		liquid-glass.enable = false;
 	};
 	user = {
 		fullName = "Foxy_Chipher";
@@ -60,10 +68,41 @@
 		"kitty"
 		"ghostty"
 		"wezterm"
+		"rio"
 		"appimage"
 		"fastfetch"
 		"throne"
 		"swaylock"
 		"skwd-wall"
+	];
+	services = [
+		"displayManager"
+		"polkit-service"
+		"accounts-daemon"
+		"arrpc"
+		"awww"
+		"cliphist"
+		"cups"
+		"dbus"
+		"dropbox"
+		"earlyloom"
+		"flatpak"
+		"gvfs"
+		"locate"
+		"mpd"
+		"openssh"
+		"pipewire"
+		"playerctld"
+		"resolved"
+		"scx-loader"
+		"seatd"
+		"swayidle"
+		"swaync"
+		"tlp"
+		"udev"
+		"upower"
+		"userborn"
+		"wl-clip-persist"
+		"xserver"
 	];
 }

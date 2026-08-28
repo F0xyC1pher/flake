@@ -10,7 +10,8 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {vars, ...}: let
 			t = vars.theme.style;
-			c = vars.theme.colors.accent;
+			c.a = vars.theme.colors.accent.bg.normal;
+			c.b = vars.theme.colors.base;
 		in {
 			programs.nixcord = {
 				config = {
@@ -21,15 +22,11 @@
 					/* ── FoxyChipher Discord theme — role-driven, square mode ─────── */
 
 					:root {
-					  --bg-deep:       ${t.ui.deep};
-					  --bg-main:       ${t.ui.main};
+					  --bg:       ${t.ui.bg};
 					  --bg-surface:    ${t.ui.surface};
 					  --bg-overlay:    ${t.ui.overlay};
-					  --bg-selection:  ${t.ui.selection};
-					  --bg-highlight:  ${t.ui.highlight};
 					  --fg-main:       ${t.text.main};
 					  --fg-heading:    ${t.text.heading};
-					  --fg-faint:      ${t.text.faint};
 					  --accent:        ${t.accent};
 					  --accent-fg:     ${t.text.onAccent};
 					  --border-active: ${t.ui.border.active};
@@ -40,9 +37,9 @@
 					  --info:          ${t.text.syntax.info};
 
 					  /* Discord internal vars override */
-					  --background-primary:         var(--bg-main)    !important;
+					  --background-primary:         var(--bg)    !important;
 					  --background-secondary:       var(--bg-surface) !important;
-					  --background-secondary-alt:   var(--bg-deep)    !important;
+					  --background-secondary-alt:   var(--bg)    !important;
 					  --background-tertiary:        var(--bg-overlay) !important;
 					  --background-floating:        var(--bg-surface) !important;
 					  --background-mobile-primary:  var(--bg-main)    !important;
@@ -52,7 +49,7 @@
 					  --background-modifier-selected: var(--bg-selection) !important;
 					  --background-modifier-accent: var(--accent)     !important;
 					  --channeltextarea-background:  var(--bg-overlay) !important;
-					  --modal-background:           var(--bg-main)    !important;
+					  --modal-background:           var(--bg)    !important;
 
 					  --text-normal:    var(--fg-main)     !important;
 					  --text-muted:     var(--fg-faint)    !important;
@@ -75,10 +72,10 @@
 
 					  --scrollbar-thin-thumb:   var(--bg-selection) !important;
 					  --scrollbar-auto-thumb:   var(--bg-selection) !important;
-					  --scrollbar-auto-track:   var(--bg-main)      !important;
+					  --scrollbar-auto-track:   var(--bg)      !important;
 
 					  --deprecated-card-bg:     var(--bg-surface)  !important;
-					  --deprecated-store-bg:    var(--bg-main)     !important;
+					  --deprecated-store-bg:    var(--bg)     !important;
 
 					  --elevation-high: 0 0 0 1px var(--border-inact) !important;
 					  --elevation-low:  0 0 0 1px var(--border-inact) !important;
@@ -89,7 +86,7 @@
 
 					/* ── Sidebar ─────────────────────────────────────────────────── */
 					nav[aria-label="Servers sidebar"] {
-					  background-color: var(--bg-deep) !important;
+					  background-color: var(--bg) !important;
 					}
 					.scroller__5e6e5,
 					.sidebar_ded4b5 {
@@ -124,10 +121,10 @@
 					}
 
 					/* ── Status dots ─────────────────────────────────────────────── */
-					rect[fill="${c."9"}"] { fill: "${c."9"}"  !important; }
-					rect[fill="${c."6"}"] { fill: "${c."6"}" !important; }
-					rect[fill="${c."0"}"] { fill: "${c."0"}"    !important; }
-					rect[fill="${t.text.faint}"] { fill: "${t.text.faint}" !important; }
+					rect[fill="${c.a.green}"] { fill: "${c.a.green}"  !important; }
+					rect[fill="${c.a.yellow}"] { fill: "${c.a.yellow}" !important; }
+					rect[fill="${c.b."0"}"] { fill: "${c.b."0"}"    !important; }
+					rect[fill="${t.text.dimmed}"] { fill: "${t.text.dimmed}" !important; }
 				'';
 			};
 		};
