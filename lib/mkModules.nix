@@ -1,3 +1,4 @@
+# lib/mkModules.nix
 {lib, ...}: rec {
 	findDeep = basePath: name: let
 		entries = builtins.readDir basePath;
@@ -61,10 +62,23 @@
 					else findDeep modulesBase item
 			)
 			items;
-		uniquePaths = lib.unique allPaths;
 	in
-		map (path: import path) uniquePaths;
+		lib.unique allPaths;
 
 	importPrograms = importModules;
 	importServices = importModules;
+
+	# ГРЯЗНЫЙ ХАК: Раскрывает имена категорий (например "media") во ВСЕ имена файлов/папок внутри них
+	# Если в programs лежит "media", это вернет [ "media" "nixcord" "mpv" "spotify" ... ]
+	resolveActiveNames = modulesBase: items: let
+		paths = importModules modulesBase items;
+		extractName = path: let
+			base = builtins.baseNameOf path;
+			dir = builtins.baseNameOf (builtins.dirOf path);
+		in
+			if base == "default.nix"
+			then dir
+			else lib.removeSuffix ".nix" base;
+	in
+		lib.unique (items ++ (map extractName paths));
 }

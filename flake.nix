@@ -47,8 +47,6 @@
 		zapret2.url = "github:dmfrpro/zapret2-flake";
 		tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
 
-		happ-nix.url = "github:DaHL-gh/happ-nix";
-
 		sops-nix = {
 			url = "github:Mic92/sops-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -214,6 +212,7 @@
 		# };
 	};
 
+	# flake.nix (фрагмент outputs)
 	outputs = {
 		self,
 		nixpkgs,
@@ -223,6 +222,7 @@
 		lib = nixpkgs.lib;
 
 		mkModules = import ./lib/mkModules.nix {inherit lib;};
+		themes = import ./lib/mkTheme.nix {inherit lib;};
 
 		mkHost =
 			import ./lib/mkHost.nix {
@@ -231,14 +231,9 @@
 					inputs
 					system
 					themes
-					overlay
 					mkModules
 					;
 			};
-
-		overlay = import ./lib/overlay.nix {inherit lib inputs;};
-
-		themes = import ./lib/mkTheme.nix {inherit lib;};
 
 		hostDirs = builtins.readDir ./hosts;
 		hostNames =
