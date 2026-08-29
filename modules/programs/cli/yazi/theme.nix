@@ -12,7 +12,7 @@
 						cwd = {fg = vars.theme.style.text.syntax.info;};
 
 						hovered = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.accent;
 							bold = true;
 						};
@@ -47,24 +47,24 @@
 						};
 
 						tab_active = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.accent;
 						};
 						tab_inactive = {
-							fg = vars.theme.style.text.faint;
+							fg = vars.theme.style.text.dimmed;
 							bg = vars.theme.style.ui.surface;
 						};
 
 						count_copied = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.syntax.error;
 						};
 						count_cut = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.accent;
 						};
 						count_selected = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.syntax.keyword;
 						};
 
@@ -82,17 +82,17 @@
 						};
 
 						mode_normal = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.syntax.number;
 							bold = true;
 						};
 						mode_select = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.syntax.success;
 							bold = true;
 						};
 						mode_unset = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.syntax.keyword;
 							bold = true;
 						};
@@ -114,7 +114,7 @@
 						permissions_r = {fg = vars.theme.style.text.syntax.warning;};
 						permissions_w = {fg = vars.theme.style.accent;};
 						permissions_x = {fg = vars.theme.style.text.syntax.success;};
-						permissions_s = {fg = vars.theme.style.text.faint;};
+						permissions_s = {fg = vars.theme.style.text.dimmed;};
 					};
 
 					input = {
@@ -130,7 +130,7 @@
 					completion = {
 						border = {fg = vars.theme.style.accent;};
 						active = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.accent;
 						};
 						inactive = {};
@@ -143,7 +143,7 @@
 					which = {
 						mask = {bg = vars.theme.style.ui.surface;};
 						cand = {fg = vars.theme.style.text.syntax.success;};
-						rest = {fg = vars.theme.style.text.faint;};
+						rest = {fg = vars.theme.style.text.dimmed;};
 						desc = {fg = vars.theme.style.text.main;};
 						separator = "  ";
 						separator_style = {fg = vars.theme.style.ui.border.inactive;};
@@ -152,13 +152,13 @@
 					help = {
 						on = {fg = vars.theme.style.text.syntax.success;};
 						exec = {fg = vars.theme.style.text.syntax.match;};
-						desc = {fg = vars.theme.style.text.faint;};
+						desc = {fg = vars.theme.style.text.dimmed;};
 						hovered = {
 							bg = vars.theme.style.ui.overlay;
 							bold = true;
 						};
 						footer = {
-							fg = vars.theme.style.ui."0";
+							fg = vars.theme.style.ui.bg;
 							bg = vars.theme.style.text.main;
 						};
 					};

@@ -6,7 +6,10 @@
 		accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		# gaps = 8;
-		# border = 2;
+		border = {
+			width = 2;
+			radius = 0;
+		};
 
 		# Optional — override raw palette values BEFORE the role mapping runs.
 		# colorOverrides = {

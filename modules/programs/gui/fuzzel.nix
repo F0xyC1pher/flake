@@ -39,16 +39,16 @@
 
 					colors =
 						lib.mkForce {
-							background = "${vars.theme.style.ui.deep}76";
+							background = "${vars.theme.style.ui.bg}76";
 							text = "${vars.theme.style.text.main}ff";
 							prompt = "${vars.theme.style.text.heading}ff";
-							placeholder = "${vars.theme.style.text.faint}ff";
+							placeholder = "${vars.theme.style.text.dimmed}ff";
 							input = "${vars.theme.style.text.main}ff";
 							match = "${vars.theme.style.text.heading}ff";
 							selection = "${vars.theme.style.accent}ff";
-							selection-text = "${vars.theme.style.ui.deep}ff";
+							selection-text = "${vars.theme.style.ui.bg}ff";
 							selection-match = "${vars.theme.style.text.heading}ff";
-							counter = "${vars.theme.style.text.faint}ff";
+							counter = "${vars.theme.style.text.dimmed}ff";
 							border = "${vars.theme.style.accent}ff";
 						};
 

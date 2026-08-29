@@ -40,7 +40,6 @@
 			shell = userCfg.user.shell or userCfg.shell or "fish";
 		};
 
-		# Fallback для модулей, которые ещё используют vars.app.*
 		app =
 			userCfg.app or {
 				gui = {
@@ -61,11 +60,17 @@
 			name = userCfg.theme.name or "theMe";
 			accentLevel = resolvedTheme.accentLevel;
 			accentColor = resolvedTheme.accentColor;
-			dark = userCfg.theme.dark or true;
+			# Автоматически берём динамически рассчитанный флаг из resolve (с фоллбэком на конфиг пользователя)
+			dark = userCfg.theme.dark or resolvedTheme.isDark;
+			border =
+				userCfg.theme.border or {
+					width = 2;
+					radius = 0;
+				};
 			font =
 				userCfg.theme.font or {
-					name = "FiraCode Nerd Font Mono";
-					size = 12;
+					name = "CaskaydiaCove Nerd Font Mono";
+					size = 14;
 				};
 			blur =
 				userCfg.theme.blur or {

@@ -325,8 +325,8 @@ in {
 			iconTheme = {
 				name =
 					if vars.theme.dark
-					then "Flat-Remix-Blue-Dark"
-					else "Flat-Remix-Blue";
+					then "Flat-Remix-Red-Dark"
+					else "Flat-Remix-Red";
 				package = pkgs.flat-remix-icon-theme;
 			};
 
