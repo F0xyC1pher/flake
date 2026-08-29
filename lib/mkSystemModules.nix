@@ -8,7 +8,7 @@
 	vars,
 	programModules,
 	serviceModules,
-	mkModules, # <-- Не забудьте убедиться, что mkModules передается в этот файл!
+	mkModules,
 }: let
 	modulesBase = ./../modules;
 
