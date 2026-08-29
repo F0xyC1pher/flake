@@ -27,7 +27,7 @@
 					}
 
 					shadow {
-					color "${vars.theme.style.ui.bg}76"
+					color "${vars.theme.style.ui.bg}80"
 					}
 
 					tab-indicator {
@@ -37,7 +37,7 @@
 					}
 
 					insert-hint {
-						color "${t.accent}76"
+						color "${t.accent}80"
 					}
 				}
 

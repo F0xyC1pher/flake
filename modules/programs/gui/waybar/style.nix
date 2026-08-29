@@ -21,7 +21,7 @@
 				}
 
 				window#waybar > box {
-					background: alpha(${vars.theme.style.ui.bg}, 0.4627);
+					background: alpha(${vars.theme.style.ui.bg}, ${toString vars.theme.opacity});
 					border-bottom: 2px solid ${vars.theme.style.accent};
 					padding: 0 6px;
 				}

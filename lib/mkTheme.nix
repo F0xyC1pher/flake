@@ -45,11 +45,22 @@
 
 	hex2Dec = s: (hexCharVal (builtins.substring 0 1 s)) * 16 + hexCharVal (builtins.substring 1 1 s);
 
-	hexToRgb = hex: {
-		r = hex2Dec (builtins.substring 1 2 hex);
-		g = hex2Dec (builtins.substring 3 2 hex);
-		b = hex2Dec (builtins.substring 5 2 hex);
+	# Функция конвертации HEX (#RRGGBB или RRGGBB) в набор { r, g, b }
+	hexToRgb = hex: let
+		clean =
+			if builtins.substring 0 1 hex == "#"
+			then builtins.substring 1 6 hex
+			else hex;
+	in {
+		r = hex2Dec (builtins.substring 0 2 clean);
+		g = hex2Dec (builtins.substring 2 2 clean);
+		b = hex2Dec (builtins.substring 4 2 clean);
 	};
+
+	# Хелпер форматирования в строку "r, g, b" (полезно для Hyprland, GTK и CSS)
+	hexToRgbString = hex: let
+		rgb = hexToRgb hex;
+	in "${toString rgb.r}, ${toString rgb.g}, ${toString rgb.b}";
 
 	rgbToHsl = {
 		r,
@@ -128,7 +139,18 @@
 		else if builtins.isString value && builtins.substring 0 1 value == "#"
 		then validateColor value
 		else value;
-
+	opacityToHex = opacity: let
+		validOpacity =
+			if opacity > 1.0
+			then 1.0
+			else if opacity < 0.0
+			then 0.0
+			else opacity;
+		decVal = builtins.floor (validOpacity * 255.0 + 0.5);
+		hexDigits = "0123456789abcdef";
+		d1 = builtins.substring (decVal / 16) 1 hexDigits;
+		d2 = builtins.substring (lib.mod decVal 16) 1 hexDigits;
+	in "${d1}${d2}";
 	# Автообнаружение тем
 	entries = builtins.readDir themesDir;
 	themeNames =
@@ -155,7 +177,7 @@
 
 	themes = lib.genAttrs themeNames loadTheme;
 in {
-	inherit themes themeNames;
+	inherit themes themeNames opacityToHex hexToRgb hexToRgbString;
 
 	resolve = {
 		name,
@@ -226,7 +248,7 @@ in {
 					};
 			};
 
-		bgHex = finalTree.ui.deep or validatedColors.base."0";
+		bgHex = finalTree.ui.bg or validatedColors.base."0";
 		isDark = luminance bgHex < 0.5;
 	in {
 		colors = validatedColors;
