@@ -77,7 +77,7 @@
 					}
 
 					.notification {
-					  background: ${vars.theme.style.ui.main};
+					  background: ${vars.theme.style.ui.bg};
 					  border:     1px solid ${vars.theme.style.ui.overlay};
 					  padding:    12px;
 					  margin:     4px 8px;
@@ -114,7 +114,7 @@
 
 					/* ── Control center ────────────────────────────────────────────── */
 					.control-center {
-					  background: ${vars.theme.style.ui.main};
+					  background: ${vars.theme.style.ui.bg};
 					  border:     1px solid ${vars.theme.style.ui.border.inactive};
 					}
 
@@ -127,7 +127,7 @@
 					}
 					.widget-title > button {
 					  font-size:  12px;
-					  color:      ${vars.theme.style.text.faint};
+					  color:      ${vars.theme.style.text.dimmed};
 					  background: transparent;
 					  border:     none;
 					}
@@ -152,7 +152,7 @@
 
 					scrollbar        { background: ${vars.theme.style.ui.surface}; }
 					scrollbar slider {
-					  background:    ${vars.theme.style.ui.selection};
+					  background:    ${vars.theme.style.ui.overlay};
 					  border-radius: 0;
 					}
 

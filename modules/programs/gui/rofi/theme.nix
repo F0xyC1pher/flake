@@ -17,7 +17,7 @@
 
 					"window" = {
 						transparency = "real";
-						background-color = mkLiteral "${vars.theme.style.ui."0"}76";
+						background-color = mkLiteral "${vars.theme.style.ui.bg}76";
 					};
 
 					"mainbox" = {
@@ -68,14 +68,14 @@
 					};
 
 					"button, textbox" = {
-						background-color = mkLiteral "${vars.theme.style.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.ui.bg}";
 						text-color = mkLiteral "${vars.theme.style.text.main}";
 						padding = mkLiteral "5px";
 					};
 
 					"button selected" = {
 						background-color = mkLiteral "${vars.theme.style.accent}";
-						text-color = mkLiteral "${vars.theme.style.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 
 					"listview" = {
@@ -84,7 +84,7 @@
 					};
 
 					"scrollbar" = {
-						background-color = mkLiteral "${vars.theme.style.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.ui.bg}";
 						handle-color = mkLiteral "${vars.theme.style.accent}";
 						handle-width = mkLiteral "10px";
 						border = mkLiteral "2 2px";
@@ -113,7 +113,7 @@
 
 					"element selected" = {
 						background-color = mkLiteral "${vars.theme.style.accent}";
-						text-color = mkLiteral "${vars.theme.style.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 
 					"element normal normal, element alternate normal" = {
@@ -122,16 +122,16 @@
 
 					"element selected urgent" = {
 						text-color = mkLiteral "${vars.theme.style.text.main}";
-						background-color = mkLiteral "${vars.theme.style.ui."0"}";
+						background-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 
 					"element normal urgent, element alternate urgent" = {
-						text-color = mkLiteral "${vars.theme.style.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.ui.bg}";
 						background-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"element selected active" = {
-						text-color = mkLiteral "${vars.theme.style.ui."0"}";
+						text-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 
 					"element normal active, element alternate active" = {

@@ -21,12 +21,12 @@
 						}
 						/* Прозрачное окно контента */
 						browser[type="content"] {
-							background: rgba(36, 6, 6, 0.4627) !important;
+							background: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						/* Прозрачная панель навигации */
 						#nav-bar,
 						#PersonalToolbar {
-							background: rgba(36, 6, 6, 0.4627) !important;
+							background: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 							padding: 4px 0 !important;
 						}
 						/* Всплывающие окна (меню, панели, подсказки) */
@@ -36,12 +36,12 @@
 						tooltip,
 						.tooltip,
 						#ContentSelectDropdown {
-							background-color: rgba(36, 6, 6, 0.7) !important;
-							border: 1px solid rgba(26, 26, 26, 0.4627) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							border: 1px solid alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						menuitem[_focused="true"],
 						menu[_focused="true"] {
-							background-color: rgba(36, 6, 6, 0.4627) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						/* Прозрачный Sideberry */
 						#sidebar-box,
@@ -53,7 +53,7 @@
 						}
 						/* Разделитель между контентом и боковой панелью цвета фона*/
 						#sidebar-splitter {
-							background-color: rgba(36, 6, 6, 0.4627) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 							width: 2px !important;
 							border: none !important;
 							margin: 0 !important;
@@ -68,8 +68,8 @@
 						.toolbarbutton-text,
 						.tab-text,
 						#PersonalToolbar .bookmark-item {
-							color: #d6d6d6 !important;
-							fill: #d6d6d6 !important;
+							color: ${vars.theme.style.text.main} !important;
+							fill: ${vars.theme.style.text.main} !important;
 						}
 						/* Скрытие заголовка тулбара*/
 						#TabsToolbar {
@@ -80,23 +80,23 @@
 						}
 						/* Адресная строка */
 						#urlbarView {
-							background-color: rgba(36, 6, 6, 0.4627) !important;
-							border-color: rgba(26, 26, 26, 0.4627) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							border-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						.urlbarView {
-							background-color: rgba(36, 6, 6, 0.4627) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						.urlbarView-row {
-							color: #d6d6d6 !important;
+							color: ${vars.theme.style.text.main} !important;
 						}
 						.urlbarView-row:hover {
-							background-color: rgba(36, 6, 6, 0.7) !important;
+							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
 						}
 						.urlbarView-title strong {
-							color: #f6f6f6 !important;
+							color: ${vars.theme.style.text.heading} !important;
 						}
 						.urlbar-input {
-							color: #d6d6d6 !important;
+							color: ${vars.theme.style.text.main} !important;
 						}
 
 						/*Скрытие индикатора WebRTC*/

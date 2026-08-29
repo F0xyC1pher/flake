@@ -27,7 +27,7 @@
 					}
 
 					shadow {
-						color "#00000076"
+					color "${vars.theme.style.ui.bg}76"
 					}
 
 					tab-indicator {

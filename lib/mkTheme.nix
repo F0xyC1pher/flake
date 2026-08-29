@@ -1,6 +1,6 @@
 {lib, ...}: let
 	themesDir = ../themes;
-
+	base16Convert = import ./base16To56.nix {inherit lib;};
 	# Вспомогательные функции для расчета HSL (сохранены без изменений)
 	maxVal = a: b:
 		if a > b
@@ -140,8 +140,10 @@
 				&& builtins.pathExists (themesDir + "/${name}/default.nix")
 		) (builtins.attrNames entries);
 
-	loadTheme = name: {
-		colors = import (themesDir + "/${name}/colors.nix");
+	loadTheme = name: let
+		rawColors = import (themesDir + "/${name}/colors.nix");
+	in {
+		colors = base16Convert rawColors;
 		themeFn = import (themesDir + "/${name}/default.nix");
 		# Дефолтный акцент теперь структура { level; color; }
 		defaultAccent =

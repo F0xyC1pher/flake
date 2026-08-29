@@ -28,7 +28,7 @@ in {
 		dimmed = colors.base."4";
 		main = colors.base."5";
 		light = colors.base."6";
-		lighter = colors.base."7";
+		heading = colors.base."7";
 		onAccent = onAccentHex;
 		syntax = {
 			keyword = syntaxAccents.purple;

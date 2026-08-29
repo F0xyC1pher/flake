@@ -72,7 +72,6 @@
 						// Offset moves the shadow relative to the window.
 						offset x=0 y=0
 						// You can also change the shadow color and opacity.
-						color "${vars.theme.style.ui."0"}"
 					}
 
 					// Struts shrink the area occupied by windows, similarly to layer-shell panels.

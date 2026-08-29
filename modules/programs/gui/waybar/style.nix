@@ -17,11 +17,11 @@
 
 				window#waybar {
 					background: transparent;
-					color: #d6d6d6;
+					color: ${vars.theme.style.text.main};
 				}
 
 				window#waybar > box {
-					background: alpha(${vars.theme.style.ui."0"}, 0.4627);
+					background: alpha(${vars.theme.style.ui.bg}, 0.4627);
 					border-bottom: 2px solid ${vars.theme.style.accent};
 					padding: 0 6px;
 				}
@@ -44,7 +44,7 @@
 				#wireplumber.source {
 					border: none;
 					background: none;
-					color: #d6d6d6;
+					color: ${vars.theme.style.text.main};
 					padding: 0 10px;
 					margin: 3px 2px;
 					min-height: 28px;
@@ -68,7 +68,7 @@
 				#wireplumber.source:hover {
 					/*border: 1px solid #764646;*/
 					/*background: #763636;*/
-					color: #f6e6e6;
+					color: ${vars.theme.style.text.heading};
 					transition: all 666ms ease;
 				}
 
@@ -81,7 +81,7 @@
 				#workspaces button {
 					border: none;
 					background: none;
-					color: #f69696;
+					color: ${vars.theme.style.accent};
 					margin: 0 2px;
 					padding: 0 12px;
 					min-height: 28px;
@@ -91,41 +91,41 @@
 				#workspaces button.empty {
 					border: none;
 					background: transparent;
-					color: #666666;
+					color: ${vars.theme.style.text.comment};
 				}
 
 				#workspaces button.active {
 					border: none;
-					background: #f69696;
-					color: #360606;
+					background: ${vars.theme.style.accent};
+					color: ${vars.theme.style.ui.bg};
 				}
 
 				#workspaces button.active:hover {
 					border: none;
-					background: #f6f6f6;
-					color: #360606;
+					background: ${vars.theme.style.text.heading};
+					color: ${vars.theme.style.ui.bg};
 				}
 
 				#workspaces button:hover {
 					border: none;
 					background: none;
-					color: #f6f6f6;
+					color: ${vars.theme.style.text.heading};
 				}
 
 				/* STATE COLORS */
 				#battery.warning {
-					border-color: #f6f696;
-					color: #f6f696;
+					border-color: ${vars.theme.style.text.syntax.warning};
+					color: ${vars.theme.style.text.syntax.warning};
 				}
 
 				#battery.critical {
-					border-color: #96f6f6;
-					color: #96f6f6;
+					border-color: ${vars.theme.style.text.syntax.info};
+					color: ${vars.theme.style.text.syntax.info};
 				}
 
 				#wireplumber.muted,
 				#wireplumber.source.muted {
-					color: #a6a6a6;
+					color: ${vars.theme.style.text.dimmed};
 				}
 
 				#custom-notification {

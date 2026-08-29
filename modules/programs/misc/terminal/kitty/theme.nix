@@ -16,28 +16,28 @@
 				c.b = vars.theme.colors.base;
 			in {
 				# ── UI chrome ──────────────────────────────────────────────────────────
-				background = t.ui."0";
+				background = t.ui.bg;
 				foreground = t.text.main;
-				selection_background = t.text.submerged;
+				selection_background = t.text.dimmed;
 				selection_foreground = t.text.main;
 				url_color = t.text.syntax.info;
 				cursor = t.text.main;
-				cursor_text_color = t.ui."0";
+				cursor_text_color = t.ui.bg;
 
-				active_border_color = t.accent;
-				inactive_border_color = t.text.submerged;
+				active_border_color = t.ui.border.active;
+				inactive_border_color = t.ui.border.inactive;
 
 				active_tab_background = t.accent;
-				active_tab_foreground = t.ui."0";
-				inactive_tab_background = t.ui."2";
-				inactive_tab_foreground = t.text.submerged;
-				tab_bar_background = t.ui."0";
+				active_tab_foreground = t.ui.bg;
+				inactive_tab_background = t.ui.overlay;
+				inactive_tab_foreground = t.text.dimmed;
+				tab_bar_background = t.ui.bg;
 
-				wayland_titlebar_color = t.ui."0";
-				macos_titlebar_color = t.ui."0";
+				wayland_titlebar_color = t.ui.bg;
+				macos_titlebar_color = t.ui.bg;
 
 				# ── Normal (0-7) ───────────────────────────────────────────────────────
-				color0 = t.ui."0";
+				color0 = t.ui.bg;
 				color1 = c.a.n.red;
 				color2 = c.a.n.green;
 				color3 = c.a.n.yellow;
@@ -47,7 +47,7 @@
 				color7 = t.text.main;
 
 				# ── Bright (8-15) ──────────────────────────────────────────────────────
-				color8 = t.ui."4";
+				color8 = t.ui.overlay;
 				color9 = c.a.b.red;
 				color10 = c.a.b.green;
 				color11 = c.a.b.yellow;
