@@ -1,6 +1,6 @@
 {...}: {
 	theme = {
-		name = "theMe";
+		name = "catppuccin-mocha";
 		# dark = true;
 		accentLevel = "normal"; # "dimmed" | "normal" | "bright"
 		accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
@@ -27,11 +27,14 @@
 			size = 14;
 		};
 
+		opacity = 1.0; # 0.4627
+
 		blur = {
-			enable = true;
+			enable = false;
 			xray.enable = false;
 		};
-		liquid-glass.enable = true;
+
+		liquid-glass.enable = false;
 	};
 	user = {
 		fullName = "Foxy_Chipher";

@@ -46,7 +46,7 @@
 					hide_window_decorations = true;
 					confirm_os_window_close = "0";
 
-					background_opacity = "0.4627";
+					background_opacity = "${toString vars.theme.opacity}";
 					background_blur = lib.mkIf (vars.theme.blur.enable) 1;
 
 					# ── Tab bar ────────────────────────────────────────────────────────

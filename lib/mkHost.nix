@@ -72,6 +72,13 @@
 					name = "CaskaydiaCove Nerd Font Mono";
 					size = 14;
 				};
+			# Исходное значение 0.0 - 1.0
+			opacity = userCfg.theme.opacity or 1.0;
+			# Перевод в 2 HEX-символа через экспортированную функцию темы
+			opacityHex = themes.opacityToHex userCfg.theme.opacity;
+			# Конвертеры HEX -> RGB
+			hexToRgb = themes.hexToRgb;
+			hexToRgbString = themes.hexToRgbString;
 			blur =
 				userCfg.theme.blur or {
 					enable = false;
@@ -147,7 +154,6 @@ in
 						users.${userName} = {...}: {
 							home.username = userName;
 							home.homeDirectory = "/home/${userName}";
-							home.stateVersion = "26.05";
 						};
 					};
 				}

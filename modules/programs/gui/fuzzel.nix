@@ -39,7 +39,7 @@
 
 					colors =
 						lib.mkForce {
-							background = "${vars.theme.style.ui.bg}76";
+							background = "${vars.theme.style.ui.bg}${vars.theme.opacityHex}";
 							text = "${vars.theme.style.text.main}ff";
 							prompt = "${vars.theme.style.text.heading}ff";
 							placeholder = "${vars.theme.style.text.dimmed}ff";
@@ -52,10 +52,7 @@
 							border = "${vars.theme.style.accent}ff";
 						};
 
-					border = {
-						width = 2;
-						radius = 0;
-					};
+					border = vars.theme.border;
 				};
 			};
 		};

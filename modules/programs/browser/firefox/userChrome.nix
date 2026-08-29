@@ -21,12 +21,12 @@
 						}
 						/* Прозрачное окно контента */
 						browser[type="content"] {
-							background: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						/* Прозрачная панель навигации */
 						#nav-bar,
 						#PersonalToolbar {
-							background: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 							padding: 4px 0 !important;
 						}
 						/* Всплывающие окна (меню, панели, подсказки) */
@@ -36,12 +36,12 @@
 						tooltip,
 						.tooltip,
 						#ContentSelectDropdown {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
-							border: 1px solid alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
+							border: 1px solid argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						menuitem[_focused="true"],
 						menu[_focused="true"] {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						/* Прозрачный Sideberry */
 						#sidebar-box,
@@ -53,7 +53,7 @@
 						}
 						/* Разделитель между контентом и боковой панелью цвета фона*/
 						#sidebar-splitter {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 							width: 2px !important;
 							border: none !important;
 							margin: 0 !important;
@@ -80,17 +80,17 @@
 						}
 						/* Адресная строка */
 						#urlbarView {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
-							border-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
+							border-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						.urlbarView {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						.urlbarView-row {
 							color: ${vars.theme.style.text.main} !important;
 						}
 						.urlbarView-row:hover {
-							background-color: alpha(${vars.theme.style.ui.bg}, 0.4627) !important;
+							background-color: argb(${vars.theme.hexToRgbString vars.theme.style.ui.bg}, ${toString vars.theme.opacity}) !important;
 						}
 						.urlbarView-title strong {
 							color: ${vars.theme.style.text.heading} !important;
