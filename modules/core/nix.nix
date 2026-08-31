@@ -48,9 +48,13 @@
 				"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
 				"freesmlauncher.cachix.org-1:Jcp5Q9wiLL+EDv8Mh7c6L9xGk+lXr7/otpKxMOuBuDs="
 			];
-			extra-substituters = ["https://tg-owt.cachix.org"];
+			extra-substituters = [
+				"https://tg-owt.cachix.org"
+				"https://yazi.cachix.org"
+			];
 			extra-trusted-public-keys = [
 				"tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w="
+				"yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
 			];
 		};
 	};
