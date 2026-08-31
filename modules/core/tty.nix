@@ -23,7 +23,7 @@ in {
 
 		colors = [
 			# Normal (0-7)
-			(hex c.b."2") # 0  Black   → deepest bg
+			(hex c.b."0") # 0  Black   → deepest bg
 			(hex c.a.n.red) # 1  Red
 			(hex c.a.n.green) # 2  Green
 			(hex c.a.n.yellow) # 3  Yellow
@@ -33,7 +33,7 @@ in {
 			(hex t.text.main) # 7  White   → primary text
 
 			# Bright (8-15)
-			(hex c.b."3") # 8  Bright Black  → selection bg
+			(hex c.b."1") # 8  Bright Black  → selection bg
 			(hex c.a.b.red) # 9  Bright Red
 			(hex c.a.b.green) # 10 Bright Green
 			(hex c.a.b.yellow) # 11 Bright Yellow
