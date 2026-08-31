@@ -12,10 +12,10 @@
 	enableService = ne && (persistence == true || (perf != null && perf != false));
 in {
 	systemd.services.nvidia-auto = {
-		description = "NVIDIA auto power setup";
+		description = "NVIDIA Auto Power and Clock Setup";
 		enable = enableService;
 		wantedBy = ["multi-user.target"];
-		after = ["multi-user.target"];
+		after = ["graphics-session.target"];
 
 		serviceConfig = {
 			Type = "oneshot";
@@ -23,10 +23,10 @@ in {
 		};
 
 		path = [
-			nvidiaPkg.bin
+			nvidiaPkg
 			pkgs.coreutils
 			pkgs.bc
-			pkgs.gnused # для sed
+			pkgs.gnused
 		];
 
 		script = ''
@@ -44,25 +44,25 @@ in {
 				''
 			}
 
-			# ---------- Power Limit ----------
+			# ---------- Power Limit & Clock Reset ----------
 			${
 				if perf != null && perf != false
 				then ''
 					for gpu in $(nvidia-smi --query-gpu=index --format=csv,noheader); do
 					  echo "Processing GPU $gpu..."
-					  # Получаем сырое значение, удаляем пробелы, W, \r, \n
 					  MAX_LIMIT_RAW=$(nvidia-smi -i "$gpu" --query-gpu=power.max_limit --format=csv,noheader | tr -d ' W\r\n')
+
 					  if [ -z "$MAX_LIMIT_RAW" ] || [ "$MAX_LIMIT_RAW" = "N/A" ]; then
 					    echo "Power limit for GPU $gpu is not available, skipping."
 					    continue
 					  fi
-					  # Извлекаем только число (целое или дробное)
+
 					  MAX_LIMIT_NUM=$(echo "$MAX_LIMIT_RAW" | grep -oE '[0-9]+\.?[0-9]*' | head -1)
 					  if [ -z "$MAX_LIMIT_NUM" ]; then
 					    echo "Could not parse power limit value: '$MAX_LIMIT_RAW', skipping."
 					    continue
 					  fi
-					  # Отбрасываем дробную часть (нужны целые ватты)
+
 					  MAX_LIMIT=''${MAX_LIMIT_NUM%.*}
 
 					  ${
@@ -88,13 +88,11 @@ in {
 							fi
 						''
 						else ''
-							# perf == true
 							echo "Setting power limit to $MAX_LIMIT W (max available)"
 							nvidia-smi -i "$gpu" -pl "$MAX_LIMIT" || true
 						''
 					}
 
-					  # Сброс блокировки частот
 					  echo "Resetting clock locks..."
 					  nvidia-smi -i "$gpu" --lock-gpu-clocks=0,0 > /dev/null 2>&1 || true
 					done

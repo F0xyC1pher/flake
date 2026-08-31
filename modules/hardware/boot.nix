@@ -12,11 +12,10 @@
 
 		kernelParams = [
 			"mitigations=off"
-			"preempt=voluntary"
+			"preempt=full"
 			"threadirqs"
 			"nmi_watchdog=0"
 			"nowatchdog"
-			# "transparent_hugepage=madvise"
 			# "intel_idle.max_cstate=1"
 			# "intel_pstate=passive"
 		];
@@ -45,12 +44,12 @@
 				"net.core.netdev_max_backlog" = 5000;
 				"net.core.somaxconn" = 8192;
 				"net.ipv4.tcp_max_syn_backlog" = 8192;
-				"net.core.rmem_default" = 33554432;
-				"net.core.rmem_max" = 33554432;
-				"net.core.wmem_default" = 33554432;
-				"net.core.wmem_max" = 33554432;
-				"net.ipv4.tcp_rmem" = "4096 1048576 33554432";
-				"net.ipv4.tcp_wmem" = "4096 1048576 33554432";
+				"net.core.rmem_default" = 262144;
+				"net.core.rmem_max" = 16777216;
+				"net.core.wmem_default" = 262144;
+				"net.core.wmem_max" = 16777216;
+				"net.ipv4.tcp_rmem" = "4096 87380 16777216";
+				"net.ipv4.tcp_wmem" = "4096 87380 16777216";
 				"net.ipv4.udp_rmem_min" = 8192;
 				"net.ipv4.udp_wmem_min" = 8192;
 				"net.core.optmem_max" = 65536;
@@ -65,7 +64,7 @@
 				"net.ipv4.tcp_congestion_control" = "bbr";
 				"net.core.default_qdisc" = "fq_codel";
 
-				"net.ipv4.ip_forward" = 1; # оставил по твоей просьбе
+				"net.ipv4.ip_forward" = 1;
 				"net.ipv4.ip_local_port_range" = "1024 65535";
 				"net.ipv4.ping_group_range" = "0 2147483647";
 

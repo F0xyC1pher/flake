@@ -19,23 +19,27 @@ in {
 		blacklistedKernelModules = nO.bKM or [];
 		initrd.kernelModules = nO.iKM or [];
 	};
-	# ========== NVIDIA ==========
+
 	services.xserver.videoDrivers = ["nvidia"];
+
 	hardware = {
 		graphics = {
 			enable = true;
 			enable32Bit = true;
 		};
 		nvidia = {
-			# package = config.boot.kernelPackages.nvidiaPackages.stable;
 			package = nvidiaPkg;
 
-			powerManagement.enable = true;
+			# Disable dynamic dynamic power off for low-latency desktop/gaming performance
+			powerManagement.enable = false;
+			powerManagement.finegrained = false;
+
 			modesetting.enable = true;
 			nvidiaSettings = true;
 			open = false;
 		};
 	};
+
 	imports = [
 		./application-profiles.nix
 		./persistence-mode-max-perf.nix
