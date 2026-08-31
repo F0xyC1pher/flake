@@ -1,7 +1,39 @@
 # lib/base16To56.nix
 {lib}: let
 	colorUtils = import ./colorUtils.nix {inherit lib;};
-	inherit (colorUtils) normalizeHex mixQuantized luminance;
+	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb rgbToHex quantize;
+
+	# Смешивание с опциональным квантованием
+	mixSmart = useQuantize: c1Hex: c2Hex: weight: let
+		rgb1 = hexToRgb c1Hex;
+		rgb2 = hexToRgb c2Hex;
+		w =
+			if weight > 1.0
+			then 1.0
+			else if weight < 0.0
+			then 0.0
+			else weight;
+
+		rawR = rgb1.r * (1.0 - w) + rgb2.r * w;
+		rawG = rgb1.g * (1.0 - w) + rgb2.g * w;
+		rawB = rgb1.b * (1.0 - w) + rgb2.b * w;
+
+		roundVal = v: builtins.floor (v + 0.5);
+	in
+		rgbToHex {
+			r =
+				if useQuantize
+				then quantize rawR rgb1.r
+				else roundVal rawR;
+			g =
+				if useQuantize
+				then quantize rawG rgb1.g
+				else roundVal rawG;
+			b =
+				if useQuantize
+				then quantize rawB rgb1.b
+				else roundVal rawB;
+		};
 in
 	rawColors:
 		if builtins.hasAttr "accent" rawColors && (builtins.hasAttr "bg" rawColors.accent || builtins.hasAttr "dimmed" rawColors.accent)
@@ -11,7 +43,11 @@ in
 			base05 = "#${normalizeHex rawColors.base."05"}";
 			base07 = "#${normalizeHex rawColors.base."07"}";
 
+			# Проверяем, наша ли это авторская палитра (маска *6 в base00)
+			isCustomTheme = (lib.mod (hexToRgb base00).r 16) == 6;
 			isDarkTheme = (luminance base00) < 128.0;
+
+			mix = mixSmart isCustomTheme;
 
 			normalAccents = {
 				red = "#${normalizeHex rawColors.base."08"}";
@@ -25,31 +61,53 @@ in
 			};
 
 			genAccentGroup = name: hex: let
+				normal = hex;
+
+				# Приглушённая плашка
 				dimmed =
-					mixQuantized hex base00 (
+					mix hex base00 (
 						if isDarkTheme
-						then 0.40
+						then 0.45
 						else 0.30
 					);
-				normal = hex;
+
+				# Светлая плашка: подтягиваем к светлой базе с ощутимым шагом
 				bright =
-					mixQuantized hex (
+					mix hex (
+						if isDarkTheme
+						then base07
+						else base00
+					) (
+						if isDarkTheme
+						then 0.35
+						else 0.45
+					);
+
+				# Контекстный текст под соответствующий bg
+				onDimmed =
+					mix (
 						if isDarkTheme
 						then base07
 						else base00
 					)
+					dimmed
 					0.40;
-
-				onDimmed = mixQuantized base07 dimmed 0.20;
 				onNormal =
-					mixQuantized (
+					mix (
 						if isDarkTheme
 						then base00
 						else base07
 					)
 					normal
-					0.40;
-				onBright = mixQuantized base00 bright 0.40;
+					0.35;
+				onBright =
+					mix (
+						if isDarkTheme
+						then base00
+						else base07
+					)
+					bright
+					0.45;
 			in {
 				bg = {inherit dimmed normal bright;};
 				fg = {
@@ -60,6 +118,9 @@ in
 			};
 
 			processed = lib.mapAttrs genAccentGroup normalAccents;
+
+			collectAccents = targetGroup: targetLevel:
+				lib.mapAttrs (_: v: v.${targetGroup}.${targetLevel}) processed;
 		in {
 			base = {
 				"0" = base00;
@@ -74,14 +135,14 @@ in
 
 			accent = {
 				bg = {
-					normal = lib.mapAttrs (_: v: v.bg.normal) processed;
-					dimmed = lib.mapAttrs (_: v: v.bg.dimmed) processed;
-					bright = lib.mapAttrs (_: v: v.bg.bright) processed;
+					normal = collectAccents "bg" "normal";
+					dimmed = collectAccents "bg" "dimmed";
+					bright = collectAccents "bg" "bright";
 				};
 				fg = {
-					normal = lib.mapAttrs (_: v: v.fg.normal) processed;
-					dimmed = lib.mapAttrs (_: v: v.fg.dimmed) processed;
-					bright = lib.mapAttrs (_: v: v.fg.bright) processed;
+					normal = collectAccents "fg" "normal";
+					dimmed = collectAccents "fg" "dimmed";
+					bright = collectAccents "fg" "bright";
 				};
 			};
 		}
