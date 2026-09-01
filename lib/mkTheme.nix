@@ -89,27 +89,20 @@ in {
 
 	resolve = {
 		name,
-		colorOverrides ? {},
-		roleOverrides ? {},
 		accentLevel ? null,
 		accentColor ? null,
 	}: let
 		selected = themes.${name} or (throw "Unknown theme: ${name}. Available themes: ${lib.concatStringsSep ", " themeNames}");
-		mergedColors = lib.recursiveUpdate selected.colors colorOverrides;
-		validatedColors = validateColors mergedColors;
+		validatedColors = validateColors selected.colors;
 
 		finalAccentLevel =
 			if accentLevel != null
 			then accentLevel
-			else if (roleOverrides.accentLevel or null) != null
-			then roleOverrides.accentLevel
 			else selected.defaultAccent.level or "normal";
 
 		finalAccentColor =
 			if accentColor != null
 			then accentColor
-			else if (roleOverrides.accentColor or null) != null
-			then roleOverrides.accentColor
 			else selected.defaultAccent.color or "red";
 
 		_checkBg =
@@ -130,9 +123,6 @@ in {
 				accentColor = finalAccentColor;
 			};
 
-		cleanRoleOverrides = removeAttrs roleOverrides ["accentLevel" "accentColor" "accentName"];
-		withUserOverrides = lib.recursiveUpdate mappedTree cleanRoleOverrides;
-
 		accentHex = validatedColors.accent.bg.${finalAccentLevel}.${finalAccentColor};
 		accentHsl = rgbToHsl (hexToRgb accentHex);
 		targetMatchHue = modFloat (accentHsl.h + 120) 360;
@@ -140,13 +130,13 @@ in {
 		matchColor = pickClosestByHue targetMatchHue validatedColors.accent.bg.bright;
 
 		finalTree =
-			withUserOverrides
+			mappedTree
 			// {
 				text =
-					withUserOverrides.text
+					mappedTree.text
 					// {
 						match = matchColor;
-						onAccent = withUserOverrides.text.onAccent or validatedColors.accent.fg.${finalAccentLevel}.${finalAccentColor};
+						onAccent = mappedTree.text.onAccent or validatedColors.accent.fg.${finalAccentLevel}.${finalAccentColor};
 					};
 			};
 
