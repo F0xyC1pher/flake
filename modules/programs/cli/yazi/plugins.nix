@@ -10,7 +10,7 @@
 				plugins = with pkgs.yaziPlugins; {
 					# sudo = sudo;
 					# glow = glow;
-					# gvfs = gvfs;
+					gvfs = gvfs;
 					# piper = piper;
 					# mount = mount;
 					# gitui = gitui;
@@ -20,7 +20,7 @@
 					# compress = compress;
 					# mediainfo = mediainfo;
 					# toggle-pane = toggle-pane;
-					# full-border = full-border;
+					full-border = full-border;
 				};
 			};
 		};

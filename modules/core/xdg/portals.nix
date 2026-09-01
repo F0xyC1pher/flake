@@ -5,25 +5,25 @@
 	vars,
 	...
 }: {
-	xdg = {
-		portal = {
-			enable = true;
-			xdgOpenUsePortal = true;
-			extraPortals = [
-				inputs.niri-screenshare.packages.${pkgs.stdenv.hostPlatform.system}.default
-				pkgs.xdg-desktop-portal-termfilechooser
-				pkgs.xdg-desktop-portal-gtk
-			];
-			config = {
-				common = {
-					"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-					"org.freedesktop.impl.portal.ScreenCast" = ["niri"];
-					"org.freedesktop.impl.portal.Settings" = ["gtk"];
-					default = ["termfilechooser" "niri" "gtk"];
-				};
-			};
-		};
-	};
+	# xdg = {
+	# 	portal = {
+	# 		enable = true;
+	# 		xdgOpenUsePortal = true;
+	# 		extraPortals = [
+	# 			pkgs.xdg-desktop-portal-termfilechooser
+	# 			inputs.niri-screenshare.packages.${pkgs.stdenv.hostPlatform.system}.default
+	# 			pkgs.xdg-desktop-portal-gtk
+	# 		];
+	# 		config = {
+	# 			common = {
+	# 				"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+	# 				"org.freedesktop.impl.portal.ScreenCast" = ["niri"];
+	# 				"org.freedesktop.impl.portal.Settings" = ["gtk"];
+	# 				default = ["termfilechooser" "niri" "gtk"];
+	# 			};
+	# 		};
+	# 	};
+	# };
 
 	# environment.etc = {
 	# 	"xdg/xdg-desktop-portal-termfilechooser/config" = {
