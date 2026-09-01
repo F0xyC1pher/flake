@@ -15,7 +15,6 @@
 	rawPrograms = userCfg.programs or [];
 	rawServices = userCfg.services or [];
 
-	# Раскрываем глубокие зависимости: теперь activePrograms содержит ВСЕ подмодули
 	activePrograms = mkModules.resolveActiveNames (modulesBase + "/programs") rawPrograms;
 	activeServices = mkModules.resolveActiveNames (modulesBase + "/services") rawServices;
 

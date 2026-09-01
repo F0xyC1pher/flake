@@ -3,7 +3,7 @@
 	host = "p";
 	hardware = {
 		boot = {
-			loader = "limine"; # GRUB LIMINE
+			loader = "limine"; # GRUB LIMINE grub limine
 			# Диск для загрузчика (весь диск, не раздел)
 			# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
 			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798";
@@ -12,7 +12,7 @@
 		wifi.enable = true;
 		zram.enable = false;
 		cpu.governor = "performance";
-		kernel.type = "xanmod"; # xanmod, zen, hardened, latest
+		kernel.name = "xanmod_latest"; # xanmod, zen, hardened, latest
 		parallels.enable = true;
 		audio = {
 			input = {

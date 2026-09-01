@@ -3,6 +3,7 @@
 	themesDir = ../themes;
 	base16Convert = import ./base16To56.nix {inherit lib;};
 	colorUtils = import ./colorUtils.nix {inherit lib;};
+	defaultThemeStyle = import ./defaultThemeStyle.nix;
 
 	inherit
 		(colorUtils)
@@ -23,16 +24,32 @@
 				entries.${name}
 				== "directory"
 				&& builtins.pathExists (themesDir + "/${name}/colors.nix")
-				&& builtins.pathExists (themesDir + "/${name}/default.nix")
 		) (builtins.attrNames entries);
 
 	loadTheme = name: let
-		rawColors = import (themesDir + "/${name}/colors.nix");
+		themePath = themesDir + "/${name}";
+		rawColors = import (themePath + "/colors.nix");
+		# Дефолтный акцент можно переопределить в meta.nix темы или default.nix
+		metaPath = themePath + "/meta.nix";
+		meta =
+			if builtins.pathExists metaPath
+			then import metaPath
+			else {};
+
+		hasCustomDefault = builtins.pathExists (themePath + "/default.nix");
+		customThemeFn =
+			if hasCustomDefault
+			then import (themePath + "/default.nix")
+			else null;
 	in {
 		colors = base16Convert rawColors;
-		themeFn = import (themesDir + "/${name}/default.nix");
+		# Если у темы нет своего default.nix, берем единую систему ролей
+		themeFn =
+			if hasCustomDefault
+			then customThemeFn
+			else defaultThemeStyle;
 		defaultAccent =
-			(import (themesDir + "/${name}/default.nix")).defaultAccent or {
+			rawColors.defaultAccent or meta.defaultAccent or {
 				level = "normal";
 				color = "red";
 			};

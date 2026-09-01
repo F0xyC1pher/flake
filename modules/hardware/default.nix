@@ -2,8 +2,8 @@
 	imports =
 		[
 			./nvidia
+			./boot
 			./bluetooth.nix
-			./boot.nix
 			./power.nix
 			./redist.nix
 			./ssd.nix

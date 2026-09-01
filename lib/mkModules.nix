@@ -68,13 +68,11 @@
 	importPrograms = importModules;
 	importServices = importModules;
 
-	# ГРЯЗНЫЙ ХАК: Раскрывает имена категорий (например "media") во ВСЕ имена файлов/папок внутри них
-	# Если в programs лежит "media", это вернет [ "media" "nixcord" "mpv" "spotify" ... ]
 	resolveActiveNames = modulesBase: items: let
 		paths = importModules modulesBase items;
 		extractName = path: let
-			base = builtins.baseNameOf path;
-			dir = builtins.baseNameOf (builtins.dirOf path);
+			base = baseNameOf path;
+			dir = baseNameOf (dirOf path);
 		in
 			if base == "default.nix"
 			then dir

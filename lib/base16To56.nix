@@ -1,53 +1,25 @@
 # lib/base16To56.nix
 {lib}: let
 	colorUtils = import ./colorUtils.nix {inherit lib;};
-	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb rgbToHex quantize;
-
-	# Смешивание с опциональным квантованием
-	mixSmart = useQuantize: c1Hex: c2Hex: weight: let
-		rgb1 = hexToRgb c1Hex;
-		rgb2 = hexToRgb c2Hex;
-		w =
-			if weight > 1.0
-			then 1.0
-			else if weight < 0.0
-			then 0.0
-			else weight;
-
-		rawR = rgb1.r * (1.0 - w) + rgb2.r * w;
-		rawG = rgb1.g * (1.0 - w) + rgb2.g * w;
-		rawB = rgb1.b * (1.0 - w) + rgb2.b * w;
-
-		roundVal = v: builtins.floor (v + 0.5);
-	in
-		rgbToHex {
-			r =
-				if useQuantize
-				then quantize rawR rgb1.r
-				else roundVal rawR;
-			g =
-				if useQuantize
-				then quantize rawG rgb1.g
-				else roundVal rawG;
-			b =
-				if useQuantize
-				then quantize rawB rgb1.b
-				else roundVal rawB;
-		};
+	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb getContrastingFg;
 in
 	rawColors:
 		if builtins.hasAttr "accent" rawColors && (builtins.hasAttr "bg" rawColors.accent || builtins.hasAttr "dimmed" rawColors.accent)
 		then rawColors
 		else let
 			base00 = "#${normalizeHex rawColors.base."00"}";
+			base01 = "#${normalizeHex rawColors.base."01"}";
+			base02 = "#${normalizeHex rawColors.base."02"}";
+			base03 = "#${normalizeHex rawColors.base."03"}";
+			base04 = "#${normalizeHex rawColors.base."04"}";
 			base05 = "#${normalizeHex rawColors.base."05"}";
+			base06 = "#${normalizeHex rawColors.base."06"}";
 			base07 = "#${normalizeHex rawColors.base."07"}";
 
-			# Проверяем, наша ли это авторская палитра (маска *6 в base00)
 			isCustomTheme = (lib.mod (hexToRgb base00).r 16) == 6;
-			isDarkTheme = (luminance base00) < 128.0;
+			isDarkTheme = (luminance base00) < 0.2;
 
-			mix = mixSmart isCustomTheme;
+			mix = mixQuantized isCustomTheme;
 
 			normalAccents = {
 				red = "#${normalizeHex rawColors.base."08"}";
@@ -61,18 +33,14 @@ in
 			};
 
 			genAccentGroup = name: hex: let
-				normal = hex;
-
-				# Приглушённая плашка
-				dimmed =
+				dimmedBg =
 					mix hex base00 (
 						if isDarkTheme
 						then 0.45
 						else 0.30
 					);
-
-				# Светлая плашка: подтягиваем к светлой базе с ощутимым шагом
-				bright =
+				normalBg = hex;
+				brightBg =
 					mix hex (
 						if isDarkTheme
 						then base07
@@ -83,66 +51,63 @@ in
 						else 0.45
 					);
 
-				# Контекстный текст под соответствующий bg
-				onDimmed =
-					mix (
-						if isDarkTheme
-						then base07
-						else base00
-					)
-					dimmed
-					0.40;
-				onNormal =
-					mix (
-						if isDarkTheme
-						then base00
-						else base07
-					)
-					normal
-					0.35;
-				onBright =
-					mix (
-						if isDarkTheme
-						then base00
-						else base07
-					)
-					bright
-					0.45;
+				dimmedFg = getContrastingFg dimmedBg base00 base07;
+				normalFg = getContrastingFg normalBg base00 base07;
+				brightFg = getContrastingFg brightBg base00 base07;
 			in {
-				bg = {inherit dimmed normal bright;};
+				bg = {
+					dimmed = dimmedBg;
+					normal = normalBg;
+					bright = brightBg;
+				};
 				fg = {
-					dimmed = onDimmed;
-					normal = onNormal;
-					bright = onBright;
+					dimmed = dimmedFg;
+					normal = normalFg;
+					bright = brightFg;
 				};
 			};
 
 			processed = lib.mapAttrs genAccentGroup normalAccents;
-
-			collectAccents = targetGroup: targetLevel:
-				lib.mapAttrs (_: v: v.${targetGroup}.${targetLevel}) processed;
 		in {
+			# Двойной маппинг для 100% совместимости с ролями и классическим base16
 			base = {
 				"0" = base00;
-				"1" = "#${normalizeHex rawColors.base."01"}";
-				"2" = "#${normalizeHex rawColors.base."02"}";
-				"3" = "#${normalizeHex rawColors.base."03"}";
-				"4" = "#${normalizeHex rawColors.base."04"}";
+				"00" = base00;
+				"1" = base01;
+				"01" = base01;
+				"2" = base02;
+				"02" = base02;
+				"3" = base03;
+				"03" = base03;
+				"4" = base04;
+				"04" = base04;
 				"5" = base05;
-				"6" = "#${normalizeHex rawColors.base."06"}";
+				"05" = base05;
+				"6" = base06;
+				"06" = base06;
 				"7" = base07;
+				"07" = base07;
+
+				"08" = normalAccents.red;
+				"09" = normalAccents.orange;
+				"0A" = normalAccents.yellow;
+				"0B" = normalAccents.green;
+				"0C" = normalAccents.cyan;
+				"0D" = normalAccents.blue;
+				"0E" = normalAccents.purple;
+				"0F" = normalAccents.magenta;
 			};
 
 			accent = {
 				bg = {
-					normal = collectAccents "bg" "normal";
-					dimmed = collectAccents "bg" "dimmed";
-					bright = collectAccents "bg" "bright";
+					dimmed = lib.mapAttrs (_: v: v.bg.dimmed) processed;
+					normal = lib.mapAttrs (_: v: v.bg.normal) processed;
+					bright = lib.mapAttrs (_: v: v.bg.bright) processed;
 				};
 				fg = {
-					normal = collectAccents "fg" "normal";
-					dimmed = collectAccents "fg" "dimmed";
-					bright = collectAccents "fg" "bright";
+					dimmed = lib.mapAttrs (_: v: v.fg.dimmed) processed;
+					normal = lib.mapAttrs (_: v: v.fg.normal) processed;
+					bright = lib.mapAttrs (_: v: v.fg.bright) processed;
 				};
 			};
 		}

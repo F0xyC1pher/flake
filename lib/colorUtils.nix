@@ -1,4 +1,4 @@
-# lib/color-utils.nix
+# lib/colorUtils.nix
 {lib}: let
 	absVal = x:
 		if x < 0
@@ -122,7 +122,25 @@
 		l = lightness;
 	};
 
-	luminance = hex: let rgb = hexToRgb hex; in (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000.0;
+	# WCAG 2.1 Relative Luminance
+	luminance = hex: let
+		rgb = hexToRgb hex;
+		calcChannel = c: let
+			v = c / 255.0;
+		in
+			if v <= 0.03928
+			then v / 12.92
+			else lib.pow ((v + 0.055) / 1.055) 2.4;
+		r = calcChannel rgb.r;
+		g = calcChannel rgb.g;
+		b = calcChannel rgb.b;
+	in
+		0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+	getContrastingFg = bgHex: darkFg: lightFg:
+		if (luminance bgHex) > 0.35
+		then darkFg
+		else lightFg;
 
 	hueDiff = h1: h2: let
 		d = absVal (h1 - h2);
@@ -144,7 +162,7 @@
 		then 0
 		else res;
 
-	mixQuantized = c1Hex: c2Hex: weight: let
+	mixQuantized = useQuantize: c1Hex: c2Hex: weight: let
 		rgb1 = hexToRgb c1Hex;
 		rgb2 = hexToRgb c2Hex;
 		w =
@@ -157,11 +175,21 @@
 		rawR = rgb1.r * (1.0 - w) + rgb2.r * w;
 		rawG = rgb1.g * (1.0 - w) + rgb2.g * w;
 		rawB = rgb1.b * (1.0 - w) + rgb2.b * w;
+		roundVal = v: builtins.floor (v + 0.5);
 	in
 		rgbToHex {
-			r = quantize rawR rgb1.r;
-			g = quantize rawG rgb1.g;
-			b = quantize rawB rgb1.b;
+			r =
+				if useQuantize
+				then quantize rawR rgb1.r
+				else roundVal rawR;
+			g =
+				if useQuantize
+				then quantize rawG rgb1.g
+				else roundVal rawG;
+			b =
+				if useQuantize
+				then quantize rawB rgb1.b
+				else roundVal rawB;
 		};
 
 	pickClosestByHue = targetHue: attrs: let
@@ -210,6 +238,7 @@ in {
 		opacityToHex
 		rgbToHsl
 		luminance
+		getContrastingFg
 		hueDiff
 		modFloat
 		quantize
