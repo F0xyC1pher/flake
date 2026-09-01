@@ -130,7 +130,7 @@
 		in
 			if v <= 0.03928
 			then v / 12.92
-			else lib.pow ((v + 0.055) / 1.055) 2.4;
+			else v * v * (0.8 + 0.2 * v);
 		r = calcChannel rgb.r;
 		g = calcChannel rgb.g;
 		b = calcChannel rgb.b;

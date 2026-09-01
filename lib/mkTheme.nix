@@ -17,42 +17,70 @@
 		validateColors
 		;
 
-	entries = builtins.readDir themesDir;
-	themeNames =
-		lib.filter (
-			name:
-				entries.${name}
-				== "directory"
-				&& builtins.pathExists (themesDir + "/${name}/colors.nix")
-		) (builtins.attrNames entries);
+	# Рекурсивный поиск исключительно *.nix файлов тем
+	findThemes = prefix: dirPath: let
+		entries = builtins.readDir dirPath;
+
+		# 1. Берем все *.nix файлы в текущей папке (игнорируем служебные с '_')
+		nixFiles =
+			lib.filterAttrs (
+				name: type:
+					type
+					== "regular"
+					&& lib.hasSuffix ".nix" name
+					&& !(lib.hasPrefix "_" name)
+			)
+			entries;
+
+		fileThemes =
+			lib.mapAttrs' (
+				fileName: _: let
+					baseName = lib.removeSuffix ".nix" fileName;
+					# Если тема лежит в подпапке, добавляем префикс "папка-"
+					fullThemeName =
+						if prefix == ""
+						then baseName
+						else "${prefix}-${baseName}";
+				in
+					lib.nameValuePair fullThemeName (dirPath + "/${fileName}")
+			)
+			nixFiles;
+
+		# 2. Обходим все поддиректории
+		subdirs = lib.filterAttrs (name: type: type == "directory" && !(lib.hasPrefix "_" name)) entries;
+
+		subdirThemes =
+			lib.concatMapAttrs (
+				dirName: _: let
+					nextPrefix =
+						if prefix == ""
+						then dirName
+						else "${prefix}-${dirName}";
+				in
+					findThemes nextPrefix (dirPath + "/${dirName}")
+			)
+			subdirs;
+	in
+		fileThemes // subdirThemes;
+
+	foundThemes = findThemes "" themesDir;
+	themeNames = builtins.attrNames foundThemes;
 
 	loadTheme = name: let
-		themePath = themesDir + "/${name}";
-		rawColors = import (themePath + "/colors.nix");
-		# Дефолтный акцент можно переопределить в meta.nix темы или default.nix
-		metaPath = themePath + "/meta.nix";
-		meta =
-			if builtins.pathExists metaPath
-			then import metaPath
-			else {};
+		themePath = foundThemes.${name};
+		rawColors = import themePath;
 
-		hasCustomDefault = builtins.pathExists (themePath + "/default.nix");
-		customThemeFn =
-			if hasCustomDefault
-			then import (themePath + "/default.nix")
-			else null;
-	in {
-		colors = base16Convert rawColors;
-		# Если у темы нет своего default.nix, берем единую систему ролей
-		themeFn =
-			if hasCustomDefault
-			then customThemeFn
-			else defaultThemeStyle;
 		defaultAccent =
-			rawColors.defaultAccent or meta.defaultAccent or {
+			if builtins.isAttrs rawColors && builtins.hasAttr "defaultAccent" rawColors
+			then rawColors.defaultAccent
+			else {
 				level = "normal";
 				color = "red";
 			};
+	in {
+		colors = base16Convert rawColors;
+		themeFn = defaultThemeStyle;
+		inherit defaultAccent;
 	};
 
 	themes = lib.genAttrs themeNames loadTheme;
@@ -66,7 +94,7 @@ in {
 		accentLevel ? null,
 		accentColor ? null,
 	}: let
-		selected = themes.${name} or (throw "Unknown theme: ${name}");
+		selected = themes.${name} or (throw "Unknown theme: ${name}. Available themes: ${lib.concatStringsSep ", " themeNames}");
 		mergedColors = lib.recursiveUpdate selected.colors colorOverrides;
 		validatedColors = validateColors mergedColors;
 
@@ -123,7 +151,7 @@ in {
 			};
 
 		bgHex = finalTree.ui.bg or validatedColors.base."0";
-		isDark = (luminance bgHex) < 128.0;
+		isDark = (luminance bgHex) < 0.2;
 	in {
 		colors = validatedColors;
 		theme = finalTree;
