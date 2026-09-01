@@ -1,9 +1,8 @@
 {...}: {
 	theme = {
 		name = "theMe";
-		# dark = true;
-		accentLevel = "normal"; # "dimmed" | "normal" | "bright"
-		accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+		# accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		# gaps = 8;
 		border = {

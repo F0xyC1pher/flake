@@ -17,8 +17,6 @@
 			name = userCfg.theme.name or "theMe";
 			accentLevel = userCfg.theme.accentLevel or userCfg.theme.level or null;
 			accentColor = userCfg.theme.accentColor or userCfg.theme.color or userCfg.theme.accent or null;
-			colorOverrides = userCfg.theme.colorOverrides or {};
-			roleOverrides = userCfg.theme.roleOverrides or {};
 		};
 
 	# 1. Сборка объекта vars через отдельный модуль
