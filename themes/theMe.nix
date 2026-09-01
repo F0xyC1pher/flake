@@ -4,9 +4,9 @@
 		color = "red";
 	};
 	base = {
-		"00" = "#260616"; # Dark Background
-		"01" = "#361626"; # Lighter Background / Surface
-		"02" = "#462636"; # Selection / Overlay
+		"00" = "#260616";
+		"01" = "#361626";
+		"02" = "#462636";
 		"03" = "#967686";
 		"04" = "#a68696";
 		"05" = "#d6b6c6";
