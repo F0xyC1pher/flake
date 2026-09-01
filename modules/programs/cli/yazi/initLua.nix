@@ -11,14 +11,14 @@
 						--[[
 						# syntax: lua
 						]]--
-						-- require("gvfs"):setup({})
+						require("gvfs"):setup({})
 
 						-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-						--[[
+
 							require("full-border"):setup{
 								type = ui.Border.PLAIN,
 							}
-						]]--
+
 						--[[
 							require("yatline"):setup({
 								section_separator = { open = "▐", close = "▌" },

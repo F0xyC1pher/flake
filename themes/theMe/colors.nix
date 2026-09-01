@@ -9,6 +9,10 @@
 #		base."7" - Максимально яркий текст / заголовки
 #		accent.(bg|fg).(dimmed|normal|bright).<color_name> — 8 акцентных цветов
 {
+	defaultAccent = {
+		level = "normal";
+		color = "blue";
+	};
 	base = {
 		# --- Слой фона (Backgrounds) ---
 		"00" = "#160606";
