@@ -26,19 +26,19 @@
 			size = 14;
 		};
 
-		opacity = 1.0; # 0.4627
+		opacity = 0.666; # 0.4627
 
 		blur = {
-			enable = false;
+			enable = true;
 			xray.enable = false;
 		};
 
-		liquid-glass.enable = false;
+		liquid-glass.enable = true;
 	};
 	user = {
-		fullName = "Foxy_Chipher";
+		fullName = "F0xy_C1pher";
 		mail = "ageev-eldar@mail.ru";
-		gitName = "FoxyChipher";
+		gitName = "F0xy_C1pher";
 		password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
 		shell = "fish"; # fish zsh bash brush
 	};
@@ -53,7 +53,7 @@
 		"micro"
 		"nh"
 		"niri"
-		"hyprland"
+		# "hyprland"
 		"no-gnome"
 		"xwayland"
 		"dev"
@@ -65,14 +65,14 @@
 		"media"
 		"fish"
 		"kitty"
-		"ghostty"
-		"wezterm"
-		"rio"
+		# "ghostty"
+		# "wezterm"
+		# "rio"
 		"appimage"
 		"fastfetch"
 		"throne"
 		"swaylock"
-		"skwd-wall"
+		# "skwd-wall"
 	];
 	services = [
 		"displayManager"
