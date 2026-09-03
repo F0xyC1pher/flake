@@ -3,7 +3,7 @@
 	host = "p";
 	hardware = {
 		boot = {
-			loader = "limine"; # GRUB LIMINE grub limine
+			loader = "grub"; # GRUB LIMINE grub limine
 			# Диск для загрузчика (весь диск, не раздел)
 			# Найти свой: ls -la /dev/disk/by-id/ | grep -v part
 			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798";
@@ -25,7 +25,7 @@
 				};
 			};
 			output = {
-				rate.value = 192000;
+				rate.value = 96000;
 				format = {
 					prefix = "F"; # F S
 					value = 32;

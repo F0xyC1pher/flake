@@ -8,7 +8,10 @@
 		./neu-nix.nix
 		./jdk.nix
 	];
-	services.displayManager.sessionPackages = [inputs.driftwm.packages.x86_64-linux.default inputs.niri-glass.packages.x86_64-linux.default];
+	services.displayManager.sessionPackages = [
+	# inputs.driftwm.packages.x86_64-linux.default
+	inputs.niri-glass.packages.x86_64-linux.default
+	];
 	environment.systemPackages = with pkgs; [
 		(
 			if vars.hardware.nvidia.enable
@@ -30,13 +33,11 @@
 			else "full"
 		}
 
-		telegram-desktop
-
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
 		qt6Packages.qtstyleplugin-kvantum
-		themix-gui
+		# themix-gui
 		unzip
 		zip
 		p7zip
@@ -64,8 +65,6 @@
 		ripgrep-all
 		ripgrep
 		rippkgs
-		ripdrag
-		dragon-drop
 		fzf
 		trash-cli
 		glow
@@ -83,7 +82,6 @@
 		gparted-full
 		mtools
 		ntfs3g
-		f2fs-tools
 		btrfs-progs
 		obsidian
 		gitui
@@ -142,18 +140,15 @@
 		rustdesk-flutter
 		libva-vdpau-driver
 		libvdpau-va-gl
-		gpu-screen-recorder
-		gpu-screen-recorder-gtk
 		xwayland-satellite
 		adw-gtk3
-		adwsteamgtk
 		rmtrash
-		tor-browser
-		teamspeak6-client
-		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+		# tor-browser
+		# teamspeak6-client
+		# inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
-		inputs.driftwm.packages.x86_64-linux.default
+		# inputs.driftwm.packages.x86_64-linux.default
 		inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
 	];
 }
