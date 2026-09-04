@@ -1,22 +1,32 @@
-# GTK3 + GTK4 with enhanced CSS, focus indicators, backdrop states,
-# and optional dark/light switching. Uses the resolved theme from `vars.theme.style`.
+# версия с нормальной шапкой
 {
   pkgs,
   vars,
   ...
 }: let
-  ui = vars.theme.style.ui; # ui tree
+  ui = vars.theme.style.ui;   # ui tree
   text = vars.theme.style.text; # text tree
 
-  # Minimal role-based CSS color definitions
+  # Значение прозрачности
+  alpha = vars.theme.opacity;
+
+  # RGBA генератор
+  hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opacity})";
+
+  # Color definitions with RGBA support for backgrounds
   colorDefs = ''
     /* ── Global Theme Overrides ───────────────────────────────── */
     @define-color accent_color     ${vars.theme.style.accent};
     @define-color accent_bg_color  ${vars.theme.style.accent};
     @define-color accent_fg_color  ${text.onAccent};
 
-    @define-color bg_main          ${ui.bg};
-    @define-color bg_surface       ${ui.surface};
+    /* Libadwaita specific variable overrides */
+    @define-color headerbar_bg_color        ${hexToRgba ui.bg alpha};
+    @define-color headerbar_backdrop_color   ${hexToRgba ui.bg alpha};
+    @define-color headerbar_shade_color      ${hexToRgba ui.bg alpha};
+    @define-color headerbar_border_color     transparent;
+    @define-color bg_main          ${hexToRgba ui.bg alpha};
+    @define-color bg_surface       ${hexToRgba ui.surface alpha};
     @define-color bg_overlay       ${ui.overlay};
     @define-color fg_main          ${text.main};
     @define-color fg_heading       ${text.heading};
@@ -211,14 +221,25 @@
       background-color: @accent_color;
     }
 
-    /* ── Menus & Popovers ─────────────────────────── */
-    menu, popover {
-      background-color: @bg_surface;
-      border: 1px solid @border_inact;
+    /* ── Menus & Popovers Fix ─────────────────────── */
+    menu,
+    popover,
+    popover > contents,
+    popover.background > contents,
+    .menu {
+      background-color: @bg_surface !important;
+      color: @fg_main !important;
+      border: 1px solid @border_inact !important;
     }
-    menuitem:hover {
-      background-color: @bg_overlay;
-      color: @accent_color;
+    popover list,
+    popover modelbutton {
+      background-color: transparent !important;
+      color: @fg_main !important;
+    }
+    menuitem:hover,
+    popover modelbutton:hover {
+      background-color: @bg_overlay !important;
+      color: @accent_color !important;
     }
   '';
 
