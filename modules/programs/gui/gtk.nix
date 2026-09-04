@@ -1,22 +1,33 @@
-# GTK3 + GTK4 with enhanced CSS, focus indicators, backdrop states,
-# and optional dark/light switching. Uses the resolved theme from `vars.theme.style`.
+# версия с нормальной шапкой
 {
   pkgs,
   vars,
   ...
 }: let
-  ui = vars.theme.style.ui; # ui tree
-  text = vars.theme.style.text; # text tree
+ui = vars.theme.style.ui;   # ui tree
+text = vars.theme.style.text; # text tree
+
+# Значение прозрачности
+alpha = vars.theme.opacity;
+
+# RGBA генератор
+hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opacity})";
 
   # Minimal role-based CSS color definitions
+  # Color definitions with RGBA support for backgrounds
   colorDefs = ''
     /* ── Global Theme Overrides ───────────────────────────────── */
     @define-color accent_color     ${vars.theme.style.accent};
     @define-color accent_bg_color  ${vars.theme.style.accent};
     @define-color accent_fg_color  ${text.onAccent};
 
-    @define-color bg_main          ${ui.bg};
-    @define-color bg_surface       ${ui.surface};
+    /* Libadwaita specific variable overrides */
+    @define-color headerbar_bg_color        ${hexToRgba ui.bg alpha};
+    @define-color headerbar_backdrop_color   ${hexToRgba ui.bg alpha};
+    @define-color headerbar_shade_color      ${hexToRgba ui.bg alpha};
+    @define-color headerbar_border_color     transparent;
+    @define-color bg_main          ${hexToRgba ui.bg alpha};
+    @define-color bg_surface       ${hexToRgba ui.surface alpha};
     @define-color bg_overlay       ${ui.overlay};
     @define-color fg_main          ${text.main};
     @define-color fg_heading       ${text.heading};
@@ -42,8 +53,9 @@
     headerbar button.titlebutton.close,
     headerbar button.titlebutton.maximize,
     headerbar button.titlebutton.minimize,
-    windowcontrols button {
-      display: none;
+    windowcontrols button,
+    windowcontrols {
+      display: none !important;
     }
 
     /* ── Kill ugly grey focus frames & cards ──────── */
@@ -119,7 +131,32 @@
       background-color: @bg_main;
       color: @fg_dimmed;
     }
-
+    /* ── Закрашивание правой (основной) шапки (Главная) ── */
+    toolbarview > headerbar,
+    .content-pane headerbar,
+    window > box > headerbar {
+      background-color: @bg_surface !important;
+      color: @fg_heading !important;
+    }
+    /* ── Toast Notifications ─────────────────────── */
+    toast,
+    .toast,
+    adwtoast {
+      background-color: @bg_surface !important;
+      color: @fg_main !important;
+      border: 1px solid @border_active !important;
+      box-shadow: none !important;
+    }
+    toast label,
+    .toast label {
+      color: @fg_main !important;
+    }
+    toast button,
+    .toast button {
+      background-color: @bg_overlay !important;
+      color: @fg_heading !important;
+      border: 1px solid @border_inact !important;
+    }
     /* ── Buttons ──────────────────────────────────── */
     button {
       background-color: @bg_surface;
