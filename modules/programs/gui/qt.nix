@@ -1,100 +1,115 @@
 {vars, ...}: {
-	home-manager.users.${vars.user.name} = {vars, ...}: let
-		t = vars.theme.style;
-	in {
-		qt = {
-			enable = true;
-			platformTheme.name = "qt6ct";
+  home-manager.users.${vars.user.name} = {vars, ...}: let
+    t = vars.theme.style;
+    c = vars.theme.colors;
 
-			# Это форсирует QT_STYLE_OVERRIDE = "fusion" и подтянет нужные либы
-			style.name = "fusion";
+    accentColor = vars.theme.accentColor;
 
-			qt6ctSettings = {
-				Appearance = {
-					custom_palette = true;
-					standard_dialogs = "xdgdesktopportal";
-					style = "fusion";
-				};
+    # Акценты уровня dimmed из генератора темы base16To56
+    accentDimmedBg = c.accent.bg.dimmed.${accentColor};
+    accentDimmedFg = c.accent.fg.dimmed.${accentColor};
 
-				Fonts = {
-					fixed = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
-					general = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
-				};
+    # Функция объединения цветов через '@' для INI-файла qt6ct
+    formatPalette = colors: builtins.concatStringsSep "@" colors;
+  in {
+    qt = {
+      enable = true;
+      platformTheme.name = "qt6ct";
 
-				ColorScheme = {
-					active_colors = [
-						"${t.text.main}"
-						"${t.ui.surface}"
-						"${t.ui.overlay}"
-						"${t.ui.selection}"
-						"${t.ui.border.inactive}"
-						"${t.ui.highlight}"
-						"${t.text.main}"
-						"${t.text.heading}"
-						"${t.ui.deep}"
-						"${t.ui.main}"
-						"${t.ui.deep}"
-						"${t.accent}"
-						"${t.text.main}"
-						"${t.accent}"
-						"${t.accent}"
-						"${t.text.main}"
-						"${t.ui.main}"
-						"${t.text.main}"
-						"${t.text.faint}"
-						"${t.text.main}"
-						"${t.ui.selection}"
-					];
+      style.name = "kvantum-dark";
 
-					inactive_colors = [
-						"${t.text.faint}"
-						"${t.ui.surface}"
-						"${t.ui.overlay}"
-						"${t.ui.selection}"
-						"${t.ui.border.inactive}"
-						"${t.ui.highlight}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.deep}"
-						"${t.ui.main}"
-						"${t.ui.deep}"
-						"${t.ui.selection}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.main}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.selection}"
-					];
+      qt6ctSettings = {
+        Appearance = {
+          custom_palette = true;
+          standard_dialogs = "xdgdesktopportal";
+          style = "kvantum-dark";
+        };
 
-					disabled_colors = [
-						"${t.text.faint}"
-						"${t.ui.surface}"
-						"${t.ui.overlay}"
-						"${t.ui.selection}"
-						"${t.ui.border.inactive}"
-						"${t.ui.highlight}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.deep}"
-						"${t.ui.main}"
-						"${t.ui.deep}"
-						"${t.ui.selection}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.main}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.text.faint}"
-						"${t.ui.selection}"
-					];
-				};
-			};
-		};
-	};
+        Fonts = {
+          fixed = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
+          general = "\"${vars.theme.font.name},${toString vars.theme.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1\"";
+        };
+
+        ColorScheme = {
+          # Active: Нормальный яркий акцент и тексты
+          active_colors = formatPalette [
+            t.text.main             # 1. WindowText
+            t.ui.surface           # 2. Button
+            t.ui.overlay           # 3. Light
+            t.ui.surface           # 4. Midlight
+            t.ui.border.inactive   # 5. Dark
+            t.ui.bg                # 6. Mid
+            t.text.main             # 7. Text
+            t.text.heading          # 8. BrightText
+            t.text.main             # 9. ButtonText
+            t.ui.bg                # 10. Base
+            t.ui.bg                # 11. Window
+            t.ui.border.inactive   # 12. Shadow
+            t.accent               # 13. Highlight (Normal Accent BG)
+            t.text.onAccent        # 14. HighlightedText (Normal Accent FG)
+            t.text.syntax.function # 15. Link
+            t.text.syntax.string   # 16. LinkVisited
+            t.ui.overlay           # 17. AlternateBase
+            t.ui.surface           # 18. NoRole
+            t.ui.surface           # 19. ToolTipBase
+            t.text.main             # 20. ToolTipText
+            t.text.dimmed          # 21. PlaceholderText
+            t.accent               # 22. Accent
+          ];
+
+          # Inactive: Dimmed-акценты для неактивного окна
+          inactive_colors = formatPalette [
+            t.text.dimmed           # 1. WindowText
+            t.ui.surface           # 2. Button
+            t.ui.overlay           # 3. Light
+            t.ui.surface           # 4. Midlight
+            t.ui.border.inactive   # 5. Dark
+            t.ui.bg                # 6. Mid
+            t.text.dimmed           # 7. Text
+            t.text.dimmed           # 8. BrightText
+            t.text.dimmed           # 9. ButtonText
+            t.ui.bg                # 10. Base
+            t.ui.bg                # 11. Window
+            t.ui.border.inactive   # 12. Shadow
+            accentDimmedBg         # 13. Highlight (Dimmed Accent BG)
+            accentDimmedFg         # 14. HighlightedText (Dimmed Accent FG)
+            t.text.syntax.function # 15. Link
+            t.text.syntax.string   # 16. LinkVisited
+            t.ui.overlay           # 17. AlternateBase
+            t.ui.surface           # 18. NoRole
+            t.ui.surface           # 19. ToolTipBase
+            t.text.dimmed           # 20. ToolTipText
+            t.text.comment         # 21. PlaceholderText
+            accentDimmedBg         # 22. Accent
+          ];
+
+          # Disabled: Исключительно серые/приглушенные роли интерфейса
+          disabled_colors = formatPalette [
+            t.text.dimmed           # 1. WindowText
+            t.ui.surface           # 2. Button
+            t.ui.overlay           # 3. Light
+            t.ui.surface           # 4. Midlight
+            t.ui.border.inactive   # 5. Dark
+            t.ui.bg                # 6. Mid
+            t.text.dimmed           # 7. Text
+            t.text.dimmed           # 8. BrightText
+            t.text.dimmed           # 9. ButtonText
+            t.ui.bg                # 10. Base
+            t.ui.bg                # 11. Window
+            t.ui.border.inactive   # 12. Shadow
+            t.ui.overlay           # 13. Highlight (Нейтральная подложка)
+            t.text.comment         # 14. HighlightedText (Приглушенный текст)
+            t.text.dimmed           # 15. Link
+            t.text.dimmed           # 16. LinkVisited
+            t.ui.overlay           # 17. AlternateBase
+            t.ui.surface           # 18. NoRole
+            t.ui.surface           # 19. ToolTipBase
+            t.text.dimmed           # 20. ToolTipText
+            t.text.comment         # 21. PlaceholderText
+            t.ui.border.inactive   # 22. Accent (Нейтральный рамка/акцент)
+          ];
+        };
+      };
+    };
+  };
 }

@@ -52,6 +52,7 @@
 						# max_width = 1200;
 						# max_height = 900;
 						image_quality = 90;
+						image_delay = 0;
 						cache_dir = "${config.xdg.cacheHome}/yazi";
 					};
 
