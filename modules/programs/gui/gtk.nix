@@ -3,30 +3,20 @@
 {
   pkgs,
   vars,
-  lib,
   ...
 }: let
   ui = vars.theme.style.ui; # ui tree
   text = vars.theme.style.text; # text tree
 
-  alpha = vars.theme.opacity;
-
-  hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opacity})";
-
+  # Minimal role-based CSS color definitions
   colorDefs = ''
     /* ── Global Theme Overrides ───────────────────────────────── */
     @define-color accent_color     ${vars.theme.style.accent};
     @define-color accent_bg_color  ${vars.theme.style.accent};
     @define-color accent_fg_color  ${text.onAccent};
 
-    /* Libadwaita specific variable overrides */
-    @define-color headerbar_bg_color        transparent;
-    @define-color headerbar_backdrop_color   transparent;
-    @define-color headerbar_shade_color      transparent;
-    @define-color headerbar_border_color     transparent;
-
-    @define-color bg_main          ${hexToRgba ui.bg alpha};
-    @define-color bg_surface       ${hexToRgba ui.surface alpha};
+    @define-color bg_main          ${ui.bg};
+    @define-color bg_surface       ${ui.surface};
     @define-color bg_overlay       ${ui.overlay};
     @define-color fg_main          ${text.main};
     @define-color fg_heading       ${text.heading};
@@ -40,76 +30,20 @@
   '';
 
   baseCss = ''
-    /* ── Global flat reset ────────────────────────── */
+    /* ── Global flat reset ───────────────────────── */
     * {
       border-radius: 0;
       -gtk-outline-radius: 0;
       box-shadow: none;
+      background-image: none;
     }
 
-    /* ── Скрываем системные кнопки окна ────────────── */
+    /* ── Hide Window Controls (Close/Min/Max) ────── */
     headerbar button.titlebutton.close,
     headerbar button.titlebutton.maximize,
     headerbar button.titlebutton.minimize,
-    windowcontrols button,
-    windowcontrols {
-      display: none !important;
-    }
-
-    /* ── Сброс внешних оберток Libadwaita headerbar ── */
-    headerbar,
-    .titlebar,
-    adwheaderbar,
-    windowhandle,
-    .top-bar,
-    toolbarview > .top-bar {
-      background: transparent !important;
-      background-color: transparent !important;
-      background-image: none !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-
-    /* ── Закрашивание шапки сайдбара (Parabolic + кнопки) ── */
-    .sidebar headerbar,
-    .sidebar .top-bar,
-    .navigation-sidebar headerbar,
-    split-pane > widget > headerbar,
-    flap > widget > headerbar,
-    .sidebar-pane,
-    headerbar.sidebar-pane {
-      background-color: @bg_surface !important;
-      color: @fg_heading !important;
-    }
-
-    /* ── Закрашивание правой (основной) шапки (Главная) ── */
-    toolbarview > headerbar,
-    .content-pane headerbar,
-    window > box > headerbar {
-      background-color: @bg_main !important;
-      color: @fg_heading !important;
-    }
-
-    /* ── Toast Notifications ─────────────────────── */
-    toast,
-    .toast,
-    adwtoast {
-      background-color: @bg_surface !important;
-      color: @fg_main !important;
-      border: 1px solid @border_active !important;
-      box-shadow: none !important;
-    }
-
-    toast label,
-    .toast label {
-      color: @fg_main !important;
-    }
-
-    toast button,
-    .toast button {
-      background-color: @bg_overlay !important;
-      color: @fg_heading !important;
-      border: 1px solid @border_inact !important;
+    windowcontrols button {
+      display: none;
     }
 
     /* ── Kill ugly grey focus frames & cards ──────── */
@@ -119,6 +53,7 @@
       box-shadow: none;
     }
 
+    /* Target libadwaita/adw-gtk3 card containers & frames */
     .card, frame, frame > border, .frame,
     box.card, .view, viewport, stack {
       background-color: transparent;
@@ -165,12 +100,24 @@
       background-color: @accent_color;
       border-color: @accent_color;
       color: @accent_fg_color;
+      -gtk-icon-source: -gtk-recolor(url("/usr/share/icons/Adwaita/scalable/ui/check-symbolic.svg"));
     }
 
     /* ── Main windows & backgrounds ──────────────── */
     window, dialog, .background, .content-pane {
       background-color: @bg_main;
       color: @fg_main;
+    }
+
+    headerbar, .titlebar {
+      background-color: @bg_surface;
+      color: @fg_heading;
+      border-bottom: 1px solid @border_inact;
+      padding: 4px 8px;
+    }
+    headerbar:backdrop, .titlebar:backdrop {
+      background-color: @bg_main;
+      color: @fg_dimmed;
     }
 
     /* ── Buttons ──────────────────────────────────── */
@@ -264,25 +211,14 @@
       background-color: @accent_color;
     }
 
-    /* ── Menus & Popovers Fix ─────────────────────── */
-    menu,
-    popover,
-    popover > contents,
-    popover.background > contents,
-    .menu {
-      background-color: @bg_surface !important;
-      color: @fg_main !important;
-      border: 1px solid @border_inact !important;
+    /* ── Menus & Popovers ─────────────────────────── */
+    menu, popover {
+      background-color: @bg_surface;
+      border: 1px solid @border_inact;
     }
-    popover list,
-    popover modelbutton {
-      background-color: transparent !important;
-      color: @fg_main !important;
-    }
-    menuitem:hover,
-    popover modelbutton:hover {
-      background-color: @bg_overlay !important;
-      color: @accent_color !important;
+    menuitem:hover {
+      background-color: @bg_overlay;
+      color: @accent_color;
     }
   '';
 
@@ -340,7 +276,7 @@ in {
           then 1
           else 0;
         gtk-theme-name = if vars.theme.dark then "adw-gtk3-dark" else "adw-gtk3";
-        gtk-decoration-layout = "";
+        gtk-decoration-layout = ""; # Скрывает кнопки заголовка
         gtk-enable-event-sounds = 0;
         gtk-enable-input-feedback-sounds = 0;
       };
@@ -350,7 +286,7 @@ in {
           then 1
           else 0;
         gtk-theme-name = if vars.theme.dark then "adw-gtk3-dark" else "adw-gtk3";
-        gtk-decoration-layout = "";
+        gtk-decoration-layout = ""; # Скрывает кнопки заголовка
       };
     };
   };
