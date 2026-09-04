@@ -5,35 +5,20 @@
 		# accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		# gaps = 8;
-		border = {
-			width = 2;
-			radius = 0;
-		};
-
-		# Optional — override raw palette values BEFORE the role mapping runs.
-		# colorOverrides = {
-		# 	accent.red = "#f67676";
-		# };
-		# Optional — override resolved role tree AFTER mapping. Highest priority.
-		# roleOverrides = {
-		# 	accent = "#f67676";
-		# 	ui.border.active = "#f67676";
-
-		# };
-
-		font = {
-			name = "CaskaydiaCove Nerd Font Mono";
-			size = 14;
-		};
-
-		opacity = 0.666; # 0.4627
-
+		opacity = 0.666;
+		liquid-glass.enable = true;
 		blur = {
 			enable = true;
 			xray.enable = false;
 		};
-
-		liquid-glass.enable = true;
+		border = {
+			width = 2;
+			radius = 0;
+		};
+		font = {
+			name = "CaskaydiaCove Nerd Font Mono";
+			size = 14;
+		};
 	};
 	user = {
 		fullName = "F0xy_C1pher";
@@ -61,13 +46,12 @@
 		"cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
 		"fonts"
 		"fuzzel"
+		"gtk"
+		"qt"
 		"waybar"
 		"media"
 		"fish"
 		"kitty"
-		# "ghostty"
-		# "wezterm"
-		# "rio"
 		"appimage"
 		"fastfetch"
 		"throne"

@@ -24,6 +24,21 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  fileSystems."/home/f/CoolStuff" =
+    { device = "/dev/disk/by-uuid/b0964288-b748-4f3e-b7c7-4b2b27ffdf35";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/etc" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  fileSystems."/home/f/Games" =
+    { device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
+      fsType = "btrfs";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/bc74dc23-8a48-4269-8436-529dde6fd2e0"; }
     ];

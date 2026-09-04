@@ -7,11 +7,9 @@
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {lib, ...}: let
-			ffVersion = config.programs.firefox.package.version;
-			rddEnabled =
-				if (lib.versionOlder ffVersion "97.0.0")
-				then true
-				else false;
+  		ffPkg = config.programs.firefox.package or null;
+      ffVersion = if ffPkg != null then ffPkg.version else "100.0.0";
+      rddEnabled = lib.versionOlder ffVersion "97.0.0";
 		in {
 			programs.firefox = {
 				profiles.${vars.user.fullName} = {
@@ -50,35 +48,11 @@
 						"browser.preferences.defaultPerformanceSettings.enabled" = false;
 						"gfx.webgpu.ignore-blocklist" = true;
 						"gfx.webrender.all" = true;
-
 						"gfx.webrender.enabled" = true;
-						# "gfx.webrender.svg-filter-effects" = true;
-						# "gfx.webrender.svg-filter-effects.also-convert-css-filters" = false;
-						# "gfx.webrender.svg-filter-effects.also-use-for-docshell-fecolormatrix" = false;
-						# "gfx.webrender.svg-filter-effects.feblend" = true;
-						# "gfx.webrender.svg-filter-effects.fecolormatrix" = true;
-						# "gfx.webrender.svg-filter-effects.fecomponenttransfer" = true;
-						# "gfx.webrender.svg-filter-effects.fecomposite" = true;
-						# "gfx.webrender.svg-filter-effects.feconvolvematrix" = true;
-						# "gfx.webrender.svg-filter-effects.fediffuselighting" = true;
-						# "gfx.webrender.svg-filter-effects.fedisplacementmap" = true;
-						# "gfx.webrender.svg-filter-effects.fedropshadow" = true;
-						# "gfx.webrender.svg-filter-effects.feflood" = true;
-						# "gfx.webrender.svg-filter-effects.fegaussianblur" = true;
-						# "gfx.webrender.svg-filter-effects.feimage" = true;
-						# "gfx.webrender.svg-filter-effects.femerge" = true;
-						# "gfx.webrender.svg-filter-effects.femorphology" = true;
-						# "gfx.webrender.svg-filter-effects.feoffset" = true;
-						# "gfx.webrender.svg-filter-effects.fespecularlighting" = true;
-						# "gfx.webrender.svg-filter-effects.fetile" = true;
-						# "gfx.webrender.svg-filter-effects.feturbulence" = true;
-						# "gfx.webrender.svg-filter-effects.opacity" = true;
-						# "gfx.webrender.svg-filter-effects.toalpha" = true;
 						"gfx.webrender.svg-images" = true;
 						"gfx.webrender.svg-shapes" = true;
 						"gfx.webrender.unaccelerated-widget.force" = false;
 						"gfx.webrender.use-optimized-shaders" = true;
-						"gfx.x11-egl.force-enabled" = true;
 						"media.ffmpeg.vaapi.enabled" = true;
 						"media.hardware-video-decoding.force-enabled" = true;
 						"media.rdd-ffmpeg.enabled" = rddEnabled;

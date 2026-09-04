@@ -22,6 +22,20 @@
 				interactiveShellInit = ''
 					tput cup (tput lines) 0
 					set -gx fish_greeting
+          if not set -q __tide_configured
+            tide configure --auto \
+              --style=Rainbow \
+              --prompt_colors='True color' \
+              --show_time='24-hour format' \
+              --rainbow_prompt_separators=Angled \
+              --powerline_prompt_heads=Sharp \
+              --powerline_prompt_tails=Flat \
+              --powerline_prompt_style='One line' \
+              --prompt_spacing=Compact \
+              --icons='Many icons' \
+              --transient=Yes > /dev/null 2>&1
+            set -U __tide_configured 1
+          end
 				'';
 				shellAliases = {
 					# ls = "eza --icons";
@@ -34,8 +48,6 @@
 					gl = "git log --oneline";
 				};
 				plugins = [
-					# Enable a plugin (here grc for colorized command output) from nixpkgs
-
 					{
 						name = "autopair";
 						src = pkgs.fishPlugins.autopair.src;
