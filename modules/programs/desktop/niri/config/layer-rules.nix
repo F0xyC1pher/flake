@@ -27,9 +27,10 @@
 				layer-rule {
 					match namespace="^launcher$"
 					match namespace="^waybar$"
+					match namespace="^gtk-layer-shell$"
 					shadow {
 						on
-						color "${vars.theme.style.accent}76"
+						color "${vars.theme.style.accent}${vars.theme.opacityHex}"
 						softness 16
 						spread 1
 						draw-behind-window false
@@ -40,6 +41,7 @@
 						layer-rule {
 							match namespace="^launcher$"
 							match namespace="^waybar$"
+							match namespace="^gtk-layer-shell$"
 							background-effect {
 								blur true
 							}
@@ -51,6 +53,7 @@
 						layer-rule {
 							match namespace="^launcher$"
 							match namespace="^waybar$"
+							match namespace="^gtk-layer-shell$"
 							background-effect {
 								xray false
 							}
@@ -62,6 +65,7 @@
 						layer-rule {
 							match namespace="^launcher$"
 							match namespace="^waybar$"
+							match namespace="^gtk-layer-shell$"
 							background-effect {
 								liquid-glass {
 									refraction-strength 1
