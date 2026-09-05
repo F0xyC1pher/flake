@@ -4,16 +4,15 @@
   vars,
   ...
 }: let
-ui = vars.theme.style.ui;   # ui tree
-text = vars.theme.style.text; # text tree
+  ui = vars.theme.style.ui;   # ui tree
+  text = vars.theme.style.text; # text tree
 
-# Значение прозрачности
-alpha = vars.theme.opacity;
+  # Значение прозрачности
+  alpha = vars.theme.opacity;
 
-# RGBA генератор
-hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opacity})";
+  # RGBA генератор
+  hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opacity})";
 
-  # Minimal role-based CSS color definitions
   # Color definitions with RGBA support for backgrounds
   colorDefs = ''
     /* ── Global Theme Overrides ───────────────────────────────── */
@@ -53,9 +52,8 @@ hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opa
     headerbar button.titlebutton.close,
     headerbar button.titlebutton.maximize,
     headerbar button.titlebutton.minimize,
-    windowcontrols button,
-    windowcontrols {
-      display: none !important;
+    windowcontrols button {
+      display: none;
     }
 
     /* ── Kill ugly grey focus frames & cards ──────── */
@@ -131,32 +129,7 @@ hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opa
       background-color: @bg_main;
       color: @fg_dimmed;
     }
-    /* ── Закрашивание правой (основной) шапки (Главная) ── */
-    toolbarview > headerbar,
-    .content-pane headerbar,
-    window > box > headerbar {
-      background-color: @bg_surface !important;
-      color: @fg_heading !important;
-    }
-    /* ── Toast Notifications ─────────────────────── */
-    toast,
-    .toast,
-    adwtoast {
-      background-color: @bg_surface !important;
-      color: @fg_main !important;
-      border: 1px solid @border_active !important;
-      box-shadow: none !important;
-    }
-    toast label,
-    .toast label {
-      color: @fg_main !important;
-    }
-    toast button,
-    .toast button {
-      background-color: @bg_overlay !important;
-      color: @fg_heading !important;
-      border: 1px solid @border_inact !important;
-    }
+
     /* ── Buttons ──────────────────────────────────── */
     button {
       background-color: @bg_surface;
@@ -248,14 +221,25 @@ hexToRgba = hex: opacity: "rgba(${vars.theme.hexToRgbString hex}, ${toString opa
       background-color: @accent_color;
     }
 
-    /* ── Menus & Popovers ─────────────────────────── */
-    menu, popover {
-      background-color: @bg_surface;
-      border: 1px solid @border_inact;
+    /* ── Menus & Popovers Fix ─────────────────────── */
+    menu,
+    popover,
+    popover > contents,
+    popover.background > contents,
+    .menu {
+      background-color: @bg_surface !important;
+      color: @fg_main !important;
+      border: 1px solid @border_inact !important;
     }
-    menuitem:hover {
-      background-color: @bg_overlay;
-      color: @accent_color;
+    popover list,
+    popover modelbutton {
+      background-color: transparent !important;
+      color: @fg_main !important;
+    }
+    menuitem:hover,
+    popover modelbutton:hover {
+      background-color: @bg_overlay !important;
+      color: @accent_color !important;
     }
   '';
 
