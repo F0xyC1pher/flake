@@ -1,4 +1,3 @@
-# lib/mkHost.nix
 {
 	lib,
 	inputs,
@@ -20,7 +19,7 @@
 		};
 
 	# 1. Сборка объекта vars через отдельный модуль
-	mkVars = import ./mkVars.nix {inherit lib themes;};
+	mkVars = import ./mk-vars.nix {inherit lib themes;};
 	vars = mkVars {inherit hostName hostMeta userCfg resolvedTheme;};
 
 	# 2. Инициализация системных и пользовательских программ
@@ -29,7 +28,7 @@
 	serviceModules = mkModules.importServices (modulesBase + "/services") (userCfg.services or []);
 
 	# 3. Генерация списка активных модулей системы
-	mkSystemModules = import ./mkSystemModules.nix {inherit lib inputs;};
+	mkSystemModules = import ./mk-system-modules.nix {inherit lib inputs;};
 	systemModules =
 		mkSystemModules {
 			inherit hostPath userCfg vars programModules serviceModules mkModules;

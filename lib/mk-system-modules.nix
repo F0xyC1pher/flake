@@ -1,4 +1,3 @@
-# lib/mkSystemModules.nix
 {
 	lib,
 	inputs,
@@ -45,7 +44,6 @@ in
 				backupFileExtension = "backup";
 				extraSpecialArgs = {inherit inputs vars;};
 
-				# Теперь hasProgram "nixcord" выдает true АВТОМАТИЧЕСКИ, когда импортирована "media"!
 				sharedModules =
 					[]
 					++ lib.optional (hasProgram "nixcord") inputs.nixcord.homeModules.nixcord

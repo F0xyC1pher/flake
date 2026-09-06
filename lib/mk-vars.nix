@@ -1,4 +1,3 @@
-# lib/mkVars.nix
 {
 	lib,
 	themes,

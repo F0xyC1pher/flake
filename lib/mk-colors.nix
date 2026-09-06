@@ -1,6 +1,5 @@
-# lib/base16To56.nix
 {lib}: let
-	colorUtils = import ./colorUtils.nix {inherit lib;};
+	colorUtils = import ./color-utils.nix {inherit lib;};
 	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb getContrastingFg;
 in
 	rawColors:
@@ -69,7 +68,6 @@ in
 
 			processed = lib.mapAttrs genAccentGroup normalAccents;
 		in {
-			# Двойной маппинг для 100% совместимости с ролями и классическим base16
 			base = {
 				"0" = base00;
 				"00" = base00;
