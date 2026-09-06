@@ -1,9 +1,8 @@
-# lib/mkTheme.nix
 {lib, ...}: let
 	themesDir = ../themes;
-	base16Convert = import ./base16To56.nix {inherit lib;};
-	colorUtils = import ./colorUtils.nix {inherit lib;};
-	defaultThemeStyle = import ./defaultThemeStyle.nix;
+	mkColors = import ./mk-colors.nix {inherit lib;};
+	colorUtils = import ./color-utils.nix {inherit lib;};
+	defaultThemeStyle = import ./default-theme-style.nix;
 
 	inherit
 		(colorUtils)
@@ -78,7 +77,7 @@
 				color = "red";
 			};
 	in {
-		colors = base16Convert rawColors;
+		colors = mkColors rawColors;
 		themeFn = defaultThemeStyle;
 		inherit defaultAccent;
 	};
