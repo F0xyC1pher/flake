@@ -25,7 +25,7 @@
 				};
 			};
 			output = {
-				rate.value = 96000;
+				rate.value = 192000;
 				format = {
 					prefix = "F"; # F S
 					value = 32;

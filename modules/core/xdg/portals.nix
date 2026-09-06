@@ -68,8 +68,8 @@
 		lib,
 		...
 	}: {
-		xdg = {
-			portal = {
+		xdg.portal =
+			lib.mkForce {
 				enable = true;
 				xdgOpenUsePortal = true;
 				extraPortals = [
@@ -86,6 +86,5 @@
 					};
 				};
 			};
-		};
 	};
 }
