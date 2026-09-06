@@ -1,4 +1,3 @@
-# lib/colorUtils.nix
 {lib}: let
 	absVal = x:
 		if x < 0
@@ -122,7 +121,6 @@
 		l = lightness;
 	};
 
-	# WCAG 2.1 Relative Luminance
 	luminance = hex: let
 		rgb = hexToRgb hex;
 		calcChannel = c: let
