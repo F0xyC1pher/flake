@@ -47,7 +47,7 @@
 					confirm_os_window_close = "0";
 
 					background_opacity = "${toString vars.theme.opacity}";
-					background_blur = lib.mkIf (vars.theme.blur.enable) 1;
+					background_blur = 0;
 
 					# ── Tab bar ────────────────────────────────────────────────────────
 					tab_bar_edge = "top";

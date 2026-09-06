@@ -39,7 +39,8 @@
 		};
 		shojiwm.url = "github:bea4dev/ShojiWM";
 
-		# vimium-options.url = "github:uimataso/vimium-nixos";
+		vimium-options.url = "github:uimataso/vimium-nixos";
+		nixvim.url = "github:nix-community/nixvim";
 
 		# lunar-client.url = "github:clonidine/lunar-client-flake";
 
@@ -161,11 +162,6 @@
 		# };
 
 		# ── Git sources with submodules ──────────────────────────────────────────
-		# queercat = {
-		#   url = "https://github.com/Elsa002/queercat";
-		#   type = "git";
-		#   submodules = true;
-		# };
 		# pawbar = {
 		#   url = "https://github.com/nekorg/pawbar";
 		#   type = "git";

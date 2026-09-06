@@ -24,10 +24,12 @@
 					match namespace="dms:blurwallpaper"
 					place-within-backdrop true
 				}
+
 				layer-rule {
 					match namespace="^launcher$"
 					match namespace="^waybar$"
 					match namespace="^gtk-layer-shell$"
+
 					shadow {
 						on
 						color "${vars.theme.style.accent}${vars.theme.opacityHex}"
@@ -35,45 +37,18 @@
 						spread 1
 						draw-behind-window false
 					}
-				}
-				${
-					lib.optionalString (vars.theme.blur.enable) ''
-						layer-rule {
-							match namespace="^launcher$"
-							match namespace="^waybar$"
-							match namespace="^gtk-layer-shell$"
-							background-effect {
-								blur true
-							}
-						}
-					''
-				}
-				${
-					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
-						layer-rule {
-							match namespace="^launcher$"
-							match namespace="^waybar$"
-							match namespace="^gtk-layer-shell$"
-							background-effect {
-								xray false
-							}
-						}
-					''
-				}
-				${
-					lib.optionalString (vars.theme.liquid-glass.enable) ''
-						layer-rule {
-							match namespace="^launcher$"
-							match namespace="^waybar$"
-							match namespace="^gtk-layer-shell$"
-							background-effect {
+					${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
+						background-effect {
+						${lib.optionalString vars.theme.blur.enable "blur true"}
+						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
+						${lib.optionalString vars.theme.liquid-glass.enable ''
 								liquid-glass {
 									refraction-strength 1
 									power-factor 1
 									refraction-power 1
-									glow-weight 0
+									glow-weight 0.1
 									edge-lighting 1
-									saturation 1.1
+									saturation 1
 									vibrancy 1
 									adaptive-dim 0
 									adaptive-boost 0
@@ -81,9 +56,9 @@
 									lens-distortion 1
 									fringing 1
 								}
-							}
+							''}
 						}
-					''
+					''}
 				}
 			'';
 		};
