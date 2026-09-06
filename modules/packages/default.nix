@@ -86,7 +86,7 @@
 		btrfs-progs
 		obsidian
 		gitui
-		github-cli
+		# github-cli
 		git-credential-keepassxc
 		color-lsp
 		nixd
@@ -146,7 +146,7 @@
 		rmtrash
 		# tor-browser
 		# teamspeak6-client
-		# inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
+		inputs.ayugram-desktop.packages.${stdenv.hostPlatform.system}.default
 		inputs.nyoom.packages.${stdenv.hostPlatform.system}.nyoom
 		inputs.niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
 		# inputs.driftwm.packages.x86_64-linux.default
