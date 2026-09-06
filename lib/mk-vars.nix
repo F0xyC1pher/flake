@@ -1,7 +1,6 @@
 {
 	lib,
 	themes,
-	...
 }: {
 	hostName,
 	hostMeta,

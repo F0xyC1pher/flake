@@ -221,11 +221,11 @@
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 
-		mkModules = import ./lib/mkModules.nix {inherit lib;};
-		themes = import ./lib/mkTheme.nix {inherit lib;};
+		mkModules = import ./lib/mk-modules.nix {inherit lib;};
+		themes = import ./lib/mk-theme.nix {inherit lib;};
 
 		mkHost =
-			import ./lib/mkHost.nix {
+			import ./lib/mk-host.nix {
 				inherit
 					lib
 					inputs
