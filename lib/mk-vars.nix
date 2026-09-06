@@ -20,17 +20,19 @@ in {
 
 	app =
 		userCfg.app or {
-			gui = {
-				browser = "firefox";
-				file-manager = "yazi";
-				launcher = "fuzzel";
-				text-editor = "zeditor";
-			};
 			terminal = "kitty";
-			tui = {
-				browser = "lyx";
-				file-manager = "yazi";
-				text-editor = "micro";
+			launcher = "fuzzel";
+			file-manager = {
+				tui = "yazi";
+				gui = null;
+			};
+			browser = {
+				tui = "lyx";
+				gui = "firefox";
+			};
+			text-editor = {
+				tui = "micro";
+				gui = "zeditor";
 			};
 		};
 

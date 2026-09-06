@@ -46,6 +46,7 @@ in
 
 				sharedModules =
 					[]
+					++ lib.optional (hasProgram "nixvim") inputs.nixvim.homeModules.nixvim
 					++ lib.optional (hasProgram "nixcord") inputs.nixcord.homeModules.nixcord
 					++ lib.optional (hasProgram "flatpak" || hasService "flatpak") inputs.nix-flatpak.homeManagerModules.nix-flatpak
 					++ lib.optional (hasProgram "dms") inputs.dms.homeModules.dank-material-shell;

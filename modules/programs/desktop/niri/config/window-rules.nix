@@ -21,75 +21,68 @@
 					draw-border-with-background false
 				}
 
-				${
-					# Вставляем правило только если блюр включен, а xray специально выключен в vars
-					lib.optionalString (vars.theme.blur.enable) ''
-						window-rule {
-							match app-id="^dev.zed.Zed$"
-							match app-id="^firefox-nightly$"
-							match app-id="^zen-twilight$"
-							match app-id="^codium$"
-							match app-id="^discord$"
-							match app-id="^(org|com).*gram.desktop$"
-							match app-id="^com.mitchellh.ghostty$"
-							background-effect {
-								blur true
-							}
-						}
-					''
-				}
-				${
-					# Вставляем правило только если блюр включен, а xray специально выключен в vars
-					lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) ''
+				${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
+						// Глобальное включение визуальных эффектов размытия / стекла
 						window-rule {
 							background-effect {
-								xray false
-							}
-						}
-					''
-				}
-				${
-					lib.optionalString (vars.theme.liquid-glass.enable) ''
-						window-rule {
-							match app-id="^dev.zed.Zed$"
-							match app-id="^firefox-nightly$"
-							match app-id="^zen-twilight$"
-							match app-id="^codium$"
-							match app-id="^discord$"
-							match app-id="^(org|com).*gram.desktop$"
-							match app-id="^kitty$"
-							match app-id="^com.mitchellh.ghostty$"
-							match app-id="^rio$"
-							background-effect {
+								${lib.optionalString vars.theme.blur.enable "blur true"}
+								${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
+								${lib.optionalString vars.theme.liquid-glass.enable ''
 								liquid-glass {
 									refraction-strength 1
 									power-factor 1
 									refraction-power 1
-									glow-weight 0
+									glow-weight 0.1
 									edge-lighting 1
-									saturation 1.1
-									vibrancy 1.666
+									saturation 1
+									vibrancy 1
 									adaptive-dim 0
 									adaptive-boost 0
 									physical-refraction 1
 									lens-distortion 1
 									fringing 1
 								}
+							''}
 							}
 						}
-					''
-				}
+					''}
+
+				${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
+						window-rule {
+							match app-id=r"^steam_app_"
+							match app-id="heroic"
+							match app-id="lutris"
+							match app-id="org.prismlauncher.PrismLauncher"
+							match app-id="org.freesmlauncher.FreesmLauncher"
+							match title=r"(?i)game|steam"
+
+							background-effect {
+								${lib.optionalString vars.theme.blur.enable "blur false"}
+								${lib.optionalString vars.theme.liquid-glass.enable ''
+								liquid-glass {
+									refraction-strength 0
+									power-factor 1
+									refraction-power 0
+									glow-weight 0
+									edge-lighting 0
+									saturation 0
+									vibrancy 0
+									adaptive-dim 0
+									adaptive-boost 0
+									physical-refraction 0
+									lens-distortion 0
+									fringing 0
+								}
+							''}
+							}
+						}
+					''}
 				// Steam Notifications in right-down corner and without focus
 				window-rule {
 					match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
 					default-floating-position x=10 y=10 relative-to="bottom-right"
 					open-floating true
 					open-focused false
-				}
-
-				window-rule {
-					match app-id="blobdrop"
-					open-floating true
 				}
 
 				window-rule {
@@ -102,9 +95,8 @@
 				}
 
 				// Indicate active windows with red colors.
-				 window-rule {
-						match is-active=true
-
+				window-rule {
+					match is-active=true
 					shadow {
 						on
 						color "${vars.theme.style.accent}76"

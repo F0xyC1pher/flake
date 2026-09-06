@@ -11,7 +11,7 @@
 				* {
 					font-family: "${vars.theme.font.name}";
 					font-weight: 400;
-					font-size: 14pt;
+					font-size: ${toString vars.theme.font.size}pt;
 					border-radius: 0px;
 				}
 
