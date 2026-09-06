@@ -8,11 +8,9 @@
 			server_names = [
 				"cloudflare"
 			];
-			# Force DoH and DNSCrypt, disable plain old DNS
 			doh_servers = true;
 			dnscrypt_servers = true;
 
-			# Ensure we are using encrypted protocols only
 			require_nolog = true;
 			require_dnssec = true;
 

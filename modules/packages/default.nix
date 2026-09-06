@@ -9,8 +9,8 @@
 		./jdk.nix
 	];
 	services.displayManager.sessionPackages = [
-	# inputs.driftwm.packages.x86_64-linux.default
-	inputs.niri-glass.packages.x86_64-linux.default
+		# inputs.driftwm.packages.x86_64-linux.default
+		inputs.niri-glass.packages.x86_64-linux.default
 	];
 	environment.systemPackages = with pkgs; [
 		(
@@ -32,12 +32,13 @@
 			then "amd"
 			else "full"
 		}
-
+		aseprite
 		curl-impersonate
 		curlFull
 		qt6Packages.qt6ct
 		qt6Packages.qtstyleplugin-kvantum
 		# themix-gui
+		wpgtk
 		unzip
 		zip
 		p7zip
