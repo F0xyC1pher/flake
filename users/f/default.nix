@@ -28,7 +28,7 @@
 		shell = "fish"; # fish zsh bash brush
 	};
 	system = {
-		modKey = "Mod4"; # Super
+		modKey = "Super"; # Super Mod4
 		desktopShell = "custom"; # custom dms noctalia
 	};
 	programs = [
@@ -38,7 +38,7 @@
 		"micro"
 		"nh"
 		"niri"
-		# "hyprland"
+		"hyprland"
 		"no-gnome"
 		"xwayland"
 		"dev"
@@ -56,10 +56,11 @@
 		"fastfetch"
 		"throne"
 		"swaylock"
+		"dconf"
 		# "skwd-wall"
 	];
 	services = [
-		"displayManager"
+		"display-manager"
 		"polkit-service"
 		"accounts-daemon"
 		"arrpc"
