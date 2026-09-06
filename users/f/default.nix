@@ -17,7 +17,23 @@
 		};
 		font = {
 			name = "CaskaydiaCove Nerd Font Mono";
-			size = 14;
+			size = 12;
+		};
+	};
+	app = {
+		terminal = "kitty";
+		launcher = "fuzzel";
+		file-manager = {
+			tui = "yazi";
+			gui = null;
+		};
+		browser = {
+			gui = "firefox";
+			tui = "lyx";
+		};
+		text-editor = {
+			gui = "zeditor";
+			tui = "micro";
 		};
 	};
 	user = {
@@ -57,6 +73,7 @@
 		"throne"
 		"swaylock"
 		"dconf"
+		"nixvim"
 		# "skwd-wall"
 	];
 	services = [
