@@ -1,5 +1,6 @@
 {
 	inputs,
+	pkgs,
 	vars,
 	...
 }: {
@@ -13,6 +14,10 @@
 						name = "${vars.user.gitName}";
 						email = "${vars.user.mail}";
 					};
+					# extraConfig = {
+					# 	"credential \"https://github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+					# 	"credential \"https://gist.github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+					# };
 					init.defaultBranch = "master";
 					pull.rebase = false;
 				};
