@@ -28,19 +28,19 @@
 						"org.freedesktop.impl.portal.Settings" = ["gtk"];
 					};
 					niri = {
-						default = ["termfilechooser" "gtk"];
+						default = ["termfilechooser" "niri" "gtk"];
 						"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
 						"org.freedesktop.impl.portal.ScreenCast" = ["niri"];
 						"org.freedesktop.impl.portal.Settings" = ["gtk"];
 					};
 					Hyprland = {
-						default = ["termfilechooser" "gtk"];
+						default = ["termfilechooser" "hyprland" "gtk"];
 						"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
 						"org.freedesktop.impl.portal.ScreenCast" = ["hyprland"];
 						"org.freedesktop.impl.portal.Settings" = ["gtk"];
 					};
 					umbriel = {
-						default = ["termfilechooser" "gtk"];
+						default = ["termfilechooser" "umbriel" "gtk"];
 						"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
 						"org.freedesktop.impl.portal.ScreenCast" = ["umbriel"];
 						"org.freedesktop.impl.portal.Settings" = ["gtk"];

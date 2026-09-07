@@ -56,6 +56,7 @@
 		"niri"
 		"hyprland"
 		"umbriel"
+		# "noctalia"
 		"no-gnome"
 		"xwayland"
 		"dev"
