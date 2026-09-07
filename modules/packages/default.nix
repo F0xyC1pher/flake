@@ -34,6 +34,7 @@
 			# wpgtk
 			# tor-browser
 			# teamspeak6-client
+			vscode-langservers-extracted
 			aseprite
 			curl-impersonate
 			curlFull
