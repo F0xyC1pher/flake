@@ -149,7 +149,7 @@
 			# # inputs.driftwm.packages.x86_64-linux.default
 			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 		]
-		++ lib.optionals isNvidia [
+		++ lib.optionals vars.hardware.video.driver.nvidia.enable [
 			nvidia-vaapi-driver
 		];
 }
