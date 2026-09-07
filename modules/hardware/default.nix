@@ -1,7 +1,7 @@
 {vars, ...}: {
 	imports =
 		[
-			./nvidia
+			./video
 			./boot
 			./bluetooth.nix
 			./power.nix
