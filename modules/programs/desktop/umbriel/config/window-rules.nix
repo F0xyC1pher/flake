@@ -40,6 +40,14 @@
 					vrr = "always";
 				}
 				{
+					match = {
+						app_id = "steam";
+						title = "^notificationtoasts_\\d+_desktop$";
+					};
+					default_floating = true;
+					focus = false;
+				}
+				{
 					match.app_id = "^org\\.keepassxc\\.KeePassXC$";
 					block_out_from = "screen-capture";
 				}
