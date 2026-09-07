@@ -12,8 +12,11 @@
 		wifi.enable = true;
 		zram.enable = false;
 		cpu.governor = "performance";
-		kernel.name = "xanmod_latest"; # xanmod, zen, hardened, latest
 		parallels.enable = true;
+		kernel = {
+			name = "xanmod_latest"; # xanmod_latest, zen_latest, hardened, latest
+			# modules = [];
+		};
 		audio = {
 			input = {
 				noiseCancellation = true;
