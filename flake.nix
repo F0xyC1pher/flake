@@ -62,13 +62,11 @@
 
 		nixcord.url = "github:FlameFlag/nixcord";
 
-		# dms = {
-		# 	url = "github:AvengeMedia/DankMaterialShell/stable";
-		# 	inputs.nixpkgs.follows = "nixpkgs";
-		# };
-		noctalia = {
-			url = "github:noctalia-dev/noctalia";
+		dms = {
+			url = "github:AvengeMedia/DankMaterialShell/stable";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		noctalia.url = "github:noctalia-dev/noctalia";
 		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 		niri-screenshare.url = "github:pantarune/niri-screenshare";
