@@ -4,12 +4,11 @@
 	vars,
 	...
 }: let
-	ne = vars.hardware.nvidia.enable;
-	persistence = vars.hardware.nvidia.perf.persistence;
-	perf = vars.hardware.nvidia.perf.value;
-	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.hardware.nvidia.package};
+	persistence = vars.hardware.video.driver.nvidia.perf.persistence;
+	perf = vars.hardware.video.driver.nvidia.perf.value;
+	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.hardware.video.driver.nvidia.package};
 
-	enableService = ne && (persistence == true || (perf != null && perf != false));
+	enableService = (persistence == true) || (perf != null && perf != false);
 in {
 	systemd.services.nvidia-auto = {
 		description = "NVIDIA Auto Power and Clock Setup";

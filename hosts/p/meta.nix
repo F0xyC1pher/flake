@@ -34,15 +34,25 @@
 			};
 		};
 		video = {
-			resolution = "1600x900";
-			amd = {enable = false;};
-			nvidia = {
-				enable = true;
-				package = "legacy_580"; # "latest" "legacy_580" "legacy_470"
-				perf = {
-					# true для максимума | число для указания Ватт | "строка" процент Ватт от максимума | false | null
-					value = true;
-					persistence = true;
+			output = {
+				name = "HDMI-A-1";
+				resolution = "1600x900";
+				framerate = "60.000";
+			};
+			driver = {
+				amd = {
+					enable = false;
+					type = "modern"; # modern - for new like RX ; legacy - for old like Radeon
+				};
+				nvidia = {
+					enable = true;
+					package = "legacy_580"; # "latest" "legacy_580" "legacy_470"
+					open = false;
+					perf = {
+						# true для максимума | число для указания Ватт | "строка" процент Ватт от максимума | false | null
+						value = true;
+						persistence = true;
+					};
 				};
 			};
 		};
