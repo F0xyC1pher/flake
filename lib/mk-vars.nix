@@ -6,18 +6,32 @@
 	hostMeta,
 	userCfg,
 	resolvedTheme,
+	modulesBase, # Берем путь из аргументов
+	mkModules,
 }: let
 	userName = hostMeta.user;
+
+	rawPrograms = userCfg.programs or [];
+	rawServices = userCfg.services or [];
+
+	activePrograms = mkModules.resolveActiveNames (modulesBase + "/programs") rawPrograms;
+	activeServices = mkModules.resolveActiveNames (modulesBase + "/services") rawServices;
 in {
+	hasProgram = p: lib.elem p activePrograms;
+	hasService = s: lib.elem s activeServices;
+
+	host = hostMeta.host;
+	hardware = hostMeta.hardware;
+	system = userCfg.system or {};
+
 	user = {
 		name = userName;
-		fullName = userCfg.user.fullName or userCfg.userFullName or userName;
+		fullName = userCfg.user.fullName or userName;
 		gitName = userCfg.user.gitName or (userCfg.user.fullName or userName);
 		mail = userCfg.user.mail or "";
 		password = userCfg.user.password or userCfg.userPassword or null;
 		shell = userCfg.user.shell or userCfg.shell or "fish";
 	};
-
 	app =
 		userCfg.app or {
 			terminal = "kitty";
@@ -41,6 +55,14 @@ in {
 		accentLevel = resolvedTheme.accentLevel;
 		accentColor = resolvedTheme.accentColor;
 		dark = userCfg.theme.dark or resolvedTheme.isDark;
+		opacity = userCfg.theme.opacity or 1.0;
+		opacityHex = themes.opacityToHex userCfg.theme.opacity;
+		hexToRgb = themes.hexToRgb;
+		hexToRgbString = themes.hexToRgbString;
+		liquid-glass = userCfg.theme.liquid-glass or false;
+		style = resolvedTheme.theme;
+		colors = resolvedTheme.colors;
+
 		border =
 			userCfg.theme.border or {
 				width = 2;
@@ -51,21 +73,10 @@ in {
 				name = "CaskaydiaCove Nerd Font Mono";
 				size = 14;
 			};
-		opacity = userCfg.theme.opacity or 1.0;
-		opacityHex = themes.opacityToHex userCfg.theme.opacity;
-		hexToRgb = themes.hexToRgb;
-		hexToRgbString = themes.hexToRgbString;
 		blur =
 			userCfg.theme.blur or {
 				enable = false;
 				xray.enable = false;
 			};
-		liquid-glass = userCfg.theme.liquid-glass or false;
-		style = resolvedTheme.theme;
-		colors = resolvedTheme.colors;
 	};
-
-	host = hostMeta.host;
-	hardware = hostMeta.hardware;
-	system = userCfg.system or {};
 }
