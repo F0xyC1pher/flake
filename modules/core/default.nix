@@ -6,9 +6,10 @@
 		./locale.nix
 		./man.nix
 		./network.nix
+		./nix.nix
 		./nix-init.nix
 		#./nix-ld.nix
-		./nix.nix
+		./nixpkgs.nix
 		./ssh.nix
 		# ./systemd.nix
 		./time.nix

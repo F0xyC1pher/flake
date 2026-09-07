@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+	vars,
+	inputs,
+	...
+}: {
 	imports = [
 		# ../../common/cpu/amd
 		# ../../common/cpu/amd/raphael/igpu.nix
@@ -19,4 +23,11 @@
 		./battery.nix
 		./hardware-configuration.nix
 	];
+	system.stateVersion = "26.11";
+	home-manager = {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {...}: {
+			home.stateVersion = "26.11";
+		};
+	};
 }

@@ -52,8 +52,7 @@
 							match app-id=r"^steam_app_"
 							match app-id="heroic"
 							match app-id="lutris"
-							match app-id="org.prismlauncher.PrismLauncher"
-							match app-id="org.freesmlauncher.FreesmLauncher"
+							match app-id="Minecraft"
 							background-effect {
 								${lib.optionalString vars.theme.blur.enable "blur false"}
 								${lib.optionalString vars.theme.liquid-glass.enable ''
