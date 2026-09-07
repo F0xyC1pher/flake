@@ -18,16 +18,14 @@
 			accentColor = userCfg.theme.accentColor or userCfg.theme.color or userCfg.theme.accent or null;
 		};
 
-	# 1. Сборка объекта vars через отдельный модуль
-	mkVars = import ./mk-vars.nix {inherit lib themes;};
-	vars = mkVars {inherit hostName hostMeta userCfg resolvedTheme;};
-
-	# 2. Инициализация системных и пользовательских программ
 	modulesBase = ./../modules;
+
+	mkVars = import ./mk-vars.nix {inherit lib themes;};
+	vars = mkVars {inherit hostName hostMeta userCfg resolvedTheme modulesBase mkModules;};
+
 	programModules = mkModules.importPrograms (modulesBase + "/programs") (userCfg.programs or []);
 	serviceModules = mkModules.importServices (modulesBase + "/services") (userCfg.services or []);
 
-	# 3. Генерация списка активных модулей системы
 	mkSystemModules = import ./mk-system-modules.nix {inherit lib inputs;};
 	systemModules =
 		mkSystemModules {
