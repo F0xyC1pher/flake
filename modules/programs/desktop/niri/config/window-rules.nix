@@ -54,8 +54,6 @@
 							match app-id="lutris"
 							match app-id="org.prismlauncher.PrismLauncher"
 							match app-id="org.freesmlauncher.FreesmLauncher"
-							match title=r"(?i)game|steam"
-
 							background-effect {
 								${lib.optionalString vars.theme.blur.enable "blur false"}
 								${lib.optionalString vars.theme.liquid-glass.enable ''

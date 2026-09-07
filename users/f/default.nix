@@ -55,6 +55,7 @@
 		"nh"
 		"niri"
 		"hyprland"
+		"umbriel"
 		"no-gnome"
 		"xwayland"
 		"dev"

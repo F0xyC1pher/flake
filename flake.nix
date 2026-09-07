@@ -38,6 +38,8 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		shojiwm.url = "github:bea4dev/ShojiWM";
+		umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
+		xdg-desktop-portal-umbriel.url = "git+https://github.com/noctalia-dev/xdg-desktop-portal-umbriel";
 
 		vimium-options.url = "github:uimataso/vimium-nixos";
 		nixvim.url = "github:nix-community/nixvim";
