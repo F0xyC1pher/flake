@@ -169,11 +169,6 @@
 		#   type = "git";
 		#   submodules = true;
 		# };
-		ayugram-desktop = {
-			url = "https://github.com/ndfined-crp/ayugram-desktop/";
-			type = "git";
-			submodules = true;
-		};
 		rofi-polkit-agent = {
 			url = "https://github.com/Zebra2711/rofi-polkit-agent";
 			type = "git";

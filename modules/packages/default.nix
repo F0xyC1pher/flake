@@ -6,17 +6,11 @@
 	...
 }: {
 	imports = [
-		./neu-nix.nix
 		./jdk.nix
+		./neu-nix.nix
+		./session-packages.nix
+		./wine.nix
 	];
-
-	services.displayManager.sessionPackages =
-		[]
-		++ lib.optional (vars.hasProgram "niri") inputs.niri-glass.packages.${pkgs.stdenv.hostPlatform.system}.default
-		++ lib.optional (vars.hasProgram "hyprland") inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
-		++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.${pkgs.stdenv.hostPlatform.system}.default
-		++ lib.optional (vars.hasProgram "umbriel") inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default;
-
 	environment.systemPackages = with pkgs;
 		[
 			(
@@ -34,10 +28,10 @@
 				then "amd"
 				else "full"
 			}
-			# themix-gui
-			# wpgtk
-			# tor-browser
-			# teamspeak6-client
+			themix-gui
+			wpgtk
+			tor-browser
+			teamspeak6-client
 			vscode-langservers-extracted
 			aseprite
 			curl-impersonate
@@ -130,11 +124,6 @@
 			extract-dtb
 			r2modman
 			yetris
-			wineWow64Packages.stagingFull
-			wineWow64Packages.waylandFull
-			wineWow64Packages.fonts
-			wineasio
-			winetricks
 			discordo
 			discord-gamesdk
 			rustdesk-flutter
@@ -145,16 +134,17 @@
 			rmtrash
 			ayugram-desktop
 
-			# inputs.ayugram-desktop.packages.${system}.default
 			(inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
 					jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
 				})
 			inputs.nyoom.packages.${pkgs.stdenv.hostPlatform.system}.nyoom
 			inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
-			# # inputs.driftwm.packages.x86_64-linux.default
 			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 		]
 		++ lib.optionals vars.hardware.video.driver.nvidia.enable [
 			nvidia-vaapi-driver
+		]
+		++ lib.optionals (vars.hasProgram "driftwm") [
+			inputs.driftwm.packages.x86_64-linux.default
 		];
 }

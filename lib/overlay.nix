@@ -9,12 +9,12 @@
 	files =
 		lib.filterAttrs
 		(name: type: type == "regular" && builtins.match "^[^_].*\\.nix$" name != null)
-		(builtins.readDir ../modules/packages/custom);
+		(builtins.readDir ../modules/custom-packages);
 in
 	builtins.foldl'
 	(acc: name: let
 			pkgName = lib.removeSuffix ".nix" name;
-			value = final.callPackage ../modules/packages/custom/${name} {inherit inputs;};
+			value = final.callPackage ../modules/custom-packages/${name} {inherit inputs;};
 		in
 			acc // {"${pkgName}" = value;})
 	{}
