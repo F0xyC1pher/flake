@@ -48,17 +48,18 @@
 		desktopShell = "custom"; # custom dms noctalia
 	};
 	programs = [
-		"firefox"
-		"yazi"
+		"xwayland"
 		"git"
-		"micro"
-		"nh"
 		"niri"
 		"hyprland"
-		"umbriel"
+		# "umbriel"
 		# "noctalia"
+		# "dms"
+		"yazi"
+		"micro"
+		"firefox"
 		"no-gnome"
-		"xwayland"
+		"nh"
 		"dev"
 		"gayming"
 		"cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
