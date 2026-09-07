@@ -30,25 +30,25 @@
           */
 					"title_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
 					"title_bar.inactive_background" = "${style.ui.bg}${vars.theme.opacityHex}";
-					"toolbar.background" = "#00000000";
+					"toolbar.background" = "${style.ui.bg}00";
 
 					/*
           Редактор кода
           */
 					"editor.active_line.background" = "${style.ui.border.inactive}${vars.theme.opacityHex}";
 					"editor.active_line_number" = style.text.heading;
-					"editor.background" = "#00000000";
-					"editor.gutter.background" = "#00000000";
+					"editor.background" = "${style.ui.bg}00";
+					"editor.gutter.background" = "${style.ui.bg}00";
 					"editor.line_number" = style.text.comment;
 
 					/*
           Панели и файлы
           */
-					"drop_target.background" = "#00000000";
-					"file_scan.background" = "#00000000";
+					"drop_target.background" = "${style.ui.bg}00";
+					"file_scan.background" = "${style.ui.bg}00";
 					"panel.background" = "${style.ui.bg}00";
 					"panel.focused_border" = style.ui.border.active;
-					"project_panel.background" = "#00000000";
+					"project_panel.background" = "${style.ui.bg}00";
 
 					/*
           Табы и статусбар
@@ -63,12 +63,12 @@
           */
 					"element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
 					"element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
-					"ghost_element.background" = "#00000000";
+					"ghost_element.background" = "${style.ui.bg}00";
 					"ghost_element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
 					"ghost_element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
 					"list.active_item" = "${style.ui.surface}${vars.theme.opacityHex}";
 					"list.hover_item" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"list.inactive_item" = "#00000000";
+					"list.inactive_item" = "${style.ui.bg}00";
 
 					/*
           Текст
