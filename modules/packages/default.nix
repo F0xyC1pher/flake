@@ -11,6 +11,9 @@
 
 	services.displayManager.sessionPackages = [
 		inputs.niri-glass.packages.${pkgs.stdenv.hostPlatform.system}.default
+		inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
+		inputs.driftwm.packages.${pkgs.stdenv.hostPlatform.system}.default
+		inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default
 	];
 
 	environment.systemPackages = with pkgs;

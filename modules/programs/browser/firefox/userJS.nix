@@ -6,11 +6,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {lib, ...}: let
-  		ffPkg = config.programs.firefox.package or null;
-      ffVersion = if ffPkg != null then ffPkg.version else "100.0.0";
-      rddEnabled = lib.versionOlder ffVersion "97.0.0";
-		in {
+		users.${vars.user.name} = {lib, ...}: {
 			programs.firefox = {
 				profiles.${vars.user.fullName} = {
 					settings = {
@@ -51,11 +47,11 @@
 						"gfx.webrender.enabled" = true;
 						"gfx.webrender.svg-images" = true;
 						"gfx.webrender.svg-shapes" = true;
-						"gfx.webrender.unaccelerated-widget.force" = false;
+						# "gfx.webrender.unaccelerated-widget.force" = false;
 						"gfx.webrender.use-optimized-shaders" = true;
 						"media.ffmpeg.vaapi.enabled" = true;
-						"media.hardware-video-decoding.force-enabled" = true;
-						"media.rdd-ffmpeg.enabled" = rddEnabled;
+						"media.hardware-video-decoding.force-enabled" = false;
+						"media.rdd-ffmpeg.enabled" = true;
 
 						# --- Синхронизация и аккаунт ---
 						"identity.fxaccounts.account.device.name" = "${vars.user.name}@${vars.host}";
