@@ -5,12 +5,12 @@
 	inputs,
 	...
 }: {
-	imports = [
-		./jdk.nix
-		./neu-nix.nix
-		./session-packages.nix
-		./wine.nix
-	];
+	# imports = [
+	# 	./jdk.nix
+	# 	./neu-nix.nix
+	# 	./session-packages.nix
+	# 	./wine.nix
+	# ];
 	environment.systemPackages = with pkgs;
 		[
 			(

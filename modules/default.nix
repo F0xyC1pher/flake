@@ -2,6 +2,5 @@
 	imports = [
 		./core
 		./hardware
-		./packages
 	];
 }
