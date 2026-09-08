@@ -25,11 +25,12 @@
 
 	programModules = mkModules.importPrograms (modulesBase + "/programs") (userCfg.programs or []);
 	serviceModules = mkModules.importServices (modulesBase + "/services") (userCfg.services or []);
+	packageModules = mkModules.importPackages (modulesBase + "/packages") (userCfg.packages or []);
 
 	mkSystemModules = import ./mk-system-modules.nix {inherit lib inputs;};
 	systemModules =
 		mkSystemModules {
-			inherit hostPath userCfg vars programModules serviceModules mkModules;
+			inherit hostPath userCfg vars programModules serviceModules packageModules mkModules;
 		};
 in
 	lib.nixosSystem {

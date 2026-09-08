@@ -82,8 +82,8 @@
 		"gayming"
 	];
 	services = [
-		"display-manager"
-		"polkit-service"
+		"tuigreet"
+		"fuzzel-polkit-service"
 		"accounts-daemon"
 		"arrpc"
 		"awww"
@@ -110,5 +110,12 @@
 		"userborn"
 		"wl-clip-persist"
 		"xserver"
+	];
+	packages = [
+		"base"
+		"jdk"
+		"neu-nix"
+		"session-packages"
+		"wine"
 	];
 }

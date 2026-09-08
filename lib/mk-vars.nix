@@ -6,19 +6,27 @@
 	hostMeta,
 	userCfg,
 	resolvedTheme,
-	modulesBase, # Берем путь из аргументов
+	modulesBase,
 	mkModules,
 }: let
 	userName = hostMeta.user;
 
 	rawPrograms = userCfg.programs or [];
 	rawServices = userCfg.services or [];
+	rawPackages = userCfg.packages or [];
 
 	activePrograms = mkModules.resolveActiveNames (modulesBase + "/programs") rawPrograms;
 	activeServices = mkModules.resolveActiveNames (modulesBase + "/services") rawServices;
+	activePackages = mkModules.resolveActiveNames (modulesBase + "/packages") rawPackages;
+
+	activePackageFiles = mkModules.importPackages (modulesBase + "/packages") rawPackages;
 in {
 	hasProgram = p: lib.elem p activePrograms;
 	hasService = s: lib.elem s activeServices;
+
+	hasPackage = pkg:
+		(lib.elem pkg activePackages)
+		|| (mkModules.hasPackageInFiles activePackageFiles pkg);
 
 	host = hostMeta.host;
 	hardware = hostMeta.hardware;

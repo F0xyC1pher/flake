@@ -66,16 +66,44 @@
 
 	importPrograms = importModules;
 	importServices = importModules;
+	importPackages = importModules;
 
 	resolveActiveNames = modulesBase: items: let
 		paths = importModules modulesBase items;
-		extractName = path: let
-			base = baseNameOf path;
-			dir = baseNameOf (dirOf path);
+		extractIdentifiers = path: let
+			relPath = lib.removePrefix "/" (lib.removePrefix (toString modulesBase) (toString path));
+			parts = lib.splitString "/" relPath;
+			fileName = lib.last parts;
+			cleanFileName =
+				if fileName == "default.nix"
+				then ""
+				else lib.removeSuffix ".nix" fileName;
+
+			dirParts =
+				if fileName == "default.nix"
+				then parts
+				else lib.init parts;
 		in
-			if base == "default.nix"
-			then dir
-			else lib.removeSuffix ".nix" base;
+			dirParts ++ (lib.optional (cleanFileName != "") cleanFileName);
 	in
-		lib.unique (items ++ (map extractName paths));
+		lib.unique (items ++ (lib.concatMap extractIdentifiers paths));
+
+	hasPackageInFiles = files: pkgName:
+		lib.any (
+			file: let
+				content = builtins.readFile file;
+				escapedPkg = lib.strings.escapeRegex pkgName;
+
+				patterns = [
+					"pkgs\\.${escapedPkg}"
+					"\"${escapedPkg}\""
+					"inputs\\.${escapedPkg}"
+					"inputs\\.[a-zA-Z0-9_-]+\\.packages\\.\\$\\{[^}]+\\}\\.${escapedPkg}"
+					"inputs\\.[a-zA-Z0-9_-]+\\.defaultPackage\\.\\$\\{[^}]+\\}\\.${escapedPkg}"
+					"\\.${escapedPkg}"
+				];
+			in
+				lib.any (pattern: builtins.match ".*(${pattern}).*" content != null) patterns
+		)
+		files;
 }

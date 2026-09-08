@@ -8,6 +8,7 @@
 	mkModules,
 	programModules,
 	serviceModules,
+	packageModules,
 }: let
 	modulesBase = ./../modules;
 in
@@ -18,6 +19,7 @@ in
 	]
 	++ programModules
 	++ serviceModules
+	++ packageModules
 	++ [
 		{nixpkgs.overlays = [(import ./overlay.nix {inherit lib inputs;})];}
 		inputs.home-manager.nixosModules.home-manager
