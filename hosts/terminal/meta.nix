@@ -52,7 +52,7 @@
 					package = "latest"; # "latest" "legacy_580" "legacy_470"
 					open = true;
 					perf = {
-						# true для максимума | число для указания Ватт | "строка" процент Ватт от максимума | false | null
+						# true for maximum | number to indicate Watts | "string" percentage of watts from maximum | false | null
 						value = true;
 						persistence = true;
 					};
