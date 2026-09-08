@@ -3,5 +3,5 @@
 	pkgs,
 	...
 }: {
-	boot.kernelPackages = pkgs."linuxPackages_${vars.hardware.kernel.name}";
+	boot.kernelPackages = pkgs."linuxPackages_${vars.host.kernel.name}";
 }

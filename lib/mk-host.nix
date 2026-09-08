@@ -7,21 +7,22 @@
 }: hostName: let
 	hostPath = ./../hosts + "/${hostName}";
 	hostMeta = import (hostPath + "/meta.nix");
-	userName = hostMeta.user;
+	hostCfg = hostMeta.host;
+	userName = hostCfg.user;
 
 	userCfg = import (./../users + "/${userName}/default.nix") {inherit lib;};
 
 	resolvedTheme =
 		themes.resolve {
 			name = userCfg.theme.name or "theMe";
-			accentLevel = userCfg.theme.accentLevel or userCfg.theme.level or null;
-			accentColor = userCfg.theme.accentColor or userCfg.theme.color or userCfg.theme.accent or null;
+			accentLevel = userCfg.theme.accentLevel or null;
+			accentColor = userCfg.theme.accentColor or null;
 		};
 
 	modulesBase = ./../modules;
 
 	mkVars = import ./mk-vars.nix {inherit lib themes;};
-	vars = mkVars {inherit hostName hostMeta userCfg resolvedTheme modulesBase mkModules;};
+	vars = mkVars {inherit hostName hostCfg userCfg resolvedTheme modulesBase mkModules;};
 
 	programModules = mkModules.importPrograms (modulesBase + "/programs") (userCfg.programs or []);
 	serviceModules = mkModules.importServices (modulesBase + "/services") (userCfg.services or []);

@@ -3,7 +3,7 @@
 	config,
 	...
 }: let
-	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.hardware.video.driver.nvidia.package};
+	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.host.hardware.video.driver.nvidia.package};
 in {
 	boot = {
 		extraModulePackages = [nvidiaPkg];
