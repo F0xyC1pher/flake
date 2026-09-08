@@ -4,9 +4,9 @@
 	vars,
 	...
 }: let
-	persistence = vars.hardware.video.driver.nvidia.perf.persistence;
-	perf = vars.hardware.video.driver.nvidia.perf.value;
-	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.hardware.video.driver.nvidia.package};
+	persistence = vars.host.hardware.video.driver.nvidia.perf.persistence;
+	perf = vars.host.hardware.video.driver.nvidia.perf.value;
+	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.host.hardware.video.driver.nvidia.package};
 
 	enableService = (persistence == true) || (perf != null && perf != false);
 in {

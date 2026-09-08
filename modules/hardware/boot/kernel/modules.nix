@@ -1,3 +1,3 @@
 {vars, ...}: {
-	boot.kernelModules = [] ++ vars.hardware.kernel.modules;
+	boot.kernelModules = [] ++ vars.host.kernel.modules;
 }

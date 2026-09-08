@@ -3,13 +3,13 @@
 	themes,
 }: {
 	hostName,
-	hostMeta,
+	hostCfg,
 	userCfg,
 	resolvedTheme,
 	modulesBase,
 	mkModules,
 }: let
-	userName = hostMeta.user;
+	userName = hostCfg.user;
 
 	rawPrograms = userCfg.programs or [];
 	rawServices = userCfg.services or [];
@@ -28,8 +28,12 @@ in {
 		(lib.elem pkg activePackages)
 		|| (mkModules.hasPackageInFiles activePackageFiles pkg);
 
-	host = hostMeta.host;
-	hardware = hostMeta.hardware;
+	host =
+		hostCfg
+		// {
+			name = hostCfg.name or hostName;
+		};
+
 	system = userCfg.system or {};
 
 	user = {

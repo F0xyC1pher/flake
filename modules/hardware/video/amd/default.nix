@@ -4,7 +4,7 @@
 	vars,
 	...
 }: let
-	gpuType = vars.hardware.video.driver.amd.type or "modern";
+	gpuType = vars.host.hardware.video.driver.amd.type or "modern";
 	isLegacy = gpuType == "legacy";
 in {
 	boot = {
