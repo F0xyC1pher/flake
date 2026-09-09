@@ -102,9 +102,13 @@
 
 	zedSettings = {
 		theme = {
-			mode = "dark";
-			light = "theMe";
-			dark = "theMe";
+			mode = "${
+				if vars.theme.dark
+				then "dark"
+				else "light"
+			}";
+			light = "vars.theme.name";
+			dark = "vars.theme.name";
 		};
 		buffer_font_family = vars.theme.font.name;
 		ui_font_family = vars.theme.font.name;
@@ -180,7 +184,7 @@
 						formatting = {command = ["alejandra"];};
 						options = {
 							nixos = {
-								expr = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host}.options";
+								expr = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host.name}.options";
 							};
 						};
 					};

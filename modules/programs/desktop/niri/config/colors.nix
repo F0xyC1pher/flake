@@ -15,8 +15,8 @@
 					background-color "transparent"
 
 					focus-ring {
-						active-color   "${t.accent}"
-						inactive-color "#969696"
+						active-color   "${t.ui.border.active}"
+						inactive-color "${t.ui.border.inactive}"
 						urgent-color   "#b676f6"
 					}
 
