@@ -1,8 +1,8 @@
 {...}: {
 	theme = {
-		name = "theMe";
+		name = "the-me";
 		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
-		# accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		# gaps = 8;
 		opacity = 0.666;

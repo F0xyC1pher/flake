@@ -54,7 +54,7 @@
 						"media.rdd-ffmpeg.enabled" = true;
 
 						# --- Синхронизация и аккаунт ---
-						"identity.fxaccounts.account.device.name" = "${vars.user.name}@${vars.host}";
+						"identity.fxaccounts.account.device.name" = "${vars.user.name}@${vars.host.name}";
 						"identity.fxaccounts.enabled" = true;
 
 						# --- Страница новой вкладки и домашняя страница ---
