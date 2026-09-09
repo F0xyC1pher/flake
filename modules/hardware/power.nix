@@ -1,6 +1,6 @@
 {vars, ...}: {
 	powerManagement = {
 		enable = true;
-		cpuFreqGovernor = "${vars.hardware.cpu.governor}";
+		cpuFreqGovernor = "${vars.host.hardware.cpu.governor}";
 	};
 }

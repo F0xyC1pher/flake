@@ -6,7 +6,7 @@
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {lib, ...}: let
-			outCfg = vars.hardware.audio.output;
+			outCfg = vars.host.hardware.audio.output;
 			format = outCfg.format;
 			rateStr = toString outCfg.rate.value;
 

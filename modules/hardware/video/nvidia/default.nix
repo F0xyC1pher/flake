@@ -24,7 +24,7 @@ in {
 			powerManagement.finegrained = false;
 			modesetting.enable = true;
 			nvidiaSettings = true;
-			open = vars.hardware.video.driver.nvidia.open;
+			open = vars.host.hardware.video.driver.nvidia.open;
 		};
 	};
 

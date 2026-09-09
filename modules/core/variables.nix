@@ -1,5 +1,5 @@
 {vars, ...}: let
-	outCfg = vars.hardware.audio.output;
+	outCfg = vars.host.hardware.audio.output;
 	rateStr = toString outCfg.rate.value;
 
 	# Числовые значения для карты квантов
