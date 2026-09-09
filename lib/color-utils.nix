@@ -1,3 +1,4 @@
+#lib/color-utils.nix
 {lib}: let
 	absVal = x:
 		if x < 0
