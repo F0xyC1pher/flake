@@ -7,13 +7,13 @@
 	style = vars.theme.style;
 	themeData = {
 		"$schema" = "https://zed.dev/schema/themes/v0.1.0.json";
-		name = vars.theme.name;
+		name = "${vars.theme.name}";
 		author = vars.user.fullName;
 		themes = [
 			{
-				name = vars.theme.name;
+				name = "${vars.theme.name}";
 				appearance =
-					if vars.theme.dark
+					if (vars.theme.dark == true)
 					then "dark"
 					else "light";
 				style = {
@@ -107,8 +107,8 @@
 				then "dark"
 				else "light"
 			}";
-			light = "vars.theme.name";
-			dark = "vars.theme.name";
+			light = "${vars.theme.name}";
+			dark = "${vars.theme.name}";
 		};
 		buffer_font_family = vars.theme.font.name;
 		ui_font_family = vars.theme.font.name;
