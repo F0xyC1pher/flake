@@ -1,12 +1,12 @@
 {...}: {
 	theme = {
-		name = "catppuccin-mocha";
+		name = "the-me";
 		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
 		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		# gaps = 8;
 		opacity = 0.666;
-		liquid-glass.enable = true;
+		liquid-glass.enable = false;
 		blur = {
 			enable = true;
 			xray.enable = false;
