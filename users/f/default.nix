@@ -6,7 +6,7 @@
 
 		# gaps = 8;
 		opacity = 0.666;
-		liquid-glass.enable = true;
+		liquid-glass.enable = false;
 		blur = {
 			enable = true;
 			xray.enable = false;
