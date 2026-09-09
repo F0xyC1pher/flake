@@ -1,6 +1,6 @@
 {...}: {
 	theme = {
-		name = "the-me";
+		name = "catppuccin-mocha";
 		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
 		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
