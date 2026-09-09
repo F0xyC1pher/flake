@@ -42,7 +42,6 @@ in {
 				device = "/var/lib/swapfile";
 				size = swapSizeGb * 1024;
 				priority = 10;
-				noCoW = true;
 			}
 		];
 
