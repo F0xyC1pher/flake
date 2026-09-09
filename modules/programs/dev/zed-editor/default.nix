@@ -18,40 +18,60 @@
 					else "light";
 				style = {
 					"background.appearance" = "transparent";
+
+					"elevated_surface.background" = "#00000000";
+					"surface.background" = "#00000000";
 					"background" = "${style.ui.bg}${vars.theme.opacityHex}";
-					"border" = "${style.ui.border.inactive}${vars.theme.opacityHex}";
-					"border.focused" = style.ui.border.active;
-					"surface.background" = "${style.ui.bg}${vars.theme.opacityHex}";
-
-					"title_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
-					"title_bar.inactive_background" = "${style.ui.bg}${vars.theme.opacityHex}";
-					"toolbar.background" = "${style.ui.bg}00";
-
-					"editor.active_line.background" = "${style.ui.border.inactive}${vars.theme.opacityHex}";
-					"editor.active_line_number" = style.text.heading;
-					"editor.background" = "${style.ui.bg}00";
-					"editor.gutter.background" = "${style.ui.bg}00";
-					"editor.line_number" = style.text.comment;
-
-					"drop_target.background" = "${style.ui.bg}00";
-					"file_scan.background" = "${style.ui.bg}00";
-					"panel.background" = "${style.ui.bg}00";
-					"panel.focused_border" = style.ui.border.active;
-					"project_panel.background" = "${style.ui.bg}00";
-
+					"element.background" = "#00000000";
 					"status_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
-					"tab.active_background" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"tab.inactive_background" = "${style.ui.bg}00";
-					"tab_bar.background" = "${style.ui.bg}00";
+					"title_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					"toolbar.background" = "#00000000";
+					"tab_bar.background" = "#00000000";
+					"tab.inactive_background" = "#00000000";
+					"tab.active_background" = "#00000000";
+					"panel.background" = "#00000000";
+					"editor.background" = "#00000000";
+					"editor.gutter.background" = "#00000000";
+					"editor.subheader.background" = "#00000000";
+					"editor.highlighted_line.background" = "#00000000";
+					"panel.overlay_background" = "#00000000";
+					"panel.overlay_hover" = "${style.ui.bg}${vars.theme.opacityHex}";
 
-					"element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
-					"ghost_element.background" = "${style.ui.bg}00";
-					"ghost_element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"ghost_element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
-					"list.active_item" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"list.hover_item" = "${style.ui.surface}${vars.theme.opacityHex}";
-					"list.inactive_item" = "${style.ui.bg}00";
+					# "background" = "${style.ui.bg}00";
+					# ${vars.theme.opacityHex}";
+					# "border" = "${style.ui.border.inactive}${vars.theme.opacityHex}";
+					# "border.focused" = style.ui.border.active;
+					# "surface.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+
+					# "title_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "title_bar.inactive_background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "toolbar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+
+					# "editor.active_line.background" = "${style.ui.border.inactive}${vars.theme.opacityHex}";
+					# "editor.active_line_number" = style.text.heading;
+					# "editor.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "editor.gutter.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "editor.line_number" = style.text.comment;
+
+					# "drop_target.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "file_scan.background" = "${style.ui.bg}00";
+					# "panel.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "panel.focused_border" = style.ui.border.active;
+					# "project_panel.background" = "${style.ui.bg}00";
+
+					# "status_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "tab.active_background" = "${style.ui.surface}${vars.theme.opacityHex}";
+					# "tab.inactive_background" = "${style.ui.bg}${vars.theme.opacityHex}";
+					# "tab_bar.background" = "${style.ui.bg}${vars.theme.opacityHex}";
+
+					# "element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
+					# "element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
+					# "ghost_element.background" = "${style.ui.bg}00";
+					# "ghost_element.hover" = "${style.ui.surface}${vars.theme.opacityHex}";
+					# "ghost_element.selected" = "${style.ui.border.active}${vars.theme.opacityHex}";
+					# "list.active_item" = "${style.ui.surface}${vars.theme.opacityHex}";
+					# "list.hover_item" = "${style.ui.surface}${vars.theme.opacityHex}";
+					# "list.inactive_item" = "${style.ui.bg}00";
 
 					"text" = style.text.main;
 					"text.accent" = style.ui.border.active;
