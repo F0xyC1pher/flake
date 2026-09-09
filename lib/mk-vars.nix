@@ -31,7 +31,7 @@ in {
 	host =
 		hostCfg
 		// {
-			name = hostCfg.name or hostName;
+			name = hostName;
 		};
 
 	system = userCfg.system or {};
