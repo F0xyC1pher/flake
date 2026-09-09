@@ -8,7 +8,7 @@
 	boot.initrd.systemd.network.wait-online.enable = false;
 	networking = {
 		nftables.enable = true;
-		hostName = "${vars.host}";
+		hostName = "${vars.host.name}";
 		useDHCP = false;
 		networkmanager = {
 			enable = true;
@@ -21,7 +21,7 @@
 			enable = false;
 		};
 		wireless = {
-			enable = vars.hardware.wifi.enable;
+			enable = vars.host.hardware.wifi.enable;
 			userControlled = true;
 		};
 		# nameservers = [

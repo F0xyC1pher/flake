@@ -4,7 +4,7 @@
 	pkgs,
 	...
 }: let
-	audioCfg = vars.hardware.audio;
+	audioCfg = vars.host.hardware.audio;
 	outCfg = audioCfg.output;
 	inCfg = audioCfg.input;
 	outFormatStr = "${outCfg.format.prefix}${toString outCfg.format.value}_${outCfg.format.suffix}";

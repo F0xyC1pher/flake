@@ -14,22 +14,23 @@
 	environment.systemPackages = with pkgs;
 		[
 			(
-				if vars.hardware.video.driver.nvidia.enable
+				if vars.host.hardware.video.driver.nvidia.enable
 				then btop-cuda
-				else if vars.hardware.video.driver.amd.enable
+				else if vars.host.hardware.video.driver.amd.enable
 				then btop-rocm
 				else btop
 			)
 
 			nvtopPackages.${
-				if vars.hardware.video.driver.nvidia.enable
+				if vars.host.hardware.video.driver.nvidia.enable
 				then "nvidia"
-				else if vars.hardware.video.driver.amd.enable
+				else if vars.host.hardware.video.driver.amd.enable
 				then "amd"
 				else "full"
 			}
 			themix-gui
 			wpgtk
+			yq
 			tor-browser
 			teamspeak6-client
 			vscode-langservers-extracted
@@ -141,7 +142,7 @@
 			inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 		]
-		++ lib.optionals vars.hardware.video.driver.nvidia.enable [
+		++ lib.optionals vars.host.hardware.video.driver.nvidia.enable [
 			nvidia-vaapi-driver
 		]
 		++ lib.optionals (vars.hasProgram "driftwm") [
