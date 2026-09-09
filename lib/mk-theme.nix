@@ -17,70 +17,69 @@
 		validateColors
 		;
 
-	# Рекурсивный поиск исключительно *.nix файлов тем
-	findThemes = prefix: dirPath: let
+	# Поиск тем исключительно в поддиректориях
+	findThemesInDirs = dirPath: let
 		entries = builtins.readDir dirPath;
 
-		# 1. Берем все *.nix файлы в текущей папке (игнорируем служебные с '_')
-		nixFiles =
-			lib.filterAttrs (
-				name: type:
-					type
-					== "regular"
-					&& lib.hasSuffix ".nix" name
-					&& !(lib.hasPrefix "_" name)
-			)
-			entries;
+		# Фильтруем только поддиректории (игнорируем служебные с '_')
+		subdirs = lib.filterAttrs (name: type: type == "directory" && !(lib.hasPrefix "_" name)) entries;
 
-		fileThemes =
+		# Обрабатываем каждую поддиректорию темы
+		processDir = dirName: let
+			subDirPath = dirPath + "/${dirName}";
+			subEntries = builtins.readDir subDirPath;
+
+			# Путь к default.nix с конфигурацией defaultAccent
+			defaultNixPath = subDirPath + "/default.nix";
+
+			# Загружаем defaultAccent из default.nix текущей поддиректории
+			folderConfig =
+				if builtins.pathExists defaultNixPath
+				then import defaultNixPath
+				else {};
+
+			defaultAccent =
+				folderConfig.defaultAccent or {
+					level = "normal";
+					color = "red";
+				};
+
+			# Все .nix файлы цветов внутри поддиректории (за исключением default.nix и '_*')
+			colorFiles =
+				lib.filterAttrs (
+					fileName: type:
+						type
+						== "regular"
+						&& lib.hasSuffix ".nix" fileName
+						&& fileName != "default.nix"
+						&& !(lib.hasPrefix "_" fileName)
+				)
+				subEntries;
+		in
 			lib.mapAttrs' (
 				fileName: _: let
 					baseName = lib.removeSuffix ".nix" fileName;
-					# Если тема лежит в подпапке, добавляем префикс "папка-"
-					fullThemeName =
-						if prefix == ""
-						then baseName
-						else "${prefix}-${baseName}";
+					themeName = "${dirName}-${baseName}";
 				in
-					lib.nameValuePair fullThemeName (dirPath + "/${fileName}")
+					lib.nameValuePair themeName {
+						colorPath = subDirPath + "/${fileName}";
+						inherit defaultAccent;
+					}
 			)
-			nixFiles;
-
-		# 2. Обходим все поддиректории
-		subdirs = lib.filterAttrs (name: type: type == "directory" && !(lib.hasPrefix "_" name)) entries;
-
-		subdirThemes =
-			lib.concatMapAttrs (
-				dirName: _: let
-					nextPrefix =
-						if prefix == ""
-						then dirName
-						else "${prefix}-${dirName}";
-				in
-					findThemes nextPrefix (dirPath + "/${dirName}")
-			)
-			subdirs;
+			colorFiles;
 	in
-		fileThemes // subdirThemes;
+		lib.concatMapAttrs (dirName: _: processDir dirName) subdirs;
 
-	foundThemes = findThemes "" themesDir;
+	foundThemes = findThemesInDirs themesDir;
 	themeNames = builtins.attrNames foundThemes;
 
 	loadTheme = name: let
-		themePath = foundThemes.${name};
-		rawColors = import themePath;
-
-		defaultAccent =
-			if builtins.isAttrs rawColors && builtins.hasAttr "defaultAccent" rawColors
-			then rawColors.defaultAccent
-			else {
-				level = "normal";
-				color = "red";
-			};
+		themeInfo = foundThemes.${name};
+		rawColors = import themeInfo.colorPath;
 	in {
 		colors = mkColors rawColors;
 		themeFn = defaultThemeStyle;
-		inherit defaultAccent;
+		defaultAccent = themeInfo.defaultAccent;
 	};
 
 	themes = lib.genAttrs themeNames loadTheme;

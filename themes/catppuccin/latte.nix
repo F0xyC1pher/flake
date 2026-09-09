@@ -1,9 +1,4 @@
 {
-	defaultAccent = {
-		level = "normal";
-		color = "blue";
-	};
-
 	base = {
 		"00" = "#eff1f5"; # Base
 		"01" = "#e6e9ef"; # Mantle

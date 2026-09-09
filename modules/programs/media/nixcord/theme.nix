@@ -123,7 +123,7 @@
 					/* ── Status dots ─────────────────────────────────────────────── */
 					rect[fill="${c.a.green}"] { fill: "${c.a.green}"  !important; }
 					rect[fill="${c.a.yellow}"] { fill: "${c.a.yellow}" !important; }
-					rect[fill="${c.b."0"}"] { fill: "${c.b."0"}"    !important; }
+					rect[fill="${c.b."00"}"] { fill: "${c.b."00"}"    !important; }
 					rect[fill="${t.text.dimmed}"] { fill: "${t.text.dimmed}" !important; }
 				'';
 			};

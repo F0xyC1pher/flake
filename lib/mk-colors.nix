@@ -20,6 +20,52 @@ in
 
 			mix = mixQuantized isCustomTheme;
 
+			# Генерация состояний active, inactive, disabled для базовых цветов
+			genStates = hex: {
+				active = hex;
+				inactive =
+					mix hex base00 (
+						if isDarkTheme
+						then 0.40
+						else 0.25
+					);
+				disabled =
+					mix hex base00 (
+						if isDarkTheme
+						then 0.65
+						else 0.50
+					);
+			};
+
+			# Генерация состояний для всех ключей base00..base07
+			baseStateMap = {
+				"00" = genStates base00;
+				"01" = genStates base01;
+				"02" = genStates base02;
+				"03" = genStates base03;
+				"04" = genStates base04;
+				"05" = genStates base05;
+				"06" = genStates base06;
+				"07" = genStates base07;
+			};
+
+			# Распределение base00..base07 по ролям UI и Text согласно таблице
+			baseUiMap = {
+				bg = baseStateMap."00"; # Основной фон
+				surface = baseStateMap."01"; # Дополнительный/альтернативный фон
+				overlay = baseStateMap."02"; # Фон выделения текста, активная вкладка, разделители
+				muted = baseStateMap."03"; # Неактивные элементы фона / заблокированный UI
+				border = baseStateMap."04"; # Рамки, иконки, неактивные элементы интерфейса
+			};
+
+			baseTextMap = {
+				comment = baseStateMap."03"; # Комментарии, заблокированный/неактивный текст
+				dimmed = baseStateMap."04"; # Вторичный текст
+				main = baseStateMap."05"; # Основной цвет текста (foreground)
+				light = baseStateMap."06"; # Светлый текст высокого контраста
+				heading = baseStateMap."07"; # Максимально контрастный текст
+			};
+
 			normalAccents = {
 				red = "#${normalizeHex rawColors.base."08"}";
 				orange = "#${normalizeHex rawColors.base."09"}";
@@ -69,21 +115,13 @@ in
 			processed = lib.mapAttrs genAccentGroup normalAccents;
 		in {
 			base = {
-				"0" = base00;
 				"00" = base00;
-				"1" = base01;
 				"01" = base01;
-				"2" = base02;
 				"02" = base02;
-				"3" = base03;
 				"03" = base03;
-				"4" = base04;
 				"04" = base04;
-				"5" = base05;
 				"05" = base05;
-				"6" = base06;
 				"06" = base06;
-				"7" = base07;
 				"07" = base07;
 
 				"08" = normalAccents.red;
@@ -94,6 +132,18 @@ in
 				"0D" = normalAccents.blue;
 				"0E" = normalAccents.purple;
 				"0F" = normalAccents.magenta;
+
+				# Категоризированные цвета UI и TEXT по аналогии с accent
+				ui = {
+					active = lib.mapAttrs (_: v: v.active) baseUiMap;
+					inactive = lib.mapAttrs (_: v: v.inactive) baseUiMap;
+					disabled = lib.mapAttrs (_: v: v.disabled) baseUiMap;
+				};
+				text = {
+					active = lib.mapAttrs (_: v: v.active) baseTextMap;
+					inactive = lib.mapAttrs (_: v: v.inactive) baseTextMap;
+					disabled = lib.mapAttrs (_: v: v.disabled) baseTextMap;
+				};
 			};
 
 			accent = {
