@@ -1,11 +1,11 @@
 {...}: {
 	imports = [
+		./network
 		./security
 		./xdg
 		./etc.nix
 		./locale.nix
 		./man.nix
-		./network.nix
 		./nix.nix
 		./nix-init.nix
 		#./nix-ld.nix

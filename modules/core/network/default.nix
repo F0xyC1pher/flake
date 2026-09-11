@@ -3,11 +3,16 @@
 	config,
 	...
 }: {
+	imports = [
+		./dispatchers.nix
+		./sing-box.nix
+	];
 	# ========== NETWORK ==========
 	systemd.network.wait-online.enable = false;
 	boot.initrd.systemd.network.wait-online.enable = false;
 	networking = {
 		nftables.enable = true;
+		enableIPv6 = true;
 		hostName = "${vars.host.name}";
 		useDHCP = false;
 		networkmanager = {
