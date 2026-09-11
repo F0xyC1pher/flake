@@ -12,13 +12,13 @@
 				in {
 					"*" = {
 						spacing = 0;
-						# background-color = mkLiteral "transparent";
+						background-color = mkLiteral "${vars.theme.style.ui.bg}${vars.theme.opacityHex}";
+						transparency = "real";
 					};
 
-					"window" = {
-						transparency = "real";
-						background-color = mkLiteral "${vars.theme.style.ui.bg}76";
-					};
+					# "window" = {
+					# background-color = mkLiteral "${vars.theme.style.ui.bg}${vars.theme.opacityHex}";
+					# };
 
 					"mainbox" = {
 						children = [
