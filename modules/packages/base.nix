@@ -117,7 +117,6 @@
 			slurp
 			wl-clipboard
 			wl-clipboard-x11
-			cliphist-fuzzel-img
 			keepassxc
 			sops
 			bluetuith
@@ -147,5 +146,11 @@
 		]
 		++ lib.optionals (vars.hasProgram "driftwm") [
 			inputs.driftwm.packages.x86_64-linux.default
+		]
+		++ lib.optionals (vars.hasProgram "rofi") [
+			cliphist-rofi-img
+		]
+		++ lib.optionals (vars.hasProgram "fuzzel") [
+			cliphist-fuzzel-img
 		];
 }

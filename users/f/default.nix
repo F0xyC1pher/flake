@@ -22,7 +22,7 @@
 	};
 	app = {
 		terminal = "kitty";
-		launcher = "fuzzel";
+		launcher = "rofi";
 		file-manager = {
 			tui = "yazi";
 			gui = null;
@@ -69,7 +69,8 @@
 		# "noctalia"
 		# "dms"
 		"waybar"
-		"fuzzel"
+		# "fuzzel"
+		"rofi"
 		"yazi"
 		"firefox"
 		"zed-editor"
@@ -83,7 +84,7 @@
 	];
 	services = [
 		"tuigreet"
-		"fuzzel-polkit-service"
+		"rofi-polkit-service"
 		"accounts-daemon"
 		"arrpc"
 		"awww"
