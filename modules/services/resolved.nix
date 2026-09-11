@@ -14,7 +14,7 @@
 				#   "1.0.0.1#one.one.one.one"
 				# ];
 				Domains = ["~."];
-				DNSStubListener = false;
+				DNSStubListener = true;
 				# dnssec = "true";
 				# dnsovertls = "true";
 				# Add this to prevent fallback to per-link DNS
