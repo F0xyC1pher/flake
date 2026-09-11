@@ -23,6 +23,12 @@
 								desc = "View Image (mcat)";
 							}
 						];
+						set-wallpaper = [
+							{
+								run = "awww img %s1";
+								desc = "Set as wallpaper";
+							}
+						];
 					};
 					open = {
 						prepend_rules = [
@@ -32,7 +38,7 @@
 							}
 							{
 								mime = "image/*";
-								use = "image";
+								use = ["image" "set-wallpaper"];
 							}
 						];
 					};
