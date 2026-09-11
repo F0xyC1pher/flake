@@ -3,7 +3,7 @@
 		user = "f";
 		parallels.enable = true;
 		boot = {
-			loader = "grub"; # GRUB LIMINE grub limine
+			loader = "limine"; # GRUB LIMINE grub limine
 			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"; # Find your disk for bootloader: ls -la /dev/disk/by-id/ | grep -v part
 		};
 		kernel = {
