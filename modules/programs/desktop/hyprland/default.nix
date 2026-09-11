@@ -39,24 +39,25 @@ in {
 				config = [
 					{
 						general = {
-							gaps_in = 5;
-							gaps_out = 20;
+							gaps_in = 4;
+							gaps_out = 5;
 							border_size = 2;
 							col = {
 								active_border = {
-									colors = ["rgba(33ccffee)" "rgba(00ff99ee)"];
+									colors = ["rgba({vars.theme.ui.border.active}{vars.theme.opacityHex})"];
 									angle = 45;
 								};
-								inactive_border = "rgba(595959aa)";
+								inactive_border = "rgba({vars.theme.ui.border.inactive}{vars.theme.opacityHex})";
 							};
 							resize_on_border = false;
 							allow_tearing = false;
-							layout = "dwindle";
+							# layout = "dwindle";
+							layout = "scrolling";
 						};
 
 						decoration = {
-							rounding = 0; # Твой параметр отступов
-							rounding_power = 2;
+							rounding = 0;
+							rounding_power = 0;
 							active_opacity = 1.0;
 							inactive_opacity = 1.0;
 							shadow = {
@@ -67,9 +68,9 @@ in {
 							};
 							blur = {
 								enabled = true;
-								size = 3;
-								passes = 1;
-								vibrancy = 0.1696;
+								size = 1;
+								passes = 6;
+								vibrancy = 0;
 							};
 						};
 
@@ -86,7 +87,7 @@ in {
 						};
 
 						scrolling = {
-							fullscreen_on_one_column = true;
+							fullscreen_on_one_column = false;
 						};
 
 						misc = {
