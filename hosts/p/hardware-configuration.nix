@@ -19,7 +19,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7286-DEB5";
+    { device = "/dev/disk/by-uuid/FB98-B287";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -29,19 +29,17 @@
       fsType = "btrfs";
     };
 
-  fileSystems."/etc" =
-    { device = "overlay";
-      fsType = "overlay";
-    };
-
   fileSystems."/home/f/Games" =
     { device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
       fsType = "btrfs";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/bc74dc23-8a48-4269-8436-529dde6fd2e0"; }
-    ];
+  fileSystems."/etc" =
+    { device = "overlay";
+      fsType = "overlay";
+    };
+
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
