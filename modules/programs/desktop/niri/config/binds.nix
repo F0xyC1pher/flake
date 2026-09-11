@@ -35,7 +35,11 @@
 					// Mod+R hotkey-overlay-title="Application Launcher: rofi" { spawn "rofi" "-show" "drun"; }
 					Alt+space hotkey-overlay-title="Application Launcher: ${vars.app.launcher}" { spawn "${vars.app.launcher}" ${lib.optionalString (vars.app.launcher == "rofi") ''"-show" "drun"''} ; }
 					Mod+R hotkey-overlay-title="Application Launcher: ${vars.app.launcher}" { spawn "${vars.app.launcher}" ${lib.optionalString (vars.app.launcher == "rofi") ''"-show" "drun"''} ; }
-					Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.launcher}" { spawn "cliphist-${vars.app.launcher}-img"; }
+					// Mod+V hotkey-overlay-title="Show Clipboard History trough: ${vars.app.launcher}" { spawn "cliphist-${vars.app.launcher}-img"; }
+
+					${lib.optionalString (vars.hasProgram "rofi") ''Mod+V hotkey-overlay-title="Show Clipboard History trough: rofi" { spawn "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }''}
+					${lib.optionalString (vars.hasProgram "fuzzel") ''Mod+V hotkey-overlay-title="Show Clipboard History trough: fuzzel" { spawn "cliphist-fuzzel-img"; }''}
+
 					Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
 					// Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
