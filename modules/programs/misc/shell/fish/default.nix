@@ -1,6 +1,7 @@
 {
 	inputs,
 	pkgs,
+	lib,
 	vars,
 	...
 }: {
@@ -20,22 +21,29 @@
 			programs.fish = {
 				enable = true;
 				interactiveShellInit = ''
+					${
+						lib.optionalString (vars.hasProgram "nix-your-shell") ''
+							if command -q nix-your-shell
+								nix-your-shell fish | source
+							end
+						''
+					}
 					tput cup (tput lines) 0
 					set -gx fish_greeting
-					     if not set -q __tide_configured
-					       tide configure --auto \
-					         --style=Rainbow \
-					         --prompt_colors='True color' \
-					         --show_time='24-hour format' \
-					         --rainbow_prompt_separators=Angled \
-					         --powerline_prompt_heads=Sharp \
-					         --powerline_prompt_tails=Flat \
-					         --powerline_prompt_style='One line' \
-					         --prompt_spacing=Compact \
-					         --icons='Many icons' \
-					         --transient=Yes > /dev/null 2>&1
-					       set -U __tide_configured 1
-					     end
+					if not set -q __tide_configured
+						tide configure --auto \
+						--style=Rainbow \
+						--prompt_colors='True color' \
+						--show_time='24-hour format' \
+						--rainbow_prompt_separators=Angled \
+						--powerline_prompt_heads=Sharp \
+						--powerline_prompt_tails=Flat \
+						--powerline_prompt_style='One line' \
+						--prompt_spacing=Compact \
+						--icons='Many icons' \
+						--transient=Yes > /dev/null 2>&1
+						set -U __tide_configured 1
+					end
 				'';
 				functions = {
 					yaml2nix = {
