@@ -45,7 +45,7 @@
 					${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
 						background-effect {
 						${lib.optionalString vars.theme.blur.enable "blur true"}
-						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.settings.xray.enable) "xray false"}
+						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
 						${lib.optionalString vars.theme.liquid-glass.enable ''
 								liquid-glass {
 									refraction-strength 1
