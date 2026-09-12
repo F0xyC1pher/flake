@@ -1,5 +1,6 @@
 {
 	inputs,
+	lib,
 	pkgs,
 	vars,
 	...
@@ -32,21 +33,18 @@
 				# 	'';
 				# typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 				initContent = ''
+					${
+						lib.optionalString (vars.hasProgram "nix-your-shell") ''
+							if command -v nix-your-shell > /dev/null; then
+								nix-your-shell zsh | source /dev/stdin
+							fi
+						''
+					}
 					# syntax: shell
 					setopt automenu
 					setopt nobeep
 
-					# export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-					# export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
-
 					#typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
-
-					#bindkey -v
-					#bindkey '^H' vi-backward-kill-word
-					#bindkey '^w' vi-backward-kill-word
-					#bindkey '^[[1;5C' vi-forward-word
-					#bindkey '^[[1;5D' vi-backward-word
-					#bindkey '^f' beginning-of-line
 
 					export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
 					export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
