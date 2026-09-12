@@ -2,10 +2,10 @@
 	home-manager.users.${vars.user.name}.xdg.configFile."niri/blur.kdl".text = ''
 		// syntax: kdl
 		blur {
-			passes 5
-			offset 1
-			noise 0
-			saturation 1
+			passes ${toString vars.theme.blur.settings.passes}
+			offset ${toString vars.theme.blur.settings.offset}
+			noise ${toString vars.theme.blur.settings.noise}
+			saturation ${toString vars.theme.blur.settings.saturation}
 		}
 	'';
 }

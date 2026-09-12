@@ -29,6 +29,12 @@
 						''
 					}
 					tput cup (tput lines) 0
+					${
+						lib.optionalString (vars.hasProgram "bat") ''
+							${lib.getExe' pkgs.bat-extras.batman "batman"} --export-env | source
+							eval (${lib.getExe' pkgs.bat-extras.batpipe "batpipe"})
+						''
+					}
 					set -gx fish_greeting
 					if not set -q __tide_configured
 						tide configure --auto \
