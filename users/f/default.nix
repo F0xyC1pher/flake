@@ -86,6 +86,7 @@
 		# "fuzzel"
 		"rofi"
 		"yazi"
+		"bat"
 		"firefox"
 		"zed-editor"
 		"fastfetch"
