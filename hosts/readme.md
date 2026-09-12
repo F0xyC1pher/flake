@@ -47,7 +47,6 @@ Configures system options including bootloaders, GPU drivers, audio sample rates
 {
   host = {
     user = "alice"; # Target username matching a profile in users/ :String
-    host = "WonderLand"; # Target system hostname :String
 
     parallels.enable = true; # Enable Parallels Desktop guest integrations :Boolean
 
