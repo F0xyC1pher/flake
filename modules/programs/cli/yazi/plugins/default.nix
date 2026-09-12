@@ -4,7 +4,7 @@
 	...
 }: {
 	imports = [
-		./yatline.nix
+		./yatline
 	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};

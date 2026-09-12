@@ -1,4 +1,5 @@
 {vars, ...}: {
+	imports = [./theme.nix];
 	home-manager = {
 		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {pkgs, ...}: {
