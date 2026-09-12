@@ -3,6 +3,9 @@
 	vars,
 	...
 }: {
+	imports = [
+		./yatline.nix
+	];
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {pkgs, ...}: {
@@ -15,7 +18,6 @@
 					# mount = mount;
 					# gitui = gitui;
 					# chmod = chmod;
-					# yatline = yatline;
 					# mime-ext = mime-ext;
 					# compress = compress;
 					# mediainfo = mediainfo;
