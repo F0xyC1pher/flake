@@ -4,9 +4,9 @@
 	...
 }: {
 	imports = [
+		./plugins
 		./initLua.nix
 		./keymap.nix
-		./plugins.nix
 		./settings.nix
 		./theme.nix
 	];
@@ -14,8 +14,8 @@
 		extraSpecialArgs = {inherit inputs vars;};
 		users.${vars.user.name} = {pkgs, ...}: {
 			programs.yazi = {
-				enableFishIntegration = true;
-				enableBashIntegration = true;
+				enableFishIntegration = vars.hasProgram "fish";
+				enableBashIntegration = vars.hasProgram "bash";
 				package = pkgs.yazi.override {_7zz = pkgs._7zz-rar;};
 				enable = true;
 			};
