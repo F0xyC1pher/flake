@@ -1,6 +1,6 @@
 {
 	defaultAccent = {
 		level = "normal";
-		color = "magenta";
+		color = "yellow";
 	};
 }
