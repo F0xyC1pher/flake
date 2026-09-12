@@ -91,5 +91,10 @@ in {
 				enable = false;
 				xray.enable = false;
 			};
+		shadows =
+			userCfg.theme.shadows or{
+				enable = true;
+				neon = false;
+			};
 	};
 }

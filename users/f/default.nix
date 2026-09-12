@@ -4,9 +4,16 @@
 		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
 		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
-		# gaps = 8;
+		# gap = {
+		# 	x = 10;
+		# 	y = 10;
+		# };
 		opacity = 0.666;
 		liquid-glass.enable = false;
+		shadows = {
+			enable = true;
+			neon = true;
+		};
 		blur = {
 			enable = true;
 			xray.enable = false;

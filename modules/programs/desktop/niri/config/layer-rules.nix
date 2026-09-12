@@ -12,13 +12,12 @@
 				// ────────────── Layer Settings ──────────────
 				layer-rule {
 					match at-startup=true
-					match namespace="^waybar$"
+					${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
 					match namespace="^launcher$"
 					match namespace="^wallpaper$"
 					match namespace="^slapper$"
 					match namespace="^mpvpaper$"
-					match namespace="^awww-daemon$"
-					match namespace="^swww-daemonoverview$"
+					${lib.optionalString (vars.hasService "awww") ''match namespace="^awww-daemon$"''}
 					match namespace="^noctalia-overview*"
 					match namespace="^quickshell$"
 					match namespace="dms:blurwallpaper"
@@ -27,16 +26,19 @@
 
 				layer-rule {
 					match namespace="^launcher$"
-					match namespace="^waybar$"
+					${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
 					match namespace="^gtk-layer-shell$"
-
-					shadow {
-						on
-						color "${vars.theme.style.accent}${vars.theme.opacityHex}"
-						softness 16
-						spread 1
-						draw-behind-window false
-					}
+					${lib.optionalString (vars.hasProgram "rofi") ''match namespace="^rofi$"''}
+					${lib.optionalString (vars.theme.shadows.enable) ''
+						shadow {
+							on
+							${lib.optionalString (vars.theme.shadows.enable && vars.theme.shadows.neon) ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''}
+							${lib.optionalString (vars.theme.shadows.enable && !vars.theme.shadows.neon) ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''}
+							softness 16
+							spread 1
+							draw-behind-window false
+						}
+					''}
 					${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
 						background-effect {
 						${lib.optionalString vars.theme.blur.enable "blur true"}
