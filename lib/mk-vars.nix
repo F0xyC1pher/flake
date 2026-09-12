@@ -89,10 +89,16 @@ in {
 		blur =
 			userCfg.theme.blur or {
 				enable = false;
-				xray.enable = false;
+				settings = {
+					offset = 1;
+					passes = 3;
+					noise = 0.002;
+					saturation = 1.1;
+					xray.enable = false;
+				};
 			};
 		shadows =
-			userCfg.theme.shadows or{
+			userCfg.theme.shadows or {
 				enable = true;
 				neon = false;
 			};

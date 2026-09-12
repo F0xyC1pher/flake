@@ -26,7 +26,7 @@
 						window-rule {
 							background-effect {
 								${lib.optionalString vars.theme.blur.enable "blur true"}
-								${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
+								${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.settings.xray.enable) "xray false"}
 								${lib.optionalString vars.theme.liquid-glass.enable ''
 								liquid-glass {
 									refraction-strength 1
@@ -91,18 +91,24 @@
 					max-height 155
 				}
 
-				// Indicate active windows with red colors.
-				window-rule {
-					match is-active=true
-					shadow {
-						on
-						color "${vars.theme.style.accent}76"
-						softness 16
-						spread 1
-						draw-behind-window false
-					}
+				${
+					lib.optionalString (vars.theme.shadows.enable) ''
+						window-rule {
+							match is-active=true
+							shadow {
+								on
+								${
+							if vars.theme.shadows.neon
+							then ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''
+							else ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''
+						}
+								softness 16
+								spread 1
+								draw-behind-window false
+							}
+						}
+					''
 				}
-
 				/-window-rule {
 					match title="TrayControl" app-id="AIMP"
 					match title="TrayControl" app-id="Aimp"

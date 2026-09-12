@@ -11,12 +11,18 @@
 		opacity = 0.666;
 		liquid-glass.enable = false;
 		shadows = {
-			enable = true;
+			enable = false;
 			neon = true;
 		};
 		blur = {
 			enable = true;
-			xray.enable = false;
+			settings = {
+				offset = 1;
+				passes = 3;
+				noise = 0;
+				saturation = 1;
+				xray.enable = false;
+			};
 		};
 		border = {
 			width = 2;
@@ -48,13 +54,14 @@
 		mail = "ageev-eldar@mail.ru";
 		gitName = "F0xy_C1pher";
 		password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
-		shell = "fish"; # fish zsh bash brush
+		shell = "fish"; # fish zsh bash
 	};
 	system = {
 		modKey = "Super"; # Super Mod4
 		desktopShell = "custom"; # custom dms noctalia
 	};
 	programs = [
+		"nix-your-shell"
 		"micro"
 		"nh"
 		"git"
