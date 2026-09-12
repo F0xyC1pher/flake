@@ -20,7 +20,10 @@
 			url = "github:nix-community/NUR";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
+		nix-your-shell = {
+			url = "github:MercuryTechnologies/nix-your-shell";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 		nix-gaming.url = "github:fufexan/nix-gaming";
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 		proxy-suite.url = "github:FUFSoB/proxy-suite-flake";

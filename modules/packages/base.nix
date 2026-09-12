@@ -28,6 +28,9 @@
 				then "amd"
 				else "full"
 			}
+			(
+				lib.mkIf (vars.hasProgram "nix-your-shell") nix-your-shell
+			)
 			themix-gui
 			wpgtk
 			yq
@@ -141,16 +144,8 @@
 			inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 		]
-		++ lib.optionals vars.host.hardware.video.driver.nvidia.enable [
-			nvidia-vaapi-driver
-		]
-		++ lib.optionals (vars.hasProgram "driftwm") [
-			inputs.driftwm.packages.x86_64-linux.default
-		]
-		++ lib.optionals (vars.hasProgram "rofi") [
-			cliphist-rofi-img
-		]
-		++ lib.optionals (vars.hasProgram "fuzzel") [
-			cliphist-fuzzel-img
-		];
+		++ lib.optional vars.host.hardware.video.driver.nvidia.enable nvidia-vaapi-driver
+		++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.x86_64-linux.default
+		++ lib.optional (vars.hasProgram "rofi") cliphist-rofi-img
+		++ lib.optional (vars.hasProgram "fuzzel") cliphist-fuzzel-img;
 }
