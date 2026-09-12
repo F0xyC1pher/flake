@@ -12,13 +12,14 @@
 				in {
 					"*" = {
 						spacing = 0;
+						background-color = mkLiteral "transparent";
+						text-color = mkLiteral "${vars.theme.style.text.main}";
+					};
+
+					"window" = {
 						background-color = mkLiteral "${vars.theme.style.ui.bg}${vars.theme.opacityHex}";
 						transparency = "real";
 					};
-
-					# "window" = {
-					# background-color = mkLiteral "${vars.theme.style.ui.bg}${vars.theme.opacityHex}";
-					# };
 
 					"mainbox" = {
 						children = [
@@ -43,23 +44,10 @@
 						];
 					};
 
-					"prompt" = {
-						text-color = mkLiteral "${vars.theme.style.text.main}";
-					};
-
 					"textbox-prompt-colon" = {
 						expand = false;
 						str = mkLiteral "\":\"";
 						margin = mkLiteral "0 1ch 0 0";
-						text-color = mkLiteral "${vars.theme.style.text.main}";
-					};
-
-					"entry" = {
-						text-color = mkLiteral "${vars.theme.style.text.main}";
-					};
-
-					"case-indicator" = {
-						text-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
 					"mode-switcher, message" = {
@@ -68,8 +56,6 @@
 					};
 
 					"button, textbox" = {
-						background-color = mkLiteral "${vars.theme.style.ui.bg}";
-						text-color = mkLiteral "${vars.theme.style.text.main}";
 						padding = mkLiteral "5px";
 					};
 
@@ -84,10 +70,10 @@
 					};
 
 					"scrollbar" = {
-						background-color = mkLiteral "${vars.theme.style.ui.bg}";
+						background-color = mkLiteral "transparent";
 						handle-color = mkLiteral "${vars.theme.style.accent}";
 						handle-width = mkLiteral "10px";
-						border = mkLiteral "2 2px";
+						border = mkLiteral "2px";
 						border-color = mkLiteral "${vars.theme.style.accent}";
 						margin = mkLiteral "0 0 0 20px";
 					};
@@ -107,22 +93,9 @@
 						text-color = mkLiteral "inherit";
 					};
 
-					"element normal" = {
-						background-color = mkLiteral "transparent";
-					};
-
 					"element selected" = {
 						background-color = mkLiteral "${vars.theme.style.accent}";
 						text-color = mkLiteral "${vars.theme.style.ui.bg}";
-					};
-
-					"element normal normal, element alternate normal" = {
-						text-color = mkLiteral "${vars.theme.style.text.main}";
-					};
-
-					"element selected urgent" = {
-						text-color = mkLiteral "${vars.theme.style.text.main}";
-						background-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 
 					"element normal urgent, element alternate urgent" = {
@@ -130,24 +103,9 @@
 						background-color = mkLiteral "${vars.theme.style.text.main}";
 					};
 
-					"element selected active" = {
-						text-color = mkLiteral "${vars.theme.style.ui.bg}";
-					};
-
-					"element normal active, element alternate active" = {
+					"element selected urgent" = {
 						text-color = mkLiteral "${vars.theme.style.text.main}";
-					};
-
-					# Filebrowser settings - исправлено
-					"filebrowser" = {
-						directories-first = true;
-						sorting-method = mkLiteral "\"name\"";
-					};
-
-					# Timeout settings - исправлено
-					"timeout" = {
-						action = mkLiteral "\"kb-cancel\"";
-						delay = 0;
+						background-color = mkLiteral "${vars.theme.style.ui.bg}";
 					};
 				};
 			};

@@ -12,10 +12,9 @@
 			programs.rofi = {
 				enable = true;
 				terminal = "kitty";
-
 				extraConfig = {
 					modi = "run,drun,window";
-					icon-theme = "Papirus";
+					icon-theme = "Flat-Remix-Red-Dark";
 					show-icons = true;
 					terminal = "kitty";
 					drun-display-format = "{icon} {name}";
@@ -27,6 +26,14 @@
 					sidebar-mode = true;
 					disable-history = true;
 					cycle = true;
+					filebrowser = {
+						directories-first = true;
+						sorting-method = "name";
+					};
+					timeout = {
+						action = "kb-cancel";
+						delay = 0;
+					};
 				};
 			};
 		};
