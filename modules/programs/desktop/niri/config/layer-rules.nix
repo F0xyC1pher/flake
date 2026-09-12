@@ -32,8 +32,11 @@
 					${lib.optionalString (vars.theme.shadows.enable) ''
 						shadow {
 							on
-							${lib.optionalString (vars.theme.shadows.enable && vars.theme.shadows.neon) ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''}
-							${lib.optionalString (vars.theme.shadows.enable && !vars.theme.shadows.neon) ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''}
+							${
+							if vars.theme.shadows.neon
+							then ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''
+							else ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''
+						}
 							softness 16
 							spread 1
 							draw-behind-window false
@@ -42,7 +45,7 @@
 					${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
 						background-effect {
 						${lib.optionalString vars.theme.blur.enable "blur true"}
-						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
+						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.settings.xray.enable) "xray false"}
 						${lib.optionalString vars.theme.liquid-glass.enable ''
 								liquid-glass {
 									refraction-strength 1
