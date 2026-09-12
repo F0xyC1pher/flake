@@ -1,4 +1,8 @@
 {
+	defaultAccent = {
+		level = "normal";
+		color = "blue";
+	};
 	base = {
 		"00" = "#212121"; # Deep Background
 		"01" = "#424242"; # Lighter Background (Selection/Panel)
