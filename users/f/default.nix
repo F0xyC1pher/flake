@@ -16,12 +16,12 @@
 		};
 		blur = {
 			enable = true;
+			xray.enable = false;
 			settings = {
-				offset = 1;
 				passes = 3;
+				offset = 2;
 				noise = 0;
 				saturation = 1;
-				xray.enable = false;
 			};
 		};
 		border = {
