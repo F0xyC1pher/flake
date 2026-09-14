@@ -1,292 +1,172 @@
-{vars, ...}: {
-	home-manager.users.${vars.user.name}.programs.bat.themes.custom = ''
-		<!-- https://github.com/sublimehq/Packages/blob/master/Color%20Scheme%20-%20Default/Monokai.sublime-color-scheme -->
-		<plist version="1.0">
-		  <dict>
-		    <key>name</key>
-		    <string>Custom Theme</string>
-		    <key>settings</key>
-		    <array>
-		      <dict>
-		        <key>settings</key>
-		        <dict>
-		          <key>background</key>
-		          <string>${vars.theme.style.ui.bg}</string>
-		          <key>caret</key>
-		          <string>${vars.theme.style.text.main}</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.main}</string>
-		          <key>invisibles</key>
-		          <string>${vars.theme.style.text.comment}</string>
-		          <key>lineHighlight</key>
-		          <string>${vars.theme.style.ui.overlay}</string>
-		          <key>selection</key>
-		          <string>${vars.theme.style.ui.overlay}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Comment</string>
-		        <key>scope</key>
-		        <string>comment</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.comment}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>String</string>
-		        <key>scope</key>
-		        <string>string</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.string}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Number</string>
-		        <key>scope</key>
-		        <string>constant.numeric</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.number}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Built-in constant</string>
-		        <key>scope</key>
-		        <string>constant.language</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.number}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>User-defined constant</string>
-		        <key>scope</key>
-		        <string>constant.character, constant.other</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.number}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Variable</string>
-		        <key>scope</key>
-		        <string>variable</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Keyword</string>
-		        <key>scope</key>
-		        <string>keyword</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.keyword}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Storage</string>
-		        <key>scope</key>
-		        <string>storage</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.keyword}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Storage type</string>
-		        <key>scope</key>
-		        <string>storage.type</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string>italic</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.info}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Class name</string>
-		        <key>scope</key>
-		        <string>entity.name.class</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string>underline</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.success}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Inherited class</string>
-		        <key>scope</key>
-		        <string>entity.other.inherited-class</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string>italic underline</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.success}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Function name</string>
-		        <key>scope</key>
-		        <string>entity.name.function</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.function}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Function argument</string>
-		        <key>scope</key>
-		        <string>variable.parameter</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string>italic</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.number}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Tag name</string>
-		        <key>scope</key>
-		        <string>entity.name.tag</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.keyword}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Tag attribute</string>
-		        <key>scope</key>
-		        <string>entity.other.attribute-name</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.success}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Library function</string>
-		        <key>scope</key>
-		        <string>support.function</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.info}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Library constant</string>
-		        <key>scope</key>
-		        <string>support.constant</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.info}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Library class/type</string>
-		        <key>scope</key>
-		        <string>support.type, support.class</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string>italic</string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.text.syntax.info}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Library variable</string>
-		        <key>scope</key>
-		        <string>support.other.variable</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>fontStyle</key>
-		          <string></string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Invalid</string>
-		        <key>scope</key>
-		        <string>invalid</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>background</key>
-		          <string>${vars.theme.style.text.syntax.error}</string>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.ui.bg}</string>
-		        </dict>
-		      </dict>
-		      <dict>
-		        <key>name</key>
-		        <string>Invalid deprecated</string>
-		        <key>scope</key>
-		        <string>invalid.deprecated</string>
-		        <key>settings</key>
-		        <dict>
-		          <key>background</key>
-		          <string>${vars.theme.style.text.syntax.keyword}</string>
-		          <key>fontStyle</key>
-		          <string></string>
-		          <key>foreground</key>
-		          <string>${vars.theme.style.ui.bg}</string>
-		        </dict>
-		      </dict>
-		    </array>
-		  </dict>
-		</plist>
-	'';
+{
+	pkgs,
+	vars,
+	...
+}: let
+	plistFormat = pkgs.formats.plist {};
+in {
+	home-manager.users.${vars.user.name}.programs.bat.themes.custom = {
+		src =
+			plistFormat.generate "custom.tmTheme" {
+				name = "Custom Theme";
+				settings = [
+					{
+						settings = {
+							background = vars.theme.style.ui.bg;
+							caret = vars.theme.style.text.main;
+							foreground = vars.theme.style.text.main;
+							invisibles = vars.theme.style.text.comment;
+							lineHighlight = vars.theme.style.ui.overlay;
+							selection = vars.theme.style.ui.overlay;
+						};
+					}
+					{
+						name = "Comment";
+						scope = "comment";
+						settings = {foreground = vars.theme.style.text.comment;};
+					}
+					{
+						name = "String";
+						scope = "string";
+						settings = {foreground = vars.theme.style.text.syntax.string;};
+					}
+					{
+						name = "Number";
+						scope = "constant.numeric";
+						settings = {foreground = vars.theme.style.text.syntax.number;};
+					}
+					{
+						name = "Built-in constant";
+						scope = "constant.language";
+						settings = {foreground = vars.theme.style.text.syntax.number;};
+					}
+					{
+						name = "User-defined constant";
+						scope = "constant.character, constant.other";
+						settings = {foreground = vars.theme.style.text.syntax.number;};
+					}
+					{
+						name = "Variable";
+						scope = "variable";
+						settings = {fontStyle = "";};
+					}
+					{
+						name = "Keyword";
+						scope = "keyword";
+						settings = {foreground = vars.theme.style.text.syntax.keyword;};
+					}
+					{
+						name = "Storage";
+						scope = "storage";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.keyword;
+						};
+					}
+					{
+						name = "Storage type";
+						scope = "storage.type";
+						settings = {
+							fontStyle = "italic";
+							foreground = vars.theme.style.text.syntax.info;
+						};
+					}
+					{
+						name = "Class name";
+						scope = "entity.name.class";
+						settings = {
+							fontStyle = "underline";
+							foreground = vars.theme.style.text.syntax.success;
+						};
+					}
+					{
+						name = "Inherited class";
+						scope = "entity.other.inherited-class";
+						settings = {
+							fontStyle = "italic underline";
+							foreground = vars.theme.style.text.syntax.success;
+						};
+					}
+					{
+						name = "Function name";
+						scope = "entity.name.function";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.function;
+						};
+					}
+					{
+						name = "Function argument";
+						scope = "variable.parameter";
+						settings = {
+							fontStyle = "italic";
+							foreground = vars.theme.style.text.syntax.number;
+						};
+					}
+					{
+						name = "Tag name";
+						scope = "entity.name.tag";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.keyword;
+						};
+					}
+					{
+						name = "Tag attribute";
+						scope = "entity.other.attribute-name";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.success;
+						};
+					}
+					{
+						name = "Library function";
+						scope = "support.function";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.info;
+						};
+					}
+					{
+						name = "Library constant";
+						scope = "support.constant";
+						settings = {
+							fontStyle = "";
+							foreground = vars.theme.style.text.syntax.info;
+						};
+					}
+					{
+						name = "Library class/type";
+						scope = "support.type, support.class";
+						settings = {
+							fontStyle = "italic";
+							foreground = vars.theme.style.text.syntax.info;
+						};
+					}
+					{
+						name = "Library variable";
+						scope = "support.other.variable";
+						settings = {fontStyle = "";};
+					}
+					{
+						name = "Invalid";
+						scope = "invalid";
+						settings = {
+							background = vars.theme.style.text.syntax.error;
+							fontStyle = "";
+							foreground = vars.theme.style.ui.bg;
+						};
+					}
+					{
+						name = "Invalid deprecated";
+						scope = "invalid.deprecated";
+						settings = {
+							background = vars.theme.style.text.syntax.keyword;
+							fontStyle = "";
+							foreground = vars.theme.style.ui.bg;
+						};
+					}
+				];
+			};
+	};
 }
