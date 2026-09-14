@@ -40,17 +40,17 @@
 
 					focus-ring {
 						off
-						width 2
+						width ${toString vars.theme.border.size}
 						active-color "${vars.theme.style.accent}"
-						inactive-color "${vars.theme.style.accent}76"
+						inactive-color "${vars.theme.style.accent}${vars.theme.opacityHex}"
 					}
 
 					// You can also add a border. It's similar to the focus ring, but always visible.
 					border {
 						on
-						width 2
+						width ${toString vars.theme.border.size}
 						active-color "${vars.theme.style.accent}"
-						inactive-color "${vars.theme.style.accent}76"
+						inactive-color "${vars.theme.style.accent}${vars.theme.opacityHex}"
 						urgent-color "#b676f6"
 						// Gradients can use a few different interpolation color spaces.
 						// For example, this is a pastel rainbow gradient via in="oklch longer hue".

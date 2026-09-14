@@ -16,28 +16,28 @@
 
 					focus-ring {
 						active-color   "${t.ui.border.active}"
-						inactive-color "${t.ui.border.inactive}"
+						inactive-color "${t.ui.border.inactive}${vars.theme.opacityHex}"
 						urgent-color   "#b676f6"
 					}
 
 					border {
 						active-color   "${t.ui.border.active}"
-						inactive-color "${t.ui.border.inactive}"
+						inactive-color "${t.ui.border.inactive}${vars.theme.opacityHex}"
 						urgent-color   "#b676f6"
 					}
 
 					shadow {
-					color "${vars.theme.style.ui.bg}80"
+					color "${vars.theme.style.ui.bg}${vars.theme.opacityHex}"
 					}
 
 					tab-indicator {
 						active-color   "${t.accent}"
-						inactive-color "#969696"
+						inactive-color "#969696${vars.theme.opacityHex}"
 						urgent-color   "#b676f6"
 					}
 
 					insert-hint {
-						color "${t.accent}80"
+						color "${t.accent}${vars.theme.opacityHex}"
 					}
 				}
 
