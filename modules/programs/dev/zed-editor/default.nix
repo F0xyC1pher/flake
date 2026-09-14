@@ -201,7 +201,7 @@
 				binary = {path = "nixd";};
 				settings = {
 					nixd = {
-						formatting = {command = ["alejandra"];};
+						formatting = {command = ["nixfmt"];};
 						options = {
 							nixos = {
 								expr = "(builtins.getFlake \"/home/${vars.user.name}/flake\").nixosConfigurations.${vars.host.name}.options";
