@@ -16,8 +16,8 @@ in {
 					content = ''
 						hl.config({
 						  general = {
-						    gaps_in = 20,
-						    gaps_out = 20,
+						    gaps_in = ${toString vars.theme.gaps."in"},
+						    gaps_out = ${toString vars.theme.gaps."out"},
 						    border_size = ${toString vars.theme.border.size},
 						    layout = "scrolling",
 						    col = {
@@ -25,6 +25,18 @@ in {
 						      inactive_border = "${inactiveBorder}",
 						    },
 						  },
+							scrolling = {
+								fullscreen_on_one_column = true,
+								follow_focus = true,
+								column_width = 1.0,
+								focus_fit_method = 0,
+								explicit_column_widths = "0.5, 0.75, 1.0",
+								direction = "down",
+								follow_min_visible = 0.0,
+							},
+							opengl = {
+								nvidia_anti_flicker = false,
+							},
 						})
 					'';
 				};

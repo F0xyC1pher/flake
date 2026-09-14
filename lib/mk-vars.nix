@@ -76,6 +76,11 @@ in {
 		style = resolvedTheme.theme;
 		colors = resolvedTheme.colors;
 
+		gaps =
+			userCfg.theme.gaps or{
+				"in" = 10;
+				"out" = 10;
+			};
 		border =
 			userCfg.theme.border or {
 				width = 2;
