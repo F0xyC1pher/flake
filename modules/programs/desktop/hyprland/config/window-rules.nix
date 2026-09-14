@@ -17,8 +17,8 @@
 						  name = "steam-toasts",
 						  match = { class = "^(steam)$", title = "^(notificationtoasts_)" },
 						  float = true,
-						  move = "100%-w-10 100%-h-10",
-						  no_focus = true,
+						  move = {"monitor_w - window_w - ${toString vars.theme.gaps."in"} - ${toString vars.theme.border.size}", "monitor_h - window_h - ${toString vars.theme.gaps."in"} - ${toString vars.theme.border.size}"},
+						  no_initial_focus = true,
 						})
 
 						-- Tenki
@@ -34,8 +34,11 @@
 						  name = "firefox-pip",
 						  match = { title = "^(Картинка в картинке|Picture-in-Picture)$" },
 						  float = true,
-						  move = "100%-w-20 100%-h-20",
-						  no_focus = true,
+						  move = {"monitor_w - window_w - ${toString vars.theme.gaps."in"} - ${toString vars.theme.border.size}", "monitor_h - window_h - ${toString vars.theme.gaps."in"} - ${toString vars.theme.border.size}"},
+						  no_initial_focus = true,
+							content = "video",
+							force_rgbx = true,
+							opaque = true,
 						})
 
 						-- KeePassXC

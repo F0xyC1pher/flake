@@ -11,6 +11,7 @@
 						    kb_options = "grp:lalt_lshift_toggle",
 						    repeat_delay = 250,
 						    repeat_rate = 60,
+								mouse_refocus = true,
 						    follow_mouse = 1,
 						    accel_profile = "flat",
 						    touchpad = {
