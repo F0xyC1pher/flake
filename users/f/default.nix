@@ -25,7 +25,7 @@
 			};
 		};
 		border = {
-			width = 2;
+			size = 2;
 			radius = 0;
 		};
 		font = {
