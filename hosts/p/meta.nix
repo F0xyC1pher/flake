@@ -34,10 +34,10 @@
 					};
 				};
 				output = {
-					rate.value = 192000;
+					rate.value = 48000;
 					format = {
-						prefix = "F"; # F S
-						value = 32;
+						prefix = "S"; # F S
+						value = 24;
 						suffix = "LE"; # LE P
 					};
 				};
