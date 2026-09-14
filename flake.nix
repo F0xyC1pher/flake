@@ -70,7 +70,6 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		noctalia.url = "github:noctalia-dev/noctalia";
-		# system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
 		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 		niri-screenshare.url = "github:pantarune/niri-screenshare";
 		niri-glass.url = "github:yigexuanmu/Niri-glass";
