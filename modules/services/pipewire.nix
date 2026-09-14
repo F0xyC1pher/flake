@@ -275,7 +275,13 @@ in {
 						update-props = {
 							"node.latency" = "${toString outQuantum}/${outRateStr}";
 							"node.lock-quantum" = true;
+							"node.force-quantum" = outQuantum;
+							"node.force-rate" = outCfg.rate.value;
 							"api.bluez5.hw-volume" = true;
+							"audio.format" = outFormatStr;
+							"audio.allowed-formats" = [outFormatStr];
+							"audio.rate" = outCfg.rate.value;
+							"resample.quality" = 10;
 						};
 					};
 				}
