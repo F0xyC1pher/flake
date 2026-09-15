@@ -124,46 +124,46 @@
 			url = "github:yazi-rs/plugins";
 			flake = false;
 		};
-		# powerlevel10k = {
-		# 	url = "github:romkatv/powerlevel10k";
-		# 	flake = false;
-		# };
-		# zsh-autosuggestions = {
-		# 	url = "github:zsh-users/zsh-autosuggestions";
-		# 	flake = false;
-		# };
-		# zsh-syntax-highlighting = {
-		# 	url = "github:zsh-users/zsh-syntax-highlighting";
-		# 	flake = false;
-		# };
-		# fzf-tab = {
-		# 	url = "github:Aloxaf/fzf-tab";
-		# 	flake = false;
-		# };
-		# fzf-zsh-completions = {
-		# 	url = "github:chitoku-k/fzf-zsh-completions";
-		# 	flake = false;
-		# };
-		# zsh-history-substring-search = {
-		# 	url = "github:zsh-users/zsh-history-substring-search";
-		# 	flake = false;
-		# };
-		# zsh-auto-notify = {
-		# 	url = "github:MichaelAquilina/zsh-auto-notify";
-		# 	flake = false;
-		# };
-		# zsh-autopair = {
-		# 	url = "github:hlissner/zsh-autopair";
-		# 	flake = false;
-		# };
-		# tmux-tilish = {
-		# 	url = "github:farzadmf/tmux-tilish";
-		# 	flake = false;
-		# };
-		# tmux-continuum = {
-		# 	url = "github:tmux-plugins/tmux-continuum";
-		# 	flake = false;
-		# };
+		powerlevel10k = {
+			url = "github:romkatv/powerlevel10k";
+			flake = false;
+		};
+		zsh-autosuggestions = {
+			url = "github:zsh-users/zsh-autosuggestions";
+			flake = false;
+		};
+		zsh-syntax-highlighting = {
+			url = "github:zsh-users/zsh-syntax-highlighting";
+			flake = false;
+		};
+		fzf-tab = {
+			url = "github:Aloxaf/fzf-tab";
+			flake = false;
+		};
+		fzf-zsh-completions = {
+			url = "github:chitoku-k/fzf-zsh-completions";
+			flake = false;
+		};
+		zsh-history-substring-search = {
+			url = "github:zsh-users/zsh-history-substring-search";
+			flake = false;
+		};
+		zsh-auto-notify = {
+			url = "github:MichaelAquilina/zsh-auto-notify";
+			flake = false;
+		};
+		zsh-autopair = {
+			url = "github:hlissner/zsh-autopair";
+			flake = false;
+		};
+		tmux-tilish = {
+			url = "github:farzadmf/tmux-tilish";
+			flake = false;
+		};
+		tmux-continuum = {
+			url = "github:tmux-plugins/tmux-continuum";
+			flake = false;
+		};
 
 		# ── Git sources with submodules ──────────────────────────────────────────
 		# pawbar = {

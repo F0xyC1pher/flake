@@ -31,6 +31,8 @@
 			(
 				lib.mkIf (vars.hasProgram "nix-your-shell") nix-your-shell
 			)
+			hyprshot
+			lua-language-server
 			themix-gui
 			wpgtk
 			yq

@@ -2,7 +2,7 @@
 	home-manager.users.${vars.user.name} = {
 		wayland.windowManager.hyprland = {
 			extraLuaFiles = {
-				"05-outputs" = {
+				"06-outputs" = {
 					autoLoad = true;
 					content = ''
 						hl.monitor({
