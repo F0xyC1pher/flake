@@ -2,7 +2,7 @@
 	home-manager.users.${vars.user.name} = {
 		wayland.windowManager.hyprland = {
 			extraLuaFiles = {
-				"07-window-rules" = {
+				"08-window-rules" = {
 					autoLoad = true;
 					content = ''
 						-- Игры

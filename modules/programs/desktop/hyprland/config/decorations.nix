@@ -4,8 +4,8 @@
 	...
 }: let
 	cleanHex = hex: lib.removePrefix "#" hex;
-	accentShadow = "rgba(${cleanHex vars.theme.style.accent}${vars.theme.opacityHex})";
-	overlayShadow = "rgba(${cleanHex vars.theme.style.ui.overlay}${vars.theme.opacityHex})";
+	accentShadow = "0x${vars.theme.opacityHex}${cleanHex vars.theme.style.accent}";
+	overlayShadow = "0x${vars.theme.opacityHex}${cleanHex vars.theme.style.ui.overlay}";
 in {
 	home-manager.users.${vars.user.name} = {
 		wayland.windowManager.hyprland = {
@@ -74,8 +74,12 @@ in {
 									range = 20,
 									render_power = 4,
 									offset = {0, 0},
-									color = 0x36c65656,
-									color_inactive = 0xee1a1a1a,
+									color = ${
+									if vars.theme.shadows.neon
+									then "${accentShadow}"
+									else "${overlayShadow}"
+								},
+									color_inactive = ${overlayShadow},
 									scale = 1.0	,
 									sharp = false,
 								},

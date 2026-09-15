@@ -2,7 +2,7 @@
 	home-manager.users.${vars.user.name} = {
 		wayland.windowManager.hyprland = {
 			extraLuaFiles = {
-				"06-variables" = {
+				"07-variables" = {
 					autoLoad = true;
 					content = ''
 						hl.env("XCURSOR_SIZE", "24")

@@ -11,7 +11,7 @@
 		opacity = 0.666;
 		liquid-glass.enable = false;
 		shadows = {
-			enable = false;
+			enable = true;
 			neon = true;
 		};
 		blur = {
