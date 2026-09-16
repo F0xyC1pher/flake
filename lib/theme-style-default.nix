@@ -1,4 +1,4 @@
-#lib/default-theme-style.nix
+#lib/theme-style-default.nix
 {
 	lib,
 	colors,

@@ -1,4 +1,4 @@
-#lib/mk-vars.nix
+#lib/vars-builder.nix
 {
 	lib,
 	themes,

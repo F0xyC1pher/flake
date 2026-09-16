@@ -1,4 +1,4 @@
-#lib/mk-system-modules.nix
+#lib/system-imports.nix
 {
 	lib,
 	inputs,
