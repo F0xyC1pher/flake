@@ -36,8 +36,8 @@
 				output = {
 					rate.value = 48000;
 					format = {
-						prefix = "S"; # F S
-						value = 24;
+						prefix = "F"; # F S
+						value = 32;
 						suffix = "LE"; # LE P
 					};
 				};
