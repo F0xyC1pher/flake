@@ -1,3 +1,4 @@
+#lib/palette-builder.nix
 {lib}: let
 	colorUtils = import ./color-utils.nix {inherit lib;};
 	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb getContrastingFg;
