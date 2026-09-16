@@ -1,11 +1,8 @@
 {
 	boot.kernelParams = [
-		"mitigations=off"
-		"preempt=full"
-		"threadirqs"
-		"nmi_watchdog=0"
-		"nowatchdog"
-		# "intel_idle.max_cstate=1"
-		# "intel_pstate=passive"
+		"mitigations=off" # Дает ощутимый буст на Xeon X3450
+		"preempt=full" # Low-latency отзывчивость
+		"threadirqs" # Отличная связка с PipeWire
+		"nmi_watchdog=0" # Экономит пару циклов CPU
 	];
 }
