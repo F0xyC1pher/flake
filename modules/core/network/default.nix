@@ -5,7 +5,6 @@
 }: {
 	imports = [
 		./dispatchers.nix
-		./sing-box.nix
 	];
 	# ========== NETWORK ==========
 	systemd.network.wait-online.enable = false;

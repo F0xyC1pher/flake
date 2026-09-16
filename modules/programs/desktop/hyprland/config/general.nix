@@ -26,10 +26,10 @@ in {
 						    },
 						  },
 							scrolling = {
-								fullscreen_on_one_column = true,
+								fullscreen_on_one_column = false,
 								follow_focus = true,
 								column_width = 1.0,
-								focus_fit_method = 0,
+								focus_fit_method = 1,
 								explicit_column_widths = "0.5, 0.75, 1.0",
 								direction = "down",
 								follow_min_visible = 0.0,

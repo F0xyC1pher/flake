@@ -10,12 +10,12 @@
 					autoLoad = true;
 					content = ''
 						local mainMod = "Super"
-
 						-- Переменные окружения/приложений
 						local terminal = "${vars.app.terminal or "kitty"}"
 						local fileManager = terminal .. " yazi"
 						local menu = "${vars.app.launcher} ${lib.optionalString (vars.app.launcher == "rofi") "-show drun"}"
 
+						hl.bind(mainMod .. " + Shift + R", hl.dsp.exec_cmd("hyprctl reload"))
 						-- Приложения
 						hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 						hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
@@ -33,7 +33,7 @@
 						closeWindowBind:set_enabled(true)
 
 						hl.bind(mainMod .. " + Space", hl.dsp.window.float({ action = "toggle" }))
-						hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+						hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", layout_aware = true }))
 						hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
 						hl.bind("Super + Alt + L", hl.dsp.exec_cmd("swaylock"))

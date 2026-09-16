@@ -1,6 +1,6 @@
 {pkgs, ...}: {
 	environment.systemPackages = with pkgs; [
-		fuzzel-polkit-agent
+		custom.fuzzel-polkit-agent
 		cmd-polkit
 		jq
 	];
@@ -12,7 +12,7 @@
 		wantedBy = ["graphical-session.target"];
 
 		serviceConfig = {
-			ExecStart = "${pkgs.fuzzel-polkit-agent}/bin/fuzzel-polkit-agent";
+			ExecStart = "${pkgs.custom.fuzzel-polkit-agent}/bin/fuzzel-polkit-agent";
 			Restart = "on-failure";
 			RestartSec = 1;
 		};

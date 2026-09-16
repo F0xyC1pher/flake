@@ -1,4 +1,4 @@
-#lib/theme-style-default.nix
+# lib/theme-engine/style.nix
 {
 	lib,
 	colors,

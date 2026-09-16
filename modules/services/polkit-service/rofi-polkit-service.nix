@@ -1,6 +1,6 @@
 {pkgs, ...}: {
 	environment.systemPackages = with pkgs; [
-		rofi-polkit-agent
+		custom.rofi-polkit-agent
 		cmd-polkit
 		jq
 	];
@@ -12,7 +12,7 @@
 		wantedBy = ["graphical-session.target"];
 
 		serviceConfig = {
-			ExecStart = "${pkgs.rofi-polkit-agent}/bin/rofi-polkit-agent";
+			ExecStart = "${pkgs.custom.rofi-polkit-agent}/bin/rofi-polkit-agent";
 			Restart = "on-failure";
 			RestartSec = 1;
 		};
