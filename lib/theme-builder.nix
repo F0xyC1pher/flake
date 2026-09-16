@@ -1,3 +1,4 @@
+#lib/theme-builder.nix
 {lib, ...}: let
 	themesDir = ../themes;
 	mkColors = import ./mk-colors.nix {inherit lib;};

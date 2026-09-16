@@ -1,4 +1,4 @@
-#lib/mk-modules.nix
+#lib/module-resolver.nix
 {lib, ...}: rec {
 	findDeep = basePath: name: let
 		entries = builtins.readDir basePath;

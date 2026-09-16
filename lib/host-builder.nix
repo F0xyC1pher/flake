@@ -1,4 +1,4 @@
-#lib/mk-host.nix
+#lib/host-builder.nix
 {
 	lib,
 	inputs,
