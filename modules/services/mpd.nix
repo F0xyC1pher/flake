@@ -5,7 +5,7 @@
 }: {
 	home-manager = {
 		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {lib, ...}: {
+		users.${vars.user.name} = {...}: {
 			services.mpd = {
 				enable = true;
 				musicDirectory = "/home/${vars.user.name}/Music";

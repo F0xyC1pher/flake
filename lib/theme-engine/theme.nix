@@ -1,10 +1,12 @@
-#lib/theme-builder.nix
-{lib, ...}: let
-	themesDir = ../themes;
-	mkColors = import ./mk-colors.nix {inherit lib;};
-	colorUtils = import ./color-utils.nix {inherit lib;};
-	defaultThemeStyle = import ./default-theme-style.nix;
-
+# lib/theme-engine/theme.nix
+{
+	lib,
+	flakeRoot,
+	colorUtils,
+	paletteBuilder,
+	defaultThemeStyle ? import ./style.nix,
+	themesDir ? "${flakeRoot}/themes",
+}: let
 	inherit
 		(colorUtils)
 		hexToRgb
@@ -17,28 +19,33 @@
 		validateColors
 		;
 
-	# Загрузка опционального default.nix, если он существует по указанному пути
-	loadDefaultConfig = path:
-		if builtins.pathExists path
-		then import path
+	toPath = p:
+		if builtins.isPath p
+		then p
+		else if lib.hasPrefix "/nix/store" (toString p) || lib.hasPrefix "/nix/store" (builtins.unsafeDiscardStringContext (toString p))
+		then builtins.toPath (builtins.unsafeDiscardStringContext (toString p))
+		else if lib.hasPrefix "/" (toString p)
+		then builtins.toPath (toString p)
+		else throw "finder.nix: path '${toString p}' must be absolute";
+
+	loadDefaultConfig = path: let
+		p = toPath path;
+	in
+		if builtins.pathExists p
+		then import p
 		else {};
 
-	# Базовый конфиг из корня themes/default.nix
-	rootConfig = loadDefaultConfig (themesDir + "/default.nix");
+	rootThemesDir = toPath themesDir;
+	rootConfig = loadDefaultConfig (rootThemesDir + "/default.nix");
 
-	# Сканирование тем из корня и поддиректорий
 	findThemes = dirPath: let
-		entries = builtins.readDir dirPath;
+		dPath = toPath dirPath;
+		entries = builtins.readDir dPath;
 
-		# 1. Темы из файлов в корне themes/
 		rootColorFiles =
 			lib.filterAttrs (
 				fileName: type:
-					type
-					== "regular"
-					&& lib.hasSuffix ".nix" fileName
-					&& fileName != "default.nix"
-					&& !(lib.hasPrefix "_" fileName)
+					type == "regular" && lib.hasSuffix ".nix" fileName && fileName != "default.nix" && !(lib.hasPrefix "_" fileName)
 			)
 			entries;
 
@@ -48,33 +55,26 @@
 					themeName = lib.removeSuffix ".nix" fileName;
 				in
 					lib.nameValuePair themeName {
-						colorPath = dirPath + "/${fileName}";
+						colorPath = dPath + "/${fileName}";
 						folderConfig = rootConfig;
 					}
 			)
 			rootColorFiles;
 
-		# 2. Темы из поддиректорий themes/имядиректории/
 		subdirs = lib.filterAttrs (name: type: type == "directory" && !(lib.hasPrefix "_" name)) entries;
 
 		subThemes =
 			lib.concatMapAttrs (
 				dirName: _: let
-					subDirPath = dirPath + "/${dirName}";
+					subDirPath = dPath + "/${dirName}";
 					subEntries = builtins.readDir subDirPath;
-
-					# Конфиг папки наследует rootConfig с переопределением в имядиректории/default.nix
 					folderDefaultNix = loadDefaultConfig (subDirPath + "/default.nix");
 					folderConfig = rootConfig // folderDefaultNix;
 
 					colorFiles =
 						lib.filterAttrs (
 							fileName: type:
-								type
-								== "regular"
-								&& lib.hasSuffix ".nix" fileName
-								&& fileName != "default.nix"
-								&& !(lib.hasPrefix "_" fileName)
+								type == "regular" && lib.hasSuffix ".nix" fileName && fileName != "default.nix" && !(lib.hasPrefix "_" fileName)
 						)
 						subEntries;
 				in
@@ -94,22 +94,18 @@
 	in
 		rootThemes // subThemes;
 
-	foundThemes = findThemes themesDir;
+	foundThemes = findThemes rootThemesDir;
 	themeNames = builtins.attrNames foundThemes;
 
 	loadTheme = name: let
 		themeInfo = foundThemes.${name};
 		rawThemeContent = import themeInfo.colorPath;
 
-		# Корректное выделение цветов:
-		# Если файл содержит ключ 'base' или 'accent', мы передаем его как есть[cite: 3, 11].
-		# Если же файл содержит только прямые пары "00" = "...", обворачиваем его в { base = ...; }.
 		colorsData =
 			if builtins.isAttrs rawThemeContent && (builtins.hasAttr "base" rawThemeContent || builtins.hasAttr "accent" rawThemeContent)
 			then rawThemeContent
 			else {base = rawThemeContent;};
 
-		# Опциональные переопределения в самом файле темы
 		fileConfig =
 			if builtins.isAttrs rawThemeContent
 			then {
@@ -118,7 +114,6 @@
 			}
 			else {};
 
-		# Приоритет акцента: Файл темы -> default.nix папки -> root default.nix -> дефолт по умолчанию
 		finalDefaultAccent =
 			if fileConfig.defaultAccent != null
 			then fileConfig.defaultAccent
@@ -133,7 +128,7 @@
 			then fileConfig.themeFn
 			else themeInfo.folderConfig.themeFn or defaultThemeStyle;
 	in {
-		colors = mkColors colorsData;
+		colors = paletteBuilder colorsData;
 		themeFn = finalThemeFn;
 		defaultAccent = finalDefaultAccent;
 	};
@@ -154,7 +149,6 @@ in {
 			if accentLevel != null
 			then accentLevel
 			else selected.defaultAccent.level or "normal";
-
 		finalAccentColor =
 			if accentColor != null
 			then accentColor

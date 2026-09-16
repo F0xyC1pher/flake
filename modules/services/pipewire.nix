@@ -7,7 +7,7 @@
 	audioCfg = vars.host.hardware.audio;
 	outCfg = audioCfg.output;
 	inCfg = audioCfg.input;
-	outFormatStr = "${outCfg.format.prefix}${toString outCfg.format.value}_${outCfg.format.suffix}";
+	# outFormatStr = "${outCfg.format.prefix}${toString outCfg.format.value}_${outCfg.format.suffix}";
 	inFormatStr = "${inCfg.format.prefix}${toString inCfg.format.value}_${inCfg.format.suffix}";
 	quantumMap = {
 		"44100" = 512;
