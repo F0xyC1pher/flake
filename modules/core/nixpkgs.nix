@@ -7,8 +7,6 @@
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays =
 		[
-			inputs.nix-firefox-addons.overlays.default
-
 			# (final: prev: {
 			# 		kitty =
 			# 			prev.kitty.overrideAttrs (oldAttrs: {
@@ -49,5 +47,6 @@
 			# 				});
 			# 	})
 		]
+		++ lib.optional (vars.hasProgram "firefox") inputs.nix-firefox-addons.overlays.default
 		++ lib.optional (vars.hasProgram "nix-your-shell") inputs.nix-your-shell.overlays.default;
 }

@@ -1,3 +1,4 @@
+#./users/f/default.nix
 {...}: {
 	theme = {
 		name = "the-me";
@@ -5,8 +6,8 @@
 		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		gaps = {
-			"in" = 10;
-			"out" = 10;
+			"in" = 20;
+			"out" = 20;
 		};
 		opacity = 0.666;
 		liquid-glass.enable = false;
@@ -118,6 +119,7 @@
 		"resolved"
 		"scx-loader"
 		"seatd"
+		"sing-box"
 		"swayidle"
 		"swaync"
 		"tlp"

@@ -1,6 +1,8 @@
-#lib/palette-builder.nix
-{lib}: let
-	colorUtils = import ./color-utils.nix {inherit lib;};
+# lib/theme-engine/palette.nix
+{
+	lib,
+	colorUtils,
+}: let
 	inherit (colorUtils) normalizeHex mixQuantized luminance hexToRgb getContrastingFg;
 in
 	rawColors:
@@ -21,7 +23,6 @@ in
 
 			mix = mixQuantized isCustomTheme;
 
-			# Генерация состояний active, inactive, disabled для базовых цветов
 			genStates = hex: {
 				active = hex;
 				inactive =
@@ -38,7 +39,6 @@ in
 					);
 			};
 
-			# Генерация состояний для всех ключей base00..base07
 			baseStateMap = {
 				"00" = genStates base00;
 				"01" = genStates base01;
@@ -50,21 +50,20 @@ in
 				"07" = genStates base07;
 			};
 
-			# Распределение base00..base07 по ролям UI и Text согласно таблице
 			baseUiMap = {
-				bg = baseStateMap."00"; # Основной фон
-				surface = baseStateMap."01"; # Дополнительный/альтернативный фон
-				overlay = baseStateMap."02"; # Фон выделения текста, активная вкладка, разделители
-				muted = baseStateMap."03"; # Неактивные элементы фона / заблокированный UI
-				border = baseStateMap."04"; # Рамки, иконки, неактивные элементы интерфейса
+				bg = baseStateMap."00";
+				surface = baseStateMap."01";
+				overlay = baseStateMap."02";
+				muted = baseStateMap."03";
+				border = baseStateMap."04";
 			};
 
 			baseTextMap = {
-				comment = baseStateMap."03"; # Комментарии, заблокированный/неактивный текст
-				dimmed = baseStateMap."04"; # Вторичный текст
-				main = baseStateMap."05"; # Основной цвет текста (foreground)
-				light = baseStateMap."06"; # Светлый текст высокого контраста
-				heading = baseStateMap."07"; # Максимально контрастный текст
+				comment = baseStateMap."03";
+				dimmed = baseStateMap."04";
+				main = baseStateMap."05";
+				light = baseStateMap."06";
+				heading = baseStateMap."07";
 			};
 
 			normalAccents = {
@@ -134,7 +133,6 @@ in
 				"0E" = normalAccents.purple;
 				"0F" = normalAccents.magenta;
 
-				# Категоризированные цвета UI и TEXT по аналогии с accent
 				ui = {
 					active = lib.mapAttrs (_: v: v.active) baseUiMap;
 					inactive = lib.mapAttrs (_: v: v.inactive) baseUiMap;

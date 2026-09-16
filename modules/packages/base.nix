@@ -28,9 +28,6 @@
 				then "amd"
 				else "full"
 			}
-			(
-				lib.mkIf (vars.hasProgram "nix-your-shell") nix-your-shell
-			)
 			hyprshot
 			lua-language-server
 			themix-gui
@@ -143,11 +140,13 @@
 					jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
 				})
 			inputs.nyoom.packages.${pkgs.stdenv.hostPlatform.system}.nyoom
-			inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
 			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 		]
 		++ lib.optional vars.host.hardware.video.driver.nvidia.enable nvidia-vaapi-driver
 		++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.x86_64-linux.default
-		++ lib.optional (vars.hasProgram "rofi") cliphist-rofi-img
-		++ lib.optional (vars.hasProgram "fuzzel") cliphist-fuzzel-img;
+		++ lib.optional (vars.hasProgram "rofi") custom.cliphist-rofi-img
+		++ lib.optional (vars.hasProgram "fuzzel") custom.cliphist-fuzzel-img
+		++ lib.optional (vars.hasProgram "nix-your-shell") nix-your-shell
+		++ lib.optional (vars.hasProgram "niri") inputs.niri-glass.packages.${pkgs.stdenv.hostPlatform.system}.default
+		++ lib.optional (vars.hasProgram "niri") inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default;
 }

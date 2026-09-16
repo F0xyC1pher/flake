@@ -207,7 +207,6 @@
 		# };
 	};
 
-	# flake.nix (фрагмент outputs)
 	outputs = {
 		self,
 		nixpkgs,
@@ -216,31 +215,30 @@
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 
-		mkModules = import ./lib/mk-modules.nix {inherit lib;};
-		themes = import ./lib/mk-theme.nix {inherit lib;};
-
-		mkHost =
-			import ./lib/mk-host.nix {
-				inherit
-					lib
-					inputs
-					system
-					themes
-					mkModules
-					;
+		# Инициализация библиотеки с явной передачей корня флейка
+		mylib =
+			import ./lib {
+				inherit lib inputs system;
+				flakeRoot = ./.;
 			};
 
+		# Сканирование директории хостов
 		hostDirs = builtins.readDir ./hosts;
 		hostNames =
 			builtins.filter (
-				name: hostDirs.${name} == "directory" && builtins.pathExists (./hosts + "/${name}/default.nix")
+				name: hostDirs.${name} == "directory" && builtins.pathExists (./hosts + "/${name}/meta.nix")
 			) (builtins.attrNames hostDirs);
 	in {
+		lib = mylib;
+
 		nixosConfigurations =
 			builtins.listToAttrs (
-				map (name: {
-						inherit name;
-						value = mkHost name;
+				map (hostName: {
+						name = hostName;
+						value =
+							mylib.mkHost {
+								inherit hostName;
+							};
 					})
 				hostNames
 			);

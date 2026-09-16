@@ -1,14 +1,18 @@
-#lib/vars-builder.nix
+# lib/builder/vars.nix
 {
 	lib,
-	themes,
+	inputs ? {},
+	flakeRoot ? ../..,
+	themeBuilder ? {},
+	moduleResolver ? {},
+	...
 }: {
 	hostName,
 	hostCfg,
 	userCfg,
 	resolvedTheme,
-	modulesBase,
-	mkModules,
+	modulesBase ? "${flakeRoot}/modules",
+	...
 }: let
 	userName = hostCfg.user;
 
@@ -16,24 +20,20 @@
 	rawServices = userCfg.services or [];
 	rawPackages = userCfg.packages or [];
 
-	activePrograms = mkModules.resolveActiveNames (modulesBase + "/programs") rawPrograms;
-	activeServices = mkModules.resolveActiveNames (modulesBase + "/services") rawServices;
-	activePackages = mkModules.resolveActiveNames (modulesBase + "/packages") rawPackages;
+	activePrograms = moduleResolver.resolveActiveNames (modulesBase + "/programs") rawPrograms;
+	activeServices = moduleResolver.resolveActiveNames (modulesBase + "/services") rawServices;
+	activePackages = moduleResolver.resolveActiveNames (modulesBase + "/packages") rawPackages;
 
-	activePackageFiles = mkModules.importPackages (modulesBase + "/packages") rawPackages;
+	activePackageFiles = moduleResolver.importPackages (modulesBase + "/packages") rawPackages;
 in {
 	hasProgram = p: lib.elem p activePrograms;
 	hasService = s: lib.elem s activeServices;
 
 	hasPackage = pkg:
 		(lib.elem pkg activePackages)
-		|| (mkModules.hasPackageInFiles activePackageFiles pkg);
+		|| (moduleResolver.hasPackageInFiles activePackageFiles pkg);
 
-	host =
-		hostCfg
-		// {
-			name = hostName;
-		};
+	host = hostCfg // {name = hostName;};
 
 	system = userCfg.system or {};
 
@@ -45,6 +45,7 @@ in {
 		password = userCfg.user.password or userCfg.userPassword or null;
 		shell = userCfg.user.shell or userCfg.shell or "fish";
 	};
+
 	app =
 		userCfg.app or {
 			terminal = "kitty";
@@ -69,15 +70,15 @@ in {
 		accentColor = resolvedTheme.accentColor;
 		dark = userCfg.theme.dark or resolvedTheme.isDark;
 		opacity = userCfg.theme.opacity or 1.0;
-		opacityHex = themes.opacityToHex userCfg.theme.opacity;
-		hexToRgb = themes.hexToRgb;
-		hexToRgbString = themes.hexToRgbString;
+		opacityHex = themeBuilder.opacityToHex userCfg.theme.opacity;
+		hexToRgb = themeBuilder.hexToRgb;
+		hexToRgbString = themeBuilder.hexToRgbString;
 		liquid-glass = userCfg.theme.liquid-glass or false;
 		style = resolvedTheme.theme;
 		colors = resolvedTheme.colors;
 
 		gaps =
-			userCfg.theme.gaps or{
+			userCfg.theme.gaps or {
 				"in" = 10;
 				"out" = 10;
 			};
@@ -93,14 +94,11 @@ in {
 			};
 		blur =
 			userCfg.theme.blur or {
-				enable = false;
-				settings = {
-					offset = 1;
-					passes = 3;
-					noise = 0.002;
-					saturation = 1.1;
-					xray.enable = false;
-				};
+				offset = 1;
+				passes = 3;
+				noise = 0.002;
+				saturation = 1.1;
+				xray.enable = false;
 			};
 		shadows =
 			userCfg.theme.shadows or {
