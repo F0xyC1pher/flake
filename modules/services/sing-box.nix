@@ -1,5 +1,5 @@
 # sing-box.nix
-{pkgs, ...}: {
+{...}: {
 	services.sing-box = {
 		enable = true;
 

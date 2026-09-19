@@ -9,13 +9,13 @@
 				"01-binds" = {
 					autoLoad = true;
 					content = ''
-						local mainMod = "Super"
+						local mainMod = "SUPER"
 						-- Переменные окружения/приложений
 						local terminal = "${vars.app.terminal or "kitty"}"
 						local fileManager = terminal .. " yazi"
 						local menu = "${vars.app.launcher} ${lib.optionalString (vars.app.launcher == "rofi") "-show drun"}"
 
-						hl.bind(mainMod .. " + Shift + R", hl.dsp.exec_cmd("hyprctl reload"))
+						hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 						-- Приложения
 						hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 						hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
@@ -36,11 +36,11 @@
 						hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", layout_aware = true }))
 						hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
-						hl.bind("Super + Alt + L", hl.dsp.exec_cmd("swaylock"))
-						hl.bind(mainMod .. " + Shift + E", hl.dsp.exit())
-						hl.bind("Ctrl + Alt + Delete", hl.dsp.exit())
-						hl.bind(mainMod .. " + Shift + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-						hl.bind(mainMod .. " + Shift + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
+						hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("swaylock"))
+						hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exit())
+						hl.bind("CTRL + ALT + Delete", hl.dsp.exit())
+						hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+						hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
 
 						-- Навигация и Управление Лейаутом
 						hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
@@ -57,36 +57,36 @@
 						hl.bind(mainMod .. " + I", hl.dsp.layout("colresize +conf"))
 
 						-- Перемещение окон
-						hl.bind(mainMod .. " + Shift + Left",  hl.dsp.window.move({ direction = "left" }))
-						hl.bind(mainMod .. " + Shift + Right", hl.dsp.window.move({ direction = "right" }))
-						hl.bind(mainMod .. " + Shift + Up",    hl.dsp.window.move({ direction = "up" }))
-						hl.bind(mainMod .. " + Shift + Down",  hl.dsp.window.move({ direction = "down" }))
-						hl.bind(mainMod .. " + Shift + H",     hl.dsp.window.move({ direction = "left" }))
-						hl.bind(mainMod .. " + Shift + L",     hl.dsp.window.move({ direction = "right" }))
-						hl.bind(mainMod .. " + Shift + K",     hl.dsp.window.move({ direction = "up" }))
-						hl.bind(mainMod .. " + Shift + J",     hl.dsp.window.move({ direction = "down" }))
+						hl.bind(mainMod .. " + SHIFT + Left",  hl.dsp.window.move({ direction = "left" }))
+						hl.bind(mainMod .. " + SHIFT + Right", hl.dsp.window.move({ direction = "right" }))
+						hl.bind(mainMod .. " + SHIFT + Up",    hl.dsp.window.move({ direction = "up" }))
+						hl.bind(mainMod .. " + SHIFT + Down",  hl.dsp.window.move({ direction = "down" }))
+						hl.bind(mainMod .. " + SHIFT + H",     hl.dsp.window.move({ direction = "left" }))
+						hl.bind(mainMod .. " + SHIFT + L",     hl.dsp.window.move({ direction = "right" }))
+						hl.bind(mainMod .. " + SHIFT + K",     hl.dsp.window.move({ direction = "up" }))
+						hl.bind(mainMod .. " + SHIFT + J",     hl.dsp.window.move({ direction = "down" }))
 
 						-- Воркспейсы 1..10 (0 мапится на 10)
 						for i = 1, 10 do
 							local key = i % 10
 							hl.bind(mainMod .. " + " .. key,         hl.dsp.focus({ workspace = i }))
-							hl.bind(mainMod .. " + Shift + " .. key, hl.dsp.window.move({ workspace = i }))
+							hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 						end
 
 						-- Специальный воркспейсы (Scratchpad)
 						hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-						hl.bind(mainMod .. " + Shift + S", hl.dsp.window.move({ workspace = "special:magic" }))
+						hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 						-- Скриншоты
 						hl.bind("Print",         hl.dsp.exec_cmd("hyprshot -m region"))
-						hl.bind("Ctrl + Print",  hl.dsp.exec_cmd("hyprshot -m output"))
-						hl.bind("Alt + Print",   hl.dsp.exec_cmd("hyprshot -m window"))
+						hl.bind("CTRL + Print",  hl.dsp.exec_cmd("hyprshot -m output"))
+						hl.bind("ALT + Print",   hl.dsp.exec_cmd("hyprshot -m window"))
 
 						-- Колесико мыши для смены воркспейсов
 						hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ direction = "down" }))
 						hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ direction = "up" }))
-						hl.bind(mainMod .. " + Shift + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-						hl.bind(mainMod .. " + Shift + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+						hl.bind(mainMod .. " + SHIFT + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+						hl.bind(mainMod .. " + SHIFT + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 						-- Перетаскивание и ресайз мышью
 						hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })

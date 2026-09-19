@@ -1,11 +1,10 @@
 {
-	inputs,
 	vars,
 	lib,
 	...
 }: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/window-rules.kdl".text = ''
 				// syntax: kdl

@@ -225,15 +225,11 @@
 		};
 	};
 in {
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."zed/themes/theMe.json".text = builtins.toJSON themeData;
-			xdg.configFile."zed/settings.json".text = builtins.toJSON zedSettings;
-
-			programs.zed-editor = {
-				enable = true;
-			};
+	hjem = {
+		# extraSpecialArgs = {inherit inputs vars;};
+		users.${vars.user.name}.xdg.config.files = {
+			"zed/themes/theMe.json".text = builtins.toJSON themeData;
+			"zed/settings.json".text = builtins.toJSON zedSettings;
 		};
 	};
 }

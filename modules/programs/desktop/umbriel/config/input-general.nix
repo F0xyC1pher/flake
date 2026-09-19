@@ -1,11 +1,7 @@
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {lib, ...}: {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {
 			programs.umbriel.settings = {
 				general = {
 					xwayland = true;
