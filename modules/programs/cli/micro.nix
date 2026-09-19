@@ -1,13 +1,9 @@
-{
-	inputs,
-	vars,
-	...
-}: let
+{vars, ...}: let
 	style = vars.theme.style;
-	colors = vars.theme.colors;
+	# colors = vars.theme.colors;
 in {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {pkgs, ...}: {
 			programs.micro = {
 				package = pkgs.micro-full;

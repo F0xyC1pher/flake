@@ -1,13 +1,9 @@
 # ── Nixcord (Vesktop / Discord) — custom CSS theme ────────────────────────────
 # Replaces stylix.targets.nixcord. Injects role-driven CSS into Discord's
 # client via nixcord's quickCSS mechanism.
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {vars, ...}: let
 			t = vars.theme.style;
 			c.a = vars.theme.colors.accent.bg.normal;

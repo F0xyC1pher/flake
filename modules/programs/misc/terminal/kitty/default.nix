@@ -1,10 +1,5 @@
 # ── Kitty terminal ────────────────────────────────────────────────────────────
-{
-	inputs,
-	vars,
-	lib,
-	...
-}: {
+{vars, ...}: {
 	imports = [
 		./keybinds.nix
 		# ./tab_bar.nix
@@ -12,7 +7,7 @@
 	];
 
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {...}: {
 			programs.kitty = {
 				enable = true;

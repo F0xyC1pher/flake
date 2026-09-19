@@ -1,6 +1,5 @@
 {
 	vars,
-	inputs,
 	pkgs,
 	...
 }: {
@@ -12,6 +11,7 @@
 			builders-use-substitutes = true;
 			warn-dirty = false;
 			eval-cache = true;
+			sandbox = false;
 			experimental-features = [
 				"nix-command"
 				"flakes"
@@ -20,6 +20,15 @@
 				"${vars.user.name}"
 				"root"
 				"@wheel"
+			];
+			substituters = [
+				"https://hyprland.cachix.org"
+				"https://noctalia.cachix.org"
+				"https://nix-community.cachix.org"
+				"https://niri.cachix.org"
+				"https://cache.nixos.org"
+				"https://cache.garnix.io"
+				"https://freesmlauncher.cachix.org"
 			];
 			trusted-substituters = [
 				"https://hyprland.cachix.org"

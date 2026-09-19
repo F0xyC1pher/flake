@@ -1,11 +1,7 @@
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {pkgs, ...}: {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {
 			programs.nixvim = {
 				enable = true;
 				# defaultEditor = true;

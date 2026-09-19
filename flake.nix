@@ -8,14 +8,24 @@
 			flake = false;
 		};
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+		import-tree.url = "github:denful/import-tree";
+		hjem = {
+			url = "github:feel-co/hjem";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		hjem-impure = {
+			url = "github:Rexcrazy804/hjem-impure";
+			# these are only required for internal tests,
+			# hence you can set em to nothing
+			inputs.nixpkgs.follows = "";
+			inputs.hjem.follows = "";
+		};
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
 		flake-utils.url = "github:numtide/flake-utils";
-
+		# birdee = {};
 		nur = {
 			url = "github:nix-community/NUR";
 			inputs.nixpkgs.follows = "nixpkgs";
