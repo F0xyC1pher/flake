@@ -1,18 +1,32 @@
+#./users/f/default.nix
 {...}: {
 	theme = {
-		name = "theMe";
+		name = "cicada";
 		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
-		# accentColor = "red"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
-		# gaps = 8;
-		opacity = 0.666;
-		liquid-glass.enable = true;
+		gaps = {
+			"in" = 10;
+			"out" = 10;
+		};
+		opacity = 0.78;
+		liquid-glass.enable = false;
+		shadows = {
+			enable = true;
+			neon = false;
+		};
 		blur = {
 			enable = true;
 			xray.enable = false;
+			settings = {
+				passes = 3;
+				offset = 1;
+				noise = 0.0;
+				saturation = 0.0;
+			};
 		};
 		border = {
-			width = 2;
+			size = 2;
 			radius = 0;
 		};
 		font = {
@@ -22,7 +36,7 @@
 	};
 	app = {
 		terminal = "kitty";
-		launcher = "fuzzel";
+		launcher = "rofi";
 		file-manager = {
 			tui = "yazi";
 			gui = null;
@@ -38,16 +52,17 @@
 	};
 	user = {
 		fullName = "cicada";
-		# mail = "";
-		# gitName = "";
+		#mail = "@";
+		#gitName = "";
 		password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
-		shell = "zsh"; # fish zsh bash brush
+		shell = "fish"; # fish zsh bash
 	};
 	system = {
 		modKey = "Super"; # Super Mod4
 		desktopShell = "custom"; # custom dms noctalia
 	};
 	programs = [
+		"nix-your-shell"
 		"micro"
 		"nh"
 		"git"
@@ -62,31 +77,33 @@
 		"appimage"
 		"no-gnome"
 		"niri"
-		# "hyprland"
+		"hyprland"
 		# "scroll"
 		# "shojiwm"
 		# "umbriel"
 		# "noctalia"
 		# "dms"
 		"waybar"
-		"fuzzel"
+		# "fuzzel"
+		"rofi"
 		"yazi"
+		"bat"
 		"firefox"
 		"zed-editor"
 		"fastfetch"
+		"uwsm"
 		"throne"
 		"swaylock"
+		"nixvim"
 		"media"
-		"gayming"
-		# "nixvim"
 		# "skwd-wall"
+		"gayming"
 	];
 	services = [
-		"display-manager"
-		"polkit-service"
+		"tuigreet"
+		"rofi-polkit-service"
 		"accounts-daemon"
 		"arrpc"
-		"asusd"
 		"awww"
 		"cliphist"
 		"cups"
@@ -103,13 +120,21 @@
 		"resolved"
 		"scx-loader"
 		"seatd"
+		# "sing-box"
 		"swayidle"
 		"swaync"
-		"tlp"
+		# "tlp"
 		"udev"
 		"upower"
 		"userborn"
 		"wl-clip-persist"
 		"xserver"
+	];
+	packages = [
+		"base"
+		"jdk"
+		"neu-nix"
+		"session-packages"
+		"wine"
 	];
 }
