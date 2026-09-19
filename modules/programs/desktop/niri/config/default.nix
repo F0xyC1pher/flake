@@ -1,7 +1,6 @@
 {
 	lib,
 	vars,
-	inputs,
 	...
 }: {
 	imports =
@@ -21,7 +20,7 @@
 		]
 		++ lib.optionals vars.theme.blur.enable [./blur.nix];
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {...}: {
 			xdg.configFile."niri/config.kdl".text = ''
 				// syntax: kdl

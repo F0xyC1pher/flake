@@ -2,6 +2,7 @@
 	pkgs,
 	lib,
 	inputs,
+	vars,
 	...
 }: {
 	programs = {
@@ -16,18 +17,20 @@
 					];
 				};
 
-				"niri" = {
-					prettyName = "Niri";
-					binPath = "${lib.getExe inputs.niri-glass.packages.x86_64-linux.default}";
-					extraArgs = [
-						"--session"
-					];
-				};
+				"niri" =
+					lib.mkIf (vars.hasProgram "niri") {
+						prettyName = "Niri";
+						binPath = "${lib.getExe inputs.niri-glass.packages.x86_64-linux.default}";
+						extraArgs = [
+							"--session"
+						];
+					};
 
-				"hyprland" = {
-					prettyName = "Hyprland";
-					binPath = ''${lib.getExe' pkgs.hyprland "start-hyprland"}'';
-				};
+				"hyprland" =
+					lib.mkIf (vars.hasProgram "hyprland") {
+						prettyName = "Hyprland";
+						binPath = ''${lib.getExe' inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland "start-hyprland"}'';
+					};
 			};
 		};
 	};

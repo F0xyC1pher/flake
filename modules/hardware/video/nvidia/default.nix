@@ -1,5 +1,6 @@
 {
 	vars,
+	pkgs,
 	config,
 	...
 }: let
@@ -17,6 +18,10 @@ in {
 		graphics = {
 			enable = true;
 			enable32Bit = true;
+			extraPackages = with pkgs; [
+				nvidia-vaapi-driver
+				nv-codec-headers-12
+			];
 		};
 		nvidia = {
 			package = nvidiaPkg;

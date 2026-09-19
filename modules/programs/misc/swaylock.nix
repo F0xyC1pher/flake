@@ -1,16 +1,8 @@
 # ── SwayNC — notification center ─────────────────────────────────────────────
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {
-			pkgs,
-			vars,
-			...
-		}: {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {pkgs, ...}: {
 			programs.swaylock = {
 				enable = true;
 				package = pkgs.swaylock-effects;

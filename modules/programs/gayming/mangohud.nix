@@ -1,13 +1,9 @@
 # ── MangoHUD — overlay colors ─────────────────────────────────────────────────
 # Replaces stylix.targets.mangohud. All colors via role tree.
 # MangoHUD config uses hex WITHOUT # prefix.
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {
 			lib,
 			vars,

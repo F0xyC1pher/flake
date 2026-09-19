@@ -24,12 +24,24 @@
 ++ [
 	{nixpkgs.overlays = [pkgsOverlay];}
 	inputs.home-manager.nixosModules.home-manager
+	inputs.hjem.nixosModules.default
 	inputs.nur.modules.nixos.default
 ]
 ++ lib.optional (vars.hasService "proxy-suite") inputs.proxy-suite.nixosModules.default
 ++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.nixosModules.default
 ++ lib.optional (vars.hasProgram "shojiwm") inputs.shojiwm.nixosModules.default
 ++ lib.optional (vars.hasProgram "skwd-wall") inputs.skwd-wall.nixosModules.default
+++ [
+	{
+		hjem.users = {
+			${vars.user.name} = {
+				enable = true;
+				user = "${vars.user.name}";
+				directory = "/home/${vars.user.name}";
+			};
+		};
+	}
+]
 ++ [
 	{
 		home-manager = {

@@ -1,11 +1,7 @@
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {lib, ...}: {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {
 			programs.umbriel.settings.keybinds = {
 				"Mod+Return" = "spawn:kitty";
 				"Mod+Q" = "window-close";

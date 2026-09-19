@@ -1,11 +1,7 @@
 # ── Kitty colors — role-driven ────────────────────────────────────────────────
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {vars, ...}: {
 			programs.kitty.settings = let
 				t = vars.theme.style;

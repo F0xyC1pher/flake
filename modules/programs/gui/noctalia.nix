@@ -1,10 +1,6 @@
-{
-	vars,
-	inputs,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {...}: {
 			programs.noctalia = {
 				enable = true;

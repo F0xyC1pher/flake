@@ -1,11 +1,7 @@
 # ── Fuzzel — Wayland app launcher / dmenu ────────────────────────────────────
-{
-	inputs,
-	vars,
-	...
-}: {
+{vars, ...}: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
+		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {lib, ...}: {
 			programs.fuzzel = {
 				enable = true;
