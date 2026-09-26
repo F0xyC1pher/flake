@@ -1126,6 +1126,22 @@
         "type": "github"
       }
     },
+    "luasteam-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787315026,
+        "narHash": "sha256-TENU3kNj2/aaHzoyEO0yWAYpMGCcjFs/DvSB8+1cLck=",
+        "owner": "uspgamedev",
+        "repo": "luasteam",
+        "rev": "259b1d0de33061c1eec3b8c9b1e60a9b4fff21e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uspgamedev",
+        "repo": "luasteam",
+        "type": "github"
+      }
+    },
     "neu-nix": {
       "inputs": {
         "nixpkgs": [
@@ -2006,6 +2022,7 @@
         "lovely-bin": "lovely-bin",
         "lovely-src": "lovely-src",
         "lsfg-vk-flake": "lsfg-vk-flake",
+        "luasteam-src": "luasteam-src",
         "neu-nix": "neu-nix",
         "niri-float-sticky": "niri-float-sticky",
         "niri-glass": "niri-glass",
