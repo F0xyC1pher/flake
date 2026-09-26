@@ -8,107 +8,111 @@
 	steamLib = "/home/${vars.user.name}/Games/SteamLibrary";
 	balatroExe = "${steamLib}/steamapps/common/Balatro/Balatro.exe";
 	protonSaves = "${steamLib}/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro";
-
-	lovelyVersion = (builtins.fromTOML (builtins.readFile "${inputs.lovely-src}/crates/lovely-core/Cargo.toml")).package.version;
+	nativeSaves = "$HOME/.local/share/love/Balatro";
 
 	lovelyInjector =
 		pkgs.stdenv.mkDerivation {
 			pname = "lovely-injector";
-			version = lovelyVersion;
+			version = "latest";
 			src = inputs.lovely-bin;
-			dontUnpack = true;
 
 			nativeBuildInputs = [pkgs.autoPatchelfHook];
 			buildInputs = [pkgs.stdenv.cc.cc.lib];
 
 			installPhase = ''
 				mkdir -p $out/lib
+
 				if [ -d "$src" ]; then
-				  cp $src/liblovely.so $out/lib/
-				elif [ -f "$src" ]; then
-				  cp $src $out/lib/liblovely.so
+				  SO_FILE=$(find "$src" -type f -name "liblovely.so" | head -n 1)
+				  [ -n "$SO_FILE" ] && cp "$SO_FILE" $out/lib/liblovely.so || { echo "Ошибка: liblovely.so не найден"; exit 1; }
 				else
-				  cp liblovely.so $out/lib/
+				  TMP_TAR=$(mktemp -d)
+				  cp "$src" "$TMP_TAR/lovely.tar.gz"
+				  tar -xzf "$TMP_TAR/lovely.tar.gz" -C "$TMP_TAR"
+				  SO_FILE=$(find "$TMP_TAR" -type f -name "liblovely.so" | head -n 1)
+				  [ -n "$SO_FILE" ] && cp "$SO_FILE" $out/lib/liblovely.so || { echo "Ошибка: liblovely.so не найден в архиве"; exit 1; }
 				fi
+				chmod +x $out/lib/liblovely.so
 			'';
 		};
 
-	# Компиляция luasteam.so из исходников
 	luasteam =
 		pkgs.stdenv.mkDerivation {
 			pname = "luasteam";
-			version = "1.0.4";
-			src = inputs.luasteam-src;
+			version = "1.2.0";
+			src = inputs.luasteam-bin;
+			dontUnpack = true;
 
-			buildInputs = [pkgs.luajit];
-
-			buildPhase = ''
-				$CXX -O2 -shared -fPIC -I${pkgs.luajit}/include/luajit-2.1 src/*.cpp -o luasteam.so
-			'';
+			nativeBuildInputs = [
+				pkgs.patchelf
+			];
+			buildInputs = [
+				pkgs.stdenv.cc.cc.lib
+				pkgs.glibc
+				pkgs.luajit
+			];
 
 			installPhase = ''
 				mkdir -p $out/lib/lua/5.1
-				cp luasteam.so $out/lib/lua/5.1/
+
+				if [ -d "$src" ]; then
+				  SO_FILE=$(find "$src" -type f -name "*.so" | head -n 1)
+				  [ -n "$SO_FILE" ] && cp "$SO_FILE" $out/lib/lua/5.1/luasteam.so || { echo "Ошибка: .so не найден"; exit 1; }
+				else
+				  cp "$src" $out/lib/lua/5.1/luasteam.so
+				fi
+				chmod +w $out/lib/lua/5.1/luasteam.so
+			'';
+
+			postFixup = ''
+				${pkgs.patchelf}/bin/patchelf --set-rpath \
+					"''$ORIGIN:${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib pkgs.glibc pkgs.luajit]}" \
+					$out/lib/lua/5.1/luasteam.so
 			'';
 		};
 
 	balatro =
 		pkgs.writeShellScriptBin "balatro" ''
-			EXE=""
-			for arg in "$@"; do
-			  if [[ "$arg" == *"Balatro.exe"* ]]; then
-			    EXE="$arg"
-			    break
-			  fi
-			done
-
-			if [ -z "$EXE" ]; then
-			  EXE="${balatroExe}"
-			fi
+			EXE="${balatroExe}"
+			GAME_DIR="$(dirname "$EXE")"
 
 			if [ ! -f "$EXE" ]; then
 			  echo "Ошибка: Balatro.exe не найден по пути $EXE"
 			  exit 1
 			fi
 
-			# 1. Привязка сейвов из Proton (если нативной папки еще нет)
-			NATIVE_SAVES="$HOME/.local/share/love/Balatro"
-			PROTON_SAVES="${protonSaves}"
-
-			if [ ! -e "$NATIVE_SAVES" ] && [ -d "$PROTON_SAVES" ]; then
-			  mkdir -p "$HOME/.local/share/love"
-			  ln -s "$PROTON_SAVES" "$NATIVE_SAVES"
+			# Проверяем наличие libsteam_api.so в папке с игрой
+			if [ ! -f "$GAME_DIR/libsteam_api.so" ]; then
+			  echo "Ошибка: libsteam_api.so не найдена в $GAME_DIR"
+			  echo "Скопируй её из Steam-клиента:"
+			  echo "  cp ~/.local/share/Steam/steamrt64/libsteam_api.so $GAME_DIR/"
+			  exit 1
 			fi
 
-			# 2. Идентификация игры для Steam API
+			# 1. Привязка сохранений из Proton
+			if [ ! -e "${nativeSaves}" ] && [ -d "${protonSaves}" ]; then
+			  mkdir -p "$HOME/.local/share/love"
+			  ln -s "${protonSaves}" "${nativeSaves}"
+			fi
+
+			# 2. Идентификаторы Steam
 			export SteamAppId="2379780"
 			export SteamGameId="2379780"
 
-			# 3. Нативный Wayland
-			export SDL_VIDEODRIVER=wayland
-			export WAYLAND_DISPLAY="''${WAYLAND_DISPLAY:-wayland-1}"
-			export XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
-
-			# 4. Регистрируем скомпилированную luasteam.so в LUA_CPATH
+			# 3. Пути к Lua модулям
 			export LUA_CPATH="${luasteam}/lib/lua/5.1/?.so;''${LUA_CPATH}"
 
-			# 5. Системные либы NixOS/NVIDIA + пути к Steam SDK для libsteam_api.so
-			SYS_LIBS="${lib.makeLibraryPath [
-					pkgs.curl
-					pkgs.wayland
-					pkgs.libxkbcommon
-					pkgs.libGL
-					pkgs.vulkan-loader
-				]}:/run/opengl-driver/lib:$HOME/.steam/sdk64:$HOME/.local/share/Steam/ubuntu12_32:$HOME/.local/share/Steam/ubuntu12_64"
+			# 4. Библиотечные пути
+			export LD_LIBRARY_PATH="${luasteam}/lib/lua/5.1:${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib pkgs.curl pkgs.luajit]}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
-			export LD_LIBRARY_PATH="$SYS_LIBS''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+			# 5. Переходим в папку с игрой (как в оригинальном run_lovely_linux.sh)
+			cd "$GAME_DIR"
 
-			# 6. Сохраняем Steam Overlay и добавляем Lovely
-			export LD_PRELOAD="${lovelyInjector}/lib/liblovely.so''${LD_PRELOAD:+:$LD_PRELOAD}"
+			# 6. Предзагрузка: libsteam_api.so ищется в текущей директории (мы в $GAME_DIR)
+			#    liblovely.so — абсолютный путь из nix-store
+			export LD_PRELOAD="libsteam_api.so:${lovelyInjector}/lib/liblovely.so''${LD_PRELOAD:+:$LD_PRELOAD}"
 
-			# 7. Переходим в директорию игры
-			cd "$(dirname "$EXE")"
-
+			# 7. Запуск через love
 			exec ${pkgs.love}/bin/love "$EXE" "$@"
 		'';
 in {
