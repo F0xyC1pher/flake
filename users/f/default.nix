@@ -80,7 +80,7 @@
 		"hyprland"
 		# "scroll"
 		# "shojiwm"
-		# "umbriel"
+		"umbriel"
 		# "noctalia"
 		# "dms"
 		"waybar"
