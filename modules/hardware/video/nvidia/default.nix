@@ -21,6 +21,18 @@ in {
 			extraPackages = with pkgs; [
 				nvidia-vaapi-driver
 				nv-codec-headers-12
+				vulkan-loader
+				vulkan-validation-layers
+				vulkan-extension-layer
+				vulkan-tools
+			];
+			extraPackages32 = with pkgs; [
+				nvidia-vaapi-driver
+				nv-codec-headers-12
+				vulkan-loader
+				vulkan-validation-layers
+				vulkan-extension-layer
+				vulkan-tools
 			];
 		};
 		nvidia = {
