@@ -1,34 +1,58 @@
 # dispatchers.nix
-{pkgs, ...}: {
+{pkgs, ...}: let
+	updatePhoneIpScript =
+		pkgs.writeShellApplication {
+			name = "update-phone-ip";
+
+			runtimeInputs = with pkgs; [
+				iproute2
+				gawk
+				coreutils
+				systemd
+			];
+
+			text = ''
+				interface="''${1:-}"
+				action="''${2:-}"
+
+				# Early return if the action is not 'up' or interface is missing
+				if [ "$action" != "up" ] || [ -z "$interface" ]; then
+				  exit 0
+				fi
+
+				gateway=""
+				for attempt in $(seq 1 10); do
+				  gateway=$(ip route show dev "$interface" | awk '/default via/ {print $3; exit}')
+
+				  if [ -n "$gateway" ]; then
+				    break
+				  fi
+
+				  echo "Attempt $attempt: Waiting for default gateway on $interface..."
+				  sleep 0.5
+				done
+
+				if [ -z "$gateway" ]; then
+				  echo "Error: Failed to resolve default gateway for $interface" >&2
+				  exit 1
+				fi
+
+				# Ensure state directory exists and atomic update of phone hosts entry
+				mkdir -p /run/xray
+				echo "$gateway phone.internal" > /run/xray/hosts
+
+				# Update DNS standard nameserver configuration safely
+				if awk '/nameserver/ && $2 != "127.0.0.1" { found=1 } END { exit !found }' /etc/resolv.conf; then
+				  echo "Updating local DNS configuration..."
+				  systemctl restart xray.service || true
+				fi
+			'';
+		};
+in {
 	networking.networkmanager.dispatcherScripts = [
 		{
-			source =
-				pkgs.writeShellScript "update-phone-ip" ''
-					IFACE=$1
-					ACTION=$2
-
-					if [ "$ACTION" = "up" ]; then
-					  GW=""
-					  for i in $(seq 1 10); do
-					    GW=$(${pkgs.iproute2}/bin/ip route show dev "$IFACE" | ${pkgs.gawk}/bin/awk '/default via/ {print $3}' | ${pkgs.coreutils}/bin/head -n1)
-					    if [ -n "$GW" ]; then
-					      break
-					    fi
-					    ${pkgs.coreutils}/bin/sleep 0.5
-					  done
-
-					  if [ -n "$GW" ]; then
-					    # Записываем телефонный IP в hosts
-					    ${pkgs.coreutils}/bin/mkdir -p /run/sing-box
-					    echo "$GW phone.internal" > /run/sing-box/hosts
-
-					    # Устанавливаем DNS на телефоне (если ещё не стоит)
-					    if ${pkgs.gawk}/bin/gawk '/nameserver/ { if ($2 != "127.0.0.1:6450") { print "127.0.0.1 6450" > "/etc/resolv.conf"; exit 0 } }' /etc/resolv.conf; then
-					      ${pkgs.systemd}/bin/systemctl restart sing-box.service || true
-					    fi
-					  fi
-					fi
-				'';
+			type = "basic";
+			source = "${updatePhoneIpScript}/bin/update-phone-ip";
 		}
 	];
 }
