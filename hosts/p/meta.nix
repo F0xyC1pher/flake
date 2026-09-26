@@ -7,7 +7,7 @@
 			device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"; # Find your disk for bootloader: ls -la /dev/disk/by-id/ | grep -v part
 		};
 		kernel = {
-			name = "xanmod_latest"; # xanmod_latest, zen_latest, hardened, latest
+			name = "latest"; # xanmod_latest, zen_latest, hardened, latest
 			# modules = [];
 		};
 		swap = {
