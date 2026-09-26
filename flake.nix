@@ -107,22 +107,18 @@
 			url = "github:ryanccn/nyoom";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		# Скачивает архив с готовой библиотекой последних релизов (Nix сам его распакует)
 		lovely-bin = {
 			url = "https://github.com/ethangreen-dev/lovely-injector/releases/latest/download/lovely-x86_64-unknown-linux-gnu.tar.gz";
 			flake = false;
 		};
-
-		# Репозиторий нужен ТОЛЬКО для автоматического вытаскивания номера версии из Cargo.toml
-		lovely-src = {
-			url = "github:ethangreen-dev/lovely-injector";
+		luasteam-bin = {
+			url = "https://github.com/uspgamedev/luasteam/releases/download/v1.2.0/linux64_luasteam.so";
 			flake = false;
 		};
-		luasteam-src = {
-			url = "github:uspgamedev/luasteam";
+		steam-api-bin = {
+			url = "https://github.com/rlabrecque/Steamworks.NET/releases/download/2025.164.1/Steamworks.NET-Standalone_2025.164.1.zip";
 			flake = false;
 		};
-
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
