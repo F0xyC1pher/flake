@@ -118,6 +118,11 @@
 			url = "github:ethangreen-dev/lovely-injector";
 			flake = false;
 		};
+		luasteam-src = {
+			url = "github:uspgamedev/luasteam";
+			flake = false;
+		};
+
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
