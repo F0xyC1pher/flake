@@ -1076,6 +1076,35 @@
         "type": "github"
       }
     },
+    "lovely-bin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790176702,
+        "narHash": "sha256-SGOmsREReYxMvYv7QYIqOJKYUXcxj4dLhVQqPbVwcOA=",
+        "type": "tarball",
+        "url": "https://github.com/ethangreen-dev/lovely-injector/releases/latest/download/lovely-x86_64-unknown-linux-gnu.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/ethangreen-dev/lovely-injector/releases/latest/download/lovely-x86_64-unknown-linux-gnu.tar.gz"
+      }
+    },
+    "lovely-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790176555,
+        "narHash": "sha256-AxOtWAjvhacpw4cqrFppZS5HyNophz3BUNA7p6UvgVE=",
+        "owner": "ethangreen-dev",
+        "repo": "lovely-injector",
+        "rev": "073060eeb81b3664f476bdd33c263663d48762d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ethangreen-dev",
+        "repo": "lovely-injector",
+        "type": "github"
+      }
+    },
     "lsfg-vk-flake": {
       "inputs": {
         "nixpkgs": [
@@ -1974,6 +2003,8 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "import-tree": "import-tree",
+        "lovely-bin": "lovely-bin",
+        "lovely-src": "lovely-src",
         "lsfg-vk-flake": "lsfg-vk-flake",
         "neu-nix": "neu-nix",
         "niri-float-sticky": "niri-float-sticky",
