@@ -33,6 +33,25 @@
 			'';
 		};
 
+	# Компиляция luasteam.so из исходников
+	luasteam =
+		pkgs.stdenv.mkDerivation {
+			pname = "luasteam";
+			version = "1.0.4";
+			src = inputs.luasteam-src;
+
+			buildInputs = [pkgs.luajit];
+
+			buildPhase = ''
+				$CXX -O2 -shared -fPIC -I${pkgs.luajit}/include/luajit-2.1 src/*.cpp -o luasteam.so
+			'';
+
+			installPhase = ''
+				mkdir -p $out/lib/lua/5.1
+				cp luasteam.so $out/lib/lua/5.1/
+			'';
+		};
+
 	balatro =
 		pkgs.writeShellScriptBin "balatro" ''
 			EXE=""
@@ -43,7 +62,6 @@
 			  fi
 			done
 
-			# Если запущен напрямую из терминала, берем дефолтный путь из SteamLibrary
 			if [ -z "$EXE" ]; then
 			  EXE="${balatroExe}"
 			fi
@@ -53,7 +71,7 @@
 			  exit 1
 			fi
 
-			# Если папка сейвов Proton существует, а нативной папки love еще нет — подвязываем сейвы налету
+			# 1. Привязка сейвов из Proton (если нативной папки еще нет)
 			NATIVE_SAVES="$HOME/.local/share/love/Balatro"
 			PROTON_SAVES="${protonSaves}"
 
@@ -62,10 +80,36 @@
 			  ln -s "$PROTON_SAVES" "$NATIVE_SAVES"
 			fi
 
-			export LD_LIBRARY_PATH="${lib.makeLibraryPath [pkgs.curl]}:$LD_LIBRARY_PATH"
-			export LD_PRELOAD="${lovelyInjector}/lib/liblovely.so"
+			# 2. Идентификация игры для Steam API
+			export SteamAppId="2379780"
+			export SteamGameId="2379780"
 
-			exec ${pkgs.love}/bin/love "$EXE"
+			# 3. Нативный Wayland
+			export SDL_VIDEODRIVER=wayland
+			export WAYLAND_DISPLAY="''${WAYLAND_DISPLAY:-wayland-1}"
+			export XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+
+			# 4. Регистрируем скомпилированную luasteam.so в LUA_CPATH
+			export LUA_CPATH="${luasteam}/lib/lua/5.1/?.so;''${LUA_CPATH}"
+
+			# 5. Системные либы NixOS/NVIDIA + пути к Steam SDK для libsteam_api.so
+			SYS_LIBS="${lib.makeLibraryPath [
+					pkgs.curl
+					pkgs.wayland
+					pkgs.libxkbcommon
+					pkgs.libGL
+					pkgs.vulkan-loader
+				]}:/run/opengl-driver/lib:$HOME/.steam/sdk64:$HOME/.local/share/Steam/ubuntu12_32:$HOME/.local/share/Steam/ubuntu12_64"
+
+			export LD_LIBRARY_PATH="$SYS_LIBS''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+			# 6. Сохраняем Steam Overlay и добавляем Lovely
+			export LD_PRELOAD="${lovelyInjector}/lib/liblovely.so''${LD_PRELOAD:+:$LD_PRELOAD}"
+
+			# 7. Переходим в директорию игры
+			cd "$(dirname "$EXE")"
+
+			exec ${pkgs.love}/bin/love "$EXE" "$@"
 		'';
 in {
 	environment.systemPackages = [
