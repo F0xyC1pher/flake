@@ -14,14 +14,14 @@
 					# sudo = sudo;
 					# glow = glow;
 					gvfs = gvfs;
-					# piper = piper;
-					# mount = mount;
+					piper = piper;
+					mount = mount;
 					# gitui = gitui;
 					# chmod = chmod;
 					# mime-ext = mime-ext;
-					# compress = compress;
+					compress = compress;
 					# mediainfo = mediainfo;
-					# toggle-pane = toggle-pane;
+					toggle-pane = toggle-pane;
 					full-border = full-border;
 				};
 			};

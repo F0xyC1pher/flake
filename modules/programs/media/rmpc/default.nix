@@ -28,7 +28,7 @@ in {
 					  theme: Some("theme"),
 					  on_song_change: None,
 					  volume_step: 5,
-					  max_fps: 60,
+					  max_fps: ${toString vars.host.hardware.video.output.framerate},
 					  scrolloff: 0,
 					  enable_mouse: true,
 					  enable_config_hot_reload: true,

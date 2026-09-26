@@ -19,6 +19,16 @@
 			#percent = 100; # not needed when ram exists
 		};
 		hardware = {
+			rom = [
+				{
+					name = "Games";
+					path = "";
+				}
+				{
+					name = "CoolStuff";
+					path = "";
+				}
+			];
 			ram = 16;
 			bluetooth.enable = true;
 			cpu.governor = "performance";

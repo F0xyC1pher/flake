@@ -22,7 +22,7 @@
 				passes = 2;
 				offset = 2;
 				noise = 0.05;
-				saturation = 0.0;
+				saturation = 1.0;
 			};
 		};
 		border = {
@@ -128,6 +128,7 @@
 		"upower"
 		"userborn"
 		"wl-clip-persist"
+		# "xray-client"
 		"xserver"
 	];
 	packages = [
