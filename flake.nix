@@ -107,7 +107,17 @@
 			url = "github:ryanccn/nyoom";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		# Скачивает архив с готовой библиотекой последних релизов (Nix сам его распакует)
+		lovely-bin = {
+			url = "https://github.com/ethangreen-dev/lovely-injector/releases/latest/download/lovely-x86_64-unknown-linux-gnu.tar.gz";
+			flake = false;
+		};
 
+		# Репозиторий нужен ТОЛЬКО для автоматического вытаскивания номера версии из Cargo.toml
+		lovely-src = {
+			url = "github:ethangreen-dev/lovely-injector";
+			flake = false;
+		};
 		freesmlauncher = {
 			url = "github:FreesmTeam/FreesmLauncher";
 			inputs.nixpkgs.follows = "nixpkgs";
