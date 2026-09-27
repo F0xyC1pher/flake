@@ -8,9 +8,9 @@
 	fonts = {
 		packages = with pkgs; [
 			noto-fonts-color-emoji
-			monocraft
-			pixel-code
-			cozette
+			# monocraft
+			# pixel-code
+			# cozette
 			nerd-fonts.caskaydia-cove
 			nerd-fonts.fira-code
 			fira-code-symbols
