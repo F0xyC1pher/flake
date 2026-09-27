@@ -7,12 +7,11 @@
 		users.${vars.user.name} = {...}: {
 			programs.rofi = {
 				enable = true;
-				terminal = "kitty";
-				extraConfig = {
+				settings = {
+					terminal = "kitty";
 					modi = "run,drun,window";
 					icon-theme = "Flat-Remix-Red-Dark";
 					show-icons = true;
-					terminal = "kitty";
 					drun-display-format = "{icon} {name}";
 					location = 0;
 					hide-scrollbar = true;
