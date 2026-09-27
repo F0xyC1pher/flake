@@ -134,7 +134,7 @@
 	packages = [
 		"base"
 		"jdk"
-		"neu-nix"
+		# "neu-nix"
 		"session-packages"
 		"wine"
 	];
