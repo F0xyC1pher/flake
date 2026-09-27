@@ -1,3 +1,8 @@
-{vars, ...}: {
-	boot.kernelModules = ["tcp_bbr"] ++ vars.host.kernel.modules;
+{
+	vars,
+	lib,
+	...
+}: {
+	boot.kernelModules = ["tcp_bbr"];
+	# ++ lib.optionals vars.host.kernel.modules;
 }
