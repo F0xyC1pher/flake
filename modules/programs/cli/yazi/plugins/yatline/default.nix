@@ -1,10 +1,14 @@
-{vars, ...}: {
+{
+	vars,
+	inputs,
+	...
+}: {
 	imports = [./theme.nix];
 	home-manager = {
 		extraSpecialArgs = {inherit vars;};
-		users.${vars.user.name} = {pkgs, ...}: {
+		users.${vars.user.name} = {...}: {
 			programs.yazi.plugins.yatline = {
-				package = pkgs.yaziPlugins.yatline;
+				package = inputs.yatline-foxy;
 				setup = true;
 				settings = {
 					tab_width = 20;
