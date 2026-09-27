@@ -29,9 +29,9 @@
 					},
 
 					"niri/language": {
-						"format": "язык: {}",
-						"format-en": "🇺🇸 EN",
-						"format-ru": "🇷🇺 RU",
+						"format": " : {}",
+						"format-en": "US 🇺🇸",
+						"format-ru": "RU 🇷🇺",
 						"interval": 1,
 					},
 				}

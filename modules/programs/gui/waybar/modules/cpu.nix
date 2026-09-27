@@ -11,9 +11,8 @@
 				{
 					"cpu": {
 						"interval": 5,
-						"format": "{load:.0f}% ",
+						"format": " {load:.0f}%",
 						"on-click": "kitty btop",
-						"on-click-right": "kitty btop",
 					},
 				}
 			'';

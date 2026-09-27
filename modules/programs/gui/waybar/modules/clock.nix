@@ -12,8 +12,8 @@
 					"clock":{
 						"interval": 1,
 						"locale": "ru_RU.UTF-8",
-						"format": "{:%H:%M:%S}",
-						"format-alt": "{:%A, %b %d} ",
+						"format": " {:%H:%M:%S}",
+						"format-alt": " {:%A, %b %d}",
 						"tooltip-format": "<tt><small>{calendar}</small></tt>",
 						"calendar": {
 							"mode": "year",
