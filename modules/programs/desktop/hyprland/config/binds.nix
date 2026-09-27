@@ -83,10 +83,10 @@
 						hl.bind("ALT + Print",   hl.dsp.exec_cmd("hyprshot -m window"))
 
 						-- Колесико мыши для смены воркспейсов
-						hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ direction = "down" }))
-						hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ direction = "up" }))
-						hl.bind(mainMod .. " + SHIFT + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-						hl.bind(mainMod .. " + SHIFT + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+						hl.bind(mainMod .. " + SHIFT + mouse_down", hl.dsp.focus({ direction = "down" }))
+						hl.bind(mainMod .. " + SHIFT + mouse_up",   hl.dsp.focus({ direction = "up" }))
+						hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+						hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 						-- Перетаскивание и ресайз мышью
 						hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
