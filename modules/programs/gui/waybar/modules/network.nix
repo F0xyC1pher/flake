@@ -12,7 +12,7 @@
 					"network": {
 						"interval": 5,
 						"format-wifi": "wi-fi ({signalStrength}%)",
-						"format-ethernet": "eth 󰈀",
+						"format-ethernet": "󰈀 eth",
 						"format-linked": "no IP ({ifname})",
 						"format-disconnected":"no",
 						"tooltip-format": "{ifname} {ipaddr}/{cidr} via {gwaddr} ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",

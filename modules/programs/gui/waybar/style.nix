@@ -85,7 +85,7 @@
 					margin: 0 2px;
 					padding: 0 12px;
 					min-height: 28px;
-					font-size: 17px;
+					/* font-size: ;*/
 				}
 
 				#workspaces button.empty {
