@@ -140,9 +140,14 @@
 			url = "github:mierak/rmpc";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		yazi.url = "github:sxyazi/yazi";
 		# ── Non-flake sources ────────────────────────────────────────────────────
 		yazi-plugins = {
 			url = "github:yazi-rs/plugins";
+			flake = false;
+		};
+		yatline-foxy = {
+			url = "github:F0xyC1pher/yatline.yazi";
 			flake = false;
 		};
 		powerlevel10k = {

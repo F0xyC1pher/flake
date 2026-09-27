@@ -11,18 +11,24 @@
 					mgr = {
 						prepend_keymap = [
 							{
-								on = ["<Esc>"];
+								on = [
+									"<Esc>"
+								];
 								run = "close";
 								desc = "Cancel input";
 							}
 							{
-								on = ["!"];
+								on = [
+									"!"
+								];
 								run = "shell \"$SHELL\" --block";
 								desc = "Open $SHELL here";
 							}
 							{
 								on = "<C-g>";
-								run = "'shell -- rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"ya emit reveal\" -filebrowser-directory \"$(pwd)\"'";
+								# run = "'shell -- rofi -theme fullscreen-preview -modi filebrowser -show filebrowser -filebrowser-command \"ya emit reveal\" -filebrowser-directory \"$(pwd)\"'";
+								run = "shell \"$SHELL\" --block";
+
 								desc = "Grid view";
 							}
 							# mount
@@ -64,7 +70,9 @@
 
 							# sudo
 							# {
-							# 	on = ["!"];
+							# 	on = [
+							# 		"<C>-!"
+							#		];
 							# 	run = "plugin sudo";
 							# 	desc = "sudo";
 							# }
@@ -101,7 +109,9 @@
 
 							# toggle pane
 							{
-								on = ["T"];
+								on = [
+									"T"
+								];
 								run = "plugin toggle-pane";
 								desc = "toggle pane";
 							}
