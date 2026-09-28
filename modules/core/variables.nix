@@ -12,10 +12,7 @@
 		"192000" = 2048;
 	};
 
-	quantum =
-		if quantumMap ? ${rateStr}
-		then quantumMap.${rateStr}
-		else 1024;
+	quantum = quantumMap.${rateStr} or 1024;
 in {
 	environment.sessionVariables = {
 		# === Терминал ===
@@ -74,33 +71,23 @@ in {
 		GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
 
 		# === Wine / Proton ===
-		PROTON_ENABLE_WAYLAND = "1";
+		PROTON_ENABLE_WAYLAND = "0";
 		PROTON_USE_NTSYNC = "1";
 		PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
 		PROTON_HIDE_NVIDIA_GPU = "0";
 
 		# === Отключение VSync глобально ===
-		MESA_VK_WSI_PRESENT_MODE = "immediate";
 		__GL_SYNC_TO_VBLANK = "0";
 		__GL_YIELD = "NOTHING";
-		__GL_GSYNC_ALLOWED = "0";
 		__GL_VRR_ALLOWED = "0";
-		__GL_MAX_FRAMES_ALLOWED = "0";
 		vblank_mode = "0";
 
 		# === Остальные NVIDIA/OpenGL оптимизации ===
-		__GL_SHADER_CACHE = "1";
 		__GL_SHADER_DISK_CACHE = "1";
-		__GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "0";
-		__GL_ExperimentalPerfStrategy = "1";
-		__GL_ConformantBlitFramebufferScissor = "1";
-		__GL_ALLOW_FXAA = "0";
-		__GL_THREADED_OPTIMIZATIONS = "0";
+		__GL_ALLOW_UNOFFICIAL_PROTOCOL = "1";
 
 		# === Дополнительно ===
-		DXVK_SHADER_OPTIMIZE = "1";
 		DXVK_ENABLE_NVAPI = "1";
-		STAGING_SHARED_MEMORY = "1";
 		GLFW_IM_MODULE = "none";
 
 		# Pipewire Латентность
