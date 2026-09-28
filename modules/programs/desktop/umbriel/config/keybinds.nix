@@ -1,11 +1,15 @@
-{vars, ...}: {
+{
+	vars,
+	lib,
+	...
+}: {
 	home-manager = {
 		extraSpecialArgs = {inherit vars;};
 		users.${vars.user.name} = {
 			programs.umbriel.settings.keybinds = {
 				"Mod+Return" = "spawn:kitty";
 				"Mod+Q" = "window-close";
-				"Mod+D" = "spawn:fuzzel";
+				"Mod+R" = "spawn:${vars.app.launcher} ${lib.optionalString (vars.app.launcher == "rofi") "-show drun"}";
 				"Mod" = "spawn:noctalia msg panel-toggle launcher";
 
 				# Window state and layout
@@ -41,7 +45,7 @@
 				"Mod+Shift+L" = "window-focus-right";
 				"Mod+F" = "window-toggle-fullscreen";
 				"Mod+Ctrl+F" = "window-toggle-maximize";
-				"Mod+R" = "window-cycle-width";
+				"Mod+I" = "window-cycle-width";
 				"Mod+Shift+R" = "window-cycle-width-back";
 				"Mod+Comma" = "window-consume-left";
 				"Mod+Period" = "window-consume-right";
