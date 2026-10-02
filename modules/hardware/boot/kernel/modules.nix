@@ -1,8 +1,5 @@
-{
-	vars,
-	lib,
-	...
-}: {
-	boot.kernelModules = ["tcp_bbr" "ntsync"];
-	# ++ lib.optionals vars.host.kernel.modules;
+{vars, ...}: {
+	boot.kernelModules =
+		["tcp_bbr" "ntsync"]
+		++ (vars.host.kernel.modules or []);
 }
