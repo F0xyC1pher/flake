@@ -8,7 +8,8 @@
 		};
 		kernel = {
 			name = "xanmod_latest"; # xanmod_latest, zen_latest, hardened, latest
-			# modules = [];
+			modules = ["acpi-cpufreq"];
+			params = ["intel_pstate=disable"];
 		};
 		swap = {
 			enable = true;
