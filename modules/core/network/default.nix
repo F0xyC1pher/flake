@@ -34,7 +34,8 @@
 		# ];
 
 		hosts = {
-			"94.131.119.22" = ["grok.com" "x.ai" "accounts.x.ai" "gemini.google.com"];
+			# "94.131.119.22" = ["grok.com" "x.ai" "accounts.x.ai" "gemini.google.com"];
+			"192.144.59.14" = ["grok.com" "x.ai" "accounts.x.ai" "gemini.google.com"];
 		};
 	};
 }
