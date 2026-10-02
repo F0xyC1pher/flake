@@ -15,16 +15,20 @@
 
 						-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
 
-							require("full-border"):setup{
-								type = ui.Border.PLAIN,
-							}
+						require("full-border"):setup{
+							type = ui.Border.PLAIN,
+						}
 
-						--[[
-							require("yatline"):setup({
-								section_separator = { open = "▐", close = "▌" },
-								part_separator = { open = "[", close = "]" },
-							})
-						]]--
+
+						require("yatline"):setup({
+							section_separator = { open = "▐", close = "▌" },
+							part_separator = { open = "[", close = "]" },
+						})
+
+						require("fuse-archive"):setup({
+							mount_root_dir = "/home/${vars.user.name}/fuse-archive",
+						})
+
 					--[[
 						require("mime-ext.local"):setup {
 						  	-- Расширение базы имён файлов (with_files): для точных имён вроде Makefile
