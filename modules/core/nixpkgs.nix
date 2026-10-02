@@ -49,5 +49,6 @@
 		]
 		++ lib.optional (vars.hasProgram "firefox") inputs.nix-firefox-addons.overlays.default
 		++ lib.optional (vars.hasProgram "nix-your-shell") inputs.nix-your-shell.overlays.default
-		++ lib.optional (vars.hasProgram "yazi") inputs.yazi.overlays.default;
+		++ lib.optional (vars.hasProgram "yazi") inputs.yazi.overlays.default
+		++ lib.optional (vars.hasPackage "google-antigravity") inputs.antigravity-nix.overlays.default;
 }
