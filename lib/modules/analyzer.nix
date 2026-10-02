@@ -1,4 +1,3 @@
-# lib/modules/analyzer.nix
 {lib}: {
 	hasPackageInFiles = files: pkgName:
 		lib.any (
@@ -16,8 +15,8 @@
 					"pkgs\\.${escapedPkg}"
 					"\"${escapedPkg}\""
 					"inputs\\.${escapedPkg}"
-					"inputs\\.[a-zA-Z0-9_-]+\\.packages\\.\\$\\{[^}]+\\}\\.${escapedPkg}"
-					"inputs\\.[a-zA-Z0-9_-]+\\.defaultPackage\\.\\$\\{[^}]+\\}\\.${escapedPkg}"
+					"inputs\\.[a-zA-Z0-9_-]+\\.packages\\..*\\.${escapedPkg}"
+					"inputs\\.[a-zA-Z0-9_-]+\\.defaultPackage\\..*\\.${escapedPkg}"
 					"\\.${escapedPkg}"
 				];
 			in
