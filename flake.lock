@@ -555,6 +555,22 @@
         "type": "github"
       }
     },
+    "fuse-archive-fork": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788870925,
+        "narHash": "sha256-SORbiQDaCg3K7gXnqcj8FZNOhbJtEWQsdFmZgRzq2Z0=",
+        "owner": "boydaihungst",
+        "repo": "fuse-archive.yazi",
+        "rev": "5731dea9ce17c1496ac26cf3308c1abdc7e5f34b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "boydaihungst",
+        "repo": "fuse-archive.yazi",
+        "type": "github"
+      }
+    },
     "fuzzel-polkit-agent": {
       "flake": false,
       "locked": {
@@ -2023,6 +2039,7 @@
         "firefox-nightly": "firefox-nightly",
         "flake-utils": "flake-utils_2",
         "freesmlauncher": "freesmlauncher",
+        "fuse-archive-fork": "fuse-archive-fork",
         "fuzzel-polkit-agent": "fuzzel-polkit-agent",
         "fzf-tab": "fzf-tab",
         "fzf-zsh-completions": "fzf-zsh-completions",
