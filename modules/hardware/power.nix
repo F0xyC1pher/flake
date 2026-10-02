@@ -1,6 +1,11 @@
-{vars, ...}: {
+{
+	# vars,
+	...
+}: {
 	powerManagement = {
 		enable = true;
-		cpuFreqGovernor = "${vars.host.hardware.cpu.governor}";
+
+		# cpuFreqGovernor = "${vars.host.hardware.cpu.governor}";
+		cpuFreqGovernor = "schedutil";
 	};
 }
