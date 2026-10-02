@@ -132,6 +132,7 @@
 		"xserver"
 	];
 	packages = [
+		"google-antigravity"
 		"base"
 		"jdk"
 		# "neu-nix"
