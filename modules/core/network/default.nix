@@ -4,7 +4,7 @@
 	...
 }: {
 	imports = [
-		./dispatchers.nix
+		# ./dispatchers.nix
 	];
 	# ========== NETWORK ==========
 	systemd.network.wait-online.enable = false;
@@ -12,7 +12,7 @@
 	networking = {
 		nftables.enable = true;
 		enableIPv6 = true;
-		hostName = "${vars.host.name}";
+		hostName = vars.host.name;
 		useDHCP = false;
 		networkmanager = {
 			enable = true;
@@ -33,8 +33,8 @@
 		# 	"1.0.0.1#one.one.one.one"
 		# ];
 
-		# hosts = {
-		# 	"94.131.119.22" = [ "grok.com" "x.ai" "accounts.x.ai" "gemini.google.com/app"];
-		# };
+		hosts = {
+			"94.131.119.22" = ["grok.com" "x.ai" "accounts.x.ai" "gemini.google.com"];
+		};
 	};
 }
