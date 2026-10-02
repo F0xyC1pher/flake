@@ -8,7 +8,7 @@
 		./man.nix
 		./nix.nix
 		./nix-init.nix
-		#./nix-ld.nix
+		./nix-ld.nix
 		./nixpkgs.nix
 		./ssh.nix
 		# ./systemd.nix
