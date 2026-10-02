@@ -28,6 +28,10 @@
 				then "amd"
 				else "full"
 			}
+			archivemount
+			fuse-archive
+			fuse3
+			gale
 			love
 			lua-language-server
 			themix-gui
