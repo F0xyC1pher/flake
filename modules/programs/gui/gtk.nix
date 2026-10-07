@@ -38,14 +38,6 @@
 		  background-image: none;
 		}
 
-		/* ── Скрываем кнопки заголовка ───────────────── */
-		headerbar button.titlebutton.close,
-		headerbar button.titlebutton.maximize,
-		headerbar button.titlebutton.minimize,
-		windowcontrols button {
-		  display: none;
-		}
-
 		/* ── Прозрачный фон везде (через @bg_main и @bg_surface) ── */
 		window, dialog, .background, .content-pane {
 		  background-color: @bg_main;
