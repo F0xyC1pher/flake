@@ -1,6 +1,7 @@
 {
 	inputs,
 	vars,
+	lib,
 	...
 }: let
 	c = {
@@ -28,7 +29,7 @@ in {
 					  theme: Some("theme"),
 					  on_song_change: None,
 					  volume_step: 5,
-					  max_fps: ${toString vars.host.hardware.video.output.framerate},
+					  max_fps: ${toString (lib.floor vars.host.hardware.video.output.framerate)},
 					  scrolloff: 0,
 					  enable_mouse: true,
 					  enable_config_hot_reload: true,
@@ -141,8 +142,8 @@ in {
 					      (size: "100%", borders: "ALL", border_symbols: Plain, pane: Pane(Search)),
 					    ])),
 					  ],
-					)
 					${keybindsConfig}
+					)
 				'';
 			};
 		};

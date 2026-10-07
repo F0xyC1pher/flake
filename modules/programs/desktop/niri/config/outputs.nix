@@ -7,7 +7,7 @@
 				// ────────────── Output Configuration ──────────────
 				// https://yalter.github.io/niri/Configuration:-Outputs
 				output "${vars.host.hardware.video.output.name}" {
-					mode "${vars.host.hardware.video.output.resolution}@${vars.host.hardware.video.output.framerate}"
+					mode "${vars.host.hardware.video.output.resolution}@${toString vars.host.hardware.video.output.framerate}"
 					// scale 1
 					// transform "normal"
 					// position x=0 y=0
