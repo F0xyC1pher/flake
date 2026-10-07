@@ -55,9 +55,9 @@
 			};
 			video = {
 				output = {
-					framerate = "60.000";
+					framerate = 60.000;
 					name = "HDMI-A-1";
-					resolution = "1600x900";
+					resolution = "1920x1080";
 				};
 				driver = {
 					amd = {
