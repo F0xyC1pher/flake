@@ -15,4 +15,8 @@
 			"nvidia-drm.fbdev=1"
 		]
 		++ (vars.host.kernel.params or []);
+	boot.extraModprobeConfig = ''
+		options snd_hda_intel power_save=0
+		options snd_hda_codec_hdmi power_save=0
+	'';
 }

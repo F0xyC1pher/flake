@@ -1,11 +1,23 @@
 {
-	inputs,
 	vars,
+	lib,
 	...
 }: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: {
+		extraSpecialArgs = {inherit vars;};
+		users.${vars.user.name} = {...}: let
+			outCfg = vars.host.hardware.audio.output;
+			format = outCfg.format;
+			rateStr = toString outCfg.rate.value;
+
+			mpdFormatStr = let
+				isFloat32 = (lib.toLower format.prefix == "f") && (format.value == 32);
+				fmtVal =
+					if isFloat32
+					then "f"
+					else toString format.value;
+			in "${rateStr}:${fmtVal}:*";
+		in {
 			services.mpd = {
 				enable = true;
 				musicDirectory = "/home/${vars.user.name}/Music";
@@ -22,9 +34,7 @@
 					    type "pipewire"
 					    name "PipeWire Output"
 					    auto_resample "no"
-					    # Формат `*:*:*` отключает внутренний ресемплинг MPD
-					    # и передает частоту трека прямо в PipeWire
-					    format "*:*:*"
+					    format "${mpdFormatStr}"
 					}
 				'';
 			};
