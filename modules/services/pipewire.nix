@@ -7,7 +7,7 @@
 	audioCfg = vars.host.hardware.audio;
 	outCfg = audioCfg.output;
 	inCfg = audioCfg.input;
-	# outFormatStr = "${outCfg.format.prefix}${toString outCfg.format.value}_${outCfg.format.suffix}";
+	outFormatStr = "${outCfg.format.prefix}${toString outCfg.format.value}_${outCfg.format.suffix}";
 	inFormatStr = "${inCfg.format.prefix}${toString inCfg.format.value}_${inCfg.format.suffix}";
 	quantumMap = {
 		"44100" = 512;
@@ -27,6 +27,8 @@
 		if quantumMap ? ${inRateStr}
 		then quantumMap.${inRateStr}
 		else 512;
+	minQuantum = outQuantum;
+	maxQuantum = outQuantum * 2;
 in {
 	security.rtkit.enable = lib.mkDefault true;
 
@@ -62,10 +64,9 @@ in {
 						44100
 					];
 
-					# Динамический квант: от 512 до 2048
-					"default.clock.min-quantum" = 512;
+					"default.clock.min-quantum" = minQuantum;
 					"default.clock.quantum" = outQuantum;
-					"default.clock.max-quantum" = 2048;
+					"default.clock.max-quantum" = maxQuantum;
 					"default.clock.quantum-limit" = 8192;
 
 					"clock.power-of-two-quantum" = true;
@@ -121,6 +122,8 @@ in {
 									"audio.channels" = 1;
 									"audio.position" = ["MONO"];
 									"node.autoconnect" = true;
+									# Принудительно заставляем виртуальный узел соблюдать квант микрофона
+									"node.latency" = "${toString inQuantum}/${inRateStr}";
 									"node.force-quantum" = inQuantum;
 								};
 
@@ -152,7 +155,8 @@ in {
 			jack."98-low-latency" = {
 				"jack.properties" = {
 					"jack.default-quantum" = outQuantum;
-					"node.lock-quantum" = false;
+					"node.lock-quantum" = true;
+					"node.force-quantum" = outQuantum;
 					"jack.show-monitor" = true;
 					"jack.merge-monitor" = false;
 				};
@@ -167,20 +171,22 @@ in {
 					}
 				];
 				"pulse.properties" = {
-					"pulse.min.req" = "512/48000";
-					"pulse.default.req" = "512/48000";
-					"pulse.max.req" = "2048/48000";
-					"pulse.min.quantum" = "512/48000";
-					"pulse.max.quantum" = "2048/48000";
+					"pulse.min.req" = "${toString minQuantum}/${outRateStr}";
+					"pulse.default.req" = "${toString outQuantum}/${outRateStr}";
+					"pulse.max.req" = "${toString maxQuantum}/${outRateStr}";
+					"pulse.min.quantum" = "${toString minQuantum}/${outRateStr}";
+					"pulse.max.quantum" = "${toString maxQuantum}/${outRateStr}";
 				};
 
 				"stream.properties" = {
+					"node.latency" = "${toString outQuantum}/${outRateStr}";
 					"resample.quality" = 10;
 					"pulse.disable-latency-bias" = true;
 				};
 			};
 		};
 
+		# Disable suspend of outputs to prevent audio popping.
 		wireplumber.extraConfig."99-disable-suspend" = {
 			"monitor.alsa.rules" = [
 				{
@@ -201,28 +207,29 @@ in {
 		wireplumber.extraConfig."99-alsa-output" = {
 			"monitor.alsa.rules" = [
 				{
+					# Жесткое правило для вывода (наушники/колонки)
 					matches = [{"node.name" = "~alsa_output.*";}];
 					actions = {
 						update-props = {
+							"audio.format" = outFormatStr;
+							"audio.allowed-formats" = [outFormatStr];
+							"audio.rate" = outCfg.rate.value;
 							"resample.quality" = 10;
-							"node.lock-quantum" = false;
+							"node.latency" = "${toString outQuantum}/${outRateStr}";
+							"node.lock-quantum" = true;
+							"node.force-quantum" = outQuantum;
+							"node.force-rate" = outCfg.rate.value;
 
-							# Настройки под Xeon X3450
-							"api.alsa.headroom" = 256;
-							"api.alsa.disable-mmap" = false;
-							"api.alsa.disable-tsched" = false;
-							"api.alsa.disable-batch" = false;
-
-							"api.alsa.use-acp" = false;
-							"api.alsa.use-ucm" = false;
-							"api.alsa.ignore-dB" = true;
+							"api.alsa.periods" = 4;
+							"api.alsa.period-size" = outQuantum / 2;
+							"api.alsa.headroom" = outQuantum;
+							"api.alsa.buffer-size" = outQuantum * 2;
 						};
 					};
 				}
 			];
 		};
 
-		# ===================== ALSA Вход (Микрофон) =====================
 		wireplumber.extraConfig."99-alsa-input" = {
 			"monitor.alsa.rules" = [
 				{
@@ -232,7 +239,10 @@ in {
 							"audio.rate" = inCfg.rate.value;
 							"audio.format" = inFormatStr;
 							"audio.allowed-formats" = [inFormatStr];
-							"node.lock-quantum" = false;
+							"node.latency" = "${toString inQuantum}/${inRateStr}";
+							"node.lock-quantum" = true;
+							"node.force-quantum" = inQuantum;
+							"node.force-rate" = inCfg.rate.value;
 						};
 					};
 				}
@@ -246,6 +256,7 @@ in {
 					actions = {
 						update-props = {
 							"session.suspend-timeout-seconds" = 0;
+							"audio.rate" = outCfg.rate.value;
 							"resample.quality" = 10;
 						};
 					};
@@ -254,7 +265,14 @@ in {
 					matches = [{"node.name" = "~bluez_output.*";}];
 					actions = {
 						update-props = {
-							"node.lock-quantum" = false;
+							"node.latency" = "${toString outQuantum}/${outRateStr}";
+							"node.lock-quantum" = true;
+							"node.force-quantum" = outQuantum;
+							"node.force-rate" = outCfg.rate.value;
+							"api.bluez5.hw-volume" = true;
+							"audio.format" = outFormatStr;
+							"audio.allowed-formats" = [outFormatStr];
+							"audio.rate" = outCfg.rate.value;
 							"resample.quality" = 10;
 						};
 					};

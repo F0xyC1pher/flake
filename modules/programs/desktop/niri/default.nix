@@ -1,11 +1,13 @@
 {
 	inputs,
 	vars,
+	pkgs,
 	...
 }: {
 	programs.niri = {
 		enable = true;
-		package = inputs.niri-glass.packages.x86_64-linux.default;
+		# package = inputs.niri-glass.packages.x86_64-linux.default;
+		package = pkgs.niri;
 	};
 	imports = [
 		./config

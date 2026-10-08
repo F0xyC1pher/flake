@@ -86,6 +86,11 @@
 
 		# nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 
+		antigravity-nix = {
+			url = "github:jacopone/antigravity-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
 		betterfox = {
 			url = "github:yokoffing/Betterfox";
 			flake = false;
