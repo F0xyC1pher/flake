@@ -5,6 +5,7 @@
 	...
 }: {
 	home-manager.users.${vars.user.name} = {pkgs, ...}: {
+		xdg.configFile."xdg-desktop-portal/portals.conf".force = true;
 		xdg.portal =
 			lib.mkForce {
 				enable = true;
@@ -42,6 +43,15 @@
 							default = ["termfilechooser" "umbriel" "gtk"];
 							"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
 							"org.freedesktop.impl.portal.ScreenCast" = ["umbriel"];
+							"org.freedesktop.impl.portal.Settings" = ["gtk"];
+						};
+					scroll =
+						lib.mkIf (vars.hasProgram "scroll") {
+							default = ["termfilechooser" "wlr" "gtk"];
+							"org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+							"org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+							"org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+							"org.freedesktop.impl.portal.Inhibit" = "none";
 							"org.freedesktop.impl.portal.Settings" = ["gtk"];
 						};
 				};

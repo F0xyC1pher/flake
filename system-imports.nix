@@ -31,13 +31,19 @@
 ++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.nixosModules.default
 ++ lib.optional (vars.hasProgram "shojiwm") inputs.shojiwm.nixosModules.default
 ++ lib.optional (vars.hasProgram "skwd-wall") inputs.skwd-wall.nixosModules.default
+++ lib.optional (vars.hasProgram "scroll") inputs.scroll-flake.nixosModules.default
 ++ [
 	{
-		hjem.users = {
-			${vars.user.name} = {
-				enable = true;
-				user = "${vars.user.name}";
-				directory = "/home/${vars.user.name}";
+		hjem = {
+			extraModules = [inputs.hjem-impure.hjemModules.default];
+			clobberByDefault = true;
+			users = {
+				${vars.user.name} = {
+					enable = true;
+					user = "${vars.user.name}";
+					directory = "/home/${vars.user.name}";
+					impure.enable = true;
+				};
 			};
 		};
 	}
@@ -56,7 +62,7 @@
 				++ lib.optional (vars.hasProgram "umbriel") inputs.umbriel.homeModules.default
 				++ lib.optional (vars.hasProgram "noctalia") inputs.noctalia.homeModules.default
 				++ lib.optional (vars.hasProgram "nixcord") inputs.nixcord.homeModules.nixcord
-				++ lib.optional (vars.hasProgram "flatpak" || vars.hasService "flatpak") inputs.nix-flatpak.homeManagerModules.nix-flatpak
+				++ lib.optional (vars.hasService "flatpak") inputs.nix-flatpak.homeManagerModules.nix-flatpak
 				++ lib.optional (vars.hasProgram "dms") inputs.dms.homeModules.dank-material-shell;
 
 			users.${vars.user.name} = {...}: {

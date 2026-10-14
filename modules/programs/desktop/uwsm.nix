@@ -31,6 +31,12 @@
 						prettyName = "Hyprland";
 						binPath = ''${lib.getExe' inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland "start-hyprland"}'';
 					};
+				scroll =
+					lib.mkIf (vars.hasProgram "scroll") {
+						prettyName = "Scroll";
+						comment = "Scroll compositor managed by UWSM";
+						binPath = "/run/current-system/sw/bin/scroll";
+					};
 			};
 		};
 	};

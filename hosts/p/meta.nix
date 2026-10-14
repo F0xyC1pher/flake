@@ -58,6 +58,7 @@
 					framerate = 60.000;
 					name = "HDMI-A-1";
 					resolution = "1920x1080";
+					scale = 1;
 				};
 				driver = {
 					amd = {
