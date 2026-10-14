@@ -1,105 +1,105 @@
 {
-	pkgs,
-	config,
-	vars,
-	...
+  pkgs,
+  config,
+  vars,
+  ...
 }: let
-	persistence = vars.host.hardware.video.driver.nvidia.perf.persistence;
-	perf = vars.host.hardware.video.driver.nvidia.perf.value;
-	nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.host.hardware.video.driver.nvidia.package};
+  persistence = vars.host.hardware.video.driver.nvidia.perf.persistence;
+  perf = vars.host.hardware.video.driver.nvidia.perf.value;
+  nvidiaPkg = config.boot.kernelPackages.nvidiaPackages.${vars.host.hardware.video.driver.nvidia.package};
 
-	enableService = (persistence == true) || (perf != null && perf != false);
+  enableService = (persistence == true) || (perf != null && perf != false);
 in {
-	systemd.services.nvidia-auto = {
-		description = "NVIDIA Auto Power and Clock Setup";
-		enable = enableService;
-		wantedBy = ["multi-user.target"];
-		after = ["graphics-session.target"];
+  systemd.services.nvidia-auto = {
+    description = "NVIDIA Auto Power and Clock Setup";
+    enable = enableService;
+    wantedBy = ["multi-user.target"];
+    after = ["graphics-session.target"];
 
-		serviceConfig = {
-			Type = "oneshot";
-			RemainAfterExit = true;
-		};
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
 
-		path = [
-			nvidiaPkg
-			pkgs.coreutils
-			pkgs.bc
-			pkgs.gnused
-		];
+    path = [
+      nvidiaPkg
+      pkgs.coreutils
+      pkgs.bc
+      pkgs.gnused
+    ];
 
-		script = ''
-			set -euo pipefail
+    script = ''
+      set -euo pipefail
 
-			# ---------- Persistence Mode ----------
-			${
-				if persistence == true
-				then ''
-					echo "Enabling Persistence Mode..."
-					nvidia-smi -pm 1 || true
-				''
-				else ''
-					echo "Persistence mode not requested, skipping."
-				''
-			}
+      # ---------- Persistence Mode ----------
+      ${
+        if persistence == true
+        then ''
+          echo "Enabling Persistence Mode..."
+          nvidia-smi -pm 1 || true
+        ''
+        else ''
+          echo "Persistence mode not requested, skipping."
+        ''
+      }
 
-			# ---------- Power Limit & Clock Reset ----------
-			${
-				if perf != null && perf != false
-				then ''
-					for gpu in $(nvidia-smi --query-gpu=index --format=csv,noheader); do
-					  echo "Processing GPU $gpu..."
-					  MAX_LIMIT_RAW=$(nvidia-smi -i "$gpu" --query-gpu=power.max_limit --format=csv,noheader | tr -d ' W\r\n')
+      # ---------- Power Limit & Clock Reset ----------
+      ${
+        if perf != null && perf != false
+        then ''
+          for gpu in $(nvidia-smi --query-gpu=index --format=csv,noheader); do
+            echo "Processing GPU $gpu..."
+            MAX_LIMIT_RAW=$(nvidia-smi -i "$gpu" --query-gpu=power.max_limit --format=csv,noheader | tr -d ' W\r\n')
 
-					  if [ -z "$MAX_LIMIT_RAW" ] || [ "$MAX_LIMIT_RAW" = "N/A" ]; then
-					    echo "Power limit for GPU $gpu is not available, skipping."
-					    continue
-					  fi
+            if [ -z "$MAX_LIMIT_RAW" ] || [ "$MAX_LIMIT_RAW" = "N/A" ]; then
+              echo "Power limit for GPU $gpu is not available, skipping."
+              continue
+            fi
 
-					  MAX_LIMIT_NUM=$(echo "$MAX_LIMIT_RAW" | grep -oE '[0-9]+\.?[0-9]*' | head -1)
-					  if [ -z "$MAX_LIMIT_NUM" ]; then
-					    echo "Could not parse power limit value: '$MAX_LIMIT_RAW', skipping."
-					    continue
-					  fi
+            MAX_LIMIT_NUM=$(echo "$MAX_LIMIT_RAW" | grep -oE '[0-9]+\.?[0-9]*' | head -1)
+            if [ -z "$MAX_LIMIT_NUM" ]; then
+              echo "Could not parse power limit value: '$MAX_LIMIT_RAW', skipping."
+              continue
+            fi
 
-					  MAX_LIMIT=''${MAX_LIMIT_NUM%.*}
+            MAX_LIMIT=''${MAX_LIMIT_NUM%.*}
 
-					  ${
-						if builtins.isInt perf || builtins.isFloat perf
-						then ''
-							DESIRED_LIMIT="${toString perf}"
-							echo "Setting power limit to $DESIRED_LIMIT W (from config)"
-							nvidia-smi -i "$gpu" -pl "$DESIRED_LIMIT" || true
-						''
-						else if builtins.isString perf
-						then ''
-							PERCENT="${perf}"
-							PERCENT=$(echo "$PERCENT" | sed 's/%//')
-							if ! [[ "$PERCENT" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
-							  echo "Invalid percent value: $PERCENT, skipping."
-							else
-							  DESIRED_LIMIT=$(echo "scale=0; $MAX_LIMIT * $PERCENT / 100" | bc)
-							  if [ "$DESIRED_LIMIT" -lt 1 ]; then
-							    DESIRED_LIMIT=1
-							  fi
-							  echo "Setting power limit to $DESIRED_LIMIT W (''${PERCENT}% of ''${MAX_LIMIT}W)"
-							  nvidia-smi -i "$gpu" -pl "$DESIRED_LIMIT" || true
-							fi
-						''
-						else ''
-							echo "Setting power limit to $MAX_LIMIT W (max available)"
-							nvidia-smi -i "$gpu" -pl "$MAX_LIMIT" || true
-						''
-					}
+            ${
+            if builtins.isInt perf || builtins.isFloat perf
+            then ''
+              DESIRED_LIMIT="${toString perf}"
+              echo "Setting power limit to $DESIRED_LIMIT W (from config)"
+              nvidia-smi -i "$gpu" -pl "$DESIRED_LIMIT" || true
+            ''
+            else if builtins.isString perf
+            then ''
+              PERCENT="${perf}"
+              PERCENT=$(echo "$PERCENT" | sed 's/%//')
+              if ! [[ "$PERCENT" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+                echo "Invalid percent value: $PERCENT, skipping."
+              else
+                DESIRED_LIMIT=$(echo "scale=0; $MAX_LIMIT * $PERCENT / 100" | bc)
+                if [ "$DESIRED_LIMIT" -lt 1 ]; then
+                  DESIRED_LIMIT=1
+                fi
+                echo "Setting power limit to $DESIRED_LIMIT W (''${PERCENT}% of ''${MAX_LIMIT}W)"
+                nvidia-smi -i "$gpu" -pl "$DESIRED_LIMIT" || true
+              fi
+            ''
+            else ''
+              echo "Setting power limit to $MAX_LIMIT W (max available)"
+              nvidia-smi -i "$gpu" -pl "$MAX_LIMIT" || true
+            ''
+          }
 
-					  echo "Resetting clock locks..."
-					  nvidia-smi -i "$gpu" --lock-gpu-clocks=0,0 > /dev/null 2>&1 || true
-					done
-				''
-				else ''
-					echo "Power limit adjustment not requested, skipping."
-				''
-			}
-		'';
-	};
+            echo "Resetting clock locks..."
+            nvidia-smi -i "$gpu" --lock-gpu-clocks=0,0 > /dev/null 2>&1 || true
+          done
+        ''
+        else ''
+          echo "Power limit adjustment not requested, skipping."
+        ''
+      }
+    '';
+  };
 }

@@ -1,21 +1,21 @@
 {
-	inputs,
-	vars,
-	...
+  inputs,
+  vars,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."waybar/modules/cpu.json".text = ''
-				// syntax: json
-				{
-					"cpu": {
-						"interval": 5,
-						"format": " {load:.0f}%",
-						"on-click": "kitty btop",
-					},
-				}
-			'';
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {...}: {
+      xdg.configFile."waybar/modules/cpu.json".text = ''
+        // syntax: json
+        {
+        	"cpu": {
+        		"interval": 5,
+        		"format": " {load:.0f}%",
+        		"on-click": "kitty btop",
+        	},
+        }
+      '';
+    };
+  };
 }

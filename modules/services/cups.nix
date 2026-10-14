@@ -1,4 +1,4 @@
 {...}: {
-	# Отключаем CUPS
-	services.printing.enable = false;
+  # Отключаем CUPS
+  services.printing.enable = false;
 }

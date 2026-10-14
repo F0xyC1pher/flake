@@ -1,31 +1,31 @@
 {
-	inputs,
-	vars,
-	...
+  inputs,
+  vars,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: let
-			t = vars.theme.style;
-		in {
-			programs.firefox = {
-				profiles.${vars.user.fullName} = {
-					userContent = ''
-						/* Полный сброс холста для всех сайтов */
-						@-moz-document regexp("^(?!moz-extension://|about:).*$") {
-						  :root, :root::before, :root::after, html, body {
-						    background-color: transparent !important;
-						    background-image: none !important;
-						  }
-						}
-						/* Скроллбар под стиль системы */
-						* {
-							scrollbar-color: ${t.ui.overlay} ${t.ui.bg} !important;
-							border-radius: 0px !important;
-						}
-					'';
-				};
-			};
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {...}: let
+      t = vars.theme.style;
+    in {
+      programs.firefox = {
+        profiles.${vars.user.fullName} = {
+          userContent = ''
+            /* Полный сброс холста для всех сайтов */
+            @-moz-document regexp("^(?!moz-extension://|about:).*$") {
+              :root, :root::before, :root::after, html, body {
+                background-color: transparent !important;
+                background-image: none !important;
+              }
+            }
+            /* Скроллбар под стиль системы */
+            * {
+            	scrollbar-color: ${t.ui.overlay} ${t.ui.bg} !important;
+            	border-radius: 0px !important;
+            }
+          '';
+        };
+      };
+    };
+  };
 }

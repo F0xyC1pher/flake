@@ -1,158 +1,158 @@
 {
-	vars,
-	pkgs,
-	lib,
-	inputs,
-	...
+  vars,
+  pkgs,
+  lib,
+  inputs,
+  ...
 }: {
-	# imports = [
-	# 	./jdk.nix
-	# 	./neu-nix.nix
-	# 	./session-packages.nix
-	# 	./wine.nix
-	# ];
-	environment.systemPackages = with pkgs;
-		[
-			(
-				if vars.host.hardware.video.driver.nvidia.enable
-				then btop-cuda
-				else if vars.host.hardware.video.driver.amd.enable
-				then btop-rocm
-				else btop
-			)
+  # imports = [
+  # 	./jdk.nix
+  # 	./neu-nix.nix
+  # 	./session-packages.nix
+  # 	./wine.nix
+  # ];
+  environment.systemPackages = with pkgs;
+    [
+      (
+        if vars.host.hardware.video.driver.nvidia.enable
+        then btop-cuda
+        else if vars.host.hardware.video.driver.amd.enable
+        then btop-rocm
+        else btop
+      )
 
-			nvtopPackages.${
-				if vars.host.hardware.video.driver.nvidia.enable
-				then "nvidia"
-				else if vars.host.hardware.video.driver.amd.enable
-				then "amd"
-				else "full"
-			}
-			archivemount
-			fuse-archive
-			fuse3
-			gale
-			love
-			lua-language-server
-			themix-gui
-			wpgtk
-			yq
-			tor-browser
-			teamspeak6-client
-			vscode-langservers-extracted
-			aseprite
-			curl-impersonate
-			curlFull
-			qt6Packages.qt6ct
-			qt6Packages.qtstyleplugin-kvantum
-			unzip
-			zip
-			p7zip
-			libmtp
-			iotop
-			fastfetch
-			powertop
-			duf
-			dua
-			disktui
-			diskscan
-			diskus
-			mediainfo
-			exiftool
-			tree
-			treecat
-			treemd
-			tree-from-tags
-			mesa-demos
-			eza
-			bat
-			bat-extras.core
-			fd
-			grc
-			ripgrep-all
-			ripgrep
-			rippkgs
-			fzf
-			trash-cli
-			glow
-			less
-			mcat
-			babelfish
-			imagemagick
-			wget
-			aria2
-			dotacat
-			blahaj
-			wayneko
-			kittysay
-			parted
-			gparted-full
-			mtools
-			ntfs3g
-			btrfs-progs
-			obsidian
-			gitui
-			git-credential-keepassxc
-			color-lsp
-			nixd
-			nil
-			package-version-server
-			sniffglue
-			qbittorrent
-			dropbox
-			dropbox-cli
-			pavucontrol
-			alsa-utils
-			alsa-tools
-			jack-example-tools
-			playerctl
-			mpdris2
-			catnip
-			cavasik
-			youtube-tui
-			termusic
-			ytermusic
-			yt-dlp
-			ytdl-sub
-			ytfzf
-			parabolic
-			obs-studio-plugins.obs-vaapi
-			wayland-utils
-			wlr-randr
-			wev
-			slurp
-			wl-clipboard
-			wl-clipboard-x11
-			keepassxc
-			sops
-			bluetuith
-			android-tools
-			extract-dtb
-			r2modman
-			yetris
-			discordo
-			discord-gamesdk
-			rustdesk-flutter
-			libva-vdpau-driver
-			libvdpau-va-gl
-			adw-gtk3
-			rmtrash
-			ayugram-desktop
+      nvtopPackages.${
+        if vars.host.hardware.video.driver.nvidia.enable
+        then "nvidia"
+        else if vars.host.hardware.video.driver.amd.enable
+        then "amd"
+        else "full"
+      }
+      archivemount
+      fuse-archive
+      fuse3
+      gale
+      love
+      lua-language-server
+      themix-gui
+      wpgtk
+      yq
+      tor-browser
+      teamspeak6-client
+      vscode-langservers-extracted
+      aseprite
+      curl-impersonate
+      curlFull
+      qt6Packages.qt6ct
+      qt6Packages.qtstyleplugin-kvantum
+      unzip
+      zip
+      p7zip
+      libmtp
+      iotop
+      fastfetch
+      powertop
+      duf
+      dua
+      disktui
+      diskscan
+      diskus
+      mediainfo
+      exiftool
+      tree
+      treecat
+      treemd
+      tree-from-tags
+      mesa-demos
+      eza
+      bat
+      bat-extras.core
+      fd
+      grc
+      ripgrep-all
+      ripgrep
+      rippkgs
+      fzf
+      trash-cli
+      glow
+      less
+      mcat
+      babelfish
+      imagemagick
+      wget
+      aria2
+      dotacat
+      blahaj
+      wayneko
+      kittysay
+      parted
+      gparted-full
+      mtools
+      ntfs3g
+      btrfs-progs
+      obsidian
+      gitui
+      git-credential-keepassxc
+      color-lsp
+      nixd
+      nil
+      package-version-server
+      sniffglue
+      qbittorrent
+      dropbox
+      dropbox-cli
+      pavucontrol
+      alsa-utils
+      alsa-tools
+      jack-example-tools
+      playerctl
+      mpdris2
+      catnip
+      cavasik
+      youtube-tui
+      termusic
+      ytermusic
+      yt-dlp
+      ytdl-sub
+      ytfzf
+      parabolic
+      obs-studio-plugins.obs-vaapi
+      wayland-utils
+      wlr-randr
+      wev
+      slurp
+      wl-clipboard
+      wl-clipboard-x11
+      keepassxc
+      sops
+      bluetuith
+      android-tools
+      extract-dtb
+      r2modman
+      yetris
+      discordo
+      discord-gamesdk
+      rustdesk-flutter
+      libva-vdpau-driver
+      libvdpau-va-gl
+      adw-gtk3
+      rmtrash
+      ayugram-desktop
 
-			(inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
-					jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
-				})
-			inputs.nyoom.packages.${pkgs.stdenv.hostPlatform.system}.nyoom
-			inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-		]
-		++ lib.optional (vars.hasProgram "nix-your-shell") nix-your-shell
-		++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.x86_64-linux.default
-		++ lib.optional (vars.hasProgram "rofi") custom.cliphist-rofi-img
-		++ lib.optional (vars.hasProgram "fuzzel") custom.cliphist-fuzzel-img
-		++ lib.optional (vars.hasProgram "niri") inputs.biri.packages.${pkgs.stdenv.hostPlatform.system}.default
-		++ lib.optional (vars.hasProgram "niri") xwayland-satellite
-		# ++ lib.optional (vars.hasProgram "niri") inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
-		++ lib.optional (vars.hasProgram "zed-editor") zed-editor
-		++ lib.optional (vars.hasProgram "hyprland") hyprshot
-		++ lib.optional (vars.hasProgram "hyprland") inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      (inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
+        jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
+      })
+      inputs.nyoom.packages.${pkgs.stdenv.hostPlatform.system}.nyoom
+      inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+    ]
+    ++ lib.optional (vars.hasProgram "nix-your-shell") nix-your-shell
+    ++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.x86_64-linux.default
+    ++ lib.optional (vars.hasProgram "rofi") custom.cliphist-rofi-img
+    ++ lib.optional (vars.hasProgram "fuzzel") custom.cliphist-fuzzel-img
+    ++ lib.optional (vars.hasProgram "niri") inputs.biri.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ++ lib.optional (vars.hasProgram "niri") xwayland-satellite
+    # ++ lib.optional (vars.hasProgram "niri") inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ++ lib.optional (vars.hasProgram "zed-editor") zed-editor
+    ++ lib.optional (vars.hasProgram "hyprland") hyprshot
+    ++ lib.optional (vars.hasProgram "hyprland") inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
 }

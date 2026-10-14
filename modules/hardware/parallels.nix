@@ -1,3 +1,3 @@
 {...}: {
-	hardware.parallels.enable = true;
+  hardware.parallels.enable = true;
 }

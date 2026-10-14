@@ -2,49 +2,49 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-	config,
-	lib,
-	pkgs,
-	modulesPath,
-	...
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
 }: {
-	imports = [
-		(modulesPath + "/installer/scan/not-detected.nix")
-	];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-	boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-	boot.initrd.kernelModules = [];
-	boot.kernelModules = ["kvm-intel"];
-	boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
-	fileSystems."/" = {
-		device = "/dev/disk/by-uuid/ea645b4d-a6ec-49cf-9cdf-7cd712c385a9";
-		fsType = "ext4";
-	};
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ea645b4d-a6ec-49cf-9cdf-7cd712c385a9";
+    fsType = "ext4";
+  };
 
-	fileSystems."/boot" = {
-		device = "/dev/disk/by-uuid/FB98-B287";
-		fsType = "vfat";
-		options = ["fmask=0022" "dmask=0022"];
-	};
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/FB98-B287";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
 
-	fileSystems."/home/f/CoolStuff" = {
-		device = "/dev/disk/by-uuid/b0964288-b748-4f3e-b7c7-4b2b27ffdf35";
-		fsType = "btrfs";
-	};
+  fileSystems."/home/f/CoolStuff" = {
+    device = "/dev/disk/by-uuid/b0964288-b748-4f3e-b7c7-4b2b27ffdf35";
+    fsType = "btrfs";
+  };
 
-	fileSystems."/home/f/Games" = {
-		device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
-		fsType = "btrfs";
-	};
+  fileSystems."/home/f/Games" = {
+    device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
+    fsType = "btrfs";
+  };
 
-	fileSystems."/etc" = {
-		device = "overlay";
-		fsType = "overlay";
-	};
+  fileSystems."/etc" = {
+    device = "overlay";
+    fsType = "overlay";
+  };
 
-	swapDevices = [];
+  swapDevices = [];
 
-	nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-	hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -1,70 +1,70 @@
 {
-	lib,
-	vars,
-	...
+  lib,
+  vars,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."niri/layer-rules.kdl".text = ''
-				// syntax: kdl
-				// ────────────── Layer Settings ──────────────
-				layer-rule {
-					match at-startup=true
-					${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
-					match namespace="^launcher$"
-					match namespace="^wallpaper$"
-					match namespace="^slapper$"
-					match namespace="^mpvpaper$"
-					${lib.optionalString (vars.hasService "awww") ''match namespace="^awww-daemon$"''}
-					match namespace="^noctalia-overview*"
-					match namespace="^quickshell$"
-					match namespace="dms:blurwallpaper"
-					place-within-backdrop true
-				}
+  home-manager = {
+    extraSpecialArgs = {inherit vars;};
+    users.${vars.user.name} = {...}: {
+      xdg.configFile."niri/layer-rules.kdl".text = ''
+        // syntax: kdl
+        // ────────────── Layer Settings ──────────────
+        layer-rule {
+        	match at-startup=true
+        	${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
+        	match namespace="^launcher$"
+        	match namespace="^wallpaper$"
+        	match namespace="^slapper$"
+        	match namespace="^mpvpaper$"
+        	${lib.optionalString (vars.hasService "awww") ''match namespace="^awww-daemon$"''}
+        	match namespace="^noctalia-overview*"
+        	match namespace="^quickshell$"
+        	match namespace="dms:blurwallpaper"
+        	place-within-backdrop true
+        }
 
-				layer-rule {
-					match namespace="^launcher$"
-					${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
-					match namespace="^gtk-layer-shell$"
-					${lib.optionalString (vars.hasProgram "rofi") ''match namespace="^rofi$"''}
-					${lib.optionalString (vars.theme.shadows.enable) ''
-						shadow {
-							on
-							${
-							if vars.theme.shadows.neon
-							then ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''
-							else ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''
-						}
-							softness 16
-							spread 1
-							draw-behind-window false
-						}
-					''}
-					${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
-						background-effect {
-						${lib.optionalString vars.theme.blur.enable "blur true"}
-						${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
-						${lib.optionalString vars.theme.liquid-glass.enable ''
-								liquid-glass {
-									refraction-strength 1
-									power-factor 1
-									refraction-power 1
-									glow-weight 0.1
-									edge-lighting 1
-									saturation 1
-									vibrancy 1
-									adaptive-dim 0
-									adaptive-boost 0
-									physical-refraction 1
-									lens-distortion 1
-									fringing 1
-								}
-							''}
-						}
-					''}
-				}
-			'';
-		};
-	};
+        layer-rule {
+        	match namespace="^launcher$"
+        	${lib.optionalString (vars.hasProgram "waybar") ''match namespace="^waybar$"''}
+        	match namespace="^gtk-layer-shell$"
+        	${lib.optionalString (vars.hasProgram "rofi") ''match namespace="^rofi$"''}
+        	${lib.optionalString (vars.theme.shadows.enable) ''
+          shadow {
+          	on
+          	${
+            if vars.theme.shadows.neon
+            then ''color "${vars.theme.style.accent}${vars.theme.opacityHex}"''
+            else ''color "${vars.theme.style.ui.overlay}${vars.theme.opacityHex}"''
+          }
+          	softness 16
+          	spread 1
+          	draw-behind-window false
+          }
+        ''}
+        	${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
+          background-effect {
+          ${lib.optionalString vars.theme.blur.enable "blur true"}
+          ${lib.optionalString (vars.theme.blur.enable && !vars.theme.blur.xray.enable) "xray false"}
+          ${lib.optionalString vars.theme.liquid-glass.enable ''
+            liquid-glass {
+            	refraction-strength 1
+            	power-factor 1
+            	refraction-power 1
+            	glow-weight 0.1
+            	edge-lighting 1
+            	saturation 1
+            	vibrancy 1
+            	adaptive-dim 0
+            	adaptive-boost 0
+            	physical-refraction 1
+            	lens-distortion 1
+            	fringing 1
+            }
+          ''}
+          }
+        ''}
+        }
+      '';
+    };
+  };
 }

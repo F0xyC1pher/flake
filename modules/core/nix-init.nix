@@ -1,3 +1,3 @@
 {...}: {
-	system.nixos-init.enable = true;
+  system.nixos-init.enable = true;
 }

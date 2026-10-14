@@ -1,7 +1,7 @@
 {...}: {
-	boot.initrd.systemd.enable = true;
-	imports = [
-		./kernel
-		./loader.nix
-	];
+  boot.initrd.systemd.enable = true;
+  imports = [
+    ./kernel
+    ./loader.nix
+  ];
 }

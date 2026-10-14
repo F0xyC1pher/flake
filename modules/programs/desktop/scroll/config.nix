@@ -1,702 +1,702 @@
 {
-	vars,
-	lib,
-	...
+  vars,
+  lib,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."scroll/config".text = ''
-				# vim: ft=swayconfig
-				#
-				# Default config for scroll
-				#
-				# Copy this to ~/.config/scroll/config and edit it to your liking.
-				#
-				# Read `man 5 scroll` for a complete reference.
-
-				### Variables
-				#
-				# Logo key. Use Mod1 for Alt.
-				set $mod Mod4
-				# Home row direction keys, like vim
-				set $left Left
-				set $down Down
-				set $up Up
-				set $right Right
-				# Your preferred terminal emulator
-				set $term kitty
-				set $filemanager $term yazi
-				# Your preferred application launcher
-				set $menu ${vars.app.launcher} ${lib.optionalString (vars.app.launcher == "rofi") "-show drun"}
-				# Запуск лаунчера
-
-
-				exec xhost si:localuser:root
-
-
-				### Output configuration
-				#
-				# Default wallpaper (more resolutions are available in /usr/share/backgrounds/scroll/)
-				# output * bg /usr/share/backgrounds/scroll/Sway_Wallpaper_Blue_1920x1080.png fill
-				#
-				# Example configuration:
-				#
-				#   output HDMI-A-1 resolution 1920x1080 position 0,0
-				output DVI-D-1 resolution 1600x900 position 0,0
-				#
-				# You can get the names of your outputs by running: scrollmsg -t get_outputs
-
-				### Idle configuration
-				#
-				# Example configuration:
-				#
-				# exec swayidle -w \
-				#          timeout 300 'swaylock -f -c 000000' \
-				#          timeout 600 'scrollmsg "output * power off"' resume 'scrollmsg "output * power on"' \
-				#          before-sleep 'swaylock -f -c 000000'
-				#
-				# This will lock your screen after 300 seconds of inactivity, then turn off
-				# your displays after another 300 seconds, and turn your screens back on when
-				# resumed. It will also lock your screen before your computer goes to sleep.
-
-				### Input configuration
-				#
-				# Example configuration:
-				#
-				#   input type:touchpad {
-				#       dwt enabled
-				#       tap enabled
-				#       natural_scroll enabled
-				#       middle_emulation enabled
-				#   }
-				#
-				#   input type:keyboard {
-				#       xkb_layout "us,ru"
-				#        xkb_options "grp"
-				#   }
-				#
-				# You can also configure each device individually.
-				# Read `man 5 scroll-input` for more information about this section.
-
-				### Windows defaults
-				default_border pixel 2
-				gaps inner 4
-				gaps outer 20
-				client.focused #15439e #4b4b4b #e0e0e0 #2e9ef4 #15439e
-				client.focused_inactive #595959 #3b3b3b #e0e0e0 #2e9ef4 #595959
-				client.unfocused #595959 #1b1b1b #e0e0e0 #2e9ef4 #595959
-
-				# titlebar_border_radius 8
-				# default_decoration border_radius 0 shadow false shadow_dynamic false shadow_size 40 shadow_blur 30 shadow_offset 40 40 shadow_color #00000070 dim false dim_color #00000040
-
-
-				# Idle inhibit for fullscreen windows
-				for_window [all] inhibit_idle fullscreen
-
-				# Layout settings
-				layout_default_width 0.5
-				layout_default_height 1.0
-				layout_widths [0.33333333 0.5 0.666666667 1.0]
-				layout_heights [0.33333333 0.5 0.666666667 1.0]
-
-				# These are the default values for some useful scroll options, consult
-				# `man 5 scroll` and change them to your preference
-
-				# align_reset_auto yes
-				# cursor_shake_magnify false
-				# cycle_size_wrap false
-				# fullscreen_movefocus true nofollow
-				# fullscreen_on_request default
-				# maximize_if_single false
-				# workspace_next_on_output_create_empty true
-				# workspace_switch_wrapping true
-				# xwayland_output_scale true
-				# focus_wrapping no
-				# focus_on_window_activation focus
-				# xdg_activation_force false
-				# scratchpad_minimize false
-				# mouse_resize_tiling_limit true
-				# snap_window_gap 0
-				# snap_workspace_gap 0
-				# snap_respect_gaps_inner false
-				# snap_respect_gaps_outer false
-				# snap_border_overlap false
-
-				# Animations
-				animations {
-				    enabled yes
-				    default yes 300 var 3 [ 0.215 0.61 0.355 1 ]
-				    window_open yes 300 var 3 [ 0 0 1 1 ]
-				    window_move yes 300 var 3 [ 0.215 0.61 0.355 1 ] off 0.05 6 [0 0.6 0.4 0 1 0 0.4 -0.6 1 -0.6]
-				    window_size yes 300 var 3 [ -0.35 0 0 0.5 ]
-				    workspace_switch yes 500 var simple [ 0.215 0.61 0.355 1 ]
-				    window_fullscreen yes 500 var simple [ 0.3 0.5 0.4 1 ]
-				    jump yes 500 var simple [ 0.215 0.61 0.355 1 ]
-				    layer_shell yes 300 var 3 [ 0 0 1 1 ]
-				    fade_in yes 300 var simple [ 0.32 0 0.67 0 ]
-				    fade_out yes 300 var simple [ 0.33 1 0.68 1 ]
-				    # You can also define curves for the following events
-				    # window_move_float
-				    # overview
-				}
-
-				### Key bindings
-				#
-				# Basics:
-				#
-				    # Start a terminal
-				    bindsym $mod+Return exec$term
-
-				    # Kill focused window
-				    bindsym $mod+Backspace kill
-				    bindsym $mod+Shift+Backspace kill unfocused
-				    bindsym $mod+Ctrl+Backspace kill all
-
-				    # Start your launcher
-				    bindsym $mod+r exec$menu
-
-				    bindsym $mod+e exec$filemanager
-				    # Буфер обмена
-				    bindsym $mod+v exec${lib.optionalString (vars.hasProgram "rofi") "rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons" + lib.optionalString (vars.hasProgram "fuzzel") "cliphist-fuzzel-img"}
-
-				    # Drag floating windows by holding down $mod and left mouse button.
-				    # Resize them with right mouse button + $mod.
-				    # Despite the name, also works for non-floating windows.
-				    floating_modifier $mod normal
-
-				    # Reload the configuration file
-				    bindsym $mod+Shift+c reload
-
-				    # Exit scroll (logs you out of your Wayland session)
-				    bindsym $mod+Shift+x exec scrollnag -t warning -m 'You pressed the exit shortcut. Do you really want to exit scroll? This will end your Wayland session.' -B 'Yes, exit scroll' 'scrollmsg exit' -w 500 -e center -y overlay
-
-				    # Layout mode
-				    bindsym $mod+bracketleft set_mode h
-				    bindsym $mod+bracketright set_mode v
-				#
-				# Moving around:
-				#
-				    ${
-					let
-						keys = ["$left" "$down" "$up" "$right" "home" "end"];
-						actions = ["left" "down" "up" "right" "beginning" "end"];
-						dirLoop = mod: cmd:
-							lib.concatStringsSep "\n" (lib.genList (
-									i: let
-										k = lib.elemAt keys i;
-										d = lib.elemAt actions i;
-									in
-										"bindsym " + mod + "+" + k + " " + cmd + " " + d
-								)
-								6);
-					in ''
-						# Move your focus around
-						${dirLoop "$mod" "focus"}
-						# Move the focused window with the same, but add Ctrl
-						${dirLoop "$mod+Ctrl" "move"}
-						# nomode
-						${dirLoop "$mod+Alt" "move" + " nomode"}
-					''
-				}
-
-				    # Focus other monitors
-				    bindsym $mod+Shift+$left focus output left
-				    bindsym $mod+Shift+$down focus output down
-				    bindsym $mod+Shift+$up focus output up
-				    bindsym $mod+Shift+$right focus output right
-				#
-				# Workspaces:
-				#
-				    ${
-					let
-						loop = f: lib.concatStringsSep "\n" (lib.genList f 10);
-						wsLoop = prefix: cmd:
-							loop (
-								i: let
-									n = i + 1;
-									k = toString (n - (n / 10) * 10);
-									w = toString n;
-								in
-									"bindsym " + prefix + "+" + k + " " + cmd w
-							);
-					in ''
-						# Switch to workspace
-						${wsLoop "$mod" (w: "workspace number " + w)}
-
-						# Move focused container to workspace
-						${wsLoop "$mod+Shift" (w: "move container to workspace number " + w + "; workspace number " + w)}
-
-						# Swap workspace contents
-						${wsLoop "$mod+Ctrl" (w: "workspace swap number " + w)}
-
-						# Swap only workspace names
-						${wsLoop "$mod+Ctrl+Shift" (w: "workspace swap number " + w + " name_only")}
-					''
-				}
-				    # Note: workspaces can have any name you want, not just numbers.
-				    # We just use 1-10 as the default.
-
-				    bindsym $mod+Ctrl+Shift+$left move workspace to output left
-				    bindsym $mod+Ctrl+Shift+$right move workspace to output right
-
-				    bindsym $mod+Shift+Page_Up workspace prev
-				    bindsym $mod+Shift+Page_Down workspace next
-				    bindsym $mod+Page_Up workspace prev_on_output
-				    bindsym $mod+Page_Down workspace next_on_output
-
-				    # Split a workspace in two
-				mode "wssplit" {
-				    bindsym 1 workspace split v 0.25 10; mode default
-				    bindsym Shift+1 workspace split h 0.25 10; mode default
-				    bindsym 2 workspace split v 0.333333333 10; mode default
-				    bindsym Shift+2 workspace split h 0.333333333 10; mode default
-				    bindsym 3 workspace split v 0.5 10; mode default
-				    bindsym Shift+3 workspace split h 0.5 10; mode default
-				    bindsym 4 workspace split v 0.66666667 10; mode default
-				    bindsym Shift+4 workspace split h 0.6666667 10; mode default
-				    bindsym 5 workspace split v 0.75 10; mode default
-				    bindsym Shift+5 workspace split h 0.75 10; mode default
-				    bindsym r workspace split reset; mode default;
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Shift+backslash mode "wssplit"
-
-				# Scaling
-				    # Workspace
-				    bindsym $mod+Shift+comma scale_workspace incr -0.05
-				    bindsym --whole-window $mod+Shift+button4 scale_workspace incr -0.05
-				    bindsym $mod+Shift+period scale_workspace incr 0.05
-				    bindsym --whole-window $mod+Shift+button5 scale_workspace incr 0.05
-				    bindsym $mod+Shift+Ctrl+period scale_workspace reset
-
-				    # Overview
-				    bindsym --no-repeat $mod+tab scale_workspace overview
-				    bindsym --whole-window button8 scale_workspace overview
-				    bindsym --no-repeat $mod+Shift+tab scale_workspaces toggle
-
-				    # Jump
-				mode "jump" {
-				    bindsym  slash jump tiling; mode default
-				    bindsym  Shift+slash jump tiling all; mode default
-				    bindsym  c jump container; mode default
-				    bindsym  w jump workspaces; mode default
-				    bindsym  f jump floating; mode default
-				    bindsym  Shift+f jump floating all; mode default
-				    bindsym  a jump all; mode default
-				    bindsym  Shift+a jump all all; mode default
-				    bindsym  s scratchpad jump; mode default
-				    bindsym  t jump trailmark; mode default
-				    bindsym  Shift+t jump trailmark all; mode default
-				    bindsym  v jump; mode default
-				    bindsym  r jump criteria [app_id="firefox"]; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym  $mod+slash mode "jump"
-
-				mode "filter" {
-				    bindsym  slash filter active tiling; mode default
-				    bindsym  Shift+slash filter all tiling; mode default
-				    bindsym  Ctrl+slash filter active_only tiling; mode default
-				    bindsym  c filter active container; mode default
-				    bindsym  Shift+c filter all container; mode default
-				    bindsym  Ctrl+c filter active_only container; mode default
-				    bindsym  f filter active floating; mode default
-				    bindsym  Shift+f filter all floating; mode default
-				    bindsym  Ctrl+f filter active_only floating; mode default
-				    bindsym  t filter active trailmark; mode default
-				    bindsym  shift+t filter all trailmark; mode default
-				    bindsym  Ctrl+t filter active_only trailmark; mode default
-				    bindsym  v filter active visible; mode default
-				    bindsym  Shift+v filter all visible; mode default
-				    bindsym  Ctrl+v filter active_only visible; mode default
-				    bindsym  r filter reset; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym  $mod+Shift+slash mode "filter"
-
-				    # Content
-				    bindsym $mod+comma scale_content incr -0.05
-				    bindsym --whole-window $mod+button4 scale_content incr -0.05
-				    bindsym $mod+period scale_content incr 0.05
-				    bindsym --whole-window $mod+button5 scale_content incr 0.05
-				    bindsym $mod+Ctrl+period scale_content reset
-
-				#
-				# Layout stuff:
-				#
-				    # Make the current focus fullscreen
-				    bindsym $mod+f fullscreen
-				    bindsym $mod+Ctrl+f fullscreen layout
-				    bindsym $mod+Alt+f fullscreen application
-				    bindsym $mod+Ctrl+Alt+f fullscreen global
-
-				    # Toggle the current focus between tiling and floating mode
-				    bindsym $mod+y focus mode_toggle
-				    # Toggle layout type (h<->v)
-				    bindsym $mod+Shift+y layout_transpose
-
-				    # Float a window
-				    bindsym $mod+Shift+f floating toggle
-
-				    # Toggle sticky
-				    bindsym $mod+Shift+Ctrl+a sticky toggle
-				    # Toggle pin
-				    bindsym --no-repeat $mod+a pin beginning
-				    bindsym --no-repeat $mod+Shift+a pin end
-
-				    # Selection
-				    bindsym --no-repeat $mod+Insert selection toggle
-				    bindsym --no-repeat $mod+Ctrl+Insert selection reset
-				    bindsym --no-repeat $mod+Shift+Insert selection move
-				    bindsym --no-repeat $mod+Ctrl+Shift+Insert selection workspace
-				    bindsym --no-repeat $mod+Alt+Insert selection to_trail
-
-				    # Marks
-				    # bindsym $mod+m exec scroll-mark-toggle.sh
-				    # bindsym $mod+Shift+m exec scroll-mark-remove.sh
-				    # bindsym $mod+apostrophe exec scroll-mark-switch.sh
-
-				#
-				# Scratchpad:
-				#
-				    # Scroll has a "scratchpad", which is a bag of holding for windows.
-				    # You can send windows there and get them back later.
-
-				    # Move the currently focused window to the scratchpad
-				    bindsym $mod+Shift+z move scratchpad
-
-				    # Show the next scratchpad window or hide the focused scratchpad window.
-				    bindsym $mod+z scratchpad show
-				    bindsym --no-repeat $mod+Alt+z scratchpad jump
-
-				    bindsym $mod+Ctrl+z workspace back_and_forth
-
-				#
-				# Mode modifiers
-				#
-				mode "modifiers" {
-				    bindsym $right set_mode after; mode default
-				    bindsym $left set_mode before; mode default
-				    bindsym home set_mode beginning; mode default
-				    bindsym end set_mode end; mode default
-				    bindsym $up set_mode focus; mode default
-				    bindsym $down set_mode nofocus; mode default
-				    bindsym h set_mode center_horiz; mode default
-				    bindsym Shift+h set_mode nocenter_horiz; mode default
-				    bindsym v set_mode center_vert; mode default
-				    bindsym Shift+v set_mode nocenter_vert; mode default
-				    bindsym r set_mode reorder_auto; mode default
-				    bindsym Shift+r set_mode noreorder_auto; mode default
-				    bindsym w set_mode fitfraction; mode default
-				    bindsym Shift+w set_mode fitsplit; mode default
-				    bindsym Ctrl+w set_mode nofit; mode default
-				    bindsym f set_mode floating; mode default
-				    bindsym Shift+f set_mode nofloating; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+backslash mode "modifiers"
-
-				bindsym $mod+Shift+bracketleft focus_ring prev
-				bindsym $mod+Shift+bracketright focus_ring next
-				bindsym $mod+Shift+Return focus_ring set
-				bindsym $mod+Shift+Delete focus_ring remove
-				bindsym $mod+Shift+Home focus_ring first
-				bindsym $mod+Shift+End focus_ring last
-
-				#
-				# Resizing containers:
-				#
-				bindsym $mod+minus cycle_size h prev
-				bindsym $mod+equal cycle_size h next
-				bindsym $mod+Shift+minus cycle_size v prev
-				bindsym $mod+Shift+equal cycle_size v next
-
-				mode "setsizeh" {
-				    bindsym 1 set_size h 0.125; mode default
-				    bindsym 2 set_size h 0.1666666667; mode default
-				    bindsym 3 set_size h 0.25; mode default
-				    bindsym 4 set_size h 0.333333333; mode default
-				    bindsym 5 set_size h 0.375; mode default
-				    bindsym 6 set_size h 0.5; mode default
-				    bindsym 7 set_size h 0.625; mode default
-				    bindsym 8 set_size h 0.6666666667; mode default
-				    bindsym 9 set_size h 0.75; mode default
-				    bindsym 0 set_size h 0.833333333; mode default
-				    bindsym minus set_size h 0.875; mode default
-				    bindsym equal set_size h 1.0; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+b mode "setsizeh"
-
-				mode "setsizev" {
-				    bindsym 1 set_size v 0.125; mode default
-				    bindsym 2 set_size v 0.1666666667; mode default
-				    bindsym 3 set_size v 0.25; mode default
-				    bindsym 4 set_size v 0.333333333; mode default
-				    bindsym 5 set_size v 0.375; mode default
-				    bindsym 6 set_size v 0.5; mode default
-				    bindsym 7 set_size v 0.625; mode default
-				    bindsym 8 set_size v 0.6666666667; mode default
-				    bindsym 9 set_size v 0.75; mode default
-				    bindsym 0 set_size v 0.833333333; mode default
-				    bindsym minus set_size v 0.875; mode default
-				    bindsym equal set_size v 1.0; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Shift+b mode "setsizev"
-
-				mode "resize" {
-				    bindsym $left resize shrink width 100px
-				    bindsym $down resize grow height 100px
-				    bindsym $up resize shrink height 100px
-				    bindsym $right resize grow width 100px
-				    bindsym Shift+$left resize shrink right 100px
-				    bindsym Shift+$down resize grow down 100px
-				    bindsym Shift+$up resize shrink down 100px
-				    bindsym Shift+$right resize grow right 100px
-				    bindsym Ctrl+$left resize grow left 100px
-				    bindsym Ctrl+$down resize shrink up 100px
-				    bindsym Ctrl+$up resize grow up 100px
-				    bindsym Ctrl+$right resize shrink left 100px
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Shift+r mode "resize"
-
-				mode "floating" {
-				    bindsym $left move left 50px
-				    bindsym $down move down 50px
-				    bindsym $up move up 50px
-				    bindsym $right move right 50px
-				    bindsym Shift+$left resize shrink right 50px
-				    bindsym Shift+$down resize grow down 50px
-				    bindsym Shift+$up resize shrink down 50px
-				    bindsym Shift+$right resize grow right 50px
-				    bindsym Ctrl+$left resize grow left 50px
-				    bindsym Ctrl+$down resize shrink up 50px
-				    bindsym Ctrl+$up resize grow up 50px
-				    bindsym Ctrl+$right resize shrink left 50px
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Ctrl+r mode "floating"
-
-				# Toggle Size (and maximize)
-				bindsym $mod+t toggle_size this 1.0 1.0
-				bindsym $mod+Shift+t toggle_size active 1.0 1.0
-
-				mode "togglesizeh" {
-				    bindsym 1 toggle_size all 0.125 1.0; mode default
-				    bindsym 2 toggle_size all 0.1666666667 1.0; mode default
-				    bindsym 3 toggle_size all 0.25 1.0; mode default
-				    bindsym 4 toggle_size all 0.333333333 1.0; mode default
-				    bindsym 5 toggle_size all 0.375 1.0; mode default
-				    bindsym 6 toggle_size all 0.5 1.0; mode default
-				    bindsym 7 toggle_size all 0.625 1.0; mode default
-				    bindsym 8 toggle_size all 0.6666666667 1.0; mode default
-				    bindsym 9 toggle_size all 0.75 1.0; mode default
-				    bindsym 0 toggle_size all 0.833333333 1.0; mode default
-				    bindsym minus toggle_size all 0.875 1.0; mode default
-				    bindsym equal toggle_size all 1.0 1.0; mode default
-				    bindsym r toggle_size reset; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Ctrl+t mode "togglesizeh"
-
-				mode "togglesizev" {
-				    bindsym 1 toggle_size all 1.0 0.125; mode default
-				    bindsym 2 toggle_size all 1.0 0.1666666667; mode default
-				    bindsym 3 toggle_size all 1.0 0.25; mode default
-				    bindsym 4 toggle_size all 1.0 0.333333333; mode default
-				    bindsym 5 toggle_size all 1.0 0.375; mode default
-				    bindsym 6 toggle_size all 1.0 0.5; mode default
-				    bindsym 7 toggle_size all 1.0 0.625; mode default
-				    bindsym 8 toggle_size all 1.0 0.6666666667; mode default
-				    bindsym 9 toggle_size all 1.0 0.75; mode default
-				    bindsym 0 toggle_size all 1.0 0.833333333; mode default
-				    bindsym minus toggle_size all 1.0 0.875; mode default
-				    bindsym equal toggle_size all 1.0 1.0; mode default
-				    bindsym r toggle_size reset; mode default
-
-				    # Return to default mode
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Ctrl+Shift+t mode "togglesizev"
-
-				mode "align" {
-				    bindsym c align center; mode default
-				    bindsym m align middle; mode default
-				    bindsym r align reset; mode default
-				    bindsym $left align left; mode default
-				    bindsym $right align right; mode default
-				    bindsym $up align up; mode default
-				    bindsym $down align down; mode default
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+c mode "align"
-
-				mode "fit_size" {
-				    bindsym w fit_size h visible proportional; mode default
-				    bindsym Shift+w fit_size v visible proportional; mode default
-				    bindsym Ctrl+w fit_size h visible equal; mode default
-				    bindsym Ctrl+Shift+w fit_size v visible equal; mode default
-
-				    bindsym $right fit_size h toend proportional; mode default
-				    bindsym Shift+$right fit_size v toend proportional; mode default
-				    bindsym Ctrl+$right fit_size h toend equal; mode default
-				    bindsym Ctrl+Shift+$right fit_size v toend equal; mode default
-
-				    bindsym $left fit_size h tobeg proportional; mode default
-				    bindsym Shift+$left fit_size v tobeg proportional; mode default
-				    bindsym Ctrl+$left fit_size h tobeg equal; mode default
-				    bindsym Ctrl+Shift+$left fit_size v tobeg equal; mode default
-
-				    bindsym $up fit_size h active proportional; mode default
-				    bindsym Shift+$up fit_size v active proportional; mode default
-
-				    bindsym $down fit_size h all proportional; mode default
-				    bindsym Shift+$down fit_size v all proportional; mode default
-				    bindsym Ctrl+$down fit_size h all equal; mode default
-				    bindsym Ctrl+Shift+$down fit_size v all equal; mode default
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+w mode "fit_size"
-
-				mode "trailmark" {
-				    bindsym bracketright trailmark next
-				    bindsym bracketleft trailmark prev
-				    bindsym semicolon trailmark toggle; mode default
-				    bindsym --no-repeat slash trailmark jump; mode default
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+semicolon mode "trailmark"
-
-				mode "trail" {
-				    bindsym bracketright trail next
-				    bindsym bracketleft trail prev
-				    ${
-					let
-						digitLoop = prefix: cmd:
-							lib.concatStringsSep "\n" (lib.genList (
-									i: let
-										n = i + 1;
-										k = toString (n - (n / 10) * 10);
-									in
-										"bindsym " + lib.optionalString (prefix != "") (prefix + "+") + k + " " + cmd k + "; mode default"
-								)
-								10);
-					in ''
-						${digitLoop "" (k: "trail number " + k)}
-					''
-				}
-				    bindsym semicolon trail new; mode default
-				    bindsym d trail delete; mode default
-				    bindsym c trail clear; mode default
-				    bindsym insert trail to_selection; mode default
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+Shift+semicolon mode "trail"
-
-				mode "spaces" {
-				    ${
-					let
-						digitLoop = prefix: cmd:
-							lib.concatStringsSep "\n" (lib.genList (
-									i: let
-										n = i + 1;
-										k = toString (n - (n / 10) * 10);
-									in
-										"bindsym " + lib.optionalString (prefix != "") (prefix + "+") + k + " " + cmd k + "; mode default"
-								)
-								10);
-					in ''
-						${digitLoop "" (k: "space load " + k)}
-						${digitLoop "Shift" (k: "space save " + k)}
-						${digitLoop "Ctrl" (k: "space restore_hide " + k)}
-						${digitLoop "Ctrl+Shift" (k: "space restore " + k)}
-					''
-				}
-				    bindsym Escape mode "default"
-				}
-				bindsym $mod+g mode "spaces"
-
-				#
-				# Utilities:
-				#
-				    # Special keys to adjust volume via PulseAudio
-				    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-				    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-				    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-				    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-
-				    # Special keys to control media via playerctl
-				    bindsym --locked XF86AudioPlay exec playerctl play-pause
-				    bindsym --locked XF86AudioPause exec playerctl play-pause
-				    bindsym --locked XF86AudioPrev exec playerctl previous
-				    bindsym --locked XF86AudioNext exec playerctl next
-				    bindsym --locked XF86AudioStop exec playerctl stop
-
-				    # Special keys to adjust brightness via brightnessctl
-				    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-				    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-
-				    # Special key to take a screenshot with grim
-				    bindsym Print exec grim
-
-
-				focus_wrapping no
-
-				bindgesture swipe:4:right workspace next
-				bindgesture swipe:4:left workspace prev
-
-				bindgesture swipe:4:up scale_workspace overview
-
-				#
-				# Workspace rules:
-				#
-				# Opens a terminal when creating workspace 6
-				# workspace 6 exec kitty
-
-
-				#
-				# Status Bar:
-				#
-				# Read `man 5 scroll-bar` for more information about this section.
-				bar {
-				    position top
-
-				    # When the status_command prints a new line to stdout, scrollbar updates.
-				    # The default just shows the current date and time.
-				    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-				    colors {
-				        statusline #ffffff
-				        background #323232
-				        inactive_workspace #32323200 #32323200 #5c5c5c
-				        scroller #2F343AFF #055E20FF #FFFFFFFF
-				    }
-				}
-				#
-				# include /etc/scroll/config.d/*
-
-			'';
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {inherit vars;};
+    users.${vars.user.name} = {...}: {
+      xdg.configFile."scroll/config".text = ''
+        # vim: ft=swayconfig
+        #
+        # Default config for scroll
+        #
+        # Copy this to ~/.config/scroll/config and edit it to your liking.
+        #
+        # Read `man 5 scroll` for a complete reference.
+
+        ### Variables
+        #
+        # Logo key. Use Mod1 for Alt.
+        set $mod Mod4
+        # Home row direction keys, like vim
+        set $left Left
+        set $down Down
+        set $up Up
+        set $right Right
+        # Your preferred terminal emulator
+        set $term kitty
+        set $filemanager $term yazi
+        # Your preferred application launcher
+        set $menu ${vars.app.launcher} ${lib.optionalString (vars.app.launcher == "rofi") "-show drun"}
+        # Запуск лаунчера
+
+
+        exec xhost si:localuser:root
+
+
+        ### Output configuration
+        #
+        # Default wallpaper (more resolutions are available in /usr/share/backgrounds/scroll/)
+        # output * bg /usr/share/backgrounds/scroll/Sway_Wallpaper_Blue_1920x1080.png fill
+        #
+        # Example configuration:
+        #
+        #   output HDMI-A-1 resolution 1920x1080 position 0,0
+        output DVI-D-1 resolution 1600x900 position 0,0
+        #
+        # You can get the names of your outputs by running: scrollmsg -t get_outputs
+
+        ### Idle configuration
+        #
+        # Example configuration:
+        #
+        # exec swayidle -w \
+        #          timeout 300 'swaylock -f -c 000000' \
+        #          timeout 600 'scrollmsg "output * power off"' resume 'scrollmsg "output * power on"' \
+        #          before-sleep 'swaylock -f -c 000000'
+        #
+        # This will lock your screen after 300 seconds of inactivity, then turn off
+        # your displays after another 300 seconds, and turn your screens back on when
+        # resumed. It will also lock your screen before your computer goes to sleep.
+
+        ### Input configuration
+        #
+        # Example configuration:
+        #
+        #   input type:touchpad {
+        #       dwt enabled
+        #       tap enabled
+        #       natural_scroll enabled
+        #       middle_emulation enabled
+        #   }
+        #
+        #   input type:keyboard {
+        #       xkb_layout "us,ru"
+        #        xkb_options "grp"
+        #   }
+        #
+        # You can also configure each device individually.
+        # Read `man 5 scroll-input` for more information about this section.
+
+        ### Windows defaults
+        default_border pixel 2
+        gaps inner 4
+        gaps outer 20
+        client.focused #15439e #4b4b4b #e0e0e0 #2e9ef4 #15439e
+        client.focused_inactive #595959 #3b3b3b #e0e0e0 #2e9ef4 #595959
+        client.unfocused #595959 #1b1b1b #e0e0e0 #2e9ef4 #595959
+
+        # titlebar_border_radius 8
+        # default_decoration border_radius 0 shadow false shadow_dynamic false shadow_size 40 shadow_blur 30 shadow_offset 40 40 shadow_color #00000070 dim false dim_color #00000040
+
+
+        # Idle inhibit for fullscreen windows
+        for_window [all] inhibit_idle fullscreen
+
+        # Layout settings
+        layout_default_width 0.5
+        layout_default_height 1.0
+        layout_widths [0.33333333 0.5 0.666666667 1.0]
+        layout_heights [0.33333333 0.5 0.666666667 1.0]
+
+        # These are the default values for some useful scroll options, consult
+        # `man 5 scroll` and change them to your preference
+
+        # align_reset_auto yes
+        # cursor_shake_magnify false
+        # cycle_size_wrap false
+        # fullscreen_movefocus true nofollow
+        # fullscreen_on_request default
+        # maximize_if_single false
+        # workspace_next_on_output_create_empty true
+        # workspace_switch_wrapping true
+        # xwayland_output_scale true
+        # focus_wrapping no
+        # focus_on_window_activation focus
+        # xdg_activation_force false
+        # scratchpad_minimize false
+        # mouse_resize_tiling_limit true
+        # snap_window_gap 0
+        # snap_workspace_gap 0
+        # snap_respect_gaps_inner false
+        # snap_respect_gaps_outer false
+        # snap_border_overlap false
+
+        # Animations
+        animations {
+            enabled yes
+            default yes 300 var 3 [ 0.215 0.61 0.355 1 ]
+            window_open yes 300 var 3 [ 0 0 1 1 ]
+            window_move yes 300 var 3 [ 0.215 0.61 0.355 1 ] off 0.05 6 [0 0.6 0.4 0 1 0 0.4 -0.6 1 -0.6]
+            window_size yes 300 var 3 [ -0.35 0 0 0.5 ]
+            workspace_switch yes 500 var simple [ 0.215 0.61 0.355 1 ]
+            window_fullscreen yes 500 var simple [ 0.3 0.5 0.4 1 ]
+            jump yes 500 var simple [ 0.215 0.61 0.355 1 ]
+            layer_shell yes 300 var 3 [ 0 0 1 1 ]
+            fade_in yes 300 var simple [ 0.32 0 0.67 0 ]
+            fade_out yes 300 var simple [ 0.33 1 0.68 1 ]
+            # You can also define curves for the following events
+            # window_move_float
+            # overview
+        }
+
+        ### Key bindings
+        #
+        # Basics:
+        #
+            # Start a terminal
+            bindsym $mod+Return exec$term
+
+            # Kill focused window
+            bindsym $mod+Backspace kill
+            bindsym $mod+Shift+Backspace kill unfocused
+            bindsym $mod+Ctrl+Backspace kill all
+
+            # Start your launcher
+            bindsym $mod+r exec$menu
+
+            bindsym $mod+e exec$filemanager
+            # Буфер обмена
+            bindsym $mod+v exec${lib.optionalString (vars.hasProgram "rofi") "rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons" + lib.optionalString (vars.hasProgram "fuzzel") "cliphist-fuzzel-img"}
+
+            # Drag floating windows by holding down $mod and left mouse button.
+            # Resize them with right mouse button + $mod.
+            # Despite the name, also works for non-floating windows.
+            floating_modifier $mod normal
+
+            # Reload the configuration file
+            bindsym $mod+Shift+c reload
+
+            # Exit scroll (logs you out of your Wayland session)
+            bindsym $mod+Shift+x exec scrollnag -t warning -m 'You pressed the exit shortcut. Do you really want to exit scroll? This will end your Wayland session.' -B 'Yes, exit scroll' 'scrollmsg exit' -w 500 -e center -y overlay
+
+            # Layout mode
+            bindsym $mod+bracketleft set_mode h
+            bindsym $mod+bracketright set_mode v
+        #
+        # Moving around:
+        #
+            ${
+          let
+            keys = ["$left" "$down" "$up" "$right" "home" "end"];
+            actions = ["left" "down" "up" "right" "beginning" "end"];
+            dirLoop = mod: cmd:
+              lib.concatStringsSep "\n" (lib.genList (
+                  i: let
+                    k = lib.elemAt keys i;
+                    d = lib.elemAt actions i;
+                  in
+                    "bindsym " + mod + "+" + k + " " + cmd + " " + d
+                )
+                6);
+          in ''
+            # Move your focus around
+            ${dirLoop "$mod" "focus"}
+            # Move the focused window with the same, but add Ctrl
+            ${dirLoop "$mod+Ctrl" "move"}
+            # nomode
+            ${dirLoop "$mod+Alt" "move" + " nomode"}
+          ''
+        }
+
+            # Focus other monitors
+            bindsym $mod+Shift+$left focus output left
+            bindsym $mod+Shift+$down focus output down
+            bindsym $mod+Shift+$up focus output up
+            bindsym $mod+Shift+$right focus output right
+        #
+        # Workspaces:
+        #
+            ${
+          let
+            loop = f: lib.concatStringsSep "\n" (lib.genList f 10);
+            wsLoop = prefix: cmd:
+              loop (
+                i: let
+                  n = i + 1;
+                  k = toString (n - (n / 10) * 10);
+                  w = toString n;
+                in
+                  "bindsym " + prefix + "+" + k + " " + cmd w
+              );
+          in ''
+            # Switch to workspace
+            ${wsLoop "$mod" (w: "workspace number " + w)}
+
+            # Move focused container to workspace
+            ${wsLoop "$mod+Shift" (w: "move container to workspace number " + w + "; workspace number " + w)}
+
+            # Swap workspace contents
+            ${wsLoop "$mod+Ctrl" (w: "workspace swap number " + w)}
+
+            # Swap only workspace names
+            ${wsLoop "$mod+Ctrl+Shift" (w: "workspace swap number " + w + " name_only")}
+          ''
+        }
+            # Note: workspaces can have any name you want, not just numbers.
+            # We just use 1-10 as the default.
+
+            bindsym $mod+Ctrl+Shift+$left move workspace to output left
+            bindsym $mod+Ctrl+Shift+$right move workspace to output right
+
+            bindsym $mod+Shift+Page_Up workspace prev
+            bindsym $mod+Shift+Page_Down workspace next
+            bindsym $mod+Page_Up workspace prev_on_output
+            bindsym $mod+Page_Down workspace next_on_output
+
+            # Split a workspace in two
+        mode "wssplit" {
+            bindsym 1 workspace split v 0.25 10; mode default
+            bindsym Shift+1 workspace split h 0.25 10; mode default
+            bindsym 2 workspace split v 0.333333333 10; mode default
+            bindsym Shift+2 workspace split h 0.333333333 10; mode default
+            bindsym 3 workspace split v 0.5 10; mode default
+            bindsym Shift+3 workspace split h 0.5 10; mode default
+            bindsym 4 workspace split v 0.66666667 10; mode default
+            bindsym Shift+4 workspace split h 0.6666667 10; mode default
+            bindsym 5 workspace split v 0.75 10; mode default
+            bindsym Shift+5 workspace split h 0.75 10; mode default
+            bindsym r workspace split reset; mode default;
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Shift+backslash mode "wssplit"
+
+        # Scaling
+            # Workspace
+            bindsym $mod+Shift+comma scale_workspace incr -0.05
+            bindsym --whole-window $mod+Shift+button4 scale_workspace incr -0.05
+            bindsym $mod+Shift+period scale_workspace incr 0.05
+            bindsym --whole-window $mod+Shift+button5 scale_workspace incr 0.05
+            bindsym $mod+Shift+Ctrl+period scale_workspace reset
+
+            # Overview
+            bindsym --no-repeat $mod+tab scale_workspace overview
+            bindsym --whole-window button8 scale_workspace overview
+            bindsym --no-repeat $mod+Shift+tab scale_workspaces toggle
+
+            # Jump
+        mode "jump" {
+            bindsym  slash jump tiling; mode default
+            bindsym  Shift+slash jump tiling all; mode default
+            bindsym  c jump container; mode default
+            bindsym  w jump workspaces; mode default
+            bindsym  f jump floating; mode default
+            bindsym  Shift+f jump floating all; mode default
+            bindsym  a jump all; mode default
+            bindsym  Shift+a jump all all; mode default
+            bindsym  s scratchpad jump; mode default
+            bindsym  t jump trailmark; mode default
+            bindsym  Shift+t jump trailmark all; mode default
+            bindsym  v jump; mode default
+            bindsym  r jump criteria [app_id="firefox"]; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym  $mod+slash mode "jump"
+
+        mode "filter" {
+            bindsym  slash filter active tiling; mode default
+            bindsym  Shift+slash filter all tiling; mode default
+            bindsym  Ctrl+slash filter active_only tiling; mode default
+            bindsym  c filter active container; mode default
+            bindsym  Shift+c filter all container; mode default
+            bindsym  Ctrl+c filter active_only container; mode default
+            bindsym  f filter active floating; mode default
+            bindsym  Shift+f filter all floating; mode default
+            bindsym  Ctrl+f filter active_only floating; mode default
+            bindsym  t filter active trailmark; mode default
+            bindsym  shift+t filter all trailmark; mode default
+            bindsym  Ctrl+t filter active_only trailmark; mode default
+            bindsym  v filter active visible; mode default
+            bindsym  Shift+v filter all visible; mode default
+            bindsym  Ctrl+v filter active_only visible; mode default
+            bindsym  r filter reset; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym  $mod+Shift+slash mode "filter"
+
+            # Content
+            bindsym $mod+comma scale_content incr -0.05
+            bindsym --whole-window $mod+button4 scale_content incr -0.05
+            bindsym $mod+period scale_content incr 0.05
+            bindsym --whole-window $mod+button5 scale_content incr 0.05
+            bindsym $mod+Ctrl+period scale_content reset
+
+        #
+        # Layout stuff:
+        #
+            # Make the current focus fullscreen
+            bindsym $mod+f fullscreen
+            bindsym $mod+Ctrl+f fullscreen layout
+            bindsym $mod+Alt+f fullscreen application
+            bindsym $mod+Ctrl+Alt+f fullscreen global
+
+            # Toggle the current focus between tiling and floating mode
+            bindsym $mod+y focus mode_toggle
+            # Toggle layout type (h<->v)
+            bindsym $mod+Shift+y layout_transpose
+
+            # Float a window
+            bindsym $mod+Shift+f floating toggle
+
+            # Toggle sticky
+            bindsym $mod+Shift+Ctrl+a sticky toggle
+            # Toggle pin
+            bindsym --no-repeat $mod+a pin beginning
+            bindsym --no-repeat $mod+Shift+a pin end
+
+            # Selection
+            bindsym --no-repeat $mod+Insert selection toggle
+            bindsym --no-repeat $mod+Ctrl+Insert selection reset
+            bindsym --no-repeat $mod+Shift+Insert selection move
+            bindsym --no-repeat $mod+Ctrl+Shift+Insert selection workspace
+            bindsym --no-repeat $mod+Alt+Insert selection to_trail
+
+            # Marks
+            # bindsym $mod+m exec scroll-mark-toggle.sh
+            # bindsym $mod+Shift+m exec scroll-mark-remove.sh
+            # bindsym $mod+apostrophe exec scroll-mark-switch.sh
+
+        #
+        # Scratchpad:
+        #
+            # Scroll has a "scratchpad", which is a bag of holding for windows.
+            # You can send windows there and get them back later.
+
+            # Move the currently focused window to the scratchpad
+            bindsym $mod+Shift+z move scratchpad
+
+            # Show the next scratchpad window or hide the focused scratchpad window.
+            bindsym $mod+z scratchpad show
+            bindsym --no-repeat $mod+Alt+z scratchpad jump
+
+            bindsym $mod+Ctrl+z workspace back_and_forth
+
+        #
+        # Mode modifiers
+        #
+        mode "modifiers" {
+            bindsym $right set_mode after; mode default
+            bindsym $left set_mode before; mode default
+            bindsym home set_mode beginning; mode default
+            bindsym end set_mode end; mode default
+            bindsym $up set_mode focus; mode default
+            bindsym $down set_mode nofocus; mode default
+            bindsym h set_mode center_horiz; mode default
+            bindsym Shift+h set_mode nocenter_horiz; mode default
+            bindsym v set_mode center_vert; mode default
+            bindsym Shift+v set_mode nocenter_vert; mode default
+            bindsym r set_mode reorder_auto; mode default
+            bindsym Shift+r set_mode noreorder_auto; mode default
+            bindsym w set_mode fitfraction; mode default
+            bindsym Shift+w set_mode fitsplit; mode default
+            bindsym Ctrl+w set_mode nofit; mode default
+            bindsym f set_mode floating; mode default
+            bindsym Shift+f set_mode nofloating; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+backslash mode "modifiers"
+
+        bindsym $mod+Shift+bracketleft focus_ring prev
+        bindsym $mod+Shift+bracketright focus_ring next
+        bindsym $mod+Shift+Return focus_ring set
+        bindsym $mod+Shift+Delete focus_ring remove
+        bindsym $mod+Shift+Home focus_ring first
+        bindsym $mod+Shift+End focus_ring last
+
+        #
+        # Resizing containers:
+        #
+        bindsym $mod+minus cycle_size h prev
+        bindsym $mod+equal cycle_size h next
+        bindsym $mod+Shift+minus cycle_size v prev
+        bindsym $mod+Shift+equal cycle_size v next
+
+        mode "setsizeh" {
+            bindsym 1 set_size h 0.125; mode default
+            bindsym 2 set_size h 0.1666666667; mode default
+            bindsym 3 set_size h 0.25; mode default
+            bindsym 4 set_size h 0.333333333; mode default
+            bindsym 5 set_size h 0.375; mode default
+            bindsym 6 set_size h 0.5; mode default
+            bindsym 7 set_size h 0.625; mode default
+            bindsym 8 set_size h 0.6666666667; mode default
+            bindsym 9 set_size h 0.75; mode default
+            bindsym 0 set_size h 0.833333333; mode default
+            bindsym minus set_size h 0.875; mode default
+            bindsym equal set_size h 1.0; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+b mode "setsizeh"
+
+        mode "setsizev" {
+            bindsym 1 set_size v 0.125; mode default
+            bindsym 2 set_size v 0.1666666667; mode default
+            bindsym 3 set_size v 0.25; mode default
+            bindsym 4 set_size v 0.333333333; mode default
+            bindsym 5 set_size v 0.375; mode default
+            bindsym 6 set_size v 0.5; mode default
+            bindsym 7 set_size v 0.625; mode default
+            bindsym 8 set_size v 0.6666666667; mode default
+            bindsym 9 set_size v 0.75; mode default
+            bindsym 0 set_size v 0.833333333; mode default
+            bindsym minus set_size v 0.875; mode default
+            bindsym equal set_size v 1.0; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Shift+b mode "setsizev"
+
+        mode "resize" {
+            bindsym $left resize shrink width 100px
+            bindsym $down resize grow height 100px
+            bindsym $up resize shrink height 100px
+            bindsym $right resize grow width 100px
+            bindsym Shift+$left resize shrink right 100px
+            bindsym Shift+$down resize grow down 100px
+            bindsym Shift+$up resize shrink down 100px
+            bindsym Shift+$right resize grow right 100px
+            bindsym Ctrl+$left resize grow left 100px
+            bindsym Ctrl+$down resize shrink up 100px
+            bindsym Ctrl+$up resize grow up 100px
+            bindsym Ctrl+$right resize shrink left 100px
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Shift+r mode "resize"
+
+        mode "floating" {
+            bindsym $left move left 50px
+            bindsym $down move down 50px
+            bindsym $up move up 50px
+            bindsym $right move right 50px
+            bindsym Shift+$left resize shrink right 50px
+            bindsym Shift+$down resize grow down 50px
+            bindsym Shift+$up resize shrink down 50px
+            bindsym Shift+$right resize grow right 50px
+            bindsym Ctrl+$left resize grow left 50px
+            bindsym Ctrl+$down resize shrink up 50px
+            bindsym Ctrl+$up resize grow up 50px
+            bindsym Ctrl+$right resize shrink left 50px
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Ctrl+r mode "floating"
+
+        # Toggle Size (and maximize)
+        bindsym $mod+t toggle_size this 1.0 1.0
+        bindsym $mod+Shift+t toggle_size active 1.0 1.0
+
+        mode "togglesizeh" {
+            bindsym 1 toggle_size all 0.125 1.0; mode default
+            bindsym 2 toggle_size all 0.1666666667 1.0; mode default
+            bindsym 3 toggle_size all 0.25 1.0; mode default
+            bindsym 4 toggle_size all 0.333333333 1.0; mode default
+            bindsym 5 toggle_size all 0.375 1.0; mode default
+            bindsym 6 toggle_size all 0.5 1.0; mode default
+            bindsym 7 toggle_size all 0.625 1.0; mode default
+            bindsym 8 toggle_size all 0.6666666667 1.0; mode default
+            bindsym 9 toggle_size all 0.75 1.0; mode default
+            bindsym 0 toggle_size all 0.833333333 1.0; mode default
+            bindsym minus toggle_size all 0.875 1.0; mode default
+            bindsym equal toggle_size all 1.0 1.0; mode default
+            bindsym r toggle_size reset; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Ctrl+t mode "togglesizeh"
+
+        mode "togglesizev" {
+            bindsym 1 toggle_size all 1.0 0.125; mode default
+            bindsym 2 toggle_size all 1.0 0.1666666667; mode default
+            bindsym 3 toggle_size all 1.0 0.25; mode default
+            bindsym 4 toggle_size all 1.0 0.333333333; mode default
+            bindsym 5 toggle_size all 1.0 0.375; mode default
+            bindsym 6 toggle_size all 1.0 0.5; mode default
+            bindsym 7 toggle_size all 1.0 0.625; mode default
+            bindsym 8 toggle_size all 1.0 0.6666666667; mode default
+            bindsym 9 toggle_size all 1.0 0.75; mode default
+            bindsym 0 toggle_size all 1.0 0.833333333; mode default
+            bindsym minus toggle_size all 1.0 0.875; mode default
+            bindsym equal toggle_size all 1.0 1.0; mode default
+            bindsym r toggle_size reset; mode default
+
+            # Return to default mode
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Ctrl+Shift+t mode "togglesizev"
+
+        mode "align" {
+            bindsym c align center; mode default
+            bindsym m align middle; mode default
+            bindsym r align reset; mode default
+            bindsym $left align left; mode default
+            bindsym $right align right; mode default
+            bindsym $up align up; mode default
+            bindsym $down align down; mode default
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+c mode "align"
+
+        mode "fit_size" {
+            bindsym w fit_size h visible proportional; mode default
+            bindsym Shift+w fit_size v visible proportional; mode default
+            bindsym Ctrl+w fit_size h visible equal; mode default
+            bindsym Ctrl+Shift+w fit_size v visible equal; mode default
+
+            bindsym $right fit_size h toend proportional; mode default
+            bindsym Shift+$right fit_size v toend proportional; mode default
+            bindsym Ctrl+$right fit_size h toend equal; mode default
+            bindsym Ctrl+Shift+$right fit_size v toend equal; mode default
+
+            bindsym $left fit_size h tobeg proportional; mode default
+            bindsym Shift+$left fit_size v tobeg proportional; mode default
+            bindsym Ctrl+$left fit_size h tobeg equal; mode default
+            bindsym Ctrl+Shift+$left fit_size v tobeg equal; mode default
+
+            bindsym $up fit_size h active proportional; mode default
+            bindsym Shift+$up fit_size v active proportional; mode default
+
+            bindsym $down fit_size h all proportional; mode default
+            bindsym Shift+$down fit_size v all proportional; mode default
+            bindsym Ctrl+$down fit_size h all equal; mode default
+            bindsym Ctrl+Shift+$down fit_size v all equal; mode default
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+w mode "fit_size"
+
+        mode "trailmark" {
+            bindsym bracketright trailmark next
+            bindsym bracketleft trailmark prev
+            bindsym semicolon trailmark toggle; mode default
+            bindsym --no-repeat slash trailmark jump; mode default
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+semicolon mode "trailmark"
+
+        mode "trail" {
+            bindsym bracketright trail next
+            bindsym bracketleft trail prev
+            ${
+          let
+            digitLoop = prefix: cmd:
+              lib.concatStringsSep "\n" (lib.genList (
+                  i: let
+                    n = i + 1;
+                    k = toString (n - (n / 10) * 10);
+                  in
+                    "bindsym " + lib.optionalString (prefix != "") (prefix + "+") + k + " " + cmd k + "; mode default"
+                )
+                10);
+          in ''
+            ${digitLoop "" (k: "trail number " + k)}
+          ''
+        }
+            bindsym semicolon trail new; mode default
+            bindsym d trail delete; mode default
+            bindsym c trail clear; mode default
+            bindsym insert trail to_selection; mode default
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+Shift+semicolon mode "trail"
+
+        mode "spaces" {
+            ${
+          let
+            digitLoop = prefix: cmd:
+              lib.concatStringsSep "\n" (lib.genList (
+                  i: let
+                    n = i + 1;
+                    k = toString (n - (n / 10) * 10);
+                  in
+                    "bindsym " + lib.optionalString (prefix != "") (prefix + "+") + k + " " + cmd k + "; mode default"
+                )
+                10);
+          in ''
+            ${digitLoop "" (k: "space load " + k)}
+            ${digitLoop "Shift" (k: "space save " + k)}
+            ${digitLoop "Ctrl" (k: "space restore_hide " + k)}
+            ${digitLoop "Ctrl+Shift" (k: "space restore " + k)}
+          ''
+        }
+            bindsym Escape mode "default"
+        }
+        bindsym $mod+g mode "spaces"
+
+        #
+        # Utilities:
+        #
+            # Special keys to adjust volume via PulseAudio
+            bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+            bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+            bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+            bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+            # Special keys to control media via playerctl
+            bindsym --locked XF86AudioPlay exec playerctl play-pause
+            bindsym --locked XF86AudioPause exec playerctl play-pause
+            bindsym --locked XF86AudioPrev exec playerctl previous
+            bindsym --locked XF86AudioNext exec playerctl next
+            bindsym --locked XF86AudioStop exec playerctl stop
+
+            # Special keys to adjust brightness via brightnessctl
+            bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+            bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+            # Special key to take a screenshot with grim
+            bindsym Print exec grim
+
+
+        focus_wrapping no
+
+        bindgesture swipe:4:right workspace next
+        bindgesture swipe:4:left workspace prev
+
+        bindgesture swipe:4:up scale_workspace overview
+
+        #
+        # Workspace rules:
+        #
+        # Opens a terminal when creating workspace 6
+        # workspace 6 exec kitty
+
+
+        #
+        # Status Bar:
+        #
+        # Read `man 5 scroll-bar` for more information about this section.
+        bar {
+            position top
+
+            # When the status_command prints a new line to stdout, scrollbar updates.
+            # The default just shows the current date and time.
+            status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+            colors {
+                statusline #ffffff
+                background #323232
+                inactive_workspace #32323200 #32323200 #5c5c5c
+                scroller #2F343AFF #055E20FF #FFFFFFFF
+            }
+        }
+        #
+        # include /etc/scroll/config.d/*
+
+      '';
+    };
+  };
 }

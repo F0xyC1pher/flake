@@ -1,21 +1,21 @@
 {
-	inputs,
-	vars,
-	...
+  inputs,
+  vars,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."waybar/modules/custom/arrow-left.json".text = ''
-				// syntax: json
-				{
-					"custom/arrow-left": {
-						"format": "",
-						"tooltip": false,
-						"cursor": true,
-					},
-				}
-			'';
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {...}: {
+      xdg.configFile."waybar/modules/custom/arrow-left.json".text = ''
+        // syntax: json
+        {
+        	"custom/arrow-left": {
+        		"format": "",
+        		"tooltip": false,
+        		"cursor": true,
+        	},
+        }
+      '';
+    };
+  };
 }

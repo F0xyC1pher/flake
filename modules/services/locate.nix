@@ -1,5 +1,5 @@
 {...}: {
-	services.locate = {
-		enable = false;
-	};
+  services.locate = {
+    enable = false;
+  };
 }

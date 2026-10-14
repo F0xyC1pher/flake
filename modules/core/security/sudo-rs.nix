@@ -1,4 +1,4 @@
 {...}: {
-	security.sudo-rs.enable = true;
-	security.sudo-rs.wheelNeedsPassword = false;
+  security.sudo-rs.enable = true;
+  security.sudo-rs.wheelNeedsPassword = false;
 }

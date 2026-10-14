@@ -1,3 +1,3 @@
 {...}: {
-	programs.skwd-wall.enable = true;
+  programs.skwd-wall.enable = true;
 }
