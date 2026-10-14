@@ -30,8 +30,8 @@
 
 					"niri/language": {
 						"format": " : {}",
-						"format-en": "US 🇺🇸",
-						"format-ru": "RU 🇷🇺",
+						"format-en": "ENG 🇺🇸",
+						"format-ru": "RUS 🇷🇺",
 						"interval": 1,
 					},
 				}

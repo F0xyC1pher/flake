@@ -33,7 +33,7 @@
 					audio_output {
 					    type "pipewire"
 					    name "PipeWire Output"
-					    auto_resample "no"
+					    auto_resample "yes"
 					    format "${mpdFormatStr}"
 					}
 				'';

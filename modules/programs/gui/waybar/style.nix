@@ -1,19 +1,14 @@
 {
 	inputs,
+	lib,
 	vars,
 	...
 }: {
 	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {vars, ...}: {
+		extraSpecialArgs = {inherit inputs;};
+		users.${vars.user.name} = {...}: {
 			programs.waybar.style = ''
 				/*css*/
-				* {
-					font-family: "${vars.theme.font.name}";
-					font-weight: 400;
-					font-size: ${toString vars.theme.font.size}pt;
-					border-radius: 0px;
-				}
 
 				window#waybar {
 					background: transparent;
@@ -23,7 +18,6 @@
 				window#waybar > box {
 					background: alpha(${vars.theme.style.ui.bg}, ${toString vars.theme.opacity});
 					border-bottom: 2px solid ${vars.theme.style.accent};
-					padding: 0 6px;
 				}
 
 				/* COMMON MODULE STYLE */
@@ -45,9 +39,6 @@
 					border: none;
 					background: none;
 					color: ${vars.theme.style.text.main};
-					padding: 0 10px;
-					margin: 3px 2px;
-					min-height: 28px;
 				}
 
 				/* Hover */
@@ -66,8 +57,6 @@
 				#tray:hover,
 				#wireplumber:hover,
 				#wireplumber.source:hover {
-					/*border: 1px solid #764646;*/
-					/*background: #763636;*/
 					color: ${vars.theme.style.text.heading};
 					transition: all 666ms ease;
 				}
@@ -75,17 +64,15 @@
 				/* WORKSPACES */
 				#workspaces {
 					background: transparent;
-					margin: 3px 2px;
 				}
 
 				#workspaces button {
 					border: none;
 					background: none;
 					color: ${vars.theme.style.accent};
-					margin: 0 2px;
-					padding: 0 12px;
-					min-height: 28px;
-					/* font-size: ;*/
+					margin: 0px;
+					padding: 0 4px;
+					min-height: 0px;
 				}
 
 				#workspaces button.empty {
@@ -129,7 +116,7 @@
 				}
 
 				#custom-notification {
-					font-size: 20px;
+					font-size: ${toString (lib.floor (vars.theme.font.size * 1.333333))}pt;
 				}
 
 				#tray {
@@ -137,12 +124,16 @@
 					background: none;
 				}
 
-				#clock {
-					min-width: 80px;
-				}
 				#cpu,
 				#memory {
 					min-width: 50px;
+				}
+
+				* {
+					font-family: "${vars.theme.font.name}";
+					font-weight: 400;
+					font-size: ${toString vars.theme.font.size}pt;
+					border-radius: 0px;
 				}
 			'';
 		};

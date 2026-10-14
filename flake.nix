@@ -41,7 +41,24 @@
 			url = "github:pabloaul/lsfg-vk-flake/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nix-cursors = {
+			url = "github:LilleAila/nix-cursors";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
 		hyprland.url = "github:hyprwm/Hyprland";
+
+		biri = {
+			url = "github:barrulus/biri";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		niri-screenshare.url = "github:pantarune/niri-screenshare";
+		niri-glass.url = "github:yigexuanmu/Niri-glass";
+
+		scroll-flake = {
+			url = "github:Diax170/scroll-flake";
+			inputs.nixpkgs.follows = "nixpkgs"; # this assumes nixos unstable
+		};
 
 		driftwm = {
 			url = "github:malbiruk/driftwm";
@@ -53,6 +70,14 @@
 		shojiwm.url = "github:bea4dev/ShojiWM";
 		umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
 		xdg-desktop-portal-umbriel.url = "git+https://github.com/noctalia-dev/xdg-desktop-portal-umbriel";
+
+		dms = {
+			url = "github:AvengeMedia/DankMaterialShell/stable";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		noctalia.url = "github:noctalia-dev/noctalia";
+
+		nixcord.url = "github:FlameFlag/nixcord";
 
 		vimium-options.url = "github:uimataso/vimium-nixos";
 		nixvim.url = "github:nix-community/nixvim";
@@ -67,22 +92,6 @@
 			url = "github:Mic92/sops-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
-		nix-cursors = {
-			url = "github:LilleAila/nix-cursors";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-
-		nixcord.url = "github:FlameFlag/nixcord";
-
-		dms = {
-			url = "github:AvengeMedia/DankMaterialShell/stable";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-		noctalia.url = "github:noctalia-dev/noctalia";
-		niri-float-sticky.url = "github:probeldev/niri-float-sticky";
-		niri-screenshare.url = "github:pantarune/niri-screenshare";
-		niri-glass.url = "github:yigexuanmu/Niri-glass";
 
 		# nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
 

@@ -5,7 +5,7 @@
 			xdg.configFile."niri/layout.kdl".text = ''
 				// syntax: kdl
 				layout {
-					gaps 14
+					gaps ${toString (vars.theme.gaps."in" + vars.theme.gaps."out")}
 					always-center-single-column
 					empty-workspace-above-first
 					background-color "transparent"
@@ -57,7 +57,11 @@
 
 					// You can enable drop shadows for windows.
 					shadow {
-						on
+						${
+					if vars.theme.shadows.enable == true
+					then "on"
+					else "off"
+				}
 						draw-behind-window false
 						// You can change how shadows look. The values below are in logical
 						// pixels and match the CSS box-shadow properties.
