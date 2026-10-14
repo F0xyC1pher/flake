@@ -1,31 +1,31 @@
 {
-	inputs,
-	vars,
-	...
+  inputs,
+  vars,
+  ...
 }: {
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {...}: {
-			xdg.configFile."waybar/modules/group/left-hidden.json".text = ''
-				// syntax: json
-				{
-					"group/left-hidden": {
-						"orientation": "horizontal",
-						"drawer": {
-							"transition-duration": 500,
-							"transition-left-to-right": true,
-							"click-to-reveal": true,
-						},
-						"modules": [
-							"custom/arrow-right",
-							"backlight",
-							"bluetooth",
-							"wireplumber",
-							"wireplumber#source",
-						],
-					},
-				}
-			'';
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {...}: {
+      xdg.configFile."waybar/modules/group/left-hidden.json".text = ''
+        // syntax: json
+        {
+        	"group/left-hidden": {
+        		"orientation": "horizontal",
+        		"drawer": {
+        			"transition-duration": 500,
+        			"transition-left-to-right": true,
+        			"click-to-reveal": true,
+        		},
+        		"modules": [
+        			"custom/arrow-right",
+        			"backlight",
+        			"bluetooth",
+        			"wireplumber",
+        			"wireplumber#source",
+        		],
+        	},
+        }
+      '';
+    };
+  };
 }

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
-	environment.systemPackages = with pkgs; [
-		wineWow64Packages.stagingFull
-		wineasio
-		winetricks
-	];
+  environment.systemPackages = with pkgs; [
+    wineWow64Packages.stagingFull
+    wineasio
+    winetricks
+  ];
 }

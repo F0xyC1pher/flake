@@ -1,3 +1,3 @@
 {...}: {
-	programs.driftwm.enable = true;
+  programs.driftwm.enable = true;
 }

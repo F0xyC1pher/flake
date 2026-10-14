@@ -1,4 +1,4 @@
 {...}: {
-	services.earlyoom.enable = true;
-	services.earlyoom.freeMemThreshold = 3;
+  services.earlyoom.enable = true;
+  services.earlyoom.freeMemThreshold = 3;
 }

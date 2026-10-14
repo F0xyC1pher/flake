@@ -1,28 +1,27 @@
 {
-	inputs,
-	vars,
-	pkgs,
-	...
+  inputs,
+  vars,
+  pkgs,
+  ...
 }: {
-	programs.niri = {
-		enable = true;
-		# package = inputs.niri-glass.packages.x86_64-linux.default;
-		# package = pkgs.niri;
-		package = inputs.biri.packages.${pkgs.stdenv.hostPlatform.system}.default;
-	};
-	imports = [
-		./config
-	];
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {lib, ...}: {
-			# ========== NIRI ==========
-			home.activation.reloadNiri =
-				lib.hm.dag.entryAfter ["writeBoundary"] ''
-					if command -v niri >/dev/null 2>&1; then
-					niri msg action reload-config 2>/dev/null || true
-					fi
-				'';
-		};
-	};
+  programs.niri = {
+    enable = true;
+    # package = inputs.niri-glass.packages.x86_64-linux.default;
+    # package = pkgs.niri;
+    package = inputs.biri.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
+  imports = [
+    ./config
+  ];
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {lib, ...}: {
+      # ========== NIRI ==========
+      home.activation.reloadNiri = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        if command -v niri >/dev/null 2>&1; then
+        niri msg action reload-config 2>/dev/null || true
+        fi
+      '';
+    };
+  };
 }

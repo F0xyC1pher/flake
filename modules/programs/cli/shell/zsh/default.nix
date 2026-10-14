@@ -1,152 +1,152 @@
 {
-	inputs,
-	lib,
-	pkgs,
-	vars,
-	...
+  inputs,
+  lib,
+  pkgs,
+  vars,
+  ...
 }: {
-	# imports = [
-	# 	./pk10k.nix
-	# ];
-	programs.zsh = {
-		enable = true;
-	};
-	environment.shells = with pkgs; [
-		zsh
-	];
-	home-manager = {
-		extraSpecialArgs = {inherit inputs vars;};
-		users.${vars.user.name} = {pkgs, ...}: {
-			# xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
+  # imports = [
+  # 	./pk10k.nix
+  # ];
+  programs.zsh = {
+    enable = true;
+  };
+  environment.shells = with pkgs; [
+    zsh
+  ];
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars;};
+    users.${vars.user.name} = {pkgs, ...}: {
+      # xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
 
-			programs.zsh = {
-				enable = true;
-				enableCompletion = true;
-				autocd = true;
-				autosuggestion.enable = true;
-				syntaxHighlighting.enable = true;
-				history.size = 10000;
-				# initContent =
-				# 	lib.mkBefore ''
-				# 		[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        autocd = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+        history.size = 10000;
+        # initContent =
+        # 	lib.mkBefore ''
+        # 		[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-				# 	'';
-				# typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
-				initContent = ''
-					${
-						lib.optionalString (vars.hasProgram "nix-your-shell") ''
-							if command -v nix-your-shell > /dev/null; then
-								nix-your-shell zsh | source /dev/stdin
-							fi
-						''
-					}
-					# syntax: shell
-					setopt automenu
-					setopt nobeep
+        # 	'';
+        # typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+        initContent = ''
+          ${
+            lib.optionalString (vars.hasProgram "nix-your-shell") ''
+              if command -v nix-your-shell > /dev/null; then
+              	nix-your-shell zsh | source /dev/stdin
+              fi
+            ''
+          }
+          # syntax: shell
+          setopt automenu
+          setopt nobeep
 
-					#typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
+          #typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
-					export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
-					export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-					export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-					export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
-					export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
-					export FZF_ALT_C_OPTS="--preview 'ls | head -200'"
-					export FZF_TMUX_OPTS=" -p90%,70% "
+          export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
+          export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+          export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+          export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
+          export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+          export FZF_ALT_C_OPTS="--preview 'ls | head -200'"
+          export FZF_TMUX_OPTS=" -p90%,70% "
 
-					zstyle ":completion:*" menu no
-					zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-					zstyle ":fzf-tab:*" fzf-flags \
-					  -e \
-					  -i \
-					  --algo=v1 \
-					  --no-mouse \
-					  -m \
-					  --height=20 \
-					  --reverse \
-					  --no-scrollbar \
-					  --pointer=">"
-					zstyle ":fzf-tab:*" fzf-bindings "space:accept"
-					zstyle ":fzf-tab:*" accept-line enter
+          zstyle ":completion:*" menu no
+          zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+          zstyle ":fzf-tab:*" fzf-flags \
+            -e \
+            -i \
+            --algo=v1 \
+            --no-mouse \
+            -m \
+            --height=20 \
+            --reverse \
+            --no-scrollbar \
+            --pointer=">"
+          zstyle ":fzf-tab:*" fzf-bindings "space:accept"
+          zstyle ":fzf-tab:*" accept-line enter
 
-					_fix_cursor() {
-					   echo -ne "\033[4 q"
-					}
-					precmd_functions+=(_fix_cursor)
+          _fix_cursor() {
+             echo -ne "\033[4 q"
+          }
+          precmd_functions+=(_fix_cursor)
 
-					xf ()
-					{
-					  if [ -f $1 ] ; then
-					    case $1 in
-					      *.tar.bz2)   tar xjf $1   ;;
-					      *.tar.gz)    tar xzf $1   ;;
-					      *.bz2)       bunzip2 $1   ;;
-					      *.rar)       unrar x $1   ;;
-					      *.gz)        gunzip $1    ;;
-					      *.tar)       tar xf $1    ;;
-					      *.tbz2)      tar xjf $1   ;;
-					      *.tgz)       tar xzf $1   ;;
-					      *.zip)       unzip $1     ;;
-					      *.Z)         uncompress $1;;
-					      *.7z)        7z x $1      ;;
-					      *.deb)       ar x $1      ;;
-					      *.tar.xz)    tar xf $1    ;;
-					      *.tar.zst)   tar xf $1    ;;
-					      *)           echo "'$1' cannot be extracted via ex()" ;;
-					    esac
-					  else
-					    echo "'$1' is not a valid file"
-					  fi
-					}
+          xf ()
+          {
+            if [ -f $1 ] ; then
+              case $1 in
+                *.tar.bz2)   tar xjf $1   ;;
+                *.tar.gz)    tar xzf $1   ;;
+                *.bz2)       bunzip2 $1   ;;
+                *.rar)       unrar x $1   ;;
+                *.gz)        gunzip $1    ;;
+                *.tar)       tar xf $1    ;;
+                *.tbz2)      tar xjf $1   ;;
+                *.tgz)       tar xzf $1   ;;
+                *.zip)       unzip $1     ;;
+                *.Z)         uncompress $1;;
+                *.7z)        7z x $1      ;;
+                *.deb)       ar x $1      ;;
+                *.tar.xz)    tar xf $1    ;;
+                *.tar.zst)   tar xf $1    ;;
+                *)           echo "'$1' cannot be extracted via ex()" ;;
+              esac
+            else
+              echo "'$1' is not a valid file"
+            fi
+          }
 
-					tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
+          tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
 
-					[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-				'';
-				plugins = with inputs; [
-					{
-						name = "powerlevel10k";
-						file = "powerlevel9k.zsh-theme";
-						src = powerlevel10k;
-					}
+          [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+        '';
+        plugins = with inputs; [
+          {
+            name = "powerlevel10k";
+            file = "powerlevel9k.zsh-theme";
+            src = powerlevel10k;
+          }
 
-					{
-						name = "zsh-autosuggestions";
-						file = "zsh-autosuggestions.plugin.zsh";
-						src = zsh-autosuggestions;
-					}
+          {
+            name = "zsh-autosuggestions";
+            file = "zsh-autosuggestions.plugin.zsh";
+            src = zsh-autosuggestions;
+          }
 
-					{
-						name = "zsh-syntax-highlighting";
-						file = "zsh-syntax-highlighting.plugin.zsh";
-						src = zsh-syntax-highlighting;
-					}
+          {
+            name = "zsh-syntax-highlighting";
+            file = "zsh-syntax-highlighting.plugin.zsh";
+            src = zsh-syntax-highlighting;
+          }
 
-					{
-						name = "zsh-history-substring-search";
-						file = "zsh-history-substring-search.plugin.zsh";
-						src = zsh-syntax-highlighting;
-					}
+          {
+            name = "zsh-history-substring-search";
+            file = "zsh-history-substring-search.plugin.zsh";
+            src = zsh-syntax-highlighting;
+          }
 
-					{
-						name = "fzf-tab";
-						file = "fzf-tab.plugin.zsh";
-						src = fzf-tab;
-					}
+          {
+            name = "fzf-tab";
+            file = "fzf-tab.plugin.zsh";
+            src = fzf-tab;
+          }
 
-					{
-						name = "zsh-auto-notify";
-						file = "auto-notify.plugin.zsh";
-						src = zsh-auto-notify;
-					}
+          {
+            name = "zsh-auto-notify";
+            file = "auto-notify.plugin.zsh";
+            src = zsh-auto-notify;
+          }
 
-					{
-						name = "zsh-autopair";
-						file = "zsh-autopair.plugin.zsh";
-						src = zsh-autopair;
-					}
-				];
-			};
-		};
-	};
+          {
+            name = "zsh-autopair";
+            file = "zsh-autopair.plugin.zsh";
+            src = zsh-autopair;
+          }
+        ];
+      };
+    };
+  };
 }

@@ -1,6 +1,6 @@
 {...}: {
-	imports = [
-		./core
-		./hardware
-	];
+  imports = [
+    ./core
+    ./hardware
+  ];
 }

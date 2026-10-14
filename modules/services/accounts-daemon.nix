@@ -1,3 +1,3 @@
 {...}: {
-	services.accounts-daemon.enable = true;
+  services.accounts-daemon.enable = true;
 }

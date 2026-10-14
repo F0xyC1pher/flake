@@ -1,25 +1,25 @@
 {vars, ...}: {
-	home-manager = {
-		extraSpecialArgs = {inherit vars;};
-		users.${vars.user.name} = {...}: {
-			programs.noctalia = {
-				enable = true;
+  home-manager = {
+    extraSpecialArgs = {inherit vars;};
+    users.${vars.user.name} = {...}: {
+      programs.noctalia = {
+        enable = true;
 
-				systemd.enable = true;
-				settings = {
-					launch_apps_as_systemd_services = true;
-					# This may also be a string or path to a .toml file.
-					# theme = {
-					# 	mode = "dark";
-					# 	source = "builtin";
-					# 	builtin = "Catppuccin";
-					# };
-					# wallpaper = {
-					# 	enabled = true;
-					# 	default.path = "/path/to/wallpapers/wallpaper.png";
-					# };
-				};
-			};
-		};
-	};
+        systemd.enable = true;
+        settings = {
+          launch_apps_as_systemd_services = true;
+          # This may also be a string or path to a .toml file.
+          # theme = {
+          # 	mode = "dark";
+          # 	source = "builtin";
+          # 	builtin = "Catppuccin";
+          # };
+          # wallpaper = {
+          # 	enabled = true;
+          # 	default.path = "/path/to/wallpapers/wallpaper.png";
+          # };
+        };
+      };
+    };
+  };
 }

@@ -1,6 +1,6 @@
 {
-	defaultAccent = {
-		level = "normal";
-		color = "blue";
-	};
+  defaultAccent = {
+    level = "normal";
+    color = "blue";
+  };
 }
