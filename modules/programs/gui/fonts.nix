@@ -8,15 +8,21 @@
 	fonts = {
 		packages = with pkgs; [
 			noto-fonts-color-emoji
-			# monocraft
-			# pixel-code
-			# cozette
-			nerd-fonts.caskaydia-cove
-			nerd-fonts.fira-code
+			monocraft
+			pixel-code
+			cozette
+			comic-mono
+			comic-neue
+			comic-relief
+			commit-mono
+			inter
+			iosevka
+			cascadia-code
+			fira-code
 			fira-code-symbols
-			nerd-fonts.symbols-only
 			material-symbols
 			font-awesome
+			nerd-fonts.symbols-only
 		];
 
 		fontconfig = {
@@ -38,10 +44,10 @@
 			};
 
 			defaultFonts = {
-				monospace = [vars.theme.font.name];
-				sansSerif = [vars.theme.font.name];
-				serif = [vars.theme.font.name];
-				emoji = ["Noto Color Emoji"];
+				monospace = [vars.theme.font.name "Symbols Nerd Font Mono"];
+				sansSerif = [vars.theme.font.name "Symbols Nerd Font Mono"];
+				serif = [vars.theme.font.name "Symbols Nerd Font Mono"];
+				emoji = ["Noto Color Emoji" "Symbols Nerd Font Mono"];
 			};
 		};
 	};

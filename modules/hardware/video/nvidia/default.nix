@@ -15,6 +15,10 @@ in {
 	services.xserver.videoDrivers = ["nvidia"];
 
 	hardware = {
+		# display.edid.enable = true;
+		# display.edid.modelines = {
+		# 	"BenQ1080_75" = "220.75  1920 2056 2264 2608  1080 1083 1088 1130 -hsync +vsync";
+		# };
 		graphics = {
 			enable = true;
 			enable32Bit = true;

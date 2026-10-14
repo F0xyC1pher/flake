@@ -19,7 +19,6 @@
 					open-maximized true
 					draw-border-with-background false
 				}
-
 				${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
 						// Глобальное включение визуальных эффектов размытия / стекла
 						window-rule {
@@ -45,7 +44,6 @@
 							}
 						}
 					''}
-
 				${lib.optionalString (vars.theme.blur.enable || vars.theme.liquid-glass.enable) ''
 						window-rule {
 							match app-id=r"^steam_app_"
@@ -80,7 +78,6 @@
 					open-floating true
 					open-focused false
 				}
-
 				window-rule {
 					match app-id="tenki"
 					open-floating true
@@ -89,7 +86,6 @@
 					min-height 155
 					max-height 155
 				}
-
 				${
 					lib.optionalString (vars.theme.shadows.enable) ''
 						window-rule {
@@ -108,23 +104,6 @@
 						}
 					''
 				}
-				/-window-rule {
-					match title="TrayControl" app-id="AIMP"
-					match title="TrayControl" app-id="Aimp"
-					border {
-						off
-					}
-					shadow {
-						off
-					}
-					default-floating-position x=0 y=0 relative-to="bottom"
-					open-floating true
-					min-width 1910
-					max-width 1910
-					min-height 54
-					max-height 54
-				}
-
 				// Открывать картинку-в-картинке проигрывателя Firefox в плавающем состоянии по дефолту.
 				window-rule {
 					// This app-id regular expression will work for both:
@@ -136,13 +115,10 @@
 					open-floating true
 					default-floating-position x=20 y=20 relative-to="bottom-right"
 				}
-
 				// Блокировать менеджеры паролей от демонстрации экрана.
 				window-rule {
 					match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-
 					block-out-from "screen-capture"
-
 					// Или от скринкаста (разрешить скрины но запретить демонстрацию).
 					// block-out-from "screencast"
 				}

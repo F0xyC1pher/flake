@@ -2,21 +2,28 @@
 {...}: {
 	theme = {
 		name = "the-me";
-		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
-		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+		accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+		accentColor = "purple"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
 		gaps = {
-			"in" = 20;
-			"out" = 20;
+			"in" = 2;
+			"out" = 2;
 		};
-		opacity = 0.666;
+		struts = {
+			top = 0;
+			bottom = 0;
+			left = 10;
+			right = 10;
+		};
+		# opacity = 0.666;
+		opacity = 1;
 		liquid-glass.enable = false;
 		shadows = {
-			enable = true;
-			neon = true;
+			enable = false;
+			neon = false;
 		};
 		blur = {
-			enable = true;
+			enable = false;
 			xray.enable = false;
 			settings = {
 				passes = 2;
@@ -30,7 +37,9 @@
 			radius = 0;
 		};
 		font = {
-			name = "CaskaydiaCove Nerd Font Mono";
+			name = "CaskaydiaCode";
+			# name = "FiraCode Nerd Font Mono";
+			# name = "Monocraft";
 			size = 12;
 		};
 	};
@@ -78,7 +87,7 @@
 		"no-gnome"
 		"niri"
 		"hyprland"
-		# "scroll"
+		"scroll"
 		# "shojiwm"
 		"umbriel"
 		# "noctalia"
@@ -112,6 +121,7 @@
 		"earlyloom"
 		"flatpak"
 		"gvfs"
+		"irqbalance"
 		"locate"
 		"mpd"
 		"openssh"
@@ -132,8 +142,9 @@
 		"xserver"
 	];
 	packages = [
-		"google-antigravity"
 		"base"
+		# "creamlinux"
+		"google-antigravity"
 		"jdk"
 		# "neu-nix"
 		"session-packages"

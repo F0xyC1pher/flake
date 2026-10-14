@@ -20,9 +20,8 @@
 
 					"layer": "top",
 					"position": "top",
-					"height": 40,
+					"height": 30,
 					"spacing": 3,
-					// "margin-bottom": -15,
 
 					"modules-left": [
 						"group/left-hidden",
