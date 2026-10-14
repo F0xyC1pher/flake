@@ -1,3 +1,3 @@
 {...}: {
-	system.etc.overlay.enable = true;
+  system.etc.overlay.enable = true;
 }

@@ -1,20 +1,20 @@
 {pkgs, ...}: {
-	environment.systemPackages = with pkgs; [
-		custom.rofi-polkit-agent
-		cmd-polkit
-		jq
-	];
-	systemd.user.services.rofi-polkit-agent = {
-		description = "Rofi Polkit Agent";
+  environment.systemPackages = with pkgs; [
+    custom.rofi-polkit-agent
+    cmd-polkit
+    jq
+  ];
+  systemd.user.services.rofi-polkit-agent = {
+    description = "Rofi Polkit Agent";
 
-		after = ["graphical-session.target"];
-		partOf = ["graphical-session.target"];
-		wantedBy = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
+    wantedBy = ["graphical-session.target"];
 
-		serviceConfig = {
-			ExecStart = "${pkgs.custom.rofi-polkit-agent}/bin/rofi-polkit-agent";
-			Restart = "on-failure";
-			RestartSec = 1;
-		};
-	};
+    serviceConfig = {
+      ExecStart = "${pkgs.custom.rofi-polkit-agent}/bin/rofi-polkit-agent";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
 }

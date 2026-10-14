@@ -1,140 +1,140 @@
 #./users/f/default.nix
 {...}: {
-	theme = {
-		name = "cicada";
-		# accentLevel = "normal"; # "dimmed" | "normal" | "bright"
-		# accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
+  theme = {
+    name = "cicada";
+    # accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+    # accentColor = "blue"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
-		gaps = {
-			"in" = 10;
-			"out" = 10;
-		};
-		opacity = 0.78;
-		liquid-glass.enable = false;
-		shadows = {
-			enable = true;
-			neon = false;
-		};
-		blur = {
-			enable = true;
-			xray.enable = false;
-			settings = {
-				passes = 3;
-				offset = 1;
-				noise = 0.0;
-				saturation = 0.0;
-			};
-		};
-		border = {
-			size = 2;
-			radius = 0;
-		};
-		font = {
-			name = "CaskaydiaCove Nerd Font Mono";
-			size = 12;
-		};
-	};
-	app = {
-		terminal = "kitty";
-		launcher = "rofi";
-		file-manager = {
-			tui = "yazi";
-			gui = null;
-		};
-		browser = {
-			gui = "firefox";
-			tui = "lyx";
-		};
-		text-editor = {
-			gui = "zeditor";
-			tui = "micro";
-		};
-	};
-	user = {
-		fullName = "cicada";
-		#mail = "@";
-		#gitName = "";
-		password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
-		shell = "fish"; # fish zsh bash
-	};
-	system = {
-		modKey = "Super"; # Super Mod4
-		desktopShell = "custom"; # custom dms noctalia
-	};
-	programs = [
-		"nix-your-shell"
-		"micro"
-		"nh"
-		"git"
-		"fish"
-		"gtk"
-		"qt"
-		"dconf"
-		"xwayland"
-		"kitty"
-		"fonts"
-		"cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
-		"appimage"
-		"no-gnome"
-		"niri"
-		"hyprland"
-		# "scroll"
-		# "shojiwm"
-		# "umbriel"
-		# "noctalia"
-		# "dms"
-		"waybar"
-		# "fuzzel"
-		"rofi"
-		"yazi"
-		"bat"
-		"firefox"
-		"zed-editor"
-		"fastfetch"
-		"uwsm"
-		"throne"
-		"swaylock"
-		"nixvim"
-		"media"
-		# "skwd-wall"
-		"gayming"
-	];
-	services = [
-		"tuigreet"
-		"rofi-polkit-service"
-		"accounts-daemon"
-		"arrpc"
-		"awww"
-		"cliphist"
-		"cups"
-		"dbus"
-		"dropbox"
-		"earlyloom"
-		"flatpak"
-		"gvfs"
-		"locate"
-		"mpd"
-		"openssh"
-		"pipewire"
-		"playerctld"
-		"resolved"
-		"scx-loader"
-		"seatd"
-		# "sing-box"
-		"swayidle"
-		"swaync"
-		# "tlp"
-		"udev"
-		"upower"
-		"userborn"
-		"wl-clip-persist"
-		"xserver"
-	];
-	packages = [
-		"base"
-		"jdk"
-		"neu-nix"
-		"session-packages"
-		"wine"
-	];
+    gaps = {
+      "in" = 10;
+      "out" = 10;
+    };
+    opacity = 0.78;
+    liquid-glass.enable = false;
+    shadows = {
+      enable = true;
+      neon = false;
+    };
+    blur = {
+      enable = true;
+      xray.enable = false;
+      settings = {
+        passes = 3;
+        offset = 1;
+        noise = 0.0;
+        saturation = 0.0;
+      };
+    };
+    border = {
+      size = 2;
+      radius = 0;
+    };
+    font = {
+      name = "CaskaydiaCove Nerd Font Mono";
+      size = 12;
+    };
+  };
+  app = {
+    terminal = "kitty";
+    launcher = "rofi";
+    file-manager = {
+      tui = "yazi";
+      gui = null;
+    };
+    browser = {
+      gui = "firefox";
+      tui = "lyx";
+    };
+    text-editor = {
+      gui = "zeditor";
+      tui = "micro";
+    };
+  };
+  user = {
+    fullName = "cicada";
+    #mail = "@";
+    #gitName = "";
+    password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
+    shell = "fish"; # fish zsh bash
+  };
+  system = {
+    modKey = "Super"; # Super Mod4
+    desktopShell = "custom"; # custom dms noctalia
+  };
+  programs = [
+    "nix-your-shell"
+    "micro"
+    "nh"
+    "git"
+    "fish"
+    "gtk"
+    "qt"
+    "dconf"
+    "xwayland"
+    "kitty"
+    "fonts"
+    "cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
+    "appimage"
+    "no-gnome"
+    "niri"
+    "hyprland"
+    # "scroll"
+    # "shojiwm"
+    # "umbriel"
+    # "noctalia"
+    # "dms"
+    "waybar"
+    # "fuzzel"
+    "rofi"
+    "yazi"
+    "bat"
+    "firefox"
+    "zed-editor"
+    "fastfetch"
+    "uwsm"
+    "throne"
+    "swaylock"
+    "nixvim"
+    "media"
+    # "skwd-wall"
+    "gayming"
+  ];
+  services = [
+    "tuigreet"
+    "rofi-polkit-service"
+    "accounts-daemon"
+    "arrpc"
+    "awww"
+    "cliphist"
+    "cups"
+    "dbus"
+    "dropbox"
+    "earlyloom"
+    "flatpak"
+    "gvfs"
+    "locate"
+    "mpd"
+    "openssh"
+    "pipewire"
+    "playerctld"
+    "resolved"
+    "scx-loader"
+    "seatd"
+    # "sing-box"
+    "swayidle"
+    "swaync"
+    # "tlp"
+    "udev"
+    "upower"
+    "userborn"
+    "wl-clip-persist"
+    "xserver"
+  ];
+  packages = [
+    "base"
+    "jdk"
+    "neu-nix"
+    "session-packages"
+    "wine"
+  ];
 }

@@ -1,7 +1,7 @@
 {...}: {
-	services.logmein-hamachi.enable = true;
+  services.logmein-hamachi.enable = true;
 
-	# persist.system.directories = [
-	# 	"/var/lib/logmein-hamachi"
-	# ];
+  # persist.system.directories = [
+  # 	"/var/lib/logmein-hamachi"
+  # ];
 }
