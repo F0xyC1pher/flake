@@ -16,8 +16,8 @@
 in {
   environment.sessionVariables = {
     # === Терминал ===
-    TERMINAL = "kitty";
-    TERMCMD = "kitty";
+    # TERMINAL = "kitty";
+    # TERMCMD = "kitty";
 
     # === Редакторы ===
     EDITOR = "micro";
@@ -33,6 +33,7 @@ in {
     # === Qt ===
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_QPA_PLATFORMTHEME = "qt6ct";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
 
     # === GTK / GDK ===
     NO_AT_BRIDGE = "1";
@@ -44,12 +45,6 @@ in {
     # === Clutter ===
     CLUTTER_BACKEND = "wayland";
 
-    # === NVIDIA ===
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    LIBVA_DRIVER_NAME = "nvidia";
-    VDPAU_DRIVER = "nvidia";
-
     # === Electron / Chromium ===
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -59,26 +54,35 @@ in {
     MOZ_DISABLE_RDD_SANDBOX = "1";
 
     # === SDL ===
-    SDL_VIDEODRIVER = "wayland,x11";
+    SDL_VIDEODRIVER = "wayland,x11,windows,*";
     SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY = "1";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+
+    # === Wine / Proton ===
+    PROTON_ENABLE_WAYLAND = "1";
+    PROTON_USE_NTSYNC = "1";
+    PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
+    PROTON_HIDE_NVIDIA_GPU = "0";
+    PROTON_ENABLE_NVAPI = "1";
+    PROTON_LOCAL_SHADER_CACHE = "1";
 
     # === Java ===
     _JAVA_AWT_WM_NONREPARENTING = "1";
     _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
 
+    # === NVIDIA ===
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+    VDPAU_DRIVER = "nvidia";
+
     # === GStreamer (NVIDIA декодеры) ===
     GST_PLUGIN_FEATURE_RANK = "nvmpegvideodec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvh264sldec:MAX,nvh264dec:MAX,nvjpegdec:MAX,nvh265sldec:MAX,nvh265dec:MAX,nvvp9dec:MAX";
-
-    # === Wine / Proton ===
-    PROTON_ENABLE_WAYLAND = "0";
-    PROTON_USE_NTSYNC = "1";
-    PROTON_FORCE_LARGE_ADDRESS_AWARE = "1";
-    PROTON_HIDE_NVIDIA_GPU = "0";
 
     # === Отключение VSync глобально ===
     __GL_SYNC_TO_VBLANK = "0";
     __GL_YIELD = "NOTHING";
+    __GL_GSYNC_ALLOWED = "0";
     __GL_VRR_ALLOWED = "0";
     vblank_mode = "0";
 
@@ -96,5 +100,12 @@ in {
     # Telegram Desktop
     TDESKTOP_USE_GTK_FILE_DIALOG = "1";
     TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY = "1";
+
+    WEBKIT_DISABLE_DMABUF_RENDERER = "0";
+
+    XCURSOR_THEME = vars.theme.cursor.name;
+    XCURSOR_SIZE = toString vars.theme.cursor.size;
+    HYPRCURSOR_THEME = vars.theme.cursor.name;
+    HYPRCURSOR_SIZE = toString vars.theme.cursor.size;
   };
 }

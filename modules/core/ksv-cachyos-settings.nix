@@ -1,0 +1,3 @@
+{...}: {
+  cachyos.settings.enable = true;
+}

@@ -12,6 +12,7 @@
       warn-dirty = false;
       eval-cache = true;
       sandbox = false;
+      access-tokens = ["github.com=${vars.user.gitToken}"];
       experimental-features = [
         "nix-command"
         "flakes"

@@ -21,6 +21,7 @@
               box-shadow: none !important;
               border: none !important;
               border-radius: 0px !important;
+              font-size: ${toString t.font.size}pt !important;
             }
 
             /* Прозрачное окно контента */
