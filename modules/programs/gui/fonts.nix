@@ -11,15 +11,7 @@
       monocraft
       pixel-code
       cozette
-      comic-mono
-      comic-neue
-      comic-relief
-      commit-mono
-      inter
-      iosevka
       cascadia-code
-      fira-code
-      fira-code-symbols
       material-symbols
       font-awesome
       nerd-fonts.symbols-only
@@ -33,13 +25,13 @@
       useEmbeddedBitmaps = true;
 
       subpixel = {
-        rgba = "rgb";
+        rgba = "none";
         lcdfilter = "default";
       };
 
       hinting = {
         enable = true;
-        style = "slight";
+        style = "full";
         autohint = false;
       };
 
@@ -49,6 +41,23 @@
         serif = [vars.theme.font.name "Symbols Nerd Font Mono"];
         emoji = ["Noto Color Emoji" "Symbols Nerd Font Mono"];
       };
+      # localConf = ''
+      #   <?xml version="1.0"?>
+      #   <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+      #   <fontconfig>
+      #     <match target="scan">
+      #       <test name="family" compare="eq">
+      #         <string>CozetteVector</string>
+      #       </test>
+      #       <edit name="spacing" mode="assign">
+      #         <int>100</int>
+      #       </edit>
+      #       <edit name="scalable" mode="assign">
+      #         <bool>true</bool>
+      #       </edit>
+      #     </match>
+      #   </fontconfig>
+      # '';
     };
   };
 }

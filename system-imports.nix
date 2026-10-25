@@ -25,7 +25,10 @@
   {nixpkgs.overlays = [pkgsOverlay];}
   inputs.home-manager.nixosModules.home-manager
   inputs.hjem.nixosModules.default
+  inputs.ksv-cachyos-settings-nixos.nixosModules.default
   inputs.nur.modules.nixos.default
+  inputs.matugen.nixosModules.default
+  "${inputs.nixpkgs-dusk-pr}/nixos/modules/services/x11/window-managers/dusk.nix"
 ]
 ++ lib.optional (vars.hasService "proxy-suite") inputs.proxy-suite.nixosModules.default
 ++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.nixosModules.default
@@ -35,7 +38,10 @@
 ++ [
   {
     hjem = {
-      extraModules = [inputs.hjem-impure.hjemModules.default];
+      extraModules = [
+        inputs.hjem-impure.hjemModules.default
+        inputs.hjem-rum.hjemModules.default
+      ];
       clobberByDefault = true;
       users = {
         ${vars.user.name} = {

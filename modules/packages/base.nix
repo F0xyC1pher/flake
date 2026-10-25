@@ -5,12 +5,6 @@
   inputs,
   ...
 }: {
-  # imports = [
-  # 	./jdk.nix
-  # 	./neu-nix.nix
-  # 	./session-packages.nix
-  # 	./wine.nix
-  # ];
   environment.systemPackages = with pkgs;
     [
       (
@@ -28,19 +22,22 @@
         then "amd"
         else "full"
       }
+      xinit
+      prismlauncher
+      concord-tui
+      libnotify
       archivemount
       fuse-archive
       fuse3
-      gale
+      # gale
       love
       lua-language-server
-      themix-gui
       wpgtk
       yq
-      tor-browser
+      # tor-browser
       teamspeak6-client
       vscode-langservers-extracted
-      aseprite
+      # aseprite
       curl-impersonate
       curlFull
       qt6Packages.qt6ct
@@ -82,7 +79,6 @@
       wget
       aria2
       dotacat
-      blahaj
       wayneko
       kittysay
       parted
@@ -95,7 +91,6 @@
       git-credential-keepassxc
       color-lsp
       nixd
-      nil
       package-version-server
       sniffglue
       qbittorrent
@@ -130,21 +125,26 @@
       extract-dtb
       r2modman
       yetris
-      discordo
-      discord-gamesdk
+      # discordo
+      # discord-gamesdk
       rustdesk-flutter
       libva-vdpau-driver
       libvdpau-va-gl
       adw-gtk3
       rmtrash
       ayugram-desktop
-
+      satty
+      inputs.mark-shot.packages.${pkgs.stdenv.hostPlatform.system}.default
       (inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher.override {
         jdks = inputs.freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.jvmPack.temurin;
       })
       inputs.nyoom.packages.${pkgs.stdenv.hostPlatform.system}.nyoom
       inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+      inputs.amethyst.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
+    ++ lib.optional (vars.hasProgram "micro") micro-full
+    ++ lib.optional (vars.hasProgram "kitty") kitty
+    ++ lib.optional (vars.hasProgram "rmpc") inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
     ++ lib.optional (vars.hasProgram "nix-your-shell") nix-your-shell
     ++ lib.optional (vars.hasProgram "driftwm") inputs.driftwm.packages.x86_64-linux.default
     ++ lib.optional (vars.hasProgram "rofi") custom.cliphist-rofi-img

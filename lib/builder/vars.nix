@@ -41,6 +41,7 @@ in {
     name = userName;
     fullName = userCfg.user.fullName or userName;
     gitName = userCfg.user.gitName or (userCfg.user.fullName or userName);
+    gitToken = userCfg.user.gitToken or "";
     mail = userCfg.user.mail or "";
     password = userCfg.user.password or userCfg.userPassword or null;
     shell = userCfg.user.shell or userCfg.shell or "fish";
@@ -49,7 +50,7 @@ in {
   app =
     userCfg.app or {
       terminal = "kitty";
-      launcher = "fuzzel";
+      launcher = "rofi";
       file-manager = {
         tui = "yazi";
         gui = null;
@@ -79,8 +80,15 @@ in {
 
     gaps =
       userCfg.theme.gaps or {
-        "in" = 10;
-        "out" = 10;
+        "in" = 4;
+        "out" = 4;
+      };
+    struts =
+      userCfg.theme.struts or {
+        top = 0;
+        bottom = 0;
+        left = 10;
+        right = 10;
       };
     border =
       userCfg.theme.border or {
@@ -104,6 +112,11 @@ in {
       userCfg.theme.shadows or {
         enable = true;
         neon = false;
+      };
+    cursor =
+      userCfg.theme.cursor or {
+        name = "Posy_Cursor_Black";
+        size = 24;
       };
   };
 }

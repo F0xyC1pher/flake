@@ -2,7 +2,7 @@
   host = {
     user = "alice"; # Target username matching a profile in users/ :String
 
-    parallels.enable = true; # Enable Parallels Desktop guest integrations :Boolean
+    parallels.enable = false; # Enable Parallels Desktop guest integrations :Boolean
 
     boot = {
       loader = "grub"; # Options: "grub", "limine", "GRUB", "LIMINE" :String

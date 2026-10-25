@@ -1,50 +1,39 @@
-{
-  inputs,
-  vars,
-  ...
-}: {
+{vars, ...}: {
   imports = [
     ./modules
     ./style.nix
   ];
-  home-manager = {
-    extraSpecialArgs = {inherit inputs vars;};
+  programs.waybar.enable = true;
+  hjem.users.${vars.user.name}.xdg.config.files = {
+    "waybar/config".text = ''
+      // syntax: json
+      {
+      	"include": [
+      		"./modules/default.json"
+      	],
 
-    users.${vars.user.name} = {...}: {
-      xdg.configFile."waybar/config".text = ''
-        // syntax: json
-        {
-        	"include": [
-        		"./modules/default.json"
-        	],
+      	"layer": "top",
+      	"position": "top",
+        "exclusive-zone": true,
+      	"height": 30,
+      	"spacing": 3,
 
-        	"layer": "top",
-        	"position": "top",
-        	"height": 30,
-        	"spacing": 3,
+      	"modules-left": [
+      		"group/left-hidden",
+      		"niri/language",
+      	],
 
-        	"modules-left": [
-        		"group/left-hidden",
-        		"niri/language",
-        	],
+      	"modules-center": [
+      		"custom/notification",
+      		"niri/workspaces",
+      	],
 
-        	"modules-center": [
-        		"custom/notification",
-        		"niri/workspaces",
-        	],
-
-        	"modules-right": [
-        		"group/right-hidden",
-        		"clock",
-        		"tray",
-        	],
-        }
-      '';
-
-      programs.waybar = {
-        enable = true;
-        systemd.enable = true;
-      };
-    };
+      	"modules-right": [
+      		"group/right-hidden",
+      		"clock",
+      		"tray",
+      	],
+      }
+    '';
   };
 }

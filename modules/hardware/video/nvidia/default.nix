@@ -9,7 +9,7 @@ in {
   boot = {
     extraModulePackages = [nvidiaPkg];
     blacklistedKernelModules = ["nouveau"];
-    initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+    initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_drm" "nvidia_uvm"];
   };
 
   services.xserver.videoDrivers = ["nvidia"];

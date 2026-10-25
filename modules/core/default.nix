@@ -4,6 +4,7 @@
     ./security
     ./xdg
     ./etc.nix
+    ./ksv-cachyos-settings.nix
     ./locale.nix
     ./man.nix
     ./nix.nix
