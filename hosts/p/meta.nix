@@ -1,7 +1,7 @@
 {
   host = {
     user = "f";
-    parallels.enable = true;
+    parallels.enable = false;
     boot = {
       loader = "limine"; # GRUB LIMINE grub limine
       device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798"; # Find your disk for bootloader: ls -la /dev/disk/by-id/ | grep -v part
@@ -55,7 +55,7 @@
       };
       video = {
         output = {
-          framerate = 60.000;
+          framerate = 60;
           name = "HDMI-A-1";
           resolution = "1920x1080";
           scale = 1;

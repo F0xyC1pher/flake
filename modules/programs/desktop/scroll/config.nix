@@ -42,8 +42,8 @@
         #
         # Example configuration:
         #
-        #   output HDMI-A-1 resolution 1920x1080 position 0,0
-        output DVI-D-1 resolution 1600x900 position 0,0
+          output HDMI-A-1 resolution 1920x1080 position 0,0
+        # output DVI-D-1 resolution 1600x900 position 0,0
         #
         # You can get the names of your outputs by running: scrollmsg -t get_outputs
 

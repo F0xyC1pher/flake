@@ -6,10 +6,9 @@
     muted = vars.theme.style.text.comment;
   };
 in {
-  home-manager = {
-    extraSpecialArgs = {inherit vars;};
-    users.${vars.user.name} = {...}: {
-      xdg.configFile."rmpc/themes/theme.ron".text = ''
+  hjem = {
+    users.${vars.user.name}.xdg.config.files = {
+      "rmpc/themes/theme.ron".text = ''
         #![enable(implicit_some)]
         #![enable(unwrap_newtypes)]
         #![enable(unwrap_variant_newtypes)]

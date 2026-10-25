@@ -1,5 +1,6 @@
 {...}: {
   systemd = {
+    services.NetworkManager-wait-online.enable = false;
     settings = {
       Manager = {
         # DefaultCPUAccounting = "no";

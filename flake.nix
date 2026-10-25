@@ -9,9 +9,22 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     import-tree.url = "github:denful/import-tree";
-    hjem = {
-      url = "github:feel-co/hjem";
+    matugen = {
+      url = "github:InioX/Matugen";
+    };
+    # hjem = {
+    #   url = "github:feel-co/hjem";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    hjem.follows = "hjem-rum/hjem";
+    hjem-rum = {
+      url = "github:snugnug/hjem-rum";
+      # You may want hjem-rum to use your defined nixpkgs input to
+      # minimize redundancies.
       inputs.nixpkgs.follows = "nixpkgs";
+      # Same goes for hjem, to avoid discrepancies between the version
+      # you use directly and the one hjem-rum uses.
+      # inputs.hjem.follows = "hjem";
     };
     hjem-impure = {
       url = "github:Rexcrazy804/hjem-impure";
@@ -20,6 +33,12 @@
       inputs.nixpkgs.follows = "";
       inputs.hjem.follows = "";
     };
+
+    ksv-cachyos-settings-nixos = {
+      url = "github:vivekanandan-ks/ksv-cachyos-settings-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,8 +64,15 @@
       url = "github:LilleAila/nix-cursors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixpkgs-dusk-pr = {
+      url = "github:NixOS/nixpkgs/pull/558209/head";
+      flake = false;
+    };
     hyprland.url = "github:hyprwm/Hyprland";
+    mark-shot = {
+      url = "github:jswysnemc/mark-shot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     biri = {
       url = "github:barrulus/biri";
@@ -59,7 +85,10 @@
       url = "github:Diax170/scroll-flake";
       inputs.nixpkgs.follows = "nixpkgs"; # this assumes nixos unstable
     };
-
+    amethyst = {
+      url = "github:ChrisDKN/Amethyst-Mod-Manager";
+      inputs.nixpkgs.follows = "nixpkgs"; # Чтобы не тянул второй nixpkgs
+    };
     driftwm = {
       url = "github:malbiruk/driftwm";
     };
@@ -147,15 +176,20 @@
     };
     awww = {
       url = "git+https://codeberg.org/LGFae/awww";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     skwd-wall.url = "github:liixini/skwd-wall";
     rmpc = {
       url = "github:mierak/rmpc";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi.url = "github:sxyazi/yazi";
     # ── Non-flake sources ────────────────────────────────────────────────────
+    r2modman-tui = {
+      url = "github:Amar1729/r2modman-tui";
+      flake = false;
+    };
+
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;

@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   services.xserver = {
+    displayManager.startx.enable = true;
     enable = true;
     excludePackages = [pkgs.xterm];
     xkb = {

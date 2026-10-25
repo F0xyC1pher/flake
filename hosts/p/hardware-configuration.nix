@@ -31,11 +31,13 @@
   fileSystems."/home/f/CoolStuff" = {
     device = "/dev/disk/by-uuid/b0964288-b748-4f3e-b7c7-4b2b27ffdf35";
     fsType = "btrfs";
+    options = ["x-systemd.automount" "noauto"];
   };
 
   fileSystems."/home/f/Games" = {
     device = "/dev/disk/by-uuid/7506ddf1-ab9c-429b-9c83-0c8c990e450d";
     fsType = "btrfs";
+    options = ["x-systemd.automount" "noauto"];
   };
 
   fileSystems."/etc" = {

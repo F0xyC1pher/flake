@@ -7,6 +7,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays =
     [
+      (final: prev: {
+        dusk = prev.callPackage "${inputs.nixpkgs-dusk-pr}/pkgs/by-name/du/dusk/package.nix" {};
+      })
       # (final: prev: {
       # 		kitty =
       # 			prev.kitty.overrideAttrs (oldAttrs: {

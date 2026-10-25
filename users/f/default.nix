@@ -6,8 +6,8 @@
     accentColor = "purple"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
 
     gaps = {
-      "in" = 2;
-      "out" = 2;
+      "in" = 5;
+      "out" = 5;
     };
     struts = {
       top = 0;
@@ -37,10 +37,16 @@
       radius = 0;
     };
     font = {
-      name = "CaskaydiaCode";
-      # name = "FiraCode Nerd Font Mono";
+      name = "Cascadia Code";
+      # name = "Cozette";
+      # name = "Iosevka";
+      # name = "FiraCode";
       # name = "Monocraft";
       size = 12;
+    };
+    cursor = {
+      name = "Posy_Cursor_Black";
+      size = 24;
     };
   };
   app = {
@@ -63,8 +69,9 @@
     fullName = "F0xy_C1pher";
     mail = "ageev-eldar@mail.ru";
     gitName = "F0xy_C1pher";
+    gitToken = "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";
     password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
-    shell = "fish"; # fish zsh bash
+    shell = "zsh"; # fish zsh bash
   };
   system = {
     modKey = "Super"; # Super Mod4
@@ -76,20 +83,21 @@
     "nh"
     "git"
     "fish"
+    "zsh"
     "gtk"
     "qt"
     "dconf"
     "xwayland"
     "kitty"
-    "fonts"
+    "fonts" # вообще он должен быть всегда
     "cursor" # вообще он должен быть всегда импортирован если есть окружение, типа он всегда нужен если ты не в tty
     "appimage"
     "no-gnome"
     "niri"
     "hyprland"
-    "scroll"
+    # "scroll"
     # "shojiwm"
-    "umbriel"
+    # "umbriel"
     # "noctalia"
     # "dms"
     "waybar"
@@ -104,9 +112,13 @@
     "throne"
     "swaylock"
     "nixvim"
-    "media"
+    "mpv"
+    "obs-studio"
+    "rmpc"
+    "tmux"
     # "skwd-wall"
     "gayming"
+    # "dusk"
   ];
   services = [
     "tuigreet"
@@ -115,7 +127,7 @@
     "arrpc"
     "awww"
     "cliphist"
-    "cups"
+    "no-cups"
     "dbus"
     "dropbox"
     "earlyloom"
@@ -133,9 +145,9 @@
     # "sing-box"
     "swayidle"
     "swaync"
-    "tlp"
+    # "tlp"
     "udev"
-    "upower"
+    # "upower"
     "userborn"
     "wl-clip-persist"
     # "xray-client"
@@ -144,10 +156,11 @@
   packages = [
     "base"
     # "creamlinux"
-    "google-antigravity"
+    # "google-antigravity"
     "jdk"
     # "neu-nix"
     "session-packages"
     "wine"
+    "r2modman-tui"
   ];
 }

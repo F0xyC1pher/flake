@@ -2,25 +2,22 @@
   style = vars.theme.style;
   # colors = vars.theme.colors;
 in {
-  home-manager = {
-    extraSpecialArgs = {inherit vars;};
-    users.${vars.user.name} = {pkgs, ...}: {
-      programs.micro = {
-        package = pkgs.micro-full;
-        enable = true;
-        settings = {
-          showchars = "itab=│"; #"┊" "┆"
-          hltrailingws = true;
-          cursorline = true;
-          rmtrailingws = true;
-          tabstospaces = false;
-          tabsize = 4;
-          colorscheme = "custom-theme";
-          autosu = true;
-        };
-      };
+  hjem = {
+    users.${vars.user.name}.xdg.config.files = {
+      "micro/settings.json".text = ''
+      {
+        "showchars": "itab=│",
+        "hltrailingws": true,
+        "cursorline": true,
+        "rmtrailingws": true,
+        "tabstospaces": true,
+        "tabsize": 2,
+        "colorscheme": "custom-theme",
+        "autosu": true,
+      }
+      '';
 
-      xdg.configFile."micro/colorschemes/custom-theme.micro".text = ''
+      "micro/colorschemes/custom-theme.micro".text = ''
         # Основные цвета интерфейса
         color-link default "${style.text.main},${style.ui.bg}"
         color-link comment "${style.text.comment}"
