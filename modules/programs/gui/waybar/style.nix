@@ -4,8 +4,7 @@
   ...
 }: {
   hjem.users.${vars.user.name}.xdg.config.files = {
-    "waybar/style.css".text = ''
-      /*css*/
+    "waybar/style.css".text = /*css*/''
 
       window#waybar {
       	background: transparent;

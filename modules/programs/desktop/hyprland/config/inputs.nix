@@ -1,6 +1,6 @@
 {vars, ...}: {
   hjem.users.${vars.user.name}.xdg.config.files = {
-    "hypr/04-inputs.lua".text = ''
+    "hypr/04-inputs.lua".text = /* lua */ ''
       hl.config({
         input = {
           kb_layout = "us,ru",
@@ -18,7 +18,11 @@
             clickfinger_behavior = false,
           },
         },
+        input-capture = {
+          capture_modifiers = true,
+        },
       })
     '';
   };
+  
 }
