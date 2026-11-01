@@ -9,7 +9,7 @@
   inactiveBorder = "rgba(${cleanHex t.ui.border.inactive}${vars.theme.opacityHex})";
 in {
   hjem.users.${vars.user.name}.xdg.config.files = {
-    "hypr/03-general.lua".text = ''
+    "hypr/03-general.lua".text = /* lua */''
       hl.config({
         general = {
           gaps_in = ${toString vars.theme.gaps."in"},
@@ -23,18 +23,13 @@ in {
             inactive_border = "${inactiveBorder}",
           },
         },
-      	misc = {
-      		focus_on_activate = true,
-      		float_force_onscreen = 1,
-      		new_float_force_onscreen = 2,
-      	},
       	binds = {
       		focus_preferred_method = 1,
       	},
       	scrolling = {
       		fullscreen_on_one_column = false,
       		follow_focus = true,
-      		column_width = 1.0,
+					 column_width = 0.75,
       		focus_fit_method = 1,
       		explicit_column_widths = "0.5, 0.75, 1.0",
       		direction = "right",
