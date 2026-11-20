@@ -27,7 +27,6 @@
       concord-tui
       libnotify
       archivemount
-      fuse-archive
       fuse3
       # gale
       love
