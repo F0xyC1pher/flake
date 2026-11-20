@@ -124,3 +124,4 @@ or an external secret manager.
   [services](./modules/services/readme.md).
 - [Themes](./themes/readme.md) — Base16 extension into Base56.
 - [Core library (`lib/`)](./lib/readme.md) — builders, color math, module resolver.
+- [Squashed commit history](./HISTORY.md) — maps each squashed commit to the original steps it replaced.
