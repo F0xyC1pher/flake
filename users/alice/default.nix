@@ -1,8 +1,12 @@
+# Template user profile for a new machine. Copy this directory to
+# users/<new-name>/ and adjust it, then point hosts/<host>/meta.nix at it.
 {...}: {
   theme = {
-    name = "theMe";
+    # Name of a palette in themes/ ("the-me", "cicada", "catppuccin-mocha", ...).
+    name = "the-me";
     # dark = true;
-    accent = "0";
+    accentLevel = "normal"; # "dimmed" | "normal" | "bright"
+    accentColor = "purple"; # "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "magenta"
     # gaps = 8;
     # border = 2;
 

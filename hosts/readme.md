@@ -1,120 +1,121 @@
 # Hosts Architecture
 
-The `hosts/` directory contains machine-specific definitions, hardware drivers, file system configurations, and user assignments. Each subdirectory represents a standalone NixOS system target.
+`hosts/` contains machine-specific definitions. Every subdirectory with a
+`meta.nix` becomes a `nixosConfigurations.<name>` output automatically
+(`flake.nix` scans this directory — no manual host list).
 
-## Directory Structure
+## Hosts in this flake
+
+| Host | User | Bootloader / kernel | RAM | Audio out | GPU |
+| --- | --- | --- | --- | --- | --- |
+| `p` | `f` | Limine / `xanmod_latest` | 16 GB | F32 / 192000 | NVIDIA `legacy_580`, proprietary |
+| `terminal` | `cicada` | GRUB / `latest` | 8 GB | S32 / 48000 | NVIDIA `latest`, open modules |
+| `wonderland` | `alice` | GRUB / `latest` | 16 GB | S32 / 96000 | NVIDIA `latest`, open modules (**template**) |
+
+## Directory structure
 
 ```text
 hosts/
 ├── <hostname>/
-    ├── default.nix                 # System entrypoint and state version definitions
-    ├── meta.nix                    # Machine hardware specs, driver options, and user mapping
-    ├── hardware-configuration.nix  # Generated disk mounts, kernel modules, and platform specs
-    └── battery.nix                 # (Optional) Hardware-specific tweaks or power management scripts
+│   ├── default.nix                 # entrypoint, state version, hardware imports
+│   ├── meta.nix                    # machine metadata: bootloader, GPU, audio, user
+│   ├── hardware-configuration.nix  # generated mounts/kernel modules (real hosts)
+│   └── battery.nix                 # optional hardware tweaks (terminal)
+└── wonderland/                     # template
+    ├── default.nix
+    ├── meta.nix
+    └── place-hardware-configuration-here.nix  # replace with generated config
 ```
 
-## Host Configuration Breakdown
+## 1. Host entrypoint (`default.nix`)
 
-### 1. Host Entrypoint (`default.nix`)
-
-Defines system-level imports, enables hardware modules (such as `nixos-hardware`), sets system state versions, and passes global `vars` into Home-Manager.
+Imports the hardware configuration, sets the NixOS state version and passes
+`vars` into Home Manager. Real example (`hosts/p/default.nix`):
 
 ```nix
-{ vars, inputs, ... }: {
+{vars, ...}: {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    ./battery.nix
     ./hardware-configuration.nix
   ];
-
   system.stateVersion = "26.11";
-
   home-manager = {
-    extraSpecialArgs = { inherit vars; };
-    users.${vars.user.name} = { ... }: {
+    extraSpecialArgs = {inherit vars;};
+    users.${vars.user.name} = {...}: {
       home.stateVersion = "26.11";
     };
   };
 }
 ```
 
-### 2. Machine Metadata (`meta.nix`)
+`hosts/terminal/default.nix` additionally imports `nixos-hardware` modules
+(`common-cpu-amd`, `common-cpu-amd-pstate`, `common-hidpi`, `common-pc-laptop`,
+`common-pc-ssd`) and `./battery.nix`.
 
-Configures system options including bootloaders, GPU drivers, audio sample rates, memory scaling, and binds the machine to a user profile in `users/`.
+## 2. Machine metadata (`meta.nix`)
+
+Everything under `host` ends up as `vars.host` in modules.
 
 ```nix
 {
   host = {
-    user = "alice"; # Target username matching a profile in users/ :String
+    user = "f";                       # profile in users/ :String
 
-    parallels.enable = true; # Enable Parallels Desktop guest integrations :Boolean
+    parallels.enable = false;         # Parallels guest integrations :Bool
 
     boot = {
-      loader = "grub"; # Options: "grub", "limine", "GRUB", "LIMINE" :String
-      device = "/dev/disk/by-id/"; # Disk path for bootloader :String
+      loader = "limine";              # grub | limine | GRUB | LIMINE :String
+      device = "/dev/disk/by-id/ata-Smartbuy_SSD_128GB_LCN263R001798";
+      # find yours: ls -la /dev/disk/by-id/ | grep -v part
     };
 
     kernel = {
-      name = "latest"; # Options: "xanmod_latest", "zen_latest", "hardened", "latest" :String
-      # modules = []; # Extra out-of-tree kernel modules :List(String)
+      name = "xanmod_latest";         # latest | zen_latest | hardened | xanmod_latest
+      modules = ["acpi-cpufreq"];     # extra kernel modules :List(String)
+      params = ["intel_pstate=disable"]; # kernel command line params
     };
 
-    # Dynamic Memory Allocation (Automated paging & compression)
-    swap = {
-      enable = true; # Enable disk swapfile (/var/lib/swapfile) :Boolean
-      # size = 16; # (Optional) Explicit GB size; defaults to hardware.ram :Integer
-    };
-
-    zram = {
-      enable = true; # Enable compressed RAM block device :Boolean
-      # percent = 100; # (Optional) Override adaptive calculation :Integer
-    };
+    swap = {enable = true;};          # /var/lib/swapfile; optional `size` in GB
+    zram = {enable = true;};          # compressed RAM; optional `percent`
 
     hardware = {
-      ram = 16; # System RAM in GB (used for zRAM & Swap calculation) :Integer
-      bluetooth.enable = true; # Enable Bluetooth hardware stack :Boolean
-      wifi.enable = true; # Enable Wireless networking support :Boolean
-      cpu.governor = "performance"; # Options: "performance", "powersave", "ondemand", "schedutil" :String
+      ram = 16;                       # GB, used for zRAM/swap sizing
+      bluetooth.enable = true;
+      wifi.enable = true;
+      cpu.governor = "performance";   # performance | powersave | ondemand | schedutil
+
+      rom = [                         # optional ROM/game library paths (host p)
+        {name = "Games"; path = "";}
+        {name = "CoolStuff"; path = "";}
+      ];
 
       audio = {
         input = {
-          noiseCancellation = true; # Enable LADSPA RNNoise filter chain on mic :Boolean
-          rate.value = 48000; # Options: (48000), 96000, 192000 :Integer
-          format = {
-            prefix = "S"; # Options: "F", "S" :String
-            value = 16; # Bit depth (16, 24, 32) :Integer
-            suffix = "LE"; # Endianness: "LE", "BE", "P" :String
-          };
+          noiseCancellation = true;   # LADSPA RNNoise chain on the mic
+          rate.value = 48000;         # 48000 | 96000 | 192000
+          format = {prefix = "S"; value = 16; suffix = "LE";}; # F|S, 16|24|32, LE|BE|P
         };
         output = {
-          rate.value = 48000; # Options: 48000, (96000), 192000 :Integer
-          format = {
-            prefix = "S"; # Options: "F", "S" :String
-            value = 32; # Options: 16, 24, 32 :Integer
-            suffix = "LE"; # Options: "LE", "BE", "P" :String
-          };
+          rate.value = 192000;
+          format = {prefix = "F"; value = 32; suffix = "LE";};
         };
       };
 
       video = {
-        output = {
-          name = "HDMI-A-1"; # Display connector identifier :String
-          resolution = "1920x1080"; # Options: "YxZ" :IntegerxInteger-in-String
-          framerate = "60.000"; # Options: "XXX.YYY" :Float-in-String
+        output = {                    # host p values
+          name = "HDMI-A-1";
+          resolution = "1920x1080";
+          framerate = 60;             # template uses "60.000"
+          scale = 1;
         };
         driver = {
-          amd = {
-            enable = false; # Enable AMD GPU driver stack :Boolean
-            # type = "modern"; # Options: "modern" (RX+), "legacy" (Radeon<) :String
-          };
+          amd = {enable = false; type = "modern";}; # modern | legacy
           nvidia = {
-            enable = true; # Enable NVIDIA GPU driver stack :Boolean
-            package = "latest"; # Options: "latest", "legacy_580", "legacy_470" :String
-            open = true; # Use open-source kernel modules (Turing+) :Boolean
+            enable = true;
+            open = false;             # open kernel modules (Turing+)
+            package = "legacy_580";   # latest | legacy_580 | legacy_470
             perf = {
-              value = true; # Options: true for maximum | Watts :Integer | "%" :String | false | null
-              persistence = true; # Enable nvidia-persistenced daemon :Boolean
+              value = true;           # true=max | Watts | "percent" | false | null
+              persistence = true;     # nvidia-persistenced
             };
           };
         };
@@ -123,49 +124,45 @@ Configures system options including bootloaders, GPU drivers, audio sample rates
   };
 }
 ```
-### 3. Memory & Swap Scaling Logic
 
-The `swap.nix` module automates compressed memory and disk paging based on `hardware.ram` and explicit blocks:
+## 3. Memory and swap scaling
 
-* **zRAM Dynamic Scale**: Calculates percentage automatically if `zram` is declared ($\le 4\text{ GB} \rightarrow 200\%$, $\le 8\text{ GB} \rightarrow 150\%$, $\le 16\text{ GB} \rightarrow 100\%$, $\le 32\text{ GB} \rightarrow 50\%$).
-* **Swap Sizing**: If `swap` is declared without `size`, it falls back to matching `hardware.ram`. Applies `noCoW = true` for Btrfs safety.
-* **zSwap Conflict Control**: `boot.zswap` is automatically disabled when zRAM is active to avoid double-compression overhead, but conditionally enables for standalone disk swap.
+`modules/hardware/swap.nix` derives sizes from `hardware.ram`:
 
-### 4. Hardware Configuration (`hardware-configuration.nix`)
+- zRAM percentage scales with RAM (≤4 GB → 200%, ≤8 GB → 150%, ≤16 GB → 100%, ≤32 GB → 50%) unless `zram.percent` is set.
+- `swap.size` defaults to `hardware.ram` when omitted; `noCoW = true` for Btrfs safety.
+- `boot.zswap` is disabled while zRAM is active to avoid double compression.
 
-Standard NixOS configuration file generated via `nixos-generate-config`. Specifies available kernel modules, file system mount points, and swap spaces.
+## 4. Hardware configuration
 
-```nix
-{ config, lib, pkgs, modulesPath, ... }: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+`hardware-configuration.nix` is generated on the target machine:
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ea645b4d-a6ec-49cf-9cdf-7cd712c385a9";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7286-DEB5";
-    fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
-  };
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-}
+```bash
+sudo nixos-generate-config --show-hardware-config
 ```
 
-## Adding a New Host
+Paste the output into the host directory (see the template note below). It holds
+kernel modules, file system mounts and `nixpkgs.hostPlatform`.
 
-1. Create a new directory under `hosts/` named after your hostname: `hosts/<new-hostname>/`.
-2. Copy your system's generated `/etc/nixos/hardware-configuration.nix` into `hosts/<new-hostname>/hardware-configuration.nix`.
-3. Create `default.nix` and `meta.nix` files inside the new directory.
-4. Set the `user` attribute inside `host` in `meta.nix` to point to a valid profile in `users/`.
-5. Deploy the new target:
-   ```bash
-   sudo nixos-rebuild switch --flake .#<new-hostname>
-   ```
+## Adding a new machine — `alice@Wonderland` template
+
+`hosts/wonderland` and `users/alice` form a ready-to-copy pair. `wonderland`
+already declares a full `meta.nix` and a valid, minimal entrypoint; the only
+placeholder is the hardware configuration.
+
+```bash
+cp -r hosts/wonderland hosts/<new-host>
+cp -r users/alice     users/<new-user>
+```
+
+1. Replace the contents of
+   `hosts/<new-host>/place-hardware-configuration-here.nix` with the output of
+   `sudo nixos-generate-config --show-hardware-config`. `default.nix` already
+   imports that file.
+2. Replace the `XX.YY` placeholder in `system.stateVersion` and
+   `home.stateVersion` in `default.nix` with the NixOS release you first
+   installed on the new machine (`26.11` on `p`).
+3. Edit `meta.nix`: real bootloader `device`, kernel, RAM, audio/video,
+   GPU driver, and `host.user` pointing at your copied user profile.
+4. Edit `users/<new-user>/default.nix`: identity, theme, apps and software lists.
+5. Deploy: `sudo nixos-rebuild switch --flake .#<new-host>`.
