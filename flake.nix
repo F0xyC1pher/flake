@@ -198,10 +198,6 @@
       url = "github:F0xyC1pher/yatline.yazi";
       flake = false;
     };
-    fuse-archive-fork = {
-      url = "github:boydaihungst/fuse-archive.yazi";
-      flake = false;
-    };
 
     powerlevel10k = {
       url = "github:romkatv/powerlevel10k";

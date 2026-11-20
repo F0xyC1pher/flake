@@ -23,7 +23,6 @@
           # mediainfo = mediainfo;
           toggle-pane = toggle-pane;
           full-border = full-border;
-          fuse-archive = inputs.fuse-archive-fork;
         };
       };
     };
