@@ -69,7 +69,7 @@
     fullName = "F0xy_C1pher";
     mail = "ageev-eldar@mail.ru";
     gitName = "F0xy_C1pher";
-    gitToken = "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";
+    gitToken = ""; # no valid token stored here; use gh auth or SOPS
     password = "$6$AntMCBLfJ4foukEM$UrkX24HXtg4oUToaOv6YNzoTigCoYX9CbbyY0pNRk6ZmVG/3StBux6gDWA1dWSIE490PF4Q/YFcVixA7gc8zy.";
     shell = "zsh"; # fish zsh bash
   };
